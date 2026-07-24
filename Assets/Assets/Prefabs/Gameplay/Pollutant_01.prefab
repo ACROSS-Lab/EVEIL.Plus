@@ -148,5 +148,7 @@ MonoBehaviour:
   RandomizeOffsets: 1
   RandomHorizontalRange: 0.2
   RandomVerticalRange: 0.2
-  RandomizeAlongSpline: 0
-  RandomAlongSplineRange: 0.1
+  RandomizeAlongSpline: 1
+  RandomAlongSplineRange: 1
+  RandomizeSplineIndex: 1
+  SplineIndex: 0
