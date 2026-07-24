@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FollowSpline
   splineContainer: {fileID: 0}
-  Speed: 1
+  Speed: 0.5
   StartT: 0
   Loop: 1
   HorizontalOffset: 0.1
