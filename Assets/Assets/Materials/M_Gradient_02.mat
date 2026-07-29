@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Gradient_01
-  m_Shader: {fileID: -6465566751694194690, guid: 850a53dfcf2e85a4d8365db9ad81bf96, type: 3}
+  m_Name: M_Gradient_02
+  m_Shader: {fileID: -6465566751694194690, guid: fae83e93dac9e374f86c09218286a592, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -150,7 +150,7 @@ Material:
     - _Color1: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Fade_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _LightDir: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _LightDir: {r: 1.19, g: 0.69, b: -3.63, a: 0}
     - _Multiply_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Outline_Color: {r: 0, g: 0, b: 0, a: 0}
     - _Shadow_Color: {r: 0.5729352, g: 0.9059228, b: 0.9716981, a: 0}

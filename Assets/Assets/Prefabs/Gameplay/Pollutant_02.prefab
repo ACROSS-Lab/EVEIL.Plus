@@ -52,6 +52,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6499810431069975628, guid: d408880a955aa8c459c65480642485a6, type: 3}
+      propertyPath: VerticalOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499810431069975628, guid: d408880a955aa8c459c65480642485a6, type: 3}
+      propertyPath: HorizontalOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499810431069975628, guid: d408880a955aa8c459c65480642485a6, type: 3}
+      propertyPath: RandomVerticalRange
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6499810431069975628, guid: d408880a955aa8c459c65480642485a6, type: 3}
+      propertyPath: RandomHorizontalRange
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 8184073214969815094, guid: d408880a955aa8c459c65480642485a6, type: 3}
       propertyPath: m_Name
       value: Pollutant_02

@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.3647955, z: 0, w: 0.93108773}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -146,8 +146,8 @@ MonoBehaviour:
   HorizontalOffset: 0.1
   VerticalOffset: 0.1
   RandomizeOffsets: 1
-  RandomHorizontalRange: 0.2
-  RandomVerticalRange: 0.2
+  RandomHorizontalRange: 0.05
+  RandomVerticalRange: 0.05
   RandomizeAlongSpline: 1
   RandomAlongSplineRange: 1
   RandomizeSplineIndex: 1
