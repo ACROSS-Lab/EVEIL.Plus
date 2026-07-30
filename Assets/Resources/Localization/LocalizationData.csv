@@ -1,10 +1,15 @@
  ,English,Vietnamese,French
-Test.01,this is a test,this is a test,this is a test
-Poi.crop.sprayer,Crop sprayer,Máy phun thu?c,Pulvérisateur
-Poi.animal.pen,Animal pen,Chu?ng nuôi gia súc,Enclos à animaux
-Poi.manure.pile,Manure pile,??ng phân,Tas de fumier
-Poi.plastic.cover,Plastic cover,T?m b?t nh?a,Bâche plastique
-Poi.chemical.shed,Chemical shed,Kho ch?a hóa ch?t,Local de stockage
-Poi.washing.area,Washing area,Khu r?a d?ng c?,Aire de lavage
-Poi.Well,Well,Gi?ng n??c,Puits
-Poi.Ditch,Ditch,M??ng n??c,Fossé
+Test.01,this is a test,,this is a test
+Poi.crop.sprayer,Crop sprayer,,Pulvérisateur
+Poi.animal.pen,Animal pen,,Enclos à animaux
+Poi.manure.pile,Manure pile,,Tas de fumier
+Poi.plastic.cover,Plastic cover,,Bâche plastique
+Poi.chemical.shed,Chemical shed,,Local de stockage
+Poi.washing.area,Washing area,,Aire de lavage
+Poi.Well,Well,,Puits
+Poi.Ditch,Ditch,,Fossé
+,,,
+tag.pfas,PFAS,,PFAS
+tag.antibiotics,Antibiotics,,Antibiotiques
+tag.pesticids,Pesticids,,Pesticides
+tag.empty,Pollutant,,Polluant

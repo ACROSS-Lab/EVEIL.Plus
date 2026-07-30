@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc650e2c31356ed42919b9a3c133469c, type: 3}
+  m_Name: Tag_Pesticids
+  m_EditorClassIdentifier: Assembly-CSharp::TagData
+  icon: {fileID: -1729644778, guid: 4b002f3b3dcf76b41a8ab54b877af4e8, type: 3}
+  localizationKey: tag.pesticids

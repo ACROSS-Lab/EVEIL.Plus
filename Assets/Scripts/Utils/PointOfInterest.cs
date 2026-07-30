@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -10,19 +12,32 @@ public class PointOfInterest : MonoBehaviour
     [Header("Localization")]
     [SerializeField] string localizationKey;
 
-    [Header("Reference (Prefab)")]
-    [SerializeField] GameObject displayPrefab; // prefab asset, not an instance in the scene
-
-    [Header("Position")]
+    [Header("Info Display (Prefab)")]
+    [SerializeField] GameObject displayPrefab; // prefab asset for the info text/canvas
     [SerializeField] float heightOffset = 1.5f;
-
-    [Header("Detection")]
     [SerializeField] float triggerDistance = 3f;
 
-    GameObject displayRoot; // runtime instance of the prefab
+    [Header("Tags")]
+    [SerializeField] GameObject tagPrefab; // generic prefab holding a TagDisplay component
+    [SerializeField] TagData emptyTagData; // placeholder shown before the player picks a tag
+    [SerializeField] TagData[] availableTags;
+    [SerializeField] float tagHeightOffset = 2f;
+
+    [Header("Far Marker (shown once tagged, even from afar)")]
+    [SerializeField] GameObject farMarkerPrefab; // small dot/icon prefab
+    [SerializeField] float farMarkerHeightOffset = 2f;
+
+    GameObject displayRoot;
     TextMeshProUGUI textLabel;
     Transform camTransform;
     bool isVisible = false;
+
+    GameObject tagInstance;
+    TagDisplay tagDisplay;
+    int currentTagIndex = -1; // -1 means placeholder (no tag chosen yet)
+    XRSimpleInteractable interactable;
+
+    GameObject farMarkerInstance;
 
 #if UNITY_EDITOR
     void Reset()
@@ -47,51 +62,79 @@ public class PointOfInterest : MonoBehaviour
 
     void Awake()
     {
-        // --- Debug step 1: check the LocalizedKey component itself ---
+        interactable = GetComponent<XRSimpleInteractable>();
+
+        // Safety net in case Reset() never ran on this object
         LocalizedKey localizedKey = GetComponent<LocalizedKey>();
-        Debug.Log($"[POI Debug] LocalizedKey component found: {localizedKey != null}");
-
-        if (localizedKey != null)
+        if (localizedKey == null)
         {
-            localizedKey.localizationKey = localizationKey;
-            Debug.Log($"[POI Debug] localizationKey assigned: '{localizedKey.localizationKey}'");
+            localizedKey = gameObject.AddComponent<LocalizedKey>();
         }
+        localizedKey.localizationKey = localizationKey;
 
-        // --- Debug step 2: check the LocalizationManager singleton ---
-        Debug.Log($"[POI Debug] LocalizationManager.Instance is null: {LocalizationManager.Instance == null}");
-
-        if (LocalizationManager.Instance != null && !string.IsNullOrEmpty(localizationKey))
+        if (displayPrefab != null)
         {
-            string testValue = LocalizationManager.Instance.GetLocalizedValue(localizationKey);
-            Debug.Log($"[POI Debug] GetLocalizedValue('{localizationKey}') returned: '{testValue}'");
-        }
+            displayRoot = Instantiate(displayPrefab, transform);
+            displayRoot.transform.localPosition = Vector3.up * heightOffset;
+            displayRoot.SetActive(false);
 
-        // --- Debug step 3: check the prefab instantiation ---
-        if (displayPrefab == null)
-        {
-            Debug.Log("[POI Debug] displayPrefab is null, nothing to instantiate.");
-            return;
-        }
-
-        displayRoot = Instantiate(displayPrefab, transform);
-        displayRoot.transform.localPosition = Vector3.up * heightOffset;
-        displayRoot.SetActive(false);
-
-        textLabel = displayRoot.GetComponentInChildren<TextMeshProUGUI>(true);
-        Debug.Log($"[POI Debug] TextMeshProUGUI found in prefab: {textLabel != null}");
-
-        if (localizedKey != null)
-        {
+            textLabel = displayRoot.GetComponentInChildren<TextMeshProUGUI>(true);
             localizedKey.textComponent = textLabel;
+        }
+
+        if (tagPrefab != null)
+        {
+            // Only instantiate here, data is applied later in Start()
+            // because LocalizationManager.Instance might not be ready yet during Awake
+            tagInstance = Instantiate(tagPrefab, transform);
+            tagInstance.transform.localPosition = Vector3.up * tagHeightOffset;
+            tagDisplay = tagInstance.GetComponent<TagDisplay>();
+            tagInstance.SetActive(false);
+        }
+
+        if (farMarkerPrefab != null)
+        {
+            farMarkerInstance = Instantiate(farMarkerPrefab, transform);
+            farMarkerInstance.transform.localPosition = Vector3.up * farMarkerHeightOffset;
+            farMarkerInstance.SetActive(false);
+        }
+    }
+
+    void OnEnable()
+    {
+        if (interactable != null)
+        {
+            interactable.selectEntered.AddListener(OnSelectEntered);
+        }
+    }
+
+    void OnDisable()
+    {
+        if (interactable != null)
+        {
+            interactable.selectEntered.RemoveListener(OnSelectEntered);
         }
     }
 
     void Start()
     {
         camTransform = Camera.main.transform;
+
+        // Safe to call now: every Awake() in the scene has already run, including LocalizationManager's
+        if (tagDisplay != null && emptyTagData != null)
+        {
+            tagDisplay.SetData(emptyTagData);
+        }
     }
 
     void Update()
+    {
+        UpdateInfoDisplay();
+        UpdateTagVisibility();
+        UpdateFarMarkerVisibility();
+    }
+
+    void UpdateInfoDisplay()
     {
         if (displayRoot == null) return;
 
@@ -109,5 +152,54 @@ public class PointOfInterest : MonoBehaviour
             // Billboard effect, text always faces the camera
             displayRoot.transform.rotation = Quaternion.LookRotation(displayRoot.transform.position - camTransform.position);
         }
+    }
+
+    void UpdateTagVisibility()
+    {
+        if (tagInstance == null) return;
+
+        // The tag (placeholder or chosen) only shows up close, same proximity rule as the info display
+        if (tagInstance.activeSelf != isVisible)
+        {
+            tagInstance.SetActive(isVisible);
+        }
+
+        if (isVisible)
+        {
+            tagInstance.transform.rotation = Quaternion.LookRotation(tagInstance.transform.position - camTransform.position);
+        }
+    }
+
+    void UpdateFarMarkerVisibility()
+    {
+        if (farMarkerInstance == null) return;
+
+        // Shown only when: the point has already been tagged, AND the player is far away
+        bool hasBeenTagged = currentTagIndex != -1;
+        bool shouldShowMarker = hasBeenTagged && !isVisible;
+
+        if (farMarkerInstance.activeSelf != shouldShowMarker)
+        {
+            farMarkerInstance.SetActive(shouldShowMarker);
+        }
+
+        if (shouldShowMarker)
+        {
+            farMarkerInstance.transform.rotation = Quaternion.LookRotation(farMarkerInstance.transform.position - camTransform.position);
+        }
+    }
+
+    void OnSelectEntered(SelectEnterEventArgs args)
+    {
+        CycleTag();
+    }
+
+    void CycleTag()
+    {
+        if (tagDisplay == null || availableTags == null || availableTags.Length == 0) return;
+
+        // Loop through the available tags, starting from the first one on the first press
+        currentTagIndex = (currentTagIndex + 1) % availableTags.Length;
+        tagDisplay.SetData(availableTags[currentTagIndex]);
     }
 }

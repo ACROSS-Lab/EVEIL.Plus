@@ -40,6 +40,8 @@ public class HoverLiftSetupWindow : EditorWindow
     private Ease _dropEase = Ease.InCubic;
     private bool _addFloatingRotation = false;
     private float _rotationDuration = 4f;
+    private bool _addCameraTilt = false;
+    private float _tiltAngle = 50f;
 
     [MenuItem("Window/XR/Hover Lift Setup")]
     private static void OpenWindow()
@@ -76,6 +78,16 @@ public class HoverLiftSetupWindow : EditorWindow
         if (_addFloatingRotation)
         {
             _rotationDuration = EditorGUILayout.FloatField("Rotation Duration", _rotationDuration);
+        }
+
+        _addCameraTilt = EditorGUILayout.Toggle(
+            new GUIContent("Add Camera Tilt (lid effect)", "Tilts the object like a lid opening toward " +
+                            "Camera.main, revealing its underside. Independent from Add Floating Rotation, " +
+                            "use one or the other."),
+            _addCameraTilt);
+        if (_addCameraTilt)
+        {
+            _tiltAngle = EditorGUILayout.FloatField("Tilt Angle", _tiltAngle);
         }
 
         EditorGUILayout.Space();
@@ -143,7 +155,9 @@ public class HoverLiftSetupWindow : EditorWindow
             liftEase = _liftEase,
             dropEase = _dropEase,
             addFloatingRotation = _addFloatingRotation,
-            rotationDuration = _rotationDuration
+            rotationDuration = _rotationDuration,
+            addCameraTilt = _addCameraTilt,
+            tiltAngle = _tiltAngle
         };
     }
 
@@ -156,6 +170,8 @@ public class HoverLiftSetupWindow : EditorWindow
         public Ease dropEase;
         public bool addFloatingRotation;
         public float rotationDuration;
+        public bool addCameraTilt;
+        public float tiltAngle;
     }
 
     private static void ApplyLiftSettings(HoverLiftEffect lift, HoverLiftSettings settings)
@@ -168,6 +184,8 @@ public class HoverLiftSetupWindow : EditorWindow
         serialized.FindProperty("dropEase").enumValueIndex = (int)settings.dropEase;
         serialized.FindProperty("addFloatingRotation").boolValue = settings.addFloatingRotation;
         serialized.FindProperty("rotationDuration").floatValue = settings.rotationDuration;
+        serialized.FindProperty("addCameraTilt").boolValue = settings.addCameraTilt;
+        serialized.FindProperty("tiltAngle").floatValue = settings.tiltAngle;
         serialized.ApplyModifiedProperties();
     }
 
