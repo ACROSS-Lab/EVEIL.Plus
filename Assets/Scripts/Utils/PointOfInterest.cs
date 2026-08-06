@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using TMPro;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -12,29 +13,56 @@ public class PointOfInterest : MonoBehaviour
     [Header("Localization")]
     [SerializeField] string localizationKey;
 
-    [Header("Info Display (Prefab)")]
-    [SerializeField] GameObject displayPrefab; // prefab asset for the info text/canvas
+    [Header("Info Display")]
+    [SerializeField] GameObject displayPrefab;
     [SerializeField] float heightOffset = 1.5f;
     [SerializeField] float triggerDistance = 3f;
 
     [Header("Tags")]
-    [SerializeField] GameObject tagPrefab; // generic prefab holding a TagDisplay component
-    [SerializeField] TagData emptyTagData; // placeholder shown before the player picks a tag
+    [SerializeField] GameObject tagPrefab;
+    [SerializeField] TagData emptyTagData;
     [SerializeField] TagData[] availableTags;
+
+    [Tooltip("Tags considérés comme corrects")]
+    [SerializeField] TagData[] validTags;
+
     [SerializeField] float tagHeightOffset = 2f;
 
-    [Header("Far Marker (shown once tagged, even from afar)")]
-    [SerializeField] GameObject farMarkerPrefab; // small dot/icon prefab
+    [Header("Far Marker")]
+    [SerializeField] GameObject farMarkerPrefab;
     [SerializeField] float farMarkerHeightOffset = 2f;
+
+    public event Action<PointOfInterest> OnTagChanged;
+
+    public bool HasTag => currentTagIndex != -1;
+
+    public bool IsCorrect
+    {
+        get
+        {
+            if (!HasTag)
+                return false;
+
+            TagData current = availableTags[currentTagIndex];
+
+            foreach (TagData tag in validTags)
+            {
+                if (tag == current)
+                    return true;
+            }
+
+            return false;
+        }
+    }
 
     GameObject displayRoot;
     TextMeshProUGUI textLabel;
     Transform camTransform;
-    bool isVisible = false;
+    bool isVisible;
 
     GameObject tagInstance;
     TagDisplay tagDisplay;
-    int currentTagIndex = -1; // -1 means placeholder (no tag chosen yet)
+    int currentTagIndex = -1;
     XRSimpleInteractable interactable;
 
     GameObject farMarkerInstance;
@@ -42,21 +70,19 @@ public class PointOfInterest : MonoBehaviour
 #if UNITY_EDITOR
     void Reset()
     {
-        // Add the localization component at edit time, same approach as the original script
         if (GetComponent<LocalizedKey>() == null)
         {
             LocalizedKey localizedKey = gameObject.AddComponent<LocalizedKey>();
-            Undo.RegisterCreatedObjectUndo(localizedKey, "Add LocalizedKey Component");
+            Undo.RegisterCreatedObjectUndo(localizedKey, "Add LocalizedKey");
         }
     }
 
     void OnValidate()
     {
         LocalizedKey localizedKey = GetComponent<LocalizedKey>();
+
         if (localizedKey != null)
-        {
             localizedKey.localizationKey = localizationKey;
-        }
     }
 #endif
 
@@ -64,12 +90,11 @@ public class PointOfInterest : MonoBehaviour
     {
         interactable = GetComponent<XRSimpleInteractable>();
 
-        // Safety net in case Reset() never ran on this object
         LocalizedKey localizedKey = GetComponent<LocalizedKey>();
+
         if (localizedKey == null)
-        {
             localizedKey = gameObject.AddComponent<LocalizedKey>();
-        }
+
         localizedKey.localizationKey = localizationKey;
 
         if (displayPrefab != null)
@@ -84,8 +109,6 @@ public class PointOfInterest : MonoBehaviour
 
         if (tagPrefab != null)
         {
-            // Only instantiate here, data is applied later in Start()
-            // because LocalizationManager.Instance might not be ready yet during Awake
             tagInstance = Instantiate(tagPrefab, transform);
             tagInstance.transform.localPosition = Vector3.up * tagHeightOffset;
             tagDisplay = tagInstance.GetComponent<TagDisplay>();
@@ -103,28 +126,21 @@ public class PointOfInterest : MonoBehaviour
     void OnEnable()
     {
         if (interactable != null)
-        {
             interactable.selectEntered.AddListener(OnSelectEntered);
-        }
     }
 
     void OnDisable()
     {
         if (interactable != null)
-        {
             interactable.selectEntered.RemoveListener(OnSelectEntered);
-        }
     }
 
     void Start()
     {
         camTransform = Camera.main.transform;
 
-        // Safe to call now: every Awake() in the scene has already run, including LocalizationManager's
         if (tagDisplay != null && emptyTagData != null)
-        {
             tagDisplay.SetData(emptyTagData);
-        }
     }
 
     void Update()
@@ -136,7 +152,8 @@ public class PointOfInterest : MonoBehaviour
 
     void UpdateInfoDisplay()
     {
-        if (displayRoot == null) return;
+        if (displayRoot == null)
+            return;
 
         float distance = Vector3.Distance(camTransform.position, transform.position);
         bool shouldBeVisible = distance <= triggerDistance;
@@ -149,43 +166,38 @@ public class PointOfInterest : MonoBehaviour
 
         if (isVisible)
         {
-            // Billboard effect, text always faces the camera
-            displayRoot.transform.rotation = Quaternion.LookRotation(displayRoot.transform.position - camTransform.position);
+            displayRoot.transform.rotation =
+                Quaternion.LookRotation(displayRoot.transform.position - camTransform.position);
         }
     }
 
     void UpdateTagVisibility()
     {
-        if (tagInstance == null) return;
+        if (tagInstance == null)
+            return;
 
-        // The tag (placeholder or chosen) only shows up close, same proximity rule as the info display
-        if (tagInstance.activeSelf != isVisible)
-        {
-            tagInstance.SetActive(isVisible);
-        }
+        tagInstance.SetActive(isVisible);
 
         if (isVisible)
         {
-            tagInstance.transform.rotation = Quaternion.LookRotation(tagInstance.transform.position - camTransform.position);
+            tagInstance.transform.rotation =
+                Quaternion.LookRotation(tagInstance.transform.position - camTransform.position);
         }
     }
 
     void UpdateFarMarkerVisibility()
     {
-        if (farMarkerInstance == null) return;
+        if (farMarkerInstance == null)
+            return;
 
-        // Shown only when: the point has already been tagged, AND the player is far away
-        bool hasBeenTagged = currentTagIndex != -1;
-        bool shouldShowMarker = hasBeenTagged && !isVisible;
+        bool show = HasTag && !isVisible;
 
-        if (farMarkerInstance.activeSelf != shouldShowMarker)
+        farMarkerInstance.SetActive(show);
+
+        if (show)
         {
-            farMarkerInstance.SetActive(shouldShowMarker);
-        }
-
-        if (shouldShowMarker)
-        {
-            farMarkerInstance.transform.rotation = Quaternion.LookRotation(farMarkerInstance.transform.position - camTransform.position);
+            farMarkerInstance.transform.rotation =
+                Quaternion.LookRotation(farMarkerInstance.transform.position - camTransform.position);
         }
     }
 
@@ -196,10 +208,13 @@ public class PointOfInterest : MonoBehaviour
 
     void CycleTag()
     {
-        if (tagDisplay == null || availableTags == null || availableTags.Length == 0) return;
+        if (tagDisplay == null || availableTags.Length == 0)
+            return;
 
-        // Loop through the available tags, starting from the first one on the first press
         currentTagIndex = (currentTagIndex + 1) % availableTags.Length;
+
         tagDisplay.SetData(availableTags[currentTagIndex]);
+
+        OnTagChanged?.Invoke(this);
     }
 }
