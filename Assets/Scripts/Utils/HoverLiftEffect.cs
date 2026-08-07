@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
@@ -101,6 +102,11 @@ public class HoverLiftEffect : MonoBehaviour
         _interactable.hoverExited.RemoveListener(OnHoverExited);
     }
 
+    void Update()
+    {
+        MouseDebug();
+    }
+
     private void OnHoverEntered(HoverEnterEventArgs args)
     {
         _hoverCount++;
@@ -165,6 +171,34 @@ public class HoverLiftEffect : MonoBehaviour
                 visualTransform
                     .DOLocalRotateQuaternion(_restRotation, dropDuration)
                     .SetEase(dropEase);
+            }
+        }
+    }
+
+    bool activated = false;
+    void MouseDebug()
+    {
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            Vector2 mousePos = Mouse.current.position.ReadValue();
+            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                Debug.Log($"Mouse clicked on {hit.collider.name}");
+                if (hit.collider == GetComponent<Collider>())
+                {
+                    activated = !activated;
+                }
+
+                if (activated)
+                {
+                    OnHoverEntered(new HoverEnterEventArgs());
+                }
+                else
+                {
+                    OnHoverExited(new HoverExitEventArgs());
+                }
             }
         }
     }
