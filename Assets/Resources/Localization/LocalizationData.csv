@@ -13,3 +13,6 @@ tag.pfas,PFAS,,PFAS
 tag.antibiotics,Antibiotics,,Antibiotiques
 tag.pesticids,Pesticids,,Pesticides
 tag.empty,Pollutant,,Polluant
+,,,
+Gameplay.RemainingScore,Remaining sources:{0} ,,Sources restantes : {0}
+Gameplay.PollutionErrors,{0}Errors left,,Il reste {0} erreurs à corriger.

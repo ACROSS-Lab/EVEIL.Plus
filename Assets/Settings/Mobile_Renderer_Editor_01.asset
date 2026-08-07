@@ -32,7 +32,7 @@ MonoBehaviour:
     enableWrite: 1
     stencilSettings:
       overrideStencilState: 1
-      stencilReference: 1
+      stencilReference: 2
       stencilCompareFunction: 3
       passOperation: 0
       failOperation: 0

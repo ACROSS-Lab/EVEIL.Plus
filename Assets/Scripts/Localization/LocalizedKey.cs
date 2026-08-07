@@ -7,9 +7,12 @@ public class LocalizedKey : MonoBehaviour
     public AudioSource audioSource;
     public TextMeshProUGUI textComponent;
 
+    private object[] formatArguments;
+
     private void Start()
     {
-        if (textComponent == null) GetComponent<TextMeshProUGUI>();
+        if (textComponent == null)
+            textComponent = GetComponent<TextMeshProUGUI>();
 
         UpdateText();
         LocalizationManager.OnLanguageChanged += UpdateText;
@@ -24,38 +27,54 @@ public class LocalizedKey : MonoBehaviour
     private void OnDestroy()
     {
         LocalizationManager.OnLanguageChanged -= UpdateText;
+
         if (audioSource != null)
-        {
             LocalizationManager.OnLanguageChanged -= UpdateAudioClip;
-        }
     }
 
     public void UpdateText()
     {
-        if (string.IsNullOrEmpty(localizationKey)) return;
+        if (string.IsNullOrEmpty(localizationKey))
+            return;
 
         if (textComponent != null)
         {
-            string localizedText = LocalizationManager.Instance.GetLocalizedValue(localizationKey);
-            if (!string.IsNullOrEmpty(localizedText))
+            string localizedText =
+                LocalizationManager.Instance.GetLocalizedValue(localizationKey);
+
+            if (formatArguments != null && formatArguments.Length > 0)
             {
-                textComponent.text = localizedText;
+                localizedText = string.Format(localizedText, formatArguments);
             }
+
+            textComponent.text = localizedText;
         }
         else
         {
-            Debug.LogWarning("TextMeshProUGUI component not found on " + gameObject.name);
+            Debug.LogWarning(
+                "TextMeshProUGUI component not found on " + gameObject.name);
         }
+    }
+
+    public void SetFormatArguments(params object[] arguments)
+    {
+        formatArguments = arguments;
+        UpdateText();
     }
 
     public void UpdateAudioClip()
     {
-        if (string.IsNullOrEmpty(localizationKey)) return;
+        if (string.IsNullOrEmpty(localizationKey))
+            return;
 
-        string currentLanguage = LocalizationManager.Instance.GetLanguage();
-        string audioClipPath = $"Localization/Audio/{currentLanguage}/{localizationKey}";
+        string currentLanguage =
+            LocalizationManager.Instance.GetLanguage();
 
-        AudioClip loadedClip = Resources.Load<AudioClip>(audioClipPath);
+        string audioClipPath =
+            $"Localization/Audio/{currentLanguage}/{localizationKey}";
+
+        AudioClip loadedClip =
+            Resources.Load<AudioClip>(audioClipPath);
 
         if (loadedClip != null)
         {
@@ -63,7 +82,8 @@ public class LocalizedKey : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"AudioClip not found at path: '{audioClipPath}'");
+            Debug.LogWarning(
+                $"AudioClip not found at path: '{audioClipPath}'");
         }
     }
 }

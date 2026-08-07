@@ -5,30 +5,41 @@ using UnityEngine.Events;
 public class PollutionGameManager : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private TextMeshProUGUI remainingText;
+    [SerializeField] private LocalizedKey remainingText;
 
-    [SerializeField] private TextMeshProUGUI scoreText;
+    [Header("Validation")]
+    [SerializeField] private GameObject validationButton;
+    [SerializeField] private GameObject validationPanel;
+    [SerializeField] private LocalizedKey errorText;
 
     [Header("Events")]
     public UnityEvent onAllTagged;
-
-    public UnityEvent onAllCorrect;
+    public UnityEvent onCompleted;
 
     private PointOfInterest[] points;
 
-    void Awake()
+    private void Awake()
     {
-        points = FindObjectsByType<PointOfInterest>(FindObjectsSortMode.None);
+        points = FindObjectsByType<PointOfInterest>(
+            FindObjectsSortMode.None
+        );
 
         foreach (PointOfInterest point in points)
         {
             point.OnTagChanged += OnPointChanged;
         }
 
-        UpdateUI();
+        // Hide the validation panel and button at the beginning.
+        if (validationPanel != null)
+            validationPanel.SetActive(false);
+
+        if (validationButton != null)
+            validationButton.SetActive(false);
+
+        UpdateRemainingUI();
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         foreach (PointOfInterest point in points)
         {
@@ -36,26 +47,29 @@ public class PollutionGameManager : MonoBehaviour
         }
     }
 
-    void OnPointChanged(PointOfInterest point)
+    private void OnPointChanged(PointOfInterest point)
     {
-        UpdateUI();
+        UpdateRemainingUI();
 
+        // The validation button only becomes available
+        // once every source has been tagged at least once.
         if (RemainingCount() == 0)
         {
-            onAllTagged?.Invoke();
+            if (validationButton != null)
+                validationButton.SetActive(true);
 
-            if (AllCorrect())
-                onAllCorrect?.Invoke();
+            onAllTagged?.Invoke();
         }
     }
 
-    void UpdateUI()
+    private void UpdateRemainingUI()
     {
         if (remainingText != null)
-            remainingText.text = RemainingCount().ToString();
-
-        if (scoreText != null)
-            scoreText.text = $"{CorrectCount()} / {points.Length}";
+        {
+            remainingText.SetFormatArguments(
+                RemainingCount()
+            );
+        }
     }
 
     public int RemainingCount()
@@ -71,21 +85,47 @@ public class PollutionGameManager : MonoBehaviour
         return remaining;
     }
 
-    public int CorrectCount()
+    public int ErrorCount()
     {
-        int correct = 0;
+        int errors = 0;
 
         foreach (PointOfInterest point in points)
         {
-            if (point.IsCorrect)
-                correct++;
+            if (!point.IsCorrect)
+                errors++;
         }
 
-        return correct;
+        return errors;
     }
 
-    public bool AllCorrect()
+    public void ValidateAnswers()
     {
-        return CorrectCount() == points.Length;
+        // Do not allow validation before every source has been tagged.
+        if (RemainingCount() > 0)
+            return;
+
+        int errors = ErrorCount();
+
+        // Show the validation result only after the player
+        // explicitly presses the validation button.
+        if (validationPanel != null)
+            validationPanel.SetActive(true);
+
+        if (errorText != null)
+        {
+            errorText.SetFormatArguments(errors);
+        }
+
+        // All answers are correct.
+        if (errors == 0)
+        {
+            onCompleted?.Invoke();
+        }
+    }
+
+    public void CloseValidationPanel()
+    {
+        if (validationPanel != null)
+            validationPanel.SetActive(false);
     }
 }
