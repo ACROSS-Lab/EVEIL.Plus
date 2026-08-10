@@ -129,7 +129,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Highlight: 0
-    - _Inverse_Flow: 0
+    - _Inverse_Flow: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Outline: 0
@@ -138,7 +138,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _ShadowContrast: 0.5
-    - _ShadowLimit: 0.46
+    - _ShadowLimit: 0.5
     - _Shadow_Limit: -0.42
     - _Shore: 0
     - _Smoothness: 0.5

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 28b25b477ec1ce743966551f3bc2b84e
+guid: e69b2ab9c1573714cb03ce80c98470a1
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: M_Gradient
-    second: {fileID: 2100000, guid: b017ec522ef96e544926d6879fde575d, type: 2}
+    second: {fileID: 2100000, guid: f5c992d90b77b50458c567b19d87d82b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -51,7 +51,7 @@ ModelImporter:
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
