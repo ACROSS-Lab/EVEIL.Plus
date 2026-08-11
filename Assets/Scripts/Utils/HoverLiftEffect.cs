@@ -6,8 +6,9 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 /// <summary>
 /// Attach this to the same GameObject as an XRBaseInteractable (e.g. XRSimpleInteractable or XRGrabInteractable).
-/// Smoothly lifts the object up when hovered by an OpenXR controller/hand, and lowers it back down on hover exit.
-/// Works with the XR Interaction Toolkit, which is driven by the OpenXR plugin.
+/// On hover, swaps the object's material to give visual feedback (no movement, so the hover ray never loses
+/// the object). Pressing the trigger (select) while hovering lifts the object up; releasing/deselecting
+/// lowers it back down. Works with the XR Interaction Toolkit, which is driven by the OpenXR plugin.
 /// Requires DOTween (Assets > Import Package, or via Package Manager / Asset Store).
 /// </summary>
 [RequireComponent(typeof(XRBaseInteractable))]
@@ -18,6 +19,13 @@ public class HoverLiftEffect : MonoBehaviour
              "Keep the root object (with the collider) completely static so the ray never loses hover " +
              "while the mesh moves up.")]
     [SerializeField] private Transform visualTransform;
+
+    [Header("Hover Material Feedback")]
+    [Tooltip("Renderer whose material is swapped on hover. Leave empty to auto-find one on the Visual Transform.")]
+    [SerializeField] private Renderer targetRenderer;
+
+    [Tooltip("Material applied while the object is hovered. Restored to the original material(s) on hover exit.")]
+    [SerializeField] private Material hoverMaterial;
 
     [Header("Movement amount")]
     [Tooltip("Lift height in meters, in local space")]
@@ -64,6 +72,8 @@ public class HoverLiftEffect : MonoBehaviour
     private Tween _rotateTween;
     private Tween _tiltTween;
     private int _hoverCount = 0;
+    private int _selectCount = 0;
+    private Material[] _originalMaterials;
 
     private void Awake()
     {
@@ -75,6 +85,32 @@ public class HoverLiftEffect : MonoBehaviour
                               "falling back to the root transform. This may cause the hover ray to lose " +
                               "the object while it lifts. Assign a separate child transform instead.");
             visualTransform = transform;
+        }
+
+        if (targetRenderer == null)
+        {
+            targetRenderer = visualTransform.GetComponent<Renderer>();
+            if (targetRenderer == null)
+            {
+                targetRenderer = visualTransform.GetComponentInChildren<Renderer>();
+            }
+        }
+
+        if (targetRenderer == null)
+        {
+            Debug.LogWarning($"[{nameof(HoverLiftEffect)}] No Renderer found on '{name}' or its children. " +
+                              "Hover material feedback will be disabled.");
+        }
+        else
+        {
+            // Cache the original materials so we can restore them exactly, including multi-material meshes.
+            _originalMaterials = targetRenderer.sharedMaterials;
+        }
+
+        if (hoverMaterial == null)
+        {
+            Debug.LogWarning($"[{nameof(HoverLiftEffect)}] No hoverMaterial assigned on '{name}'. " +
+                              "Hover material feedback will be disabled.");
         }
 
         _restPosition = visualTransform.localPosition;
@@ -94,12 +130,16 @@ public class HoverLiftEffect : MonoBehaviour
     {
         _interactable.hoverEntered.AddListener(OnHoverEntered);
         _interactable.hoverExited.AddListener(OnHoverExited);
+        _interactable.selectEntered.AddListener(OnSelectEntered);
+        _interactable.selectExited.AddListener(OnSelectExited);
     }
 
     private void OnDisable()
     {
         _interactable.hoverEntered.RemoveListener(OnHoverEntered);
         _interactable.hoverExited.RemoveListener(OnHoverExited);
+        _interactable.selectEntered.RemoveListener(OnSelectEntered);
+        _interactable.selectExited.RemoveListener(OnSelectExited);
     }
 
     void Update()
@@ -107,10 +147,51 @@ public class HoverLiftEffect : MonoBehaviour
         MouseDebug();
     }
 
+    // --- Hover: material feedback only, no movement ---
+
     private void OnHoverEntered(HoverEnterEventArgs args)
     {
         _hoverCount++;
         if (_hoverCount == 1)
+        {
+            ApplyHoverMaterial();
+        }
+    }
+
+    private void OnHoverExited(HoverExitEventArgs args)
+    {
+        _hoverCount = Mathf.Max(0, _hoverCount - 1);
+        if (_hoverCount == 0)
+        {
+            RestoreOriginalMaterial();
+        }
+    }
+
+    private void ApplyHoverMaterial()
+    {
+        if (targetRenderer == null || hoverMaterial == null) return;
+
+        int count = targetRenderer.sharedMaterials.Length;
+        Material[] swapped = new Material[count];
+        for (int i = 0; i < count; i++)
+        {
+            swapped[i] = hoverMaterial;
+        }
+        targetRenderer.sharedMaterials = swapped;
+    }
+
+    private void RestoreOriginalMaterial()
+    {
+        if (targetRenderer == null || _originalMaterials == null) return;
+        targetRenderer.sharedMaterials = _originalMaterials;
+    }
+
+    // --- Select (trigger press): lift up / drop down ---
+
+    private void OnSelectEntered(SelectEnterEventArgs args)
+    {
+        _selectCount++;
+        if (_selectCount == 1)
         {
             _moveTween?.Kill();
             _moveTween = visualTransform
@@ -151,10 +232,10 @@ public class HoverLiftEffect : MonoBehaviour
         }
     }
 
-    private void OnHoverExited(HoverExitEventArgs args)
+    private void OnSelectExited(SelectExitEventArgs args)
     {
-        _hoverCount = Mathf.Max(0, _hoverCount - 1);
-        if (_hoverCount == 0)
+        _selectCount = Mathf.Max(0, _selectCount - 1);
+        if (_selectCount == 0)
         {
             _rotateTween?.Kill();
             _tiltTween?.Kill();
@@ -175,30 +256,39 @@ public class HoverLiftEffect : MonoBehaviour
         }
     }
 
-    bool activated = false;
+    bool hoverActivated = false;
+    bool selectActivated = false;
     void MouseDebug()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current == null || Camera.main == null) return;
+
+        Vector2 mousePos = Mouse.current.position.ReadValue();
+        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        bool isOverThis = Physics.Raycast(ray, out RaycastHit hit) && hit.collider == GetComponent<Collider>();
+
+        // Simulate hover: toggles material feedback while the mouse sits over the collider.
+        if (isOverThis && !hoverActivated)
         {
-            Vector2 mousePos = Mouse.current.position.ReadValue();
-            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+            hoverActivated = true;
+            OnHoverEntered(new HoverEnterEventArgs());
+        }
+        else if (!isOverThis && hoverActivated)
+        {
+            hoverActivated = false;
+            OnHoverExited(new HoverExitEventArgs());
+        }
 
-            if (Physics.Raycast(ray, out RaycastHit hit))
+        // Simulate the trigger (select): left click while hovering lifts, clicking again drops.
+        if (Mouse.current.leftButton.wasPressedThisFrame && isOverThis)
+        {
+            selectActivated = !selectActivated;
+            if (selectActivated)
             {
-                Debug.Log($"Mouse clicked on {hit.collider.name}");
-                if (hit.collider == GetComponent<Collider>())
-                {
-                    activated = !activated;
-                }
-
-                if (activated)
-                {
-                    OnHoverEntered(new HoverEnterEventArgs());
-                }
-                else
-                {
-                    OnHoverExited(new HoverExitEventArgs());
-                }
+                OnSelectEntered(new SelectEnterEventArgs());
+            }
+            else
+            {
+                OnSelectExited(new SelectExitEventArgs());
             }
         }
     }

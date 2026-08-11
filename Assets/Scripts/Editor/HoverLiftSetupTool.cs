@@ -32,6 +32,9 @@ public class HoverLiftSetupWindow : EditorWindow
     private ColliderChoice _colliderChoice = ColliderChoice.Box;
     private bool _convexMeshCollider = true;
 
+    // Hover material feedback
+    private Material _hoverMaterial;
+
     // HoverLiftEffect settings, mirroring the component's own defaults.
     private float _liftHeight = 0.1f;
     private float _liftDuration = 0.25f;
@@ -66,6 +69,13 @@ public class HoverLiftSetupWindow : EditorWindow
                                           "with physics-based movement)."),
                 _convexMeshCollider);
         }
+
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Hover Material Feedback", EditorStyles.boldLabel);
+        _hoverMaterial = (Material)EditorGUILayout.ObjectField(
+            new GUIContent("Hover Material", "Material applied while the object is hovered. " +
+                            "Leave empty to skip material feedback."),
+            _hoverMaterial, typeof(Material), false);
 
         EditorGUILayout.Space();
         EditorGUILayout.LabelField("Hover Lift Effect settings", EditorStyles.boldLabel);
@@ -149,6 +159,7 @@ public class HoverLiftSetupWindow : EditorWindow
     {
         return new HoverLiftSettings
         {
+            hoverMaterial = _hoverMaterial,
             liftHeight = _liftHeight,
             liftDuration = _liftDuration,
             dropDuration = _dropDuration,
@@ -163,6 +174,7 @@ public class HoverLiftSetupWindow : EditorWindow
 
     private struct HoverLiftSettings
     {
+        public Material hoverMaterial;
         public float liftHeight;
         public float liftDuration;
         public float dropDuration;
@@ -177,6 +189,7 @@ public class HoverLiftSetupWindow : EditorWindow
     private static void ApplyLiftSettings(HoverLiftEffect lift, HoverLiftSettings settings)
     {
         SerializedObject serialized = new SerializedObject(lift);
+        serialized.FindProperty("hoverMaterial").objectReferenceValue = settings.hoverMaterial;
         serialized.FindProperty("liftHeight").floatValue = settings.liftHeight;
         serialized.FindProperty("liftDuration").floatValue = settings.liftDuration;
         serialized.FindProperty("dropDuration").floatValue = settings.dropDuration;

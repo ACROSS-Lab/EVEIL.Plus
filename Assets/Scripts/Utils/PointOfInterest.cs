@@ -96,6 +96,13 @@ public class PointOfInterest : MonoBehaviour
     {
         interactable = GetComponent<XRSimpleInteractable>();
 
+        // Start disabled, matching isVisible's initial value, so the POI can't be
+        // selected before the player has come into range at least once.
+        if (interactable != null)
+        {
+            interactable.enabled = false;
+        }
+
         // Safety net in case the LocalizedKey component was not added in the editor.
         LocalizedKey localizedKey = GetComponent<LocalizedKey>();
 
@@ -202,6 +209,13 @@ public class PointOfInterest : MonoBehaviour
         {
             isVisible = shouldBeVisible;
             displayRoot.SetActive(isVisible);
+
+            // Disabling the interactable unregisters it from the interaction manager,
+            // so it can no longer be hovered or selected while out of range.
+            if (interactable != null)
+            {
+                interactable.enabled = isVisible;
+            }
         }
 
         if (isVisible)
