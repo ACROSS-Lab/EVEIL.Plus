@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 272b3340dec6323418bfbb3b98283410, type: 3}
+  m_Name: Test_Step_01
+  m_EditorClassIdentifier: Assembly-CSharp::SequenceStep
+  hasSequenceEvents: 0
+  hasNarratorMovement: 0
+  targetNarratorPosition: {x: 0, y: 0, z: 0}
+  offsetAtCenter: {x: 0, y: 0, z: 0}
+  hasNarratorRotation: 0
+  targetNarratorRotation: {x: 0, y: 0, z: 0}
+  targetNarratorScale: 0
+  flyDuration: 0
+  hasPlayerMovement: 0
+  playerTargetPosition: {x: 0, y: 0, z: 0}
+  hasPlayerRotation: 0
+  playerTargetRotation: {x: 0, y: 0, z: 0}
+  hasSceneTransition: 0
+  sceneName: 
+  isGoingBackToMainScene: 0
+  hasDialogue: 1
+  characterStates: {fileID: 11400000, guid: 1fa3470f8cdcfd44592bb98dd66da925, type: 2}
+  timeWaitBeforeTalking: 0
+  dialogueKey: Dialogue.key.test.01
+  isUsingOverlay: 0
+  eyesState: 0
+  bodyStartState: 1
+  bodyEndState: 0
+  mouthStartState: 1
+  mouthEndState: 0
+  timeWaitAfterTalking: 0
+  hasInteraction: 0
+  hasInfiniteTimeout: 0
+  waitTimeout: 0
+  hasSubStep: 0
+  timeToWaitBeforeSubStep: 0
+  subStep: {fileID: 0}

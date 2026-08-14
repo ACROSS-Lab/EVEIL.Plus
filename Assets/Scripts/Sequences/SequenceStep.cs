@@ -25,12 +25,13 @@ public class SequenceStep : ScriptableObject
 
     [Header("Phase 2: Presentation")]
     public bool hasDialogue;
+    [ShowIf("hasDialogue")] public CharacterStatesConfig characterStates;
     [ShowIf("hasDialogue")] public float timeWaitBeforeTalking;
     [ShowIf("hasDialogue")] public string dialogueKey;
     [ShowIf("hasDialogue")] public bool isUsingOverlay;
-    [ShowIf("hasDialogue")] [Dropdown("GetEyesStates")] [OnValueChanged("OnDropdownChanged")] public int eyesState;
-    [ShowIf("hasDialogue")] [Dropdown("GetBodyStates")] [OnValueChanged("OnDropdownChanged")] public int bodyStartState, bodyEndState; 
-    [ShowIf("hasDialogue")] [Dropdown("GetMouthStates")] [OnValueChanged("OnDropdownChanged")] public int mouthStartState, mouthEndState;
+    [ShowIf("hasDialogue")][Dropdown("GetEyesStates")][OnValueChanged("OnDropdownChanged")] public int eyesState;
+    [ShowIf("hasDialogue")][Dropdown("GetBodyStates")][OnValueChanged("OnDropdownChanged")] public int bodyStartState, bodyEndState;
+    [ShowIf("hasDialogue")][Dropdown("GetMouthStates")][OnValueChanged("OnDropdownChanged")] public int mouthStartState, mouthEndState;
     [ShowIf("hasDialogue")] public float timeWaitAfterTalking;
 
     [Header("Phase 3: Interaction")]
@@ -43,51 +44,28 @@ public class SequenceStep : ScriptableObject
 
     bool ShowWaitTimeout() => hasInteraction && !hasInfiniteTimeout;
 
-    DropdownList<int> GetBodyStates()
-    {
-        return new DropdownList<int>()
-        {
-            {"Idle", 0},
-            {"Talking", 1},
-            {"Pointing Up", 2},
-            {"Pointing Down", 3},
-            {"Idle 2", 4},
-            {"Looking Down", 5},
-            {"Surprised", 6},
-            {"Pointing Right", 7},
-            {"Waving", 8},
-            {"Open Right Hand", 9},
-            {"Look Left", 10}
-        };
-    }
+    DropdownList<int> GetBodyStates() => BuildDropdown(characterStates != null ? characterStates.bodyStates : null);
+    DropdownList<int> GetEyesStates() => BuildDropdown(characterStates != null ? characterStates.eyesStates : null);
+    DropdownList<int> GetMouthStates() => BuildDropdown(characterStates != null ? characterStates.mouthStates : null);
 
-    DropdownList<int> GetEyesStates()
+    DropdownList<int> BuildDropdown(System.Collections.Generic.List<CharacterStatesConfig.StateEntry> states)
     {
-        return new DropdownList<int>()
+        var list = new DropdownList<int>();
+        if (states == null || states.Count == 0)
         {
-            {"Idle", 0},
-            {"Looking Around", 1},
-            {"Sad", 2},
-            {"Surprised", 3},
-        };
-    }
-
-    DropdownList<int> GetMouthStates()
-    {
-        return new DropdownList<int>()
-        {
-            {"Idle", 0},
-            {"Talking", 1},
-            {"Sad", 2},
-            {"Surprised", 3},
-        };
+            list.Add("None", -1);
+            return list;
+        }
+        foreach (var s in states)
+            list.Add(s.name, s.id);
+        return list;
     }
 
     void OnDropdownChanged()
     {
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         UnityEditor.EditorUtility.SetDirty(this);
         UnityEditor.AssetDatabase.SaveAssetIfDirty(this);
-        #endif
+#endif
     }
 }

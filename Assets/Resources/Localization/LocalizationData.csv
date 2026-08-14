@@ -16,3 +16,5 @@ tag.empty,Pollutant,,Polluant
 ,,,
 Gameplay.RemainingScore,Remaining sources:{0} ,,Sources restantes : {0}
 Gameplay.PollutionErrors,{0}Errors left,,Il reste {0} erreurs à corriger.
+,,,
+Dialogue.key.test.01,Test Dialogue,Test Dialogue,Test Dialogue
