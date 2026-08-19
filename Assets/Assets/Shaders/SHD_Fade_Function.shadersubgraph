@@ -431,7 +431,7 @@
         "clamp"
     ],
     "m_Precision": 0,
-    "m_PreviewExpanded": false,
+    "m_PreviewExpanded": true,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
     "m_CustomColors": {
@@ -476,10 +476,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -811.0000610351563,
-            "y": 82.00001525878906,
+            "x": -900.0001220703125,
+            "y": 103.00000762939453,
             "width": 120.0,
-            "height": 148.99998474121095
+            "height": 149.0
         }
     },
     "m_Slots": [
@@ -693,10 +693,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -161.00003051757813,
-            "y": 140.0,
-            "width": 201.0,
-            "height": 117.99996948242188
+            "x": -153.99998474121095,
+            "y": 344.9999694824219,
+            "width": 200.99998474121095,
+            "height": 118.00003051757813
         }
     },
     "m_Slots": [
@@ -775,10 +775,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1043.0001220703125,
-            "y": 103.0,
-            "width": 208.00006103515626,
-            "height": 278.0000305175781
+            "x": -1184.0001220703125,
+            "y": 103.00000762939453,
+            "width": 208.0,
+            "height": 278.0000915527344
         }
     },
     "m_Slots": [
@@ -849,8 +849,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -467.0,
-            "y": 4.76837158203125e-7,
+            "x": -477.0,
+            "y": -125.0,
             "width": 126.0,
             "height": 118.0
         }
@@ -938,8 +938,8 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -649.0000610351563,
-            "y": 35.0000114440918,
+            "x": -707.0001220703125,
+            "y": 56.00002670288086,
             "width": 128.0,
             "height": 94.0
         }
@@ -958,7 +958,7 @@
         "opposite"
     ],
     "m_Precision": 0,
-    "m_PreviewExpanded": false,
+    "m_PreviewExpanded": true,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
     "m_CustomColors": {
