@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9e5b7bc6e046cbe47834995547f0ddbd
+guid: 72da08496ecab144f9d0f43d8b817c55
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: M_Gradient_River.001
-    second: {fileID: 2100000, guid: 4686127e33cc1644b88f42441ccb802e, type: 2}
+      name: M_Gradient_River.004
+    second: {fileID: 2100000, guid: b017ec522ef96e544926d6879fde575d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
