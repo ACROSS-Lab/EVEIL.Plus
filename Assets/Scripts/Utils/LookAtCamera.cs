@@ -2,17 +2,29 @@ using UnityEngine;
 
 public class LookAtCamera : MonoBehaviour
 {
-    private Camera mainCamera;
+    [SerializeField]
+    private Camera targetCamera;
+
+    [SerializeField]
+    private bool lockYAxis = true;
 
     void Start()
     {
-        mainCamera = Camera.main;
+        if (targetCamera == null)
+        {
+            targetCamera = Camera.main;
+        }
     }
 
     void LateUpdate()
     {
-        Vector3 direction = mainCamera.transform.position - transform.position;
-        direction.y = 0;
+        Vector3 direction = targetCamera.transform.position - transform.position;
+
+        if (lockYAxis)
+        {
+            direction.y = 0;
+        }
+
         transform.rotation = Quaternion.LookRotation(direction);
     }
 }
