@@ -769,6 +769,8 @@ MonoBehaviour:
   addCameraTilt: 1
   tiltAngle: -30
   cameraOverride: {fileID: 0}
+  hintBlinkCount: 3
+  hintBlinkInterval: 0.3
 --- !u!114 &31497318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2902,6 +2904,8 @@ MonoBehaviour:
   addCameraTilt: 0
   tiltAngle: 50
   cameraOverride: {fileID: 0}
+  hintBlinkCount: 3
+  hintBlinkInterval: 0.3
 --- !u!65 &303326735
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4575,7 +4579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 931898102053475415, guid: a21cbc615c5dabd41a5b37b64b0f5701, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0.107
       objectReference: {fileID: 0}
     - target: {fileID: 931898102053475415, guid: a21cbc615c5dabd41a5b37b64b0f5701, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4624,13 +4628,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8303866961996292299, guid: a21cbc615c5dabd41a5b37b64b0f5701, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 760867729}
   m_SourcePrefab: {fileID: 100100000, guid: a21cbc615c5dabd41a5b37b64b0f5701, type: 3}
 --- !u!4 &760867727 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 931898102053475415, guid: a21cbc615c5dabd41a5b37b64b0f5701, type: 3}
   m_PrefabInstance: {fileID: 760867726}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &760867728 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8303866961996292299, guid: a21cbc615c5dabd41a5b37b64b0f5701, type: 3}
+  m_PrefabInstance: {fileID: 760867726}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &760867729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 760867728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0b9048da14d0ec4d903bfff9bb3ce15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HighlightPulse
+  targetRenderer: {fileID: 0}
+  highlightMaterial: {fileID: 2100000, guid: 1ef240b03a66f514180b3003ce458502, type: 2}
+  blinkCount: 3
+  blinkInterval: 0.3
 --- !u!1 &761874400
 GameObject:
   m_ObjectHideFlags: 0
@@ -4675,6 +4703,8 @@ MonoBehaviour:
   addCameraTilt: 0
   tiltAngle: 50
   cameraOverride: {fileID: 0}
+  hintBlinkCount: 3
+  hintBlinkInterval: 0.3
 --- !u!65 &761874402
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13956,6 +13986,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  idleThreshold: 3
+  repeatInterval: 5
+  movableObjectHighlights: []
+  toolHighlights: []
+  tagWindowHighlights: []
+  narrator: {fileID: 0}
+  needsTaggingHintKey: 
+  hintBodyState: 0
+  hintEyesState: 0
+  hintMouthState: 0
+  hintUsesOverlay: 0
 --- !u!1001 &2092311976
 PrefabInstance:
   m_ObjectHideFlags: 0

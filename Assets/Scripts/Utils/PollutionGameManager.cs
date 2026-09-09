@@ -1,6 +1,15 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+
+public enum ProgressState
+{
+    NeedsTagging,
+    ReadyToValidate,
+    HasErrors,
+    Completed
+}
 
 public class PollutionGameManager : MonoBehaviour
 {
@@ -16,7 +25,31 @@ public class PollutionGameManager : MonoBehaviour
     public UnityEvent onAllTagged;
     public UnityEvent onCompleted;
 
+    [Header("Idle Hints")]
+    [SerializeField] private bool hintsActivated = true;
+    [SerializeField] private float idleThreshold = 120f;
+    [Tooltip("If the player is still idle after a hint, wait this long before hinting again.")]
+    [SerializeField] private float repeatInterval = 60f;
+    
+    //TODO chose one method of grabing / highlighting
+    [Tooltip("Movable objects to highlight using HoverLiftEffect")]
+    [SerializeField] private HoverLiftEffect[] movableObjectHighlights;
+    [Tooltip("Movable objects to highlight using GrabInteractable")]
+    [SerializeField] private GrabInteractable[] grabbableBlockHighlights;
+    [Tooltip("Additional objects to highlight (magnifying glass, tools)")]
+    [SerializeField] private HighlightPulse[] toolHighlights;
+    [Tooltip("UI to highlight")]
+    [SerializeField] private HighlightPulse[] tagWindowHighlights;
+    
+    // [SerializeField] private Narrator narrator;
+    // [SerializeField] private string needsTaggingHintKey;
+    // [SerializeField] private int hintBodyState, hintEyesState, hintMouthState;
+    // [SerializeField] private bool hintUsesOverlay = false;
+    
     private PointOfInterest[] points;
+    
+    private bool isCompleted = false;
+    private float idleTimer = 0f;
 
     private void Awake()
     {
@@ -37,6 +70,35 @@ public class PollutionGameManager : MonoBehaviour
             validationButton.SetActive(false);
 
         UpdateRemainingUI();
+    }
+    
+    private void Update()
+    {
+        if (isCompleted)
+            return;
+        
+        if (GetProgressState() != ProgressState.NeedsTagging)
+        {
+            idleTimer = 0f;
+            return;
+        }
+        
+        // (deactivated for now bs not really well design yet)
+        // if (narrator != null && narrator.IsTalking)
+        //     return;
+ 
+        if (!hintsActivated)
+        {
+            return;
+        }
+        
+        idleTimer += Time.deltaTime;
+ 
+        if (idleTimer >= idleThreshold)
+        {
+            TriggerNeedsTaggingHint();
+            idleTimer = idleThreshold - repeatInterval;
+        }
     }
 
     private void OnDestroy()
@@ -97,6 +159,20 @@ public class PollutionGameManager : MonoBehaviour
 
         return errors;
     }
+    
+    public ProgressState GetProgressState()
+    {
+        if (isCompleted)
+            return ProgressState.Completed;
+ 
+        if (RemainingCount() > 0)
+            return ProgressState.NeedsTagging;
+ 
+        if (ErrorCount() > 0)
+            return ProgressState.HasErrors;
+ 
+        return ProgressState.ReadyToValidate;
+    }
 
     public void ValidateAnswers()
     {
@@ -128,4 +204,41 @@ public class PollutionGameManager : MonoBehaviour
         if (validationPanel != null)
             validationPanel.SetActive(false);
     }
+    
+    private void TriggerNeedsTaggingHint()
+    {
+        foreach (var obj in movableObjectHighlights)
+            if (obj != null) obj.PulseHighlight();
+        
+        foreach (var block in grabbableBlockHighlights)
+            if (block != null) block.PulseHighlight();
+ 
+        foreach (var tool in toolHighlights)
+            if (tool != null) tool.Pulse();
+ 
+        foreach (var window in tagWindowHighlights)
+            if (window != null) window.Pulse();
+ 
+        // if (narrator != null && !string.IsNullOrEmpty(needsTaggingHintKey))
+        // {
+        //     StartCoroutine(PlayHintDialogue());
+        // }
+    }
+ 
+    
+    // private IEnumerator PlayHintDialogue()
+    // {
+    //     float talkingTime = narrator.StartTalking(
+    //         needsTaggingHintKey,
+    //         hintBodyState,
+    //         hintEyesState,
+    //         hintMouthState,
+    //         hintUsesOverlay
+    //     );
+    //
+    //     yield return new WaitForSeconds(talkingTime);
+    //
+    //     narrator.FinishDialogue(hintBodyState, hintMouthState);
+    //     narrator.DisableDialogueBox();
+    // }
 }

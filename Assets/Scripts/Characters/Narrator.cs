@@ -13,6 +13,8 @@ public class Narrator : MonoBehaviour
     [SerializeField] GameObject overlayCanvas, nestedCanvas;
     [SerializeField] TextMeshProUGUI overlayText, nestedText;
     // [SerializeField] float smoothTurn = 10f;
+    
+    public bool IsTalking { get; private set; }
 
     public Tween Move(Vector3 targetPosition, Vector3 offsetAtCenter, bool hasRotation, Vector3 targetRotation, float targetScale, float flyDuration)
     {
@@ -30,6 +32,8 @@ public class Narrator : MonoBehaviour
 
     public float StartTalking(string key, int bodyStartState, int eyesState, int mouthStartState, bool isUsingOverlay)
     {
+        IsTalking = true;
+        
         dialogueBoxes.SetActive(true);
 
         localizedKey.localizationKey = key;
@@ -71,5 +75,7 @@ public class Narrator : MonoBehaviour
     public void DisableDialogueBox()
     {
         dialogueBoxes.SetActive(false);
+        
+        IsTalking = false;
     }
 }

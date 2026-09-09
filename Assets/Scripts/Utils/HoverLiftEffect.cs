@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -62,6 +63,10 @@ public class HoverLiftEffect : MonoBehaviour
     [Tooltip("Camera used to compute the tilt direction. Leave empty to use Camera.main.")]
     [SerializeField] private Transform cameraOverride;
 
+    [Header("Hint Pulse")]
+    [SerializeField] private int hintBlinkCount = 3;
+    [SerializeField] private float hintBlinkInterval = 0.3f;
+    
     private XRBaseInteractable _interactable;
     private Vector3 _restPosition;
     private Vector3 _liftedPosition;
@@ -74,6 +79,7 @@ public class HoverLiftEffect : MonoBehaviour
     private int _hoverCount = 0;
     private int _selectCount = 0;
     private Material[] _originalMaterials;
+    private Coroutine _pulseRoutine;
 
     private void Awake()
     {
@@ -184,6 +190,35 @@ public class HoverLiftEffect : MonoBehaviour
     {
         if (targetRenderer == null || _originalMaterials == null) return;
         targetRenderer.sharedMaterials = _originalMaterials;
+    }
+    
+    public void PulseHighlight()
+    {
+        if (targetRenderer == null || hoverMaterial == null) return;
+ 
+        if (_pulseRoutine != null)
+            StopCoroutine(_pulseRoutine);
+ 
+        _pulseRoutine = StartCoroutine(PulseRoutine());
+    }
+ 
+    private IEnumerator PulseRoutine()
+    {
+        for (int i = 0; i < hintBlinkCount; i++)
+        {
+            ApplyHoverMaterial();
+            yield return new WaitForSeconds(hintBlinkInterval);
+            
+            if (_hoverCount == 0)
+                RestoreOriginalMaterial();
+ 
+            yield return new WaitForSeconds(hintBlinkInterval);
+        }
+ 
+        if (_hoverCount > 0)
+            ApplyHoverMaterial();
+ 
+        _pulseRoutine = null;
     }
 
     // --- Select (trigger press): lift up / drop down ---

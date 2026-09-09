@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -8,7 +9,11 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class GrabInteractable : MonoBehaviour
 {
     [SerializeField] float resetDuration = 1f;
-
+    
+    [Header("Hint Pulse")]
+    [SerializeField] private int hintBlinkCount = 3;
+    [SerializeField] private float hintBlinkInterval = 0.3f;
+    
     XRGrabInteractable interactable;
     MaterialPropertyBlock propertyBlock;
     Vector3 originalPosition;
@@ -17,6 +22,7 @@ public class GrabInteractable : MonoBehaviour
 
     int hoverCount = 0;
     int selectCount = 0;
+    private Coroutine _pulseRoutine;
 
     static readonly int propertyID = Shader.PropertyToID("_Highlight");
 
@@ -96,6 +102,33 @@ public class GrabInteractable : MonoBehaviour
             propertyBlock.SetFloat(propertyID, highlight ? 1f : 0f);
             renderer.SetPropertyBlock(propertyBlock);
         }
+    }
+    
+    public void PulseHighlight()
+    {
+        if (_pulseRoutine != null)
+            StopCoroutine(_pulseRoutine);
+ 
+        _pulseRoutine = StartCoroutine(PulseRoutine());
+    }
+ 
+    private IEnumerator PulseRoutine()
+    {
+        for (int i = 0; i < hintBlinkCount; i++)
+        {
+            SetHightlight(true);
+            yield return new WaitForSeconds(hintBlinkInterval);
+            
+            if (hoverCount == 0)
+                SetHightlight(false);
+ 
+            yield return new WaitForSeconds(hintBlinkInterval);
+        }
+ 
+        if (hoverCount > 0)
+            SetHightlight(true);
+ 
+        _pulseRoutine = null;
     }
 
     void ResetTransform()
