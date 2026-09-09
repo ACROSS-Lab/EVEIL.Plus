@@ -88,9 +88,10 @@ public class GrabInteractable : MonoBehaviour
 
     void SetHightlight(bool highlight)
     {
-        Renderer renderer = GetComponent<Renderer>();
-        if (renderer != null)
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < renderers.Length; i++)
         {
+            Renderer renderer = renderers[i];
             renderer.GetPropertyBlock(propertyBlock);
             propertyBlock.SetFloat(propertyID, highlight ? 1f : 0f);
             renderer.SetPropertyBlock(propertyBlock);
