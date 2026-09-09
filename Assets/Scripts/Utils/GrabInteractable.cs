@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
+[RequireComponent(typeof(XRGrabInteractable))]
+[RequireComponent(typeof(Rigidbody))]
 public class GrabInteractable : MonoBehaviour
 {
     [SerializeField] float resetDuration = 1f;
@@ -17,6 +19,24 @@ public class GrabInteractable : MonoBehaviour
     int selectCount = 0;
 
     static readonly int propertyID = Shader.PropertyToID("_Highlight");
+
+    #if UNITY_EDITOR
+    void Reset()
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb == null && rb.isKinematic == false)
+        {
+            rb.isKinematic = true;
+        }
+
+        interactable = GetComponent<XRGrabInteractable>();
+        interactable.useDynamicAttach = true;
+        interactable.matchAttachPosition = true;
+        interactable.matchAttachRotation = true;
+        interactable.snapToColliderVolume = true;
+        interactable.reinitializeDynamicAttachEverySingleGrab = true;
+    }
+    #endif
 
     void Awake()
     {
