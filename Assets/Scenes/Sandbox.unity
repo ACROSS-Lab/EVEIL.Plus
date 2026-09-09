@@ -180,6 +180,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabInteractable
   resetDuration: 1
+  hintBlinkCount: 3
+  hintBlinkInterval: 0.3
 --- !u!114 &1578218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6361,6 +6363,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabInteractable
   resetDuration: 1
+  hintBlinkCount: 3
+  hintBlinkInterval: 0.3
 --- !u!114 &958902551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7494,6 +7498,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 179503184}
   m_LocalEulerAnglesHint: {x: -0.677, y: 0, z: 0}
+--- !u!114 &1133593899 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4342584413727063856, guid: 12af64cb906040149b939ca901867693, type: 3}
+  m_PrefabInstance: {fileID: 719235928}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe30326c18d99ba47b6428052cea6c2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverLiftEffect
 --- !u!1 &1137134983
 GameObject:
   m_ObjectHideFlags: 0
@@ -7858,6 +7873,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163868614}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1182849118 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7241950110557156586, guid: a21cbc615c5dabd41a5b37b64b0f5701, type: 3}
+  m_PrefabInstance: {fileID: 1358977253}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1182849122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182849118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0b9048da14d0ec4d903bfff9bb3ce15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HighlightPulse
+  targetRenderer: {fileID: 0}
+  highlightMaterial: {fileID: 2100000, guid: 1ef240b03a66f514180b3003ce458502, type: 2}
+  blinkCount: 3
+  blinkInterval: 0.3
 --- !u!1001 &1185212113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9394,7 +9430,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7241950110557156586, guid: a21cbc615c5dabd41a5b37b64b0f5701, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1182849122}
   m_SourcePrefab: {fileID: 100100000, guid: a21cbc615c5dabd41a5b37b64b0f5701, type: 3}
 --- !u!1 &1367239948
 GameObject:
@@ -10339,6 +10378,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabInteractable
   resetDuration: 1
+  hintBlinkCount: 3
+  hintBlinkInterval: 0.3
 --- !u!114 &1474161660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10847,6 +10888,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GrabInteractable
   resetDuration: 1
+  hintBlinkCount: 3
+  hintBlinkInterval: 0.3
 --- !u!114 &1523792056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14923,17 +14966,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  hintsActivated: 0
   idleThreshold: 3
   repeatInterval: 5
-  movableObjectHighlights: []
-  toolHighlights: []
+  movableObjectHighlights:
+  - {fileID: 1133593899}
+  grabbableBlockHighlights:
+  - {fileID: 1523792055}
+  - {fileID: 1474161659}
+  - {fileID: 1578217}
+  - {fileID: 958902550}
+  toolHighlights:
+  - {fileID: 1182849122}
   tagWindowHighlights: []
-  narrator: {fileID: 0}
-  needsTaggingHintKey: 
-  hintBodyState: 0
-  hintEyesState: 0
-  hintMouthState: 0
-  hintUsesOverlay: 0
 --- !u!1001 &2092311976
 PrefabInstance:
   m_ObjectHideFlags: 0
