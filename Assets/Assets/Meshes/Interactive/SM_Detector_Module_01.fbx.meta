@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 77edc469099e3c445bdaa37783885319
+guid: 3b0c3b8a961f52f4c866cb8b73beba21
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gradient
+    second: {fileID: 2100000, guid: d290b66cdeb9c9a4c9867a19cc94d742, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Screen
+    second: {fileID: 2100000, guid: eef3aa6ff3f048442aac1092d49a6e8c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -46,7 +56,7 @@ ModelImporter:
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
