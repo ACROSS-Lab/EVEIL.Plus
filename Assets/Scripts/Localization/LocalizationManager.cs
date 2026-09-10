@@ -17,6 +17,13 @@ public class LocalizationManager : MonoBehaviour
 
     private List<ColorText> colorTexts = new List<ColorText>();
 
+    private readonly HashSet<string> supportedLanguages = new HashSet<string>
+    {
+        "English",
+        "Vietnamese",
+        "French"
+    };
+    
     private void Awake()
     {
         if (Instance == null)
@@ -55,23 +62,37 @@ public class LocalizationManager : MonoBehaviour
 
         // Use the new parser for the header
         List<string> headers = ParseCsvLine(lines[0]);
+        
         for (int i = 1; i < headers.Count; i++)
         {
-            localizedData[headers[i].Trim()] = new Dictionary<string, string>();
+            string header = headers[i].Trim();
+
+            if (!supportedLanguages.Contains(header))
+                continue;
+
+            localizedData[header] = new Dictionary<string, string>();
         }
 
         for (int i = 1; i < lines.Length; i++)
         {
             // Use the new parser for each data row
             List<string> values = ParseCsvLine(lines[i]);
+            
+            if (values.Count == 0)
+                continue;
+            
             string key = values[0].Trim();
 
             for (int j = 1; j < values.Count && j < headers.Count; j++)
             {
-                string language = headers[j].Trim();
+                string column = headers[j].Trim();
+                
+                if (!supportedLanguages.Contains(column))
+                    continue;
+                
                 string value = values[j].Trim(); // The parser handles quotes, so we can still trim.
                 value = ApplyAutoColors(value);
-                localizedData[language][key] = value;
+                localizedData[column][key] = value;
             }
         }
     }

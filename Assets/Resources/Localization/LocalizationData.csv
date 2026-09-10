@@ -1,22 +1,34 @@
- ,English,Vietnamese,French
-Test.01,this is a test,,this is a test
-Poi.crop.sprayer,Crop sprayer,,Pulvérisateur
-Poi.animal.pen,Animal pen,,Enclos à animaux
-Poi.manure.pile,Manure pile,,Tas de fumier
-Poi.plastic.cover,Plastic cover,,Bâche plastique
-Poi.chemical.shed,Chemical shed,,Local de stockage
-Poi.washing.area,Washing area,,Aire de lavage
-Poi.Well,Well,,Puits
-Poi.Ditch,Ditch,,Fossé
-,,,
-tag.pfas,PFAS,,PFAS
-tag.antibiotics,Antibiotics,,Antibiotiques
-tag.pesticids,Pesticids,,Pesticides
-tag.empty,Click here to select a pollutant,,Cliquez ici pour choisir un polluant
-,,,
-Gameplay.RemainingScore,Remaining sources:{0} ,,Sources restantes : {0}
-Gameplay.PollutionErrors,{0}Errors left,,Il reste {0} erreurs à corriger.
-,,,
-Dialogue.key.test.01,Test Dialogue,Test Dialogue,Test Dialogue
-pollution.source.UI,Pollution Source,,Source de pollution
-Scanned.UI,Scanned,,Scanné
+ ,Speaker,Addressee ,Context,English,Vietnamese,French
+Test.01,,,,this is a test,,this is a test
+Poi.crop.sprayer,,,,Crop sprayer,,Pulvérisateur
+Poi.animal.pen,,,,Animal pen,,Enclos à animaux
+Poi.manure.pile,,,,Manure pile,,Tas de fumier
+Poi.plastic.cover,,,,Plastic cover,,Bâche plastique
+Poi.chemical.shed,,,,Chemical shed,,Local de stockage
+Poi.washing.area,,,,Washing area,,Aire de lavage
+Poi.Well,,,,Well,,Puits
+Poi.Ditch,,,,Ditch,,Fossé
+,,,,,,
+tag.pfas,,,,PFAS,,PFAS
+tag.antibiotics,,,,Antibiotics,,Antibiotiques
+tag.pesticids,,,,Pesticids,,Pesticides
+tag.empty,,,,Click here to select a pollutant,,Cliquez ici pour choisir un polluant
+,,,,,,
+Gameplay.RemainingScore,,,,Remaining sources:{0} ,,Sources restantes : {0}
+Gameplay.PollutionErrors,,,,{0}Errors left,,Il reste {0} erreurs à corriger.
+,,,,,,
+Dialogue.key.test.01,,,,Test Dialogue,Test Dialogue,Test Dialogue
+pollution.source.UI,,,,Pollution Source,,Source de pollution
+Scanned.UI,,,,Scanned,,Scanné
+,,,,,,
+Dialogue.key.Onboarding.Area01.01,Narrator,Player,"In Top down scene, first time when launching the game",Hello! Welcome to éveil plus,,
+Dialogue.key.Onboarding.Area01.02,Narrator,Player,,Point your hand towards an available area and select it to start the experience,,
+,,,,,,
+Dialogue.key.Onboarding.Area02.01,Narrator,Player,"In Sandbox scene, first time launching the scene",Welcome to the agricultural area,,
+Dialogue.key.Onboarding.Area02.02,Narrator,Player,,"Notice the tool in your right hand, use it to find invisible particles",,
+Dialogue.key.Onboarding.Area02.03,Narrator,Player,,Can you trace the particles back to their source and uncover where they came from? ,,
+Dialogue.key.Onboarding.Area02.04,Narrator,Player,Once player discovered a source,You found a pollution source! Point your tool on it to scan it!,,
+Dialogue.key.Onboarding.Area02.05,Narrator,Player,Once player scanned a source,"Great job! Observe the source to identify its group of pollutants, then select one to make your hypothesis.",,
+Dialogue.key.Onboarding.Area02.06,Narrator,Player,,"Once all sources have been found and hypothesis made, validate your answer to test if you are right!",,
+,,,,,,
+Dialogue.key.Hint.01,Narrator,Player,If player got errors and tries to validate,Oh no! Try again by observing more carefully what types of particles comes from the pollution sources to establish their pollution groups!,,
