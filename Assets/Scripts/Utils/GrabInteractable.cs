@@ -84,6 +84,7 @@ public class GrabInteractable : MonoBehaviour
     void OnSelectEntered(SelectEnterEventArgs args)
     {
         selectCount++;
+        DOTween.Kill(transform);
     }
 
     void OnSelectExited(SelectExitEventArgs args)
@@ -133,7 +134,7 @@ public class GrabInteractable : MonoBehaviour
 
     void ResetTransform()
     {
-        DOTween.Kill(transform);
+        interactable.enabled = false;
 
         Sequence sequence = DOTween.Sequence();
 
@@ -142,5 +143,10 @@ public class GrabInteractable : MonoBehaviour
         sequence.Join(transform.DOScale(originalScale, resetDuration));
 
         sequence.SetEase(Ease.InOutSine);
+        sequence.OnComplete(() => 
+        {
+            if (interactable != null)
+                interactable.enabled = true;
+        });
     }
 }
