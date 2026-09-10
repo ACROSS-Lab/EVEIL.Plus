@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-479486430731756068
+--- !u!114 &-5984958699890071384
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Gradient_01
+  m_Name: M_gradient_River_No_Fade 2
   m_Shader: {fileID: -6465566751694194690, guid: 850a53dfcf2e85a4d8365db9ad81bf96, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -29,7 +29,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2448
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
@@ -81,12 +81,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Texture:
-        m_Texture: {fileID: 2800000, guid: 0cb535c2c1ba5a5418f3569902ba4bb4, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _Texture_01:
-        m_Texture: {fileID: 2800000, guid: 0cb535c2c1ba5a5418f3569902ba4bb4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6c482df27fa0ffd4abcb53fddb754fd5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -124,16 +120,14 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Highlight: 0
+    - _Highlight: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _Outline: 0
     - _Parallax: 0.005
     - _QueueControl: 0
-    - _QueueOffset: 0
+    - _QueueOffset: -2
     - _ReceiveShadows: 1
-    - _ShadowLimit: -0.03
-    - _Shadow_Limit: -0.42
+    - _ShadowLimit: -0.08
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -149,12 +143,9 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color1: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Fade_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Highlight_Color: {r: 1, g: 0.8196079, b: 0.5058824, a: 1}
-    - _LightDir: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _Multiply_Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Outline_Color: {r: 0, g: 0, b: 0, a: 0}
-    - _Shadow_Color: {r: 0.5729352, g: 0.9059228, b: 0.9716981, a: 0}
+    - _Highlight_Color: {r: 0.3584906, g: 0.3418083, b: 0.26210397, a: 1}
+    - _Multiply_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Shadow_Color: {r: 1, g: 1, b: 1, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _UV_Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

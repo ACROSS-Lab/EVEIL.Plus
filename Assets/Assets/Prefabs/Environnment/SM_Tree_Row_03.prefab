@@ -9,16 +9,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ea2c796386847434fb09697e4c75d4f4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.11071649
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea2c796386847434fb09697e4c75d4f4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.11071649
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea2c796386847434fb09697e4c75d4f4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.11071649
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ea2c796386847434fb09697e4c75d4f4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.04
+      value: 27.021
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea2c796386847434fb09697e4c75d4f4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.68
+      value: 6.8542
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea2c796386847434fb09697e4c75d4f4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.19
+      value: 2.1498
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea2c796386847434fb09697e4c75d4f4, type: 3}
       propertyPath: m_LocalRotation.w
