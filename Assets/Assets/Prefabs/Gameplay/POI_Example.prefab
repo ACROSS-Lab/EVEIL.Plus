@@ -73,11 +73,25 @@ MonoBehaviour:
   heightOffset: 0
   triggerDistance: 5
   tagPrefab: {fileID: 3084999123385625351, guid: 2cbd6e00945a85b4891001c59bc70f38, type: 3}
+  emptyTagData: {fileID: 0}
   availableTags:
   - {fileID: 11400000, guid: bfd28b1e4fbdf2b428579a33ba7fcb3d, type: 2}
   - {fileID: 11400000, guid: 61341ca8a6a89fa4487a5544b1cd4b30, type: 2}
   - {fileID: 11400000, guid: d125d38c3fe808342bd30176b2319a9e, type: 2}
+  validTags: []
   tagHeightOffset: 0.3
+  farMarkerPrefab: {fileID: 0}
+  farMarkerHeightOffset: 2
+  scanUIPrefab: {fileID: 8400868762596959591, guid: bf2e5d3bce3724a4a9dce6c218792a22, type: 3}
+  scanUIHeightOffset: 2.5
+  scanDuration: 2
+  scanDecaySpeed: 1
+  validationFXPrefab: {fileID: 0}
+  validationSFX: {fileID: 0}
+  audioSource: {fileID: 0}
+  scannedIndicatorPrefab: {fileID: 0}
+  scannedIndicatorHeightOffset: 2
+  scannedIndicatorMinifiedScale: 0.4
 --- !u!114 &4089060865370944960
 MonoBehaviour:
   m_ObjectHideFlags: 0

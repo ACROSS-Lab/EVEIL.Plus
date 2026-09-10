@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -17,6 +18,8 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField] GameObject displayPrefab;
     [SerializeField] float heightOffset = 1.5f;
     [SerializeField] float triggerDistance = 3f;
+    [Tooltip("Color applied to the info display's background while the detector is pointed at this source.")]
+    [SerializeField] Color displayHoverColor = Color.yellow;
 
     [Header("Tags")]
     [SerializeField] GameObject tagPrefab;
@@ -32,9 +35,33 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField] GameObject farMarkerPrefab;
     [SerializeField] float farMarkerHeightOffset = 2f;
 
+    [Header("Scanning")]
+    [Tooltip("UI shown while the detector is pointed at this source, displaying scan progress.")]
+    [SerializeField] GameObject scanUIPrefab;
+    [SerializeField] float scanUIHeightOffset = 2.5f;
+    [Tooltip("Time in seconds needed to fully analyze the source while it is being pointed at.")]
+    [SerializeField] float scanDuration = 2f;
+    [Tooltip("How fast scan progress falls off (in 'scans per second') once the detector stops pointing at the source. Use a large value for a near-instant reset.")]
+    [SerializeField] float scanDecaySpeed = 1f;
+
+    [Header("Scan Validation")]
+    [SerializeField] GameObject validationFXPrefab;
+    [SerializeField] AudioClip validationSFX;
+    [SerializeField] AudioSource audioSource;
+
+    [Header("Scanned Indicator")]
+    [Tooltip("Persistent indicator shown once the source has been fully scanned. Stays visible even after the player walks away.")]
+    [SerializeField] GameObject scannedIndicatorPrefab;
+    [SerializeField] float scannedIndicatorHeightOffset = 2f;
+    [Tooltip("Uniform scale applied to the indicator once the player leaves range, to reduce visual clutter.")]
+    [SerializeField] float scannedIndicatorMinifiedScale = 0.4f;
+
     public event Action<PointOfInterest> OnTagChanged;
+    public event Action<PointOfInterest> OnScanCompleted;
 
     public bool HasTag => currentTagIndex != -1;
+    public bool IsScanned => isScanned;
+    public float ScanProgress01 => scanProgress;
 
     public bool IsCorrect
     {
@@ -57,6 +84,8 @@ public class PointOfInterest : MonoBehaviour
 
     private GameObject displayRoot;
     private TextMeshProUGUI textLabel;
+    private Image displayBackground;
+    private Color displayNormalColor;
     private Transform camTransform;
     private bool isVisible = false;
 
@@ -66,6 +95,15 @@ public class PointOfInterest : MonoBehaviour
     private XRSimpleInteractable interactable;
 
     private GameObject farMarkerInstance;
+
+    private GameObject scanUIInstance;
+    private ScanProgressDisplay scanProgressDisplay;
+    private bool isHoveredForScan = false;
+    private float scanProgress = 0f;
+    private bool isScanned = false;
+
+    private GameObject scannedIndicatorInstance;
+    private Vector3 scannedIndicatorBaseScale = Vector3.one;
 
 #if UNITY_EDITOR
     private void Reset()
@@ -124,6 +162,14 @@ public class PointOfInterest : MonoBehaviour
                 displayRoot.GetComponentInChildren<TextMeshProUGUI>(true);
 
             localizedKey.textComponent = textLabel;
+
+            displayBackground =
+                displayRoot.GetComponentInChildren<Image>(true);
+
+            if (displayBackground != null)
+            {
+                displayNormalColor = displayBackground.color;
+            }
         }
 
         // Create the tag display.
@@ -149,6 +195,32 @@ public class PointOfInterest : MonoBehaviour
 
             farMarkerInstance.SetActive(false);
         }
+
+        // Create the scan progress UI.
+        if (scanUIPrefab != null)
+        {
+            scanUIInstance = Instantiate(scanUIPrefab, transform);
+            scanUIInstance.transform.localPosition =
+                Vector3.up * scanUIHeightOffset;
+
+            scanProgressDisplay = scanUIInstance.GetComponent<ScanProgressDisplay>();
+
+            scanUIInstance.SetActive(false);
+        }
+
+        // Create the scanned indicator (persists once fully scanned).
+        if (scannedIndicatorPrefab != null)
+        {
+            scannedIndicatorInstance = Instantiate(scannedIndicatorPrefab, transform);
+            scannedIndicatorInstance.transform.localPosition =
+                Vector3.up * scannedIndicatorHeightOffset;
+
+            // Remember the prefab's own scale so minifying it later multiplies
+            // from that baseline instead of overwriting it with (1,1,1).
+            scannedIndicatorBaseScale = scannedIndicatorInstance.transform.localScale;
+
+            scannedIndicatorInstance.SetActive(false);
+        }
     }
 
     private void OnEnable()
@@ -156,6 +228,8 @@ public class PointOfInterest : MonoBehaviour
         if (interactable != null)
         {
             interactable.selectEntered.AddListener(OnSelectEntered);
+            interactable.hoverEntered.AddListener(OnHoverEntered);
+            interactable.hoverExited.AddListener(OnHoverExited);
         }
     }
 
@@ -164,6 +238,8 @@ public class PointOfInterest : MonoBehaviour
         if (interactable != null)
         {
             interactable.selectEntered.RemoveListener(OnSelectEntered);
+            interactable.hoverEntered.RemoveListener(OnHoverEntered);
+            interactable.hoverExited.RemoveListener(OnHoverExited);
         }
     }
 
@@ -189,6 +265,8 @@ public class PointOfInterest : MonoBehaviour
         UpdateInfoDisplay();
         UpdateTagVisibility();
         UpdateFarMarkerVisibility();
+        UpdateScanning();
+        UpdateScannedIndicator();
     }
 
     private void UpdateInfoDisplay()
@@ -234,13 +312,16 @@ public class PointOfInterest : MonoBehaviour
         if (tagInstance == null)
             return;
 
-        // The tag is only visible when the player is close enough.
-        if (tagInstance.activeSelf != isVisible)
+        // The tag is only visible once the source has been scanned,
+        // and while the player is close enough.
+        bool shouldShowTag = isVisible && isScanned;
+
+        if (tagInstance.activeSelf != shouldShowTag)
         {
-            tagInstance.SetActive(isVisible);
+            tagInstance.SetActive(shouldShowTag);
         }
 
-        if (isVisible)
+        if (shouldShowTag)
         {
             // Keep the tag facing the camera.
             tagInstance.transform.rotation =
@@ -277,6 +358,122 @@ public class PointOfInterest : MonoBehaviour
         }
     }
 
+    private void UpdateScanning()
+    {
+        if (scanUIInstance == null || isScanned)
+            return;
+
+        // Progress fills while the detector points at the source (hover active),
+        // and falls off again once the player looks away.
+        if (isHoveredForScan)
+        {
+            scanProgress += Time.deltaTime / scanDuration;
+        }
+        else
+        {
+            scanProgress -= Time.deltaTime * scanDecaySpeed;
+        }
+
+        scanProgress = Mathf.Clamp01(scanProgress);
+
+        bool shouldShowScanUI = scanProgress > 0f && isVisible;
+
+        if (scanUIInstance.activeSelf != shouldShowScanUI)
+        {
+            scanUIInstance.SetActive(shouldShowScanUI);
+        }
+
+        if (shouldShowScanUI)
+        {
+            if (scanProgressDisplay != null)
+            {
+                scanProgressDisplay.SetProgress(scanProgress);
+            }
+
+            // Keep the scan UI facing the camera.
+            scanUIInstance.transform.rotation =
+                Quaternion.LookRotation(
+                    scanUIInstance.transform.position -
+                    camTransform.position
+                );
+        }
+
+        if (scanProgress >= 1f)
+        {
+            CompleteScan();
+        }
+    }
+
+    private void UpdateScannedIndicator()
+    {
+        if (scannedIndicatorInstance == null || !isScanned)
+            return;
+
+        // Shrink the indicator once the player leaves range, so it stays
+        // visible from anywhere without cluttering the scene up close.
+        float targetScale = isVisible ? 1f : scannedIndicatorMinifiedScale;
+
+        scannedIndicatorInstance.transform.localScale =
+            scannedIndicatorBaseScale * targetScale;
+
+        scannedIndicatorInstance.transform.rotation =
+            Quaternion.LookRotation(
+                scannedIndicatorInstance.transform.position -
+                camTransform.position
+            );
+    }
+
+    private void CompleteScan()
+    {
+        isScanned = true;
+        isHoveredForScan = false;
+
+        if (scanUIInstance != null)
+        {
+            scanUIInstance.SetActive(false);
+        }
+
+        if (validationFXPrefab != null)
+        {
+            Instantiate(validationFXPrefab, transform.position, Quaternion.identity);
+        }
+
+        if (audioSource != null && validationSFX != null)
+        {
+            audioSource.PlayOneShot(validationSFX);
+        }
+
+        if (scannedIndicatorInstance != null)
+        {
+            scannedIndicatorInstance.SetActive(true);
+        }
+
+        OnScanCompleted?.Invoke(this);
+    }
+
+    private void OnHoverEntered(HoverEnterEventArgs args)
+    {
+        if (displayBackground != null)
+        {
+            displayBackground.color = displayHoverColor;
+        }
+
+        if (isScanned)
+            return;
+
+        isHoveredForScan = true;
+    }
+
+    private void OnHoverExited(HoverExitEventArgs args)
+    {
+        if (displayBackground != null)
+        {
+            displayBackground.color = displayNormalColor;
+        }
+
+        isHoveredForScan = false;
+    }
+
     private void OnSelectEntered(SelectEnterEventArgs args)
     {
         CycleTag();
@@ -284,6 +481,10 @@ public class PointOfInterest : MonoBehaviour
 
     private void CycleTag()
     {
+        // Tagging is locked until the source has been fully scanned.
+        if (!isScanned)
+            return;
+
         if (tagDisplay == null ||
             availableTags == null ||
             availableTags.Length == 0)

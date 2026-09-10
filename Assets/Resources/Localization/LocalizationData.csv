@@ -12,9 +12,11 @@ Poi.Ditch,Ditch,,Fossé
 tag.pfas,PFAS,,PFAS
 tag.antibiotics,Antibiotics,,Antibiotiques
 tag.pesticids,Pesticids,,Pesticides
-tag.empty,Pollutant,,Polluant
+tag.empty,Click here to select a pollutant,,Cliquez ici pour choisir un polluant
 ,,,
 Gameplay.RemainingScore,Remaining sources:{0} ,,Sources restantes : {0}
 Gameplay.PollutionErrors,{0}Errors left,,Il reste {0} erreurs à corriger.
 ,,,
 Dialogue.key.test.01,Test Dialogue,Test Dialogue,Test Dialogue
+pollution.source.UI,Pollution Source,,Source de pollution
+Scanned.UI,Scanned,,Scanné
