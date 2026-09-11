@@ -19,6 +19,7 @@ public class GrabInteractable : MonoBehaviour
     Vector3 originalPosition;
     Quaternion originalRotation;
     Vector3 originalScale;
+    Renderer[] meshRenderers;
 
     int hoverCount = 0;
     int selectCount = 0;
@@ -51,6 +52,7 @@ public class GrabInteractable : MonoBehaviour
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         originalScale = transform.localScale;
+        meshRenderers = GetComponentsInChildren<Renderer>();
     }
 
     void OnEnable()
@@ -72,13 +74,13 @@ public class GrabInteractable : MonoBehaviour
     void OnHoverEntered(HoverEnterEventArgs args)
     {
         hoverCount++;
-        if (hoverCount == 1) SetHightlight(true);
+        if (hoverCount == 1) SetHighlight(true);
     }
 
     void OnHoverExited(HoverExitEventArgs args)
     {
         hoverCount = Mathf.Max(hoverCount - 1, 0);
-        if (hoverCount == 0) SetHightlight(false);
+        if (hoverCount == 0) SetHighlight(false);
     }
 
     void OnSelectEntered(SelectEnterEventArgs args)
@@ -93,15 +95,13 @@ public class GrabInteractable : MonoBehaviour
         if (selectCount == 0) ResetTransform();
     }
 
-    void SetHightlight(bool highlight)
+    void SetHighlight(bool highlight)
     {
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
-        for (int i = 0; i < renderers.Length; i++)
+        for (int i = 0; i < meshRenderers.Length; i++)
         {
-            Renderer renderer = renderers[i];
-            renderer.GetPropertyBlock(propertyBlock);
+            meshRenderers[i].GetPropertyBlock(propertyBlock);
             propertyBlock.SetFloat(propertyID, highlight ? 1f : 0f);
-            renderer.SetPropertyBlock(propertyBlock);
+            meshRenderers[i].SetPropertyBlock(propertyBlock);
         }
     }
     
@@ -117,17 +117,17 @@ public class GrabInteractable : MonoBehaviour
     {
         for (int i = 0; i < hintBlinkCount; i++)
         {
-            SetHightlight(true);
+            SetHighlight(true);
             yield return new WaitForSeconds(hintBlinkInterval);
             
             if (hoverCount == 0)
-                SetHightlight(false);
+                SetHighlight(false);
  
             yield return new WaitForSeconds(hintBlinkInterval);
         }
  
         if (hoverCount > 0)
-            SetHightlight(true);
+            SetHighlight(true);
  
         _pulseRoutine = null;
     }
