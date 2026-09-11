@@ -58,13 +58,13 @@ public class FlyHorizontally : MonoBehaviour
         Vector3 movement = (forward * inputZ + right * inputX) * speed * Time.deltaTime;
         Vector3 newPosition = transform.position + movement;
 
-        if (minX < maxX)
+        if (minX != maxX)
         {
-            newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
+            newPosition.x = Mathf.Clamp(newPosition.x, Mathf.Min(minX, maxX), Mathf.Max(minX, maxX));
         }
-        if (minZ < maxZ)
+        if (minZ != maxZ)
         {
-            newPosition.z = Mathf.Clamp(newPosition.z, minZ, maxZ);
+            newPosition.z = Mathf.Clamp(newPosition.z, Mathf.Min(minZ, maxZ), Mathf.Max(minZ, maxZ));
         }
 
         transform.position = newPosition;    
