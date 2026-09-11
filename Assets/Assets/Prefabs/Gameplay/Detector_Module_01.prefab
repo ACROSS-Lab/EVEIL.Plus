@@ -250,7 +250,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 931898102053475415}
-  - component: {fileID: 8286174048982852489}
+  - component: {fileID: 473104715804597817}
   - component: {fileID: 4186643594066672018}
   m_Layer: 0
   m_Name: Detector_Module_01
@@ -277,55 +277,22 @@ Transform:
   - {fileID: 8055607044044779088}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -25.635, y: -180, z: 0}
---- !u!23 &8286174048982852489
-MeshRenderer:
+--- !u!114 &473104715804597817
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8303866961996292299}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0b9048da14d0ec4d903bfff9bb3ce15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HighlightPulse
+  targetRenderer: {fileID: 9187465499208029503}
+  highlightMaterial: {fileID: 2100000, guid: 1ef240b03a66f514180b3003ce458502, type: 2}
+  blinkCount: 3
+  blinkInterval: 0.3
 --- !u!114 &4186643594066672018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   camcorderCamera: {fileID: 3459464109368555952}
   renderTexture: {fileID: 8400000, guid: 1b04a2ca5fc1d414bba63d5b3d6bbfe2, type: 2}
-  frameSkip: 8
+  frameSkip: 3
 --- !u!1001 &7512561151571462587
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -401,5 +368,10 @@ PrefabInstance:
 --- !u!4 &8055607044044779088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3b0c3b8a961f52f4c866cb8b73beba21, type: 3}
+  m_PrefabInstance: {fileID: 7512561151571462587}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &9187465499208029503 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 3b0c3b8a961f52f4c866cb8b73beba21, type: 3}
   m_PrefabInstance: {fileID: 7512561151571462587}
   m_PrefabAsset: {fileID: 0}

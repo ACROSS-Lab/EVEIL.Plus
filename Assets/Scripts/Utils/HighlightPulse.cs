@@ -13,12 +13,6 @@ public class HighlightPulse : MonoBehaviour
 
     private void Awake()
     {
-        if (targetRenderer == null)
-            targetRenderer = GetComponent<Renderer>();
-
-        if (targetRenderer == null)
-            targetRenderer = GetComponentInChildren<Renderer>();
-
         if (targetRenderer != null)
             originalMaterials = targetRenderer.materials;
     }
