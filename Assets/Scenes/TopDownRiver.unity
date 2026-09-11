@@ -43090,7 +43090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6fbbd32ff04ddb4bac242520f6ce650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameObjectButton
-  hoverHighlight: 0
+  hoverHighlight: 1
   onButtonPress:
   - m_PersistentCalls:
       m_Calls:
