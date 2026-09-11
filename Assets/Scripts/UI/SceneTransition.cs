@@ -27,6 +27,7 @@ public class SceneTransition : MonoBehaviour
                 if (cameras[i].GetUniversalAdditionalCameraData().renderType == CameraRenderType.Overlay)
                 {
                     canvas.worldCamera = cameras[i];
+                    canvas.planeDistance = 0.2f;
                     break;
                 }
             }

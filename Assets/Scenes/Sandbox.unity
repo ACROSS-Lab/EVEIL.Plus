@@ -14042,6 +14042,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 331064113}
+    - target: {fileID: 6471220383239240503, guid: f44a3095f38ac23419d6d38dc52cf0d0, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6977595897360476169, guid: f44a3095f38ac23419d6d38dc52cf0d0, type: 3}
       propertyPath: m_Name
       value: CanvasSceneTransition
