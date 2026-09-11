@@ -5174,7 +5174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceEvent
   eventsWithDelay:
-  - delay: 0
+  - delay: 3
     unityEvent:
       m_PersistentCalls:
         m_Calls:
@@ -58287,6 +58287,12 @@ MonoBehaviour:
   sequenceSteps:
   - {fileID: 11400000, guid: a12bba8d72d8f4846abd88fffba6c6f2, type: 2}
   - {fileID: 11400000, guid: fea012a7365660247a70d9f5d5cce60f, type: 2}
+  - {fileID: 11400000, guid: d91e33159c73a4146a06e8af4b3e4f4a, type: 2}
+  - {fileID: 11400000, guid: 665e1263b29fcd04baf09aa31d54c725, type: 2}
+  - {fileID: 11400000, guid: 116011adb965bf545b7ffd8c335cc53c, type: 2}
+  - {fileID: 11400000, guid: bad4b5f1602a9994b9c5c971e0aea418, type: 2}
+  - {fileID: 11400000, guid: 3be2bdb0ef409be4ba0a9272677cc9e0, type: 2}
+  - {fileID: 11400000, guid: 4fa5161e3f729284fbf57377876e8541, type: 2}
   playerTransition: {fileID: 0}
   narrator: {fileID: 377614760}
   eventDirector: {fileID: 1492944037}
