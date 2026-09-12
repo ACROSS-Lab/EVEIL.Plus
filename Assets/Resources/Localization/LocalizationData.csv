@@ -1,13 +1,13 @@
  ,Speaker,Addressee ,Context,English,Vietnamese,French
 Test.01,,,,this is a test,,this is a test
-Poi.crop.sprayer,,,,Crop sprayer,,Pulvérisateur
-Poi.animal.pen,,,,Animal pen,,Enclos à animaux
+Poi.crop.sprayer,,,,Crop sprayer,,PulvÃ©risateur
+Poi.animal.pen,,,,Animal pen,,Enclos Ã  animaux
 Poi.manure.pile,,,,Manure pile,,Tas de fumier
-Poi.plastic.cover,,,,Plastic cover,,Bâche plastique
+Poi.plastic.cover,,,,Plastic cover,,BÃ¢che plastique
 Poi.chemical.shed,,,,Chemical shed,,Local de stockage
 Poi.washing.area,,,,Washing area,,Aire de lavage
 Poi.Well,,,,Well,,Puits
-Poi.Ditch,,,,Ditch,,Fossé
+Poi.Ditch,,,,Ditch,,FossÃ©
 ,,,,,,
 tag.pfas,,,,PFAS,,PFAS
 tag.antibiotics,,,,Antibiotics,,Antibiotiques
@@ -15,13 +15,13 @@ tag.pesticids,,,,Pesticids,,Pesticides
 tag.empty,,,,Click here to select a pollutant,,Cliquez ici pour choisir un polluant
 ,,,,,,
 Gameplay.RemainingScore,,,,Remaining sources:{0} ,,Sources restantes : {0}
-Gameplay.PollutionErrors,,,,{0}Errors left,,Il reste {0} erreurs à corriger.
+Gameplay.PollutionErrors,,,,{0}Errors left,,Il reste {0} erreurs Ã  corriger.
 ,,,,,,
 Dialogue.key.test.01,,,,Test Dialogue,Test Dialogue,Test Dialogue
 pollution.source.UI,,,,Pollution Source,,Source de pollution
-Scanned.UI,,,,Scanned,,Scanné
+Scanned.UI,,,,Scanned,,ScannÃ©
 ,,,,,,
-Dialogue.key.Onboarding.Area01.01,Narrator,Player,"In Top down scene, first time when launching the game",Hello! Welcome to éveil plus,,
+Dialogue.key.Onboarding.Area01.01,Narrator,Player,"In Top down scene, first time when launching the game",Hello! Welcome to Ã‰veil plus,,
 Dialogue.key.Onboarding.Area01.02,Narrator,Player,,Point your hand towards an available area and select it to start the experience,,
 ,,,,,,
 Dialogue.key.Onboarding.Area02.01,Narrator,Player,"In Sandbox scene, first time launching the scene",Welcome to the agricultural area,,

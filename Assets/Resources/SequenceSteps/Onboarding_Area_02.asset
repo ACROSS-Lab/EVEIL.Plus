@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Onboarding_Area_02
   m_EditorClassIdentifier: Assembly-CSharp::SequenceStep
   hasSequenceEvents: 1
-  hasNarratorMovement: 0
-  targetNarratorPosition: {x: 0, y: 0, z: 0}
-  offsetAtCenter: {x: 0, y: 0, z: 0}
+  hasNarratorMovement: 1
+  targetNarratorPosition: {x: 10.33, y: 1.8, z: -0.33}
+  offsetAtCenter: {x: 0, y: 0.5, z: 0}
   hasNarratorRotation: 0
   targetNarratorRotation: {x: 0, y: 0, z: 0}
-  targetNarratorScale: 0
-  flyDuration: 0
+  targetNarratorScale: 1
+  flyDuration: 1.5
   hasPlayerMovement: 0
   playerTargetPosition: {x: 0, y: 0, z: 0}
   hasPlayerRotation: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
   isGoingBackToMainScene: 0
   hasDialogue: 1
   characterStates: {fileID: 11400000, guid: 1fa3470f8cdcfd44592bb98dd66da925, type: 2}
-  timeWaitBeforeTalking: 0
+  timeWaitBeforeTalking: 1
   dialogueKey: Dialogue.key.Onboarding.Area01.02
   isUsingOverlay: 0
   eyesState: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
   mouthEndState: 0
   timeWaitAfterTalking: 0
   hasInteraction: 1
-  hasInfiniteTimeout: 0
+  hasInfiniteTimeout: 1
   waitTimeout: 0
   hasSubStep: 0
   timeToWaitBeforeSubStep: 0

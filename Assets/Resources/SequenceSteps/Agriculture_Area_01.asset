@@ -29,7 +29,7 @@ MonoBehaviour:
   isGoingBackToMainScene: 0
   hasDialogue: 1
   characterStates: {fileID: 11400000, guid: 1fa3470f8cdcfd44592bb98dd66da925, type: 2}
-  timeWaitBeforeTalking: 0
+  timeWaitBeforeTalking: 2
   dialogueKey: Dialogue.key.Onboarding.Area02.01
   isUsingOverlay: 0
   eyesState: 0

@@ -1,6 +1,9 @@
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class SequenceDirector : MonoBehaviour
 {
@@ -19,18 +22,65 @@ public class SequenceDirector : MonoBehaviour
     [Header("Debugging")]
     [SerializeField] int debugStepIndex = 0;
     [SerializeField] int currentStepIndex = 0;
+    [SerializeField] UnityEvent[] debugEvents;
 
     bool hasPerformedAction = false;
+    bool isSceneLoading = false;
+    bool isReadyToProceed = true;
+
+    public static SequenceDirector Instance { get; private set; }
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
         StartCoroutine(ExecuteSequence());
     }
 
+    void Update()
+    {
+        KeyboardPerformAction();
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        isSceneLoading = false;
+        StartCoroutine(WaitForSceneLoad());
+    }
+
+    IEnumerator WaitForSceneLoad()
+    {
+        isReadyToProceed = false;
+        yield return new WaitUntil(() => (narrator = FindFirstObjectByType<Narrator>()) != null);
+        isReadyToProceed = true;
+    }
+
     IEnumerator ExecuteSequence()
     {
         for (int i = 0; i < sequenceSteps.Length; i++)
         {
+            Debug.Log("isScneLoading: " + isSceneLoading + ", isReadyToProceed: " + isReadyToProceed);
+            yield return new WaitUntil(() => isReadyToProceed && !isSceneLoading);
+
             SequenceStep step = sequenceSteps[i];
             bool fastForward = false;
             #if UNITY_EDITOR
@@ -179,5 +229,22 @@ public class SequenceDirector : MonoBehaviour
     {
         hasPerformedAction = true;
         Debug.Log("Performed Action");
+    }
+
+    public void StartSceneTransition()
+    {
+        isSceneLoading = true;
+        isReadyToProceed = false;
+    }
+
+    void KeyboardPerformAction()
+    {
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            for (int i = 0; i < debugEvents.Length; i++)
+            {
+                debugEvents[i].Invoke();
+            }
+        }
     }
 }

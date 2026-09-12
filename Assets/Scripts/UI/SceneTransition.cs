@@ -55,6 +55,7 @@ public class SceneTransition : MonoBehaviour
 
     public void SwitchScene(string sceneName)
     {
+        SequenceDirector.Instance.StartSceneTransition();
         StartCoroutine(TransitionRoutine(sceneName));
     }
 

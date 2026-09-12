@@ -5178,8 +5178,8 @@ MonoBehaviour:
     unityEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1097654479}
-          m_TargetAssemblyTypeName: GameObjectButton, Assembly-CSharp
+        - m_Target: {fileID: 1097654481}
+          m_TargetAssemblyTypeName: UnityEngine.BoxCollider, UnityEngine
           m_MethodName: set_enabled
           m_Mode: 6
           m_Arguments:
@@ -14528,6 +14528,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2948919468104182366}
     m_Modifications:
+    - target: {fileID: 241487446006746379, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 451253343}
+    - target: {fileID: 241487446006746379, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: enableLookAt
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1779393466918347280, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
       propertyPath: m_Name
       value: Narrator_01
@@ -14587,6 +14595,30 @@ PrefabInstance:
     - target: {fileID: 2237046890377667699, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838233584643956064, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838233584643956064, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838233584643956064, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838233584643956064, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838233584643956064, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3838233584643956064, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -37646,7 +37678,6 @@ Transform:
   - {fileID: 451253342}
   - {fileID: 149512525}
   - {fileID: 1050743389}
-  - {fileID: 1492944039}
   - {fileID: 1790843610}
   - {fileID: 2948919468104182366}
   m_Father: {fileID: 0}
@@ -43249,7 +43280,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097654477}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6fbbd32ff04ddb4bac242520f6ce650, type: 3}
   m_Name: 
@@ -43262,6 +43293,20 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: SceneTransition, Assembly-CSharp
         m_MethodName: SwitchScene
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Sandbox
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1492944038}
+        m_TargetAssemblyTypeName: SequenceDirector, Assembly-CSharp
+        m_MethodName: PerformAction
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -43361,7 +43406,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.8905907, y: 0.7646053, z: 2.0825348}
   m_Center: {x: 0.15535355, y: 0.31734443, z: 0.41501784}
@@ -58271,7 +58316,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d6ff754c59f282488d513bc94848db9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventDirector
-  gameTimeManager: {fileID: 0}
 --- !u!114 &1492944038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58298,6 +58342,33 @@ MonoBehaviour:
   eventDirector: {fileID: 1492944037}
   debugStepIndex: 0
   currentStepIndex: 0
+  debugEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6236698005954340779}
+        m_TargetAssemblyTypeName: SceneTransition, Assembly-CSharp
+        m_MethodName: SwitchScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Sandbox
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1492944038}
+        m_TargetAssemblyTypeName: SequenceDirector, Assembly-CSharp
+        m_MethodName: PerformAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1492944039
 Transform:
   m_ObjectHideFlags: 0
@@ -58306,13 +58377,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492944036}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 143093202}
-  m_Father: {fileID: 979407129}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1493884797
 PrefabInstance:
@@ -91177,7 +91248,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -3.35, y: -4.259}
-  m_SizeDelta: {x: 40, y: 0}
+  m_SizeDelta: {x: 30, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &238486354133888292
 MonoBehaviour:
@@ -91448,7 +91519,7 @@ RectTransform:
   m_GameObject: {fileID: 7130796575463023944}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.09}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 79614941793408203}
@@ -91693,7 +91764,7 @@ Transform:
   m_GameObject: {fileID: 6209433541557398691}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.70710707, z: -0, w: 0.7071066}
-  m_LocalPosition: {x: 0.55, y: 0.8, z: -1.11}
+  m_LocalPosition: {x: 0.55, y: 2, z: -1.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -91749,7 +91820,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 451253344}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -92294,7 +92365,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 451253344}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -92835,7 +92906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrajectoryCanvasFollower
   targetObject: {fileID: 377614755}
-  distanceFromCamera: {x: 2.5, y: 0, z: 5}
+  distanceFromCamera: {x: 7, y: 1, z: 25}
   slideSpeed: 5
 --- !u!1001 &7468952435102801314
 PrefabInstance:
@@ -93028,6 +93099,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1824135906}
   - {fileID: 171229842}
+  - {fileID: 1492944039}
   - {fileID: 979407129}
   - {fileID: 342018691}
   - {fileID: 1130376940}

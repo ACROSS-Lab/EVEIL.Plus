@@ -6,8 +6,6 @@ public class EventDirector : MonoBehaviour
 {
     public SequenceEvent currentSequenceEvent { get; private set; }
 
-    [SerializeField] GameTimeManager gameTimeManager;
-
     SequenceEvent[] sequenceEvents;
     
     void Awake()
