@@ -18,7 +18,7 @@ MonoBehaviour:
   offsetAtCenter: {x: 0, y: 0.5, z: 0}
   hasNarratorRotation: 0
   targetNarratorRotation: {x: 0, y: 0, z: 0}
-  targetNarratorScale: 1
+  targetNarratorScale: 1.5
   flyDuration: 1.5
   hasPlayerMovement: 0
   playerTargetPosition: {x: 0, y: 0, z: 0}
