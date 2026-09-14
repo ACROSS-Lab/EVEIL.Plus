@@ -20,7 +20,7 @@ Gameplay.PollutionErrors,,,,{0}Errors left,,Il reste {0} erreurs à corriger.
 Dialogue.key.test.01,,,,Test Dialogue,Test Dialogue,Test Dialogue
 pollution.source.UI,,,,Pollution Source,,Source de pollution
 Scanned.UI,,,,Scanned,,Scanné
-,,,,,,
+Poi.Unscanned,,,,?,?,?
 Dialogue.key.Onboarding.Area01.01,Narrator,Player,"In Top down scene, first time when launching the game",Hello! Welcome to Éveil plus,,
 Dialogue.key.Onboarding.Area01.02,Narrator,Player,,Point your hand towards an available area and select it to start the experience,,
 ,,,,,,
