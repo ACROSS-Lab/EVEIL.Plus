@@ -78,7 +78,6 @@ public class SequenceDirector : MonoBehaviour
     {
         for (int i = 0; i < sequenceSteps.Length; i++)
         {
-            Debug.Log("isScneLoading: " + isSceneLoading + ", isReadyToProceed: " + isReadyToProceed);
             yield return new WaitUntil(() => isReadyToProceed && !isSceneLoading);
 
             SequenceStep step = sequenceSteps[i];

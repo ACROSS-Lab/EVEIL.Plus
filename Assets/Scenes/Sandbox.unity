@@ -3271,7 +3271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 344115805}
   m_Layer: 0
-  m_Name: Narrator_Full
+  m_Name: NarratorSetup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11131,6 +11131,26 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3755041324433164926, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: nestedText
+      value: 
+      objectReference: {fileID: 1514459958}
+    - target: {fileID: 3755041324433164926, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: overlayText
+      value: 
+      objectReference: {fileID: 1590071718}
+    - target: {fileID: 3755041324433164926, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: nestedCanvas
+      value: 
+      objectReference: {fileID: 585575359}
+    - target: {fileID: 3755041324433164926, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: dialogueBoxes
+      value: 
+      objectReference: {fileID: 1022160108}
+    - target: {fileID: 3755041324433164926, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: overlayCanvas
+      value: 
+      objectReference: {fileID: 1456282656}
     - target: {fileID: 3838233584643956064, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -11143,6 +11163,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8873942565881172994, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: nestedText
+      value: 
+      objectReference: {fileID: 1514459958}
+    - target: {fileID: 8873942565881172994, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: overlayText
+      value: 
+      objectReference: {fileID: 1590071718}
+    - target: {fileID: 8873942565881172994, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: nestedCanvas
+      value: 
+      objectReference: {fileID: 585575359}
+    - target: {fileID: 8873942565881172994, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: dialogueBoxes
+      value: 
+      objectReference: {fileID: 1022160108}
+    - target: {fileID: 8873942565881172994, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
+      propertyPath: overlayCanvas
+      value: 
+      objectReference: {fileID: 1456282656}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
