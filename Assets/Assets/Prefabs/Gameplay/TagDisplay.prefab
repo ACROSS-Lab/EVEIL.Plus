@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 3095151636111055028}
   - component: {fileID: 5147954925533015253}
   - component: {fileID: 5075279372224988314}
+  - component: {fileID: 5572336707387417363}
   m_Layer: 5
   m_Name: TagDisplay
   m_TagString: Untagged
@@ -166,16 +167,16 @@ RectTransform:
   m_GameObject: {fileID: 3084999123385625351}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4881403055673167377}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 120, y: 39.12}
+  m_SizeDelta: {x: 120, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7989866984315009528
 Canvas:
@@ -254,6 +255,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TagDisplay
   iconImage: {fileID: 4318519205859078809}
   label: {fileID: 8102558882551354819}
+--- !u!225 &5572336707387417363
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3084999123385625351}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6620690562291598029
 GameObject:
   m_ObjectHideFlags: 0

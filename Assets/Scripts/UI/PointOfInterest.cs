@@ -107,7 +107,7 @@ public class PointOfInterest : MonoBehaviour
     private bool isVisible = false;
 
     private GameObject tagInstance;
-    private TagDisplay tagDisplay;
+    private TagCarouselDisplay tagCarousel;
     private Vector3 tagBaseScale = Vector3.one;
     private Image tagBackground;
     private Color tagNormalColor;
@@ -129,14 +129,10 @@ public class PointOfInterest : MonoBehaviour
 #if UNITY_EDITOR
     private void Reset()
     {
-        // Add the localization component automatically in the editor.
         if (GetComponent<LocalizedKey>() == null)
         {
             LocalizedKey localizedKey = gameObject.AddComponent<LocalizedKey>();
-            Undo.RegisterCreatedObjectUndo(
-                localizedKey,
-                "Add LocalizedKey"
-            );
+            Undo.RegisterCreatedObjectUndo(localizedKey, "Add LocalizedKey");
         }
     }
 
@@ -155,14 +151,11 @@ public class PointOfInterest : MonoBehaviour
     {
         interactable = GetComponent<XRSimpleInteractable>();
 
-        // Start disabled, matching isVisible's initial value, so the POI can't be
-        // selected before the player has come into range at least once.
         if (interactable != null)
         {
             interactable.enabled = false;
         }
 
-        // Safety net in case the LocalizedKey component was not added in the editor.
         localizedKey = GetComponent<LocalizedKey>();
 
         if (localizedKey == null)
@@ -170,23 +163,18 @@ public class PointOfInterest : MonoBehaviour
             localizedKey = gameObject.AddComponent<LocalizedKey>();
         }
 
-        // Start with the "?" placeholder key; the real name kicks in once scanned.
         localizedKey.localizationKey = unscannedPlaceholderKey;
 
-        // Create the information display.
         if (displayPrefab != null)
         {
             displayRoot = Instantiate(displayPrefab, transform);
             displayRoot.transform.localPosition = Vector3.up * heightOffset;
             displayRoot.SetActive(false);
 
-            textLabel =
-                displayRoot.GetComponentInChildren<TextMeshProUGUI>(true);
-
+            textLabel = displayRoot.GetComponentInChildren<TextMeshProUGUI>(true);
             localizedKey.textComponent = textLabel;
 
-            displayBackground =
-                displayRoot.GetComponentInChildren<Image>(true);
+            displayBackground = displayRoot.GetComponentInChildren<Image>(true);
 
             if (displayBackground != null)
             {
@@ -194,14 +182,10 @@ public class PointOfInterest : MonoBehaviour
             }
         }
 
-        // Create the tag display.
         if (tagPrefab != null)
         {
             tagInstance = Instantiate(tagPrefab, transform);
-            tagInstance.transform.localPosition =
-                Vector3.up * tagHeightOffset;
-
-            tagDisplay = tagInstance.GetComponent<TagDisplay>();
+            tagInstance.transform.localPosition = Vector3.up * tagHeightOffset;
             tagBaseScale = tagInstance.transform.localScale;
 
             tagBackground = tagInstance.GetComponentInChildren<Image>(true);
@@ -212,32 +196,30 @@ public class PointOfInterest : MonoBehaviour
             }
 
             tagInstance.SetActive(false);
+
+            tagCarousel = tagInstance.GetComponentInChildren<TagCarouselDisplay>(true);
+
+            if (tagCarousel != null)
+            {
+                // Charge le carrousel avec le emptyTagData visible au départ
+                tagCarousel.Initialize(availableTags, emptyTagData);
+            }
         }
 
-        // Create the far marker.
         if (farMarkerPrefab != null)
         {
-            farMarkerInstance =
-                Instantiate(farMarkerPrefab, transform);
+            farMarkerInstance = Instantiate(farMarkerPrefab, transform);
+            farMarkerInstance.transform.localPosition = Vector3.up * farMarkerHeightOffset;
 
-            farMarkerInstance.transform.localPosition =
-                Vector3.up * farMarkerHeightOffset;
-
-            // Wire up the marker's own name label, if it has one. The far marker
-            // only ever appears once the source has been tagged (which requires
-            // a completed scan), so it can use the real key right away.
-            TextMeshProUGUI farMarkerTextLabel =
-                farMarkerInstance.GetComponentInChildren<TextMeshProUGUI>(true);
+            TextMeshProUGUI farMarkerTextLabel = farMarkerInstance.GetComponentInChildren<TextMeshProUGUI>(true);
 
             if (farMarkerTextLabel != null)
             {
-                LocalizedKey farMarkerLocalizedKey =
-                    farMarkerTextLabel.GetComponent<LocalizedKey>();
+                LocalizedKey farMarkerLocalizedKey = farMarkerTextLabel.GetComponent<LocalizedKey>();
 
                 if (farMarkerLocalizedKey == null)
                 {
-                    farMarkerLocalizedKey =
-                        farMarkerTextLabel.gameObject.AddComponent<LocalizedKey>();
+                    farMarkerLocalizedKey = farMarkerTextLabel.gameObject.AddComponent<LocalizedKey>();
                 }
 
                 farMarkerLocalizedKey.textComponent = farMarkerTextLabel;
@@ -245,42 +227,28 @@ public class PointOfInterest : MonoBehaviour
             }
 
             StartIdleBob(farMarkerInstance.transform, farMarkerHeightOffset);
-
             farMarkerInstance.SetActive(false);
         }
 
-        // Create the scan progress UI.
         if (scanUIPrefab != null)
         {
             scanUIInstance = Instantiate(scanUIPrefab, transform);
-            scanUIInstance.transform.localPosition =
-                Vector3.up * scanUIHeightOffset;
-
+            scanUIInstance.transform.localPosition = Vector3.up * scanUIHeightOffset;
             scanProgressDisplay = scanUIInstance.GetComponent<ScanProgressDisplay>();
-
             scanUIInstance.SetActive(false);
         }
 
-        // Create the scanned indicator (persists once fully scanned).
         if (scannedIndicatorPrefab != null)
         {
             scannedIndicatorInstance = Instantiate(scannedIndicatorPrefab, transform);
-            scannedIndicatorInstance.transform.localPosition =
-                Vector3.up * scannedIndicatorHeightOffset;
-
-            // Remember the prefab's own scale so minifying it later multiplies
-            // from that baseline instead of overwriting it with (1,1,1).
+            scannedIndicatorInstance.transform.localPosition = Vector3.up * scannedIndicatorHeightOffset;
             scannedIndicatorBaseScale = scannedIndicatorInstance.transform.localScale;
 
             StartIdleBob(scannedIndicatorInstance.transform, scannedIndicatorHeightOffset);
-
             scannedIndicatorInstance.SetActive(false);
         }
     }
 
-    // DOTween tweens keep running even while their target GameObject is inactive,
-    // so it's fine to start these loops once here rather than re-triggering them
-    // every time the object becomes visible.
     private void StartIdleBob(Transform target, float baseHeight)
     {
         target
@@ -316,12 +284,6 @@ public class PointOfInterest : MonoBehaviour
         {
             camTransform = Camera.main.transform;
         }
-
-        // Show the empty tag until the player selects a tag.
-        if (tagDisplay != null && emptyTagData != null)
-        {
-            tagDisplay.SetData(emptyTagData);
-        }
     }
 
     private void Update()
@@ -341,22 +303,14 @@ public class PointOfInterest : MonoBehaviour
         if (displayRoot == null)
             return;
 
-        float distance =
-            Vector3.Distance(
-                camTransform.position,
-                transform.position
-            );
-
-        bool shouldBeVisible =
-            distance <= triggerDistance;
+        float distance = Vector3.Distance(camTransform.position, transform.position);
+        bool shouldBeVisible = distance <= triggerDistance;
 
         if (shouldBeVisible != isVisible)
         {
             isVisible = shouldBeVisible;
             displayRoot.SetActive(isVisible);
 
-            // Disabling the interactable unregisters it from the interaction manager,
-            // so it can no longer be hovered or selected while out of range.
             if (interactable != null)
             {
                 interactable.enabled = isVisible;
@@ -365,12 +319,8 @@ public class PointOfInterest : MonoBehaviour
 
         if (isVisible)
         {
-            // Keep the display facing the camera.
             displayRoot.transform.rotation =
-                Quaternion.LookRotation(
-                    displayRoot.transform.position -
-                    camTransform.position
-                );
+                Quaternion.LookRotation(displayRoot.transform.position - camTransform.position);
         }
     }
 
@@ -379,8 +329,6 @@ public class PointOfInterest : MonoBehaviour
         if (tagInstance == null)
             return;
 
-        // The tag is only visible once the source has been scanned,
-        // and while the player is close enough.
         bool shouldShowTag = isVisible && isScanned;
 
         if (tagInstance.activeSelf != shouldShowTag)
@@ -390,12 +338,8 @@ public class PointOfInterest : MonoBehaviour
 
         if (shouldShowTag)
         {
-            // Keep the tag facing the camera.
             tagInstance.transform.rotation =
-                Quaternion.LookRotation(
-                    tagInstance.transform.position -
-                    camTransform.position
-                );
+                Quaternion.LookRotation(tagInstance.transform.position - camTransform.position);
         }
     }
 
@@ -404,10 +348,7 @@ public class PointOfInterest : MonoBehaviour
         if (farMarkerInstance == null)
             return;
 
-        // The far marker is shown after the point has been tagged
-        // and the player is no longer close to it.
-        bool shouldShowMarker =
-            HasTag && !isVisible;
+        bool shouldShowMarker = HasTag && !isVisible;
 
         if (farMarkerInstance.activeSelf != shouldShowMarker)
         {
@@ -416,13 +357,8 @@ public class PointOfInterest : MonoBehaviour
 
         if (shouldShowMarker)
         {
-            // Keep the marker facing the camera. Its vertical bobbing is
-            // handled by the looping DOTween tween started in Awake.
             farMarkerInstance.transform.rotation =
-                Quaternion.LookRotation(
-                    farMarkerInstance.transform.position -
-                    camTransform.position
-                );
+                Quaternion.LookRotation(farMarkerInstance.transform.position - camTransform.position);
         }
     }
 
@@ -431,8 +367,6 @@ public class PointOfInterest : MonoBehaviour
         if (scanUIInstance == null || isScanned)
             return;
 
-        // Progress fills while the detector points at the source (hover active),
-        // and falls off again once the player looks away.
         if (isHoveredForScan)
         {
             scanProgress += Time.deltaTime / scanDuration;
@@ -458,12 +392,8 @@ public class PointOfInterest : MonoBehaviour
                 scanProgressDisplay.SetProgress(scanProgress);
             }
 
-            // Keep the scan UI facing the camera.
             scanUIInstance.transform.rotation =
-                Quaternion.LookRotation(
-                    scanUIInstance.transform.position -
-                    camTransform.position
-                );
+                Quaternion.LookRotation(scanUIInstance.transform.position - camTransform.position);
         }
 
         if (scanProgress >= 1f)
@@ -477,24 +407,16 @@ public class PointOfInterest : MonoBehaviour
         if (scannedIndicatorInstance == null || !isScanned)
             return;
 
-        // While the pop-in tween plays, let it own the scale entirely.
         if (!isPlayingScanCompletePop)
         {
-            // Shrink the indicator once the player leaves range, so it stays
-            // visible from anywhere without cluttering the scene up close.
             float targetScale = isVisible ? 1f : scannedIndicatorMinifiedScale;
 
             scannedIndicatorInstance.transform.localScale =
                 scannedIndicatorBaseScale * targetScale;
         }
 
-        // Keep the indicator facing the camera. Its vertical bobbing is
-        // handled by the looping DOTween tween started in Awake.
         scannedIndicatorInstance.transform.rotation =
-            Quaternion.LookRotation(
-                scannedIndicatorInstance.transform.position -
-                camTransform.position
-            );
+            Quaternion.LookRotation(scannedIndicatorInstance.transform.position - camTransform.position);
     }
 
     private void CompleteScan()
@@ -507,7 +429,6 @@ public class PointOfInterest : MonoBehaviour
             scanUIInstance.SetActive(false);
         }
 
-        // Reveal the real name by switching back to its localization key.
         if (localizedKey != null)
         {
             localizedKey.localizationKey = localizationKey;
@@ -584,27 +505,26 @@ public class PointOfInterest : MonoBehaviour
 
     private void CycleTag()
     {
-        // Tagging is locked until the source has been fully scanned.
         if (!isScanned)
             return;
 
-        if (tagDisplay == null ||
-            availableTags == null ||
-            availableTags.Length == 0)
-        {
+        if (tagCarousel == null || availableTags == null || availableTags.Length == 0)
             return;
+
+        bool isFirstSelection = currentTagIndex == -1;
+
+        if (isFirstSelection)
+        {
+            currentTagIndex = 0;
+            tagCarousel.EnableAvailableTagsMode();
+            tagCarousel.SetIndex(currentTagIndex, animate: true);
+        }
+        else
+        {
+            currentTagIndex = (currentTagIndex + 1) % availableTags.Length;
+            tagCarousel.SetIndex(currentTagIndex, animate: true);
         }
 
-        // Cycle through the available tags.
-        // The first selection chooses the first available tag.
-        currentTagIndex =
-            (currentTagIndex + 1) % availableTags.Length;
-
-        tagDisplay.SetData(
-            availableTags[currentTagIndex]
-        );
-
-        // Generic feedback on selection, no hint about correctness at this point.
         if (audioSource != null && tagSelectSFX != null)
         {
             audioSource.PlayOneShot(tagSelectSFX);
@@ -612,7 +532,6 @@ public class PointOfInterest : MonoBehaviour
 
         if (tagInstance != null)
         {
-            // Kill any punch still in progress so rapid re-tagging doesn't stack tweens.
             tagInstance.transform.DOKill();
             tagInstance.transform.localScale = tagBaseScale;
 
@@ -624,7 +543,6 @@ public class PointOfInterest : MonoBehaviour
             );
         }
 
-        // Notify the game manager that the selected tag has changed.
         OnTagChanged?.Invoke(this);
     }
 }

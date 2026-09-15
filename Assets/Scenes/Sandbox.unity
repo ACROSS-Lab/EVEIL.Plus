@@ -2207,7 +2207,7 @@ PrefabInstance:
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: tagPrefab
       value: 
-      objectReference: {fileID: 3084999123385625351, guid: a95177d04491fd949a83f203691fd4ee, type: 3}
+      objectReference: {fileID: 3084999123385625351, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: emptyTagData
       value: 
@@ -2260,6 +2260,10 @@ PrefabInstance:
       propertyPath: scannedIndicatorPrefab
       value: 
       objectReference: {fileID: 3084999123385625351, guid: 3ed94b76e5353c849aed481c895ad792, type: 3}
+    - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
+      propertyPath: unscannedPlaceholderKey
+      value: Poi.Unscanned
+      objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: 'validTags.Array.data[0]'
       value: 
@@ -3164,7 +3168,7 @@ PrefabInstance:
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: tagPrefab
       value: 
-      objectReference: {fileID: 3084999123385625351, guid: a95177d04491fd949a83f203691fd4ee, type: 3}
+      objectReference: {fileID: 3084999123385625351, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: emptyTagData
       value: 
@@ -3213,6 +3217,10 @@ PrefabInstance:
       propertyPath: scannedIndicatorPrefab
       value: 
       objectReference: {fileID: 3084999123385625351, guid: 3ed94b76e5353c849aed481c895ad792, type: 3}
+    - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
+      propertyPath: unscannedPlaceholderKey
+      value: Poi.Unscanned
+      objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: 'validTags.Array.data[0]'
       value: 
@@ -7318,7 +7326,7 @@ PrefabInstance:
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: tagPrefab
       value: 
-      objectReference: {fileID: 3084999123385625351, guid: a95177d04491fd949a83f203691fd4ee, type: 3}
+      objectReference: {fileID: 3084999123385625351, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: emptyTagData
       value: 
@@ -7371,6 +7379,10 @@ PrefabInstance:
       propertyPath: scannedIndicatorPrefab
       value: 
       objectReference: {fileID: 3084999123385625351, guid: 3ed94b76e5353c849aed481c895ad792, type: 3}
+    - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
+      propertyPath: unscannedPlaceholderKey
+      value: Poi.Unscanned
+      objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: 'validTags.Array.data[0]'
       value: 
@@ -8577,7 +8589,7 @@ PrefabInstance:
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: tagPrefab
       value: 
-      objectReference: {fileID: 3084999123385625351, guid: a95177d04491fd949a83f203691fd4ee, type: 3}
+      objectReference: {fileID: 3084999123385625351, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: emptyTagData
       value: 
@@ -8630,6 +8642,10 @@ PrefabInstance:
       propertyPath: scannedIndicatorPrefab
       value: 
       objectReference: {fileID: 3084999123385625351, guid: 3ed94b76e5353c849aed481c895ad792, type: 3}
+    - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
+      propertyPath: unscannedPlaceholderKey
+      value: Poi.Unscanned
+      objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: 'validTags.Array.data[0]'
       value: 
@@ -11911,7 +11927,7 @@ PrefabInstance:
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: tagPrefab
       value: 
-      objectReference: {fileID: 3084999123385625351, guid: a95177d04491fd949a83f203691fd4ee, type: 3}
+      objectReference: {fileID: 3084999123385625351, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: emptyTagData
       value: 
@@ -11964,6 +11980,10 @@ PrefabInstance:
       propertyPath: scannedIndicatorPrefab
       value: 
       objectReference: {fileID: 3084999123385625351, guid: 3ed94b76e5353c849aed481c895ad792, type: 3}
+    - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
+      propertyPath: unscannedPlaceholderKey
+      value: Poi.Unscanned
+      objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: 'validTags.Array.data[0]'
       value: 
@@ -12844,7 +12864,7 @@ PrefabInstance:
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: tagPrefab
       value: 
-      objectReference: {fileID: 3084999123385625351, guid: a95177d04491fd949a83f203691fd4ee, type: 3}
+      objectReference: {fileID: 3084999123385625351, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: emptyTagData
       value: 
@@ -12893,6 +12913,10 @@ PrefabInstance:
       propertyPath: scannedIndicatorPrefab
       value: 
       objectReference: {fileID: 3084999123385625351, guid: 3ed94b76e5353c849aed481c895ad792, type: 3}
+    - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
+      propertyPath: unscannedPlaceholderKey
+      value: Poi.Unscanned
+      objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: 'validTags.Array.data[0]'
       value: 

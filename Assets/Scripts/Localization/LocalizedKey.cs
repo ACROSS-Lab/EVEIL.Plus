@@ -37,6 +37,10 @@ public class LocalizedKey : MonoBehaviour
         if (string.IsNullOrEmpty(localizationKey))
             return;
 
+        // Protection contre le NullReferenceException si LocalizationManager n'est pas encore prêt
+        if (LocalizationManager.Instance == null)
+            return;
+
         if (textComponent != null)
         {
             string localizedText =
@@ -65,6 +69,9 @@ public class LocalizedKey : MonoBehaviour
     public void UpdateAudioClip()
     {
         if (string.IsNullOrEmpty(localizationKey))
+            return;
+
+        if (LocalizationManager.Instance == null)
             return;
 
         string currentLanguage =

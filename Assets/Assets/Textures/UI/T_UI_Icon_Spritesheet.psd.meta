@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -659,6 +659,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: T_UI_Icon_Spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bf271ace90f51c4dba3880cc05611ad
+      internalID: -1148900496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -693,6 +715,7 @@ TextureImporter:
       T_UI_Icon_Spritesheet_22: -1990536149
       T_UI_Icon_Spritesheet_23: 1076870510
       T_UI_Icon_Spritesheet_24: -288026237
+      T_UI_Icon_Spritesheet_25: -1148900496
       T_UI_Icon_Spritesheet_3: -1758219151
       T_UI_Icon_Spritesheet_4: 533868384
       T_UI_Icon_Spritesheet_5: -89026635
