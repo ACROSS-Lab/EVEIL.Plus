@@ -2217,6 +2217,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5072529210480484897, guid: bf2e5d3bce3724a4a9dce6c218792a22, type: 3}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
+      propertyPath: tagSelectSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a9892a8090ef514f860543bce9ee7ad, type: 3}
+    - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: farMarkerPrefab
       value: 
       objectReference: {fileID: 3084999123385625351, guid: 2cbd6e00945a85b4891001c59bc70f38, type: 3}
@@ -3177,6 +3181,10 @@ PrefabInstance:
       propertyPath: scanUIPrefab
       value: 
       objectReference: {fileID: 5072529210480484897, guid: bf2e5d3bce3724a4a9dce6c218792a22, type: 3}
+    - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
+      propertyPath: tagSelectSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a9892a8090ef514f860543bce9ee7ad, type: 3}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: farMarkerPrefab
       value: 
@@ -7336,6 +7344,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5072529210480484897, guid: bf2e5d3bce3724a4a9dce6c218792a22, type: 3}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
+      propertyPath: tagSelectSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a9892a8090ef514f860543bce9ee7ad, type: 3}
+    - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: farMarkerPrefab
       value: 
       objectReference: {fileID: 3084999123385625351, guid: 2cbd6e00945a85b4891001c59bc70f38, type: 3}
@@ -8598,6 +8610,10 @@ PrefabInstance:
       propertyPath: scanUIPrefab
       value: 
       objectReference: {fileID: 5072529210480484897, guid: bf2e5d3bce3724a4a9dce6c218792a22, type: 3}
+    - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
+      propertyPath: tagSelectSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a9892a8090ef514f860543bce9ee7ad, type: 3}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: farMarkerPrefab
       value: 
@@ -11937,6 +11953,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5072529210480484897, guid: bf2e5d3bce3724a4a9dce6c218792a22, type: 3}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
+      propertyPath: tagSelectSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a9892a8090ef514f860543bce9ee7ad, type: 3}
+    - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: farMarkerPrefab
       value: 
       objectReference: {fileID: 3084999123385625351, guid: 2cbd6e00945a85b4891001c59bc70f38, type: 3}
@@ -12873,6 +12893,10 @@ PrefabInstance:
       propertyPath: scanUIPrefab
       value: 
       objectReference: {fileID: 5072529210480484897, guid: bf2e5d3bce3724a4a9dce6c218792a22, type: 3}
+    - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
+      propertyPath: tagSelectSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a9892a8090ef514f860543bce9ee7ad, type: 3}
     - target: {fileID: 4446870943401422348, guid: 545624886866a4d48abca0a48707bb22, type: 3}
       propertyPath: farMarkerPrefab
       value: 
