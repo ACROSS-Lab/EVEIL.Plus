@@ -10,23 +10,18 @@ public class SequenceDirector : MonoBehaviour
     [Header("List of steps")]
     [SerializeField] SequenceStep[] sequenceSteps;
 
-    [Header("Player References")]
-    [SerializeField] Player playerTransition;
- 
-    [Header("Narrator References")]
-    [SerializeField] Narrator narrator;
-
-    [Header("Event Management")]
-    [SerializeField] EventDirector eventDirector;
-
     [Header("Debugging")]
     [SerializeField] int debugStepIndex = 0;
     [SerializeField] int currentStepIndex = 0;
-    [SerializeField] UnityEvent[] debugEvents;
 
     bool hasPerformedAction = false;
     bool isSceneLoading = false;
     bool isReadyToProceed = true;
+
+    //Automatically assign references
+    Player player;
+    Narrator narrator;
+    EventDirector eventDirector;
 
     public static SequenceDirector Instance { get; private set; }
 
@@ -49,6 +44,7 @@ public class SequenceDirector : MonoBehaviour
     void Update()
     {
         KeyboardPerformAction();
+        Debug.Log("isSceneLoading: " + isSceneLoading + ", isReadyToProceed: " + isReadyToProceed);
     }
 
     void OnEnable()
@@ -71,6 +67,8 @@ public class SequenceDirector : MonoBehaviour
     {
         isReadyToProceed = false;
         yield return new WaitUntil(() => (narrator = FindFirstObjectByType<Narrator>()) != null);
+        yield return new WaitUntil(() => (player = FindFirstObjectByType<Player>()) != null);
+        yield return new WaitUntil(() => (eventDirector = FindFirstObjectByType<EventDirector>()) != null);
         isReadyToProceed = true;
     }
 
@@ -123,7 +121,7 @@ public class SequenceDirector : MonoBehaviour
 
         if (step.hasPlayerMovement)
         {
-            playerTransition.transform.SetPositionAndRotation(
+            player.transform.SetPositionAndRotation(
                 step.playerTargetPosition,
                 Quaternion.Euler(step.playerTargetRotation)
             );
@@ -144,13 +142,10 @@ public class SequenceDirector : MonoBehaviour
     {
         if (!step.hasPlayerMovement) return;
 
-        playerTransition.MovePlayer(
+        player.MovePlayer(
             step.playerTargetPosition,
             step.hasPlayerRotation,
-            step.playerTargetRotation,
-            step.hasSceneTransition,
-            step.sceneName,
-            step.isGoingBackToMainScene
+            step.playerTargetRotation
         );
     }
 
@@ -212,16 +207,19 @@ public class SequenceDirector : MonoBehaviour
                 yield return StartCoroutine(ExecuteStep(step.subStep, false));
             }
 
-            if (!step.hasInfiniteTimeout && timer >= step.waitTimeout)
-            {
-                Debug.Log("Timeout reached, performing default action");
-                break;
-            }
+            if (!step.hasInfiniteTimeout && timer >= step.waitTimeout) break;
 
             yield return null;
         }
 
         hasPerformedAction = true;
+
+        if (step.isSceneTransition)
+        {
+            isSceneLoading = true;
+            isReadyToProceed = false;
+            SceneTransition.Instance.SwitchScene(step.sceneToLoad);
+        }
     }
 
     public void PerformAction()
@@ -230,20 +228,11 @@ public class SequenceDirector : MonoBehaviour
         Debug.Log("Performed Action");
     }
 
-    public void StartSceneTransition()
-    {
-        isSceneLoading = true;
-        isReadyToProceed = false;
-    }
-
     void KeyboardPerformAction()
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            for (int i = 0; i < debugEvents.Length; i++)
-            {
-                debugEvents[i].Invoke();
-            }
+            PerformAction();
         }
     }
 }

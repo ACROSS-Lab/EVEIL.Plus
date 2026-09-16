@@ -19,9 +19,6 @@ public class SequenceStep : ScriptableObject
     [ShowIf("hasPlayerMovement")] public Vector3 playerTargetPosition;
     [ShowIf("hasPlayerMovement")] public bool hasPlayerRotation;
     [ShowIf("hasPlayerRotation")] public Vector3 playerTargetRotation;
-    [ShowIf("hasPlayerMovement")] public bool hasSceneTransition;
-    [ShowIf("hasSceneTransition")] public string sceneName;
-    [ShowIf("hasSceneTransition")] public bool isGoingBackToMainScene;
 
     [Header("Phase 2: Presentation")]
     public bool hasDialogue;
@@ -38,6 +35,8 @@ public class SequenceStep : ScriptableObject
     public bool hasInteraction;
     [ShowIf("hasInteraction")] public bool hasInfiniteTimeout;
     [ShowIf("ShowWaitTimeout")] public float waitTimeout;
+    [ShowIf("hasInteraction")] public bool isSceneTransition;
+    [ShowIf("isSceneTransition")] public string sceneToLoad;
     [ShowIf("hasInteraction")] public bool hasSubStep;
     [ShowIf("hasSubStep")] public float timeToWaitBeforeSubStep;
     [ShowIf("hasSubStep")] public SequenceStep subStep;

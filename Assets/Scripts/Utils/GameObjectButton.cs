@@ -8,7 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class GameObjectButton : MonoBehaviour
 {
     [SerializeField] bool hoverHighlight = false;
-    [SerializeField] UnityEvent[] onButtonPress;
+    [SerializeField] UnityEvent onButtonPress;
 
     Renderer[] meshRenderers;
     XRBaseInteractable interactable;
@@ -58,10 +58,7 @@ public class GameObjectButton : MonoBehaviour
 
     void OnSelectEntered(SelectEnterEventArgs args)
     {
-        for (int i = 0; i < onButtonPress.Length; i++)
-        {
-            onButtonPress[i].Invoke();
-        }
+        onButtonPress.Invoke();
     }
 
     void OnHoverEntered(HoverEnterEventArgs args)

@@ -24,9 +24,6 @@ MonoBehaviour:
   playerTargetPosition: {x: 0, y: 0, z: 0}
   hasPlayerRotation: 0
   playerTargetRotation: {x: 0, y: 0, z: 0}
-  hasSceneTransition: 0
-  sceneName: 
-  isGoingBackToMainScene: 0
   hasDialogue: 1
   characterStates: {fileID: 11400000, guid: 1fa3470f8cdcfd44592bb98dd66da925, type: 2}
   timeWaitBeforeTalking: 1
@@ -41,6 +38,8 @@ MonoBehaviour:
   hasInteraction: 1
   hasInfiniteTimeout: 1
   waitTimeout: 0
+  isSceneTransition: 1
+  sceneToLoad: Sandbox
   hasSubStep: 0
   timeToWaitBeforeSubStep: 0
   subStep: {fileID: 0}
