@@ -1,5 +1,6 @@
 using UnityEngine;
 using NaughtyAttributes;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "Sequence Step", menuName = "Sequence Step")]
 public class SequenceStep : ScriptableObject
@@ -38,8 +39,7 @@ public class SequenceStep : ScriptableObject
     [ShowIf("hasInteraction")] public bool isSceneTransition;
     [ShowIf("isSceneTransition")] public string sceneToLoad;
     [ShowIf("hasInteraction")] public bool hasSubStep;
-    [ShowIf("hasSubStep")] public float timeToWaitBeforeSubStep;
-    [ShowIf("hasSubStep")] public SequenceStep subStep;
+    [ShowIf("hasSubStep")] public List<SubstepEntry> subStepEntries = new List<SubstepEntry>();
 
     bool ShowWaitTimeout() => hasInteraction && !hasInfiniteTimeout;
 
@@ -67,4 +67,22 @@ public class SequenceStep : ScriptableObject
         UnityEditor.AssetDatabase.SaveAssetIfDirty(this);
 #endif
     }
+}
+
+[System.Serializable]
+public class SubstepEntry
+{
+    public SequenceStep subStep;
+    public SubstepTriggerType triggerType;
+    [ShowIf("isTimeout")][AllowNesting] public float delayTime;
+    [ShowIf("isTrigger")][AllowNesting] public string triggerKey;
+
+    bool isTimeout() => triggerType == SubstepTriggerType.Timeout;
+    bool isTrigger() => triggerType == SubstepTriggerType.Trigger;
+}
+
+public enum SubstepTriggerType
+{
+    Timeout,
+    Trigger,
 }

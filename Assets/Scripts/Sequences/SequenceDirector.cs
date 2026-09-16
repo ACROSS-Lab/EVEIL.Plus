@@ -1,7 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -24,6 +24,8 @@ public class SequenceDirector : MonoBehaviour
     EventDirector eventDirector;
 
     public static SequenceDirector Instance { get; private set; }
+
+    readonly HashSet<string> pendingTriggers = new HashSet<string>();
 
     void Awake()
     {
@@ -193,25 +195,48 @@ public class SequenceDirector : MonoBehaviour
         if (!step.hasInteraction) yield break;
 
         hasPerformedAction = false;
-
         float timer = 0f;
-        bool hasTriggeredSubStep = false;
+
+        HashSet<SubstepEntry> triggeredSubSteps = new HashSet<SubstepEntry>();
+        pendingTriggers.Clear();
 
         while (!hasPerformedAction)
         {
             timer += Time.deltaTime;
             
-            if (step.hasSubStep && !hasTriggeredSubStep && timer >= step.timeToWaitBeforeSubStep)
+            if (step.hasSubStep)
             {
-                hasTriggeredSubStep = true;
-                yield return StartCoroutine(ExecuteStep(step.subStep, false));
+                foreach (var subStepEntry in step.subStepEntries)
+                {
+                    if (triggeredSubSteps.Contains(subStepEntry)) continue;
+
+                    bool triggered = false;
+
+                    if (subStepEntry.triggerType == SubstepTriggerType.Timeout)
+                    {
+                        if (timer >= subStepEntry.delayTime)
+                            triggered = true;
+                    }
+                    else if (subStepEntry.triggerType == SubstepTriggerType.Trigger)
+                    {
+                        if (ConsumeTrigger(subStepEntry.triggerKey))
+                            triggered = true;
+                    }
+
+                    if (triggered)
+                    {
+                        triggeredSubSteps.Add(subStepEntry);
+                        yield return StartCoroutine(ExecuteStep(subStepEntry.subStep, false));
+                        break;
+                    }
+                }
             }
 
             if (!step.hasInfiniteTimeout && timer >= step.waitTimeout) break;
-
             yield return null;
         }
 
+        pendingTriggers.Clear();
         hasPerformedAction = true;
 
         if (step.isSceneTransition)
@@ -221,6 +246,24 @@ public class SequenceDirector : MonoBehaviour
             SceneTransition.Instance.SwitchScene(step.sceneToLoad);
         }
     }
+
+    #region Substep Management
+    public void SetTrigger(string triggerName)
+    {
+        if (!string.IsNullOrEmpty(triggerName))
+            pendingTriggers.Add(triggerName);
+    }
+
+    bool ConsumeTrigger(string triggerName)
+    {
+        return pendingTriggers.Remove(triggerName);
+    }
+
+    void ClearTriggers()
+    {
+        pendingTriggers.Clear();
+    }
+    #endregion
 
     public void PerformAction()
     {
