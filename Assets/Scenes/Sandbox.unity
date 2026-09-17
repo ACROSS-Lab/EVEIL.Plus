@@ -13779,6 +13779,18 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4062702002672391302, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062702002672391302, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062702002672391302, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4650585704086883670, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.59
@@ -13826,6 +13838,18 @@ PrefabInstance:
     - target: {fileID: 4882900365172690822, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
       propertyPath: distanceFromCamera.z
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188824293127082369, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188824293127082369, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7188824293127082369, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

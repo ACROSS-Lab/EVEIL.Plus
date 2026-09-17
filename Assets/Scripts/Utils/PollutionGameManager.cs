@@ -60,6 +60,8 @@ public class PollutionGameManager : MonoBehaviour
         foreach (PointOfInterest point in points)
         {
             point.OnTagChanged += OnPointChanged;
+            point.OnTagValidated += OnPointChanged;
+            point.OnTagValidationCancelled += OnPointChanged;
         }
 
         // Hide the validation panel and button at the beginning.
@@ -106,6 +108,8 @@ public class PollutionGameManager : MonoBehaviour
         foreach (PointOfInterest point in points)
         {
             point.OnTagChanged -= OnPointChanged;
+            point.OnTagValidated -= OnPointChanged;
+            point.OnTagValidationCancelled -= OnPointChanged;
         }
     }
 
@@ -114,7 +118,7 @@ public class PollutionGameManager : MonoBehaviour
         UpdateRemainingUI();
 
         // The validation button only becomes available
-        // once every source has been tagged at least once.
+        // once every source has been individually pre-validated.
         if (RemainingCount() == 0)
         {
             if (validationButton != null)
@@ -140,7 +144,9 @@ public class PollutionGameManager : MonoBehaviour
 
         foreach (PointOfInterest point in points)
         {
-            if (!point.HasTag)
+            // On compte les tags non encore pré-validés, pas seulement non posés :
+            // le joueur doit valider chaque source avant que le bouton global n'apparaisse.
+            if (!point.IsTagValidated)
                 remaining++;
         }
 

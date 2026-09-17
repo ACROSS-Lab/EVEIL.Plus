@@ -1,11 +1,26 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.EventSystems;
 
 public class TagCarouselDisplay : MonoBehaviour
 {
+    // Le Button UI ne déclenche pas hoverEntered/hoverExited comme un XRSimpleInteractable.
+    // Ce petit relais traduit les événements de pointeur standard en survol pour le bouton.
+    private class ButtonHoverRelay : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    {
+        public Action OnEnter;
+        public Action OnExit;
+
+        public void OnPointerEnter(PointerEventData eventData) => OnEnter?.Invoke();
+        public void OnPointerExit(PointerEventData eventData) => OnExit?.Invoke();
+    }
+
     private class CarouselItem
     {
         public RectTransform Rect;
@@ -34,9 +49,262 @@ public class TagCarouselDisplay : MonoBehaviour
     [Tooltip("Alpha applied to the items above/below the center.")]
     [SerializeField] float unfocusedAlpha = 0.5f;
 
+    [Header("Validation")]
+    [Tooltip("Bouton placé à côté du carrousel. Désactivé tant qu'aucun tag n'a été choisi.")]
+    [SerializeField] GameObject validateButtonRoot;
+
+    [Tooltip("Label du bouton. Si vide, le premier TextMeshProUGUI du bouton est utilisé.")]
+    [SerializeField] TextMeshProUGUI validateLabel;
+
+    [Tooltip("Fond du bouton, teinté selon l'état. Optionnel.")]
+    [SerializeField] Image validateBackground;
+
+    [Tooltip("Élément caché du prefab, activé une fois le tag validé.")]
+    [SerializeField] GameObject validatedFeedbackRoot;
+
+    [Header("Validation Localization")]
+    [SerializeField] string validateLocalizationKey = "tag_validate";
+    [SerializeField] string changeLocalizationKey = "tag_change";
+
+    [Header("Validation Colors")]
+    [SerializeField] Color validateColor = new Color(0.35f, 1f, 0.5f, 0.9f);
+    [SerializeField] Color changeColor = new Color(1f, 0.85f, 0.35f, 0.9f);
+    [Tooltip("Couleur appliquée pendant le survol du bouton, prioritaire sur Valider/Changer.")]
+    [SerializeField] Color validateHoverColor = new Color(1f, 1f, 1f, 1f);
+
+    [Header("Validation Animation")]
+    [Tooltip("Rebond joué à l'apparition du feedback de validation. Mettre 0 pour désactiver.")]
+    [SerializeField] float validatedPopDuration = 0.25f;
+
+    [Tooltip("Rebond joué sur le bouton lui-même à chaque pression, pour confirmer le clic.")]
+    [SerializeField] float validatePunchScale = 1.15f;
+    [SerializeField] float validatePunchDuration = 0.15f;
+
+    /// <summary>Déclenché à chaque pression du bouton, pour valider comme pour déverrouiller.</summary>
+    public event Action OnValidatePressed;
+
     private readonly List<CarouselItem> items = new List<CarouselItem>();
     private int currentIndex = -1;
     private bool hasActiveTagList = false;
+
+    private LocalizedKey validateLocalizedKey;
+    private XRSimpleInteractable validateInteractable;
+    private Button validateUIButton;
+    private Vector3 validatedFeedbackBaseScale = Vector3.one;
+    private Vector3 validateButtonBaseScale = Vector3.one;
+    private bool isValidated = false;
+    private bool isButtonHovered = false;
+
+    private void Awake()
+    {
+        SetupValidationUI();
+    }
+
+    private void OnDestroy()
+    {
+        if (validateInteractable != null)
+        {
+            validateInteractable.selectEntered.RemoveListener(HandleValidateSelected);
+            validateInteractable.hoverEntered.RemoveListener(HandleValidateHoverEntered);
+            validateInteractable.hoverExited.RemoveListener(HandleValidateHoverExited);
+        }
+
+        if (validateUIButton != null)
+        {
+            validateUIButton.onClick.RemoveListener(HandleValidateClicked);
+        }
+    }
+
+    // Le bouton et le feedback vivent dans ce prefab, on ne fait que les activer et les désactiver.
+    private void SetupValidationUI()
+    {
+        if (validatedFeedbackRoot != null)
+        {
+            validatedFeedbackBaseScale = validatedFeedbackRoot.transform.localScale;
+            validatedFeedbackRoot.SetActive(false);
+        }
+
+        if (validateButtonRoot == null)
+            return;
+
+        if (validateLabel == null)
+        {
+            validateLabel = validateButtonRoot.GetComponentInChildren<TextMeshProUGUI>(true);
+        }
+
+        if (validateBackground == null)
+        {
+            validateBackground = validateButtonRoot.GetComponent<Image>();
+        }
+
+        validateLocalizedKey = validateButtonRoot.GetComponent<LocalizedKey>();
+
+        if (validateLocalizedKey == null)
+        {
+            validateLocalizedKey = validateButtonRoot.AddComponent<LocalizedKey>();
+        }
+
+        validateLocalizedKey.textComponent = validateLabel;
+        validateButtonBaseScale = validateButtonRoot.transform.localScale;
+
+        validateInteractable = validateButtonRoot.GetComponent<XRSimpleInteractable>();
+
+        if (validateInteractable != null)
+        {
+            validateInteractable.selectEntered.AddListener(HandleValidateSelected);
+            validateInteractable.hoverEntered.AddListener(HandleValidateHoverEntered);
+            validateInteractable.hoverExited.AddListener(HandleValidateHoverExited);
+        }
+
+        validateUIButton = validateButtonRoot.GetComponent<Button>();
+
+        if (validateUIButton != null)
+        {
+            validateUIButton.onClick.AddListener(HandleValidateClicked);
+
+            ButtonHoverRelay hoverRelay = validateButtonRoot.GetComponent<ButtonHoverRelay>();
+
+            if (hoverRelay == null)
+            {
+                hoverRelay = validateButtonRoot.AddComponent<ButtonHoverRelay>();
+            }
+
+            hoverRelay.OnEnter = () => SetButtonHovered(true);
+            hoverRelay.OnExit = () => SetButtonHovered(false);
+        }
+
+        validateButtonRoot.SetActive(false);
+        RefreshValidateButton();
+    }
+
+    private void HandleValidateSelected(SelectEnterEventArgs args)
+    {
+        HandleValidateClicked();
+    }
+
+    private void HandleValidateHoverEntered(HoverEnterEventArgs args)
+    {
+        SetButtonHovered(true);
+    }
+
+    private void HandleValidateHoverExited(HoverExitEventArgs args)
+    {
+        SetButtonHovered(false);
+    }
+
+    private void SetButtonHovered(bool hovered)
+    {
+        isButtonHovered = hovered;
+        RefreshValidateButton();
+    }
+
+    private void HandleValidateClicked()
+    {
+        PlayValidatePunch();
+        OnValidatePressed?.Invoke();
+    }
+
+    // Petit rebond sur le bouton lui-même, pour confirmer que le clic a bien été pris en compte.
+    private void PlayValidatePunch()
+    {
+        if (validateButtonRoot == null || validatePunchDuration <= 0f)
+            return;
+
+        Transform buttonTransform = validateButtonRoot.transform;
+        buttonTransform.DOKill();
+        buttonTransform.localScale = validateButtonBaseScale;
+
+        buttonTransform.DOPunchScale(
+            validateButtonBaseScale * (validatePunchScale - 1f),
+            validatePunchDuration,
+            vibrato: 1,
+            elasticity: 0.4f
+        );
+    }
+
+    /// <summary>
+    /// Affiche ou masque le bouton. À appeler dès que le joueur a choisi un premier tag.
+    /// </summary>
+    public void SetValidateButtonVisible(bool visible)
+    {
+        if (validateButtonRoot == null)
+            return;
+
+        if (validateButtonRoot.activeSelf != visible)
+        {
+            validateButtonRoot.SetActive(visible);
+        }
+    }
+
+    /// <summary>
+    /// Bascule le bouton entre "Valider" et "Changer de tag",
+    /// et active ou désactive l'élément de feedback du prefab.
+    /// </summary>
+    public void SetValidated(bool validated)
+    {
+        isValidated = validated;
+
+        RefreshValidateButton();
+        RefreshValidatedFeedback();
+    }
+
+    private void RefreshValidateButton()
+    {
+        if (validateLocalizedKey != null)
+        {
+            validateLocalizedKey.localizationKey = isValidated
+                ? changeLocalizationKey
+                : validateLocalizationKey;
+
+            if (validateLocalizedKey.textComponent != null)
+            {
+                validateLocalizedKey.UpdateText();
+            }
+        }
+
+        if (validateBackground != null)
+        {
+            Color targetColor = isValidated ? changeColor : validateColor;
+
+            // Le survol prime toujours, pour que le joueur voie ce qu'il cible
+            if (isButtonHovered)
+            {
+                targetColor = validateHoverColor;
+            }
+
+            validateBackground.color = targetColor;
+        }
+    }
+
+    private void RefreshValidatedFeedback()
+    {
+        if (validatedFeedbackRoot == null)
+            return;
+
+        validatedFeedbackRoot.transform.DOKill();
+
+        if (!isValidated)
+        {
+            validatedFeedbackRoot.transform.localScale = validatedFeedbackBaseScale;
+            validatedFeedbackRoot.SetActive(false);
+            return;
+        }
+
+        validatedFeedbackRoot.SetActive(true);
+
+        if (validatedPopDuration > 0f)
+        {
+            validatedFeedbackRoot.transform.localScale = Vector3.zero;
+
+            validatedFeedbackRoot.transform
+                .DOScale(validatedFeedbackBaseScale, validatedPopDuration)
+                .SetEase(Ease.OutBack);
+        }
+        else
+        {
+            validatedFeedbackRoot.transform.localScale = validatedFeedbackBaseScale;
+        }
+    }
 
     // Initialise le carrousel avec le empty tag et tous les tags disponibles.
     public void Initialize(TagData[] availableTags, TagData emptyTagData)
@@ -52,6 +320,9 @@ public class TagCarouselDisplay : MonoBehaviour
         items.Clear();
         currentIndex = -1;
         hasActiveTagList = false;
+
+        SetValidateButtonVisible(false);
+        SetValidated(false);
 
         List<TagData> allTags = new List<TagData>();
 

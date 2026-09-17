@@ -24,6 +24,13 @@ public class PointOfInterest : MonoBehaviour
     [Tooltip("Color applied to the info display's background while the detector is pointed at this source.")]
     [SerializeField] Color displayHoverColor = Color.yellow;
 
+    [Header("Hover Highlight")]
+    [Tooltip("Prefab affiché uniquement pendant le survol, par exemple un sprite qui entoure la zone.")]
+    [SerializeField] GameObject hoverHighlightPrefab;
+    [SerializeField] Vector3 hoverHighlightOffset = Vector3.zero;
+    [Tooltip("Oriente le highlight vers la caméra à chaque frame. À laisser décoché pour un sprite posé au sol.")]
+    [SerializeField] bool hoverHighlightFacesCamera = false;
+
     [Header("Tags")]
     [SerializeField] GameObject tagPrefab;
     [SerializeField] TagData emptyTagData;
@@ -74,10 +81,18 @@ public class PointOfInterest : MonoBehaviour
 
     public event Action<PointOfInterest> OnTagChanged;
     public event Action<PointOfInterest> OnScanCompleted;
+    public event Action<PointOfInterest> OnTagValidated;
+    public event Action<PointOfInterest> OnTagValidationCancelled;
 
     public bool HasTag => currentTagIndex != -1;
     public bool IsScanned => isScanned;
+    public bool IsTagValidated => isTagValidated;
     public float ScanProgress01 => scanProgress;
+
+    public TagData CurrentTag =>
+        HasTag && availableTags != null && currentTagIndex < availableTags.Length
+            ? availableTags[currentTagIndex]
+            : null;
 
     public bool IsCorrect
     {
@@ -106,12 +121,16 @@ public class PointOfInterest : MonoBehaviour
     private Transform camTransform;
     private bool isVisible = false;
 
+    private GameObject hoverHighlightInstance;
+    private bool isHovered = false;
+
     private GameObject tagInstance;
     private TagCarouselDisplay tagCarousel;
     private Vector3 tagBaseScale = Vector3.one;
     private Image tagBackground;
     private Color tagNormalColor;
     private int currentTagIndex = -1;
+    private bool isTagValidated = false;
     private XRSimpleInteractable interactable;
 
     private GameObject farMarkerInstance;
@@ -182,6 +201,13 @@ public class PointOfInterest : MonoBehaviour
             }
         }
 
+        if (hoverHighlightPrefab != null)
+        {
+            hoverHighlightInstance = Instantiate(hoverHighlightPrefab, transform);
+            hoverHighlightInstance.transform.localPosition = hoverHighlightOffset;
+            hoverHighlightInstance.SetActive(false);
+        }
+
         if (tagPrefab != null)
         {
             tagInstance = Instantiate(tagPrefab, transform);
@@ -195,15 +221,17 @@ public class PointOfInterest : MonoBehaviour
                 tagNormalColor = tagBackground.color;
             }
 
-            tagInstance.SetActive(false);
-
             tagCarousel = tagInstance.GetComponentInChildren<TagCarouselDisplay>(true);
 
             if (tagCarousel != null)
             {
-                // Charge le carrousel avec le emptyTagData visible au départ
+                // Charge le carrousel avec le emptyTagData visible au départ.
+                // Initialize masque aussi le bouton tant qu'aucun tag n'a été choisi.
                 tagCarousel.Initialize(availableTags, emptyTagData);
+                tagCarousel.OnValidatePressed += HandleValidateButtonPressed;
             }
+
+            tagInstance.SetActive(false);
         }
 
         if (farMarkerPrefab != null)
@@ -246,6 +274,14 @@ public class PointOfInterest : MonoBehaviour
 
             StartIdleBob(scannedIndicatorInstance.transform, scannedIndicatorHeightOffset);
             scannedIndicatorInstance.SetActive(false);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (tagCarousel != null)
+        {
+            tagCarousel.OnValidatePressed -= HandleValidateButtonPressed;
         }
     }
 
@@ -292,6 +328,7 @@ public class PointOfInterest : MonoBehaviour
             return;
 
         UpdateInfoDisplay();
+        UpdateHoverHighlight();
         UpdateTagVisibility();
         UpdateFarMarkerVisibility();
         UpdateScanning();
@@ -315,12 +352,56 @@ public class PointOfInterest : MonoBehaviour
             {
                 interactable.enabled = isVisible;
             }
+
+            if (!isVisible)
+            {
+                // Sécurité : un interactable désactivé n'envoie pas toujours hoverExited
+                SetHovered(false);
+            }
         }
 
         if (isVisible)
         {
             displayRoot.transform.rotation =
                 Quaternion.LookRotation(displayRoot.transform.position - camTransform.position);
+        }
+    }
+
+    private void UpdateHoverHighlight()
+    {
+        if (hoverHighlightInstance == null || !hoverHighlightFacesCamera)
+            return;
+
+        if (!hoverHighlightInstance.activeSelf)
+            return;
+
+        hoverHighlightInstance.transform.rotation =
+            Quaternion.LookRotation(hoverHighlightInstance.transform.position - camTransform.position);
+    }
+
+    private void SetHovered(bool hovered)
+    {
+        isHovered = hovered;
+
+        if (hoverHighlightInstance != null &&
+            hoverHighlightInstance.activeSelf != hovered)
+        {
+            hoverHighlightInstance.SetActive(hovered);
+        }
+
+        if (displayBackground != null)
+        {
+            displayBackground.color = hovered ? displayHoverColor : displayNormalColor;
+        }
+
+        if (tagBackground != null)
+        {
+            tagBackground.color = hovered ? displayHoverColor : tagNormalColor;
+        }
+
+        if (!hovered)
+        {
+            isHoveredForScan = false;
         }
     }
 
@@ -467,15 +548,7 @@ public class PointOfInterest : MonoBehaviour
 
     private void OnHoverEntered(HoverEnterEventArgs args)
     {
-        if (displayBackground != null)
-        {
-            displayBackground.color = displayHoverColor;
-        }
-
-        if (tagBackground != null)
-        {
-            tagBackground.color = displayHoverColor;
-        }
+        SetHovered(true);
 
         if (isScanned)
             return;
@@ -485,17 +558,7 @@ public class PointOfInterest : MonoBehaviour
 
     private void OnHoverExited(HoverExitEventArgs args)
     {
-        if (displayBackground != null)
-        {
-            displayBackground.color = displayNormalColor;
-        }
-
-        if (tagBackground != null)
-        {
-            tagBackground.color = tagNormalColor;
-        }
-
-        isHoveredForScan = false;
+        SetHovered(false);
     }
 
     private void OnSelectEntered(SelectEnterEventArgs args)
@@ -506,6 +569,10 @@ public class PointOfInterest : MonoBehaviour
     private void CycleTag()
     {
         if (!isScanned)
+            return;
+
+        // Un tag validé ne change plus tant que le joueur n'a pas rappuyé sur le bouton
+        if (isTagValidated)
             return;
 
         if (tagCarousel == null || availableTags == null || availableTags.Length == 0)
@@ -524,6 +591,9 @@ public class PointOfInterest : MonoBehaviour
             currentTagIndex = (currentTagIndex + 1) % availableTags.Length;
             tagCarousel.SetIndex(currentTagIndex, animate: true);
         }
+
+        // Le bouton n'apparaît qu'une fois un tag réellement choisi
+        tagCarousel.SetValidateButtonVisible(true);
 
         if (audioSource != null && tagSelectSFX != null)
         {
@@ -544,5 +614,39 @@ public class PointOfInterest : MonoBehaviour
         }
 
         OnTagChanged?.Invoke(this);
+    }
+
+    private void HandleValidateButtonPressed()
+    {
+        if (!isScanned || !HasTag)
+            return;
+
+        SetTagValidated(!isTagValidated);
+    }
+
+    /// <summary>
+    /// Valide le tag ou le rend à nouveau modifiable.
+    /// Le bouton bascule entre "Valider" et "Changer de tag".
+    /// </summary>
+    public void SetTagValidated(bool validated)
+    {
+        if (isTagValidated == validated)
+            return;
+
+        isTagValidated = validated;
+
+        if (tagCarousel != null)
+        {
+            tagCarousel.SetValidated(validated);
+        }
+
+        if (validated)
+        {
+            OnTagValidated?.Invoke(this);
+        }
+        else
+        {
+            OnTagValidationCancelled?.Invoke(this);
+        }
     }
 }
