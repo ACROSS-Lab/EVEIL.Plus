@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -8,12 +9,12 @@ using UnityEngine.SceneManagement;
 public class SequenceDirector : MonoBehaviour
 {
     [Header("List of steps")]
-    [SerializeField] SequenceStep[] sequenceSteps;
+    [SerializeField] List<SequenceStep> sequenceSteps;
 
     [Header("Debugging")]
-    [SerializeField] int debugStepIndex = 0;
-    [SerializeField] int currentStepIndex = 0;
+    [SerializeField] int jumpToStepIndex = 0;
 
+    [ShowNonSerializedField] int currentStepIndex = 0;
     bool hasPerformedAction = false;
     bool isSceneLoading = false;
     bool isReadyToProceed = true;
@@ -43,11 +44,10 @@ public class SequenceDirector : MonoBehaviour
         StartCoroutine(ExecuteSequence());
     }
 
-    void Update()
-    {
-        KeyboardPerformAction();
-        Debug.Log("isSceneLoading: " + isSceneLoading + ", isReadyToProceed: " + isReadyToProceed);
-    }
+    // void Update()
+    // {
+    //     KeyboardPerformAction();
+    // }
 
     void OnEnable()
     {
@@ -76,17 +76,24 @@ public class SequenceDirector : MonoBehaviour
 
     IEnumerator ExecuteSequence()
     {
-        for (int i = 0; i < sequenceSteps.Length; i++)
+        while (true)
         {
+            yield return new WaitUntil(() => currentStepIndex < sequenceSteps.Count);
             yield return new WaitUntil(() => isReadyToProceed && !isSceneLoading);
 
-            SequenceStep step = sequenceSteps[i];
-            bool fastForward = false;
-            #if UNITY_EDITOR
-            fastForward = i < debugStepIndex;
-            #endif
-            yield return StartCoroutine(ExecuteStep(step, fastForward));
-            currentStepIndex = i;
+            SequenceStep step = sequenceSteps[currentStepIndex];
+          
+            if (step != null)
+            {
+                bool fastForward = false;
+                #if UNITY_EDITOR
+                fastForward = currentStepIndex < jumpToStepIndex;
+                #endif
+
+                yield return StartCoroutine(ExecuteStep(step, fastForward));
+            } 
+            
+            currentStepIndex++;
         }
     }
 
@@ -133,7 +140,6 @@ public class SequenceDirector : MonoBehaviour
     IEnumerator HandleEventsStart(SequenceStep step)
     {
         if (!step.hasSequenceEvents) yield break;
-
         eventDirector.SetCurrentSequenceEvent(step.name);
         eventDirector.TriggerEventsForStep();
 
@@ -206,10 +212,14 @@ public class SequenceDirector : MonoBehaviour
             
             if (step.hasSubStep)
             {
-                foreach (var subStepEntry in step.subStepEntries)
+                for (int i = 0; i < step.subStepEntries.Count; i++)
                 {
-                    if (triggeredSubSteps.Contains(subStepEntry)) continue;
+                    SubstepEntry subStepEntry = step.subStepEntries[i];
 
+                    // --- EMPTY SUBSTEP CHECK ---
+                    if (subStepEntry == null || subStepEntry.subStep == null) continue;
+
+                    if (triggeredSubSteps.Contains(subStepEntry)) continue;
                     bool triggered = false;
 
                     if (subStepEntry.triggerType == SubstepTriggerType.Timeout)
@@ -264,6 +274,22 @@ public class SequenceDirector : MonoBehaviour
         pendingTriggers.Clear();
     }
     #endregion
+
+
+    #region Steps Management
+    public void InsertNextSteps(IEnumerable<SequenceStep> newSteps)
+    {
+        if (newSteps == null) return;
+        int insertIndex = Mathf.Clamp(currentStepIndex + 1, 0, sequenceSteps.Count);
+        sequenceSteps.InsertRange(insertIndex, newSteps);
+    }
+    public void EnqueueSteps(IEnumerable<SequenceStep> newSteps)
+    {
+        if (newSteps == null) return;
+        sequenceSteps.AddRange(newSteps);
+    }
+    #endregion
+
 
     public void PerformAction()
     {

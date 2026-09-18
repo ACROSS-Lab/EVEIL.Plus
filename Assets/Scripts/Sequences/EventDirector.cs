@@ -27,6 +27,7 @@ public class EventDirector : MonoBehaviour
 
     public void TriggerEventsForStep()
     {
+        if (currentSequenceEvent == null) return;
         currentSequenceEvent.TriggerEvents();
     }
 }

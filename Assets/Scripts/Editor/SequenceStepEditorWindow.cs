@@ -21,7 +21,7 @@ public class SequenceStepEditorWindow : EditorWindow
     /// Automatically opens or focuses this window when double-clicking any SequenceStep asset in the Project view.
     /// </summary>
     [OnOpenAsset]
-    public static bool OnOpenAsset(int instanceID, int line)
+    public static bool OnOpenAsset(int instanceID)
     {
         var step = EditorUtility.EntityIdToObject(instanceID) as SequenceStep;
         if (step != null)
@@ -108,10 +108,6 @@ public class SequenceStepEditorWindow : EditorWindow
             CreateCachedEditor();
         }
 
-        DrawSceneHelpers();
-
-        EditorGUILayout.Space(4);
-
         // Draw the full inspector for SequenceStep (including NaughtyAttributes)
         scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
 
@@ -164,55 +160,5 @@ public class SequenceStepEditorWindow : EditorWindow
         }
 
         EditorGUILayout.EndHorizontal();
-    }
-
-    private void DrawSceneHelpers()
-    {
-        Transform activeTransform = Selection.activeTransform;
-        if (activeTransform == null) return;
-
-        EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField($"Selected in Scene: {activeTransform.name}", EditorStyles.boldLabel);
-        EditorGUILayout.EndHorizontal();
-
-        EditorGUILayout.BeginHorizontal();
-
-        // Narrator copy helper
-        if (currentStep.hasNarratorMovement)
-        {
-            if (GUILayout.Button(new GUIContent("Copy to Narrator", "Copies current scene selection's position and rotation into Narrator target fields.")))
-            {
-                Undo.RecordObject(currentStep, "Copy Transform to Narrator Target");
-                currentStep.targetNarratorPosition = activeTransform.position;
-                if (currentStep.hasNarratorRotation)
-                {
-                    currentStep.targetNarratorRotation = activeTransform.eulerAngles;
-                }
-                EditorUtility.SetDirty(currentStep);
-                AssetDatabase.SaveAssetIfDirty(currentStep);
-                Repaint();
-            }
-        }
-
-        // Player copy helper
-        if (currentStep.hasPlayerMovement)
-        {
-            if (GUILayout.Button(new GUIContent("Copy to Player", "Copies current scene selection's position and rotation into Player target fields.")))
-            {
-                Undo.RecordObject(currentStep, "Copy Transform to Player Target");
-                currentStep.playerTargetPosition = activeTransform.position;
-                if (currentStep.hasPlayerRotation)
-                {
-                    currentStep.playerTargetRotation = activeTransform.eulerAngles;
-                }
-                EditorUtility.SetDirty(currentStep);
-                AssetDatabase.SaveAssetIfDirty(currentStep);
-                Repaint();
-            }
-        }
-
-        EditorGUILayout.EndHorizontal();
-        EditorGUILayout.EndVertical();
     }
 }

@@ -40,6 +40,8 @@ public class SequenceStep : ScriptableObject
     [ShowIf("isSceneTransition")] public string sceneToLoad;
     [ShowIf("hasInteraction")] public bool hasSubStep;
     [ShowIf("hasSubStep")] public List<SubstepEntry> subStepEntries = new List<SubstepEntry>();
+    
+    /////////////////////////////////////////////////////////////
 
     bool ShowWaitTimeout() => hasInteraction && !hasInfiniteTimeout;
 
@@ -47,7 +49,7 @@ public class SequenceStep : ScriptableObject
     DropdownList<int> GetEyesStates() => BuildDropdown(characterStates != null ? characterStates.eyesStates : null);
     DropdownList<int> GetMouthStates() => BuildDropdown(characterStates != null ? characterStates.mouthStates : null);
 
-    DropdownList<int> BuildDropdown(System.Collections.Generic.List<CharacterStatesConfig.StateEntry> states)
+    DropdownList<int> BuildDropdown(List<CharacterStatesConfig.StateEntry> states)
     {
         var list = new DropdownList<int>();
         if (states == null || states.Count == 0)
