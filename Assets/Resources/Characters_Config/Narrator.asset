@@ -22,8 +22,16 @@ MonoBehaviour:
     id: 0
   - name: Idle_02
     id: 1
+  - name: Idle_03
+    id: 4
   - name: Talk_01
     id: 2
+  - name: Talk_02
+    id: 3
+  - name: Pointing_Down
+    id: 5
+  - name: Pointing_Right
+    id: 6
   mouthStates:
   - name: Mouth_Idle_01
     id: 0
