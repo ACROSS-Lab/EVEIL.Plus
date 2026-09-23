@@ -11,6 +11,14 @@ public class Player : MonoBehaviour
     [SerializeField] float fadeDuration = 0.5f;
     [SerializeField] bool hasFadeOnStart = true;
 
+    void Start()
+    {
+        if (fadeCanvasGroup == null)
+        {
+            fadeCanvasGroup = FindFirstObjectByType<SceneTransition>().GetComponent<CanvasGroup>();
+        }
+    }
+
     public void MovePlayer(Vector3 position, bool hasRotation, Vector3 rotation)
     {
         StartCoroutine(MovePlayerCoroutine(position, hasRotation, rotation));

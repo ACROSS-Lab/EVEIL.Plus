@@ -3,12 +3,17 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 [RequireComponent(typeof(XRGrabInteractable))]
 [RequireComponent(typeof(Rigidbody))]
 public class GrabInteractable : MonoBehaviour
 {
+    [Header("Transform reset")]
     [SerializeField] float resetDuration = 1f;
+
+    [Header("Prevent using this hand to grab")]
+    [SerializeField] InteractorHandedness handedness = InteractorHandedness.Right;
     
     [Header("Hint Pulse")]
     [SerializeField] private int hintBlinkCount = 3;
@@ -86,13 +91,36 @@ public class GrabInteractable : MonoBehaviour
     void OnSelectEntered(SelectEnterEventArgs args)
     {
         selectCount++;
-        DOTween.Kill(transform);
+        if (selectCount == 1)
+        {
+            DOTween.Kill(transform);
+
+            if (isUsingThisHand(args.interactorObject))
+            {
+                interactable.trackPosition = false;
+                interactable.trackRotation = false;
+                interactable.throwOnDetach = false;
+            }
+            else
+            {
+                interactable.trackPosition = true;
+                interactable.trackRotation = true;
+                interactable.throwOnDetach = true;
+            }
+        }
     }
 
     void OnSelectExited(SelectExitEventArgs args)
     {
         selectCount = Mathf.Max(selectCount - 1, 0);
-        if (selectCount == 0) ResetTransform();
+        if (selectCount == 0) 
+        {
+            ResetTransform();
+
+            interactable.trackPosition = true;
+            interactable.trackRotation = true;
+            interactable.throwOnDetach = true;
+        }
     }
 
     void SetHighlight(bool highlight)
@@ -148,5 +176,15 @@ public class GrabInteractable : MonoBehaviour
             if (interactable != null)
                 interactable.enabled = true;
         });
+    }
+
+    bool isUsingThisHand(IXRSelectInteractor interactor)
+    {
+        if (interactor is NearFarInteractor nearfar)
+        {
+            return nearfar.handedness == handedness;
+        }
+
+        return false;
     }
 }

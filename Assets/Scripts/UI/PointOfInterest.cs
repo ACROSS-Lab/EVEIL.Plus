@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using DG.Tweening;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using UnityEngine.XR.Interaction.Toolkit.UI;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -14,67 +14,44 @@ public class PointOfInterest : MonoBehaviour
 {
     [Header("Localization")]
     [SerializeField] string localizationKey;
-    [Tooltip("Localization key shown instead of the name before the source has been scanned, e.g. a key pointing to \"?\" in the CSV.")]
-    [SerializeField] string unscannedPlaceholderKey = "poi_unscanned_placeholder";
+    [SerializeField] LocalizedKey farMarkerLocalizedKey;
 
-    [Header("Info Display")]
-    [SerializeField] GameObject displayPrefab;
+    [Header("Canvas & Sub-Elements")]
+    [Tooltip("World space canvas containing all POI UI markers and carousel.")]
+    [SerializeField] Canvas displayCanvas;
+    [SerializeField] GameObject scanningUI;
+    [SerializeField] GameObject scannedMarker;
+    [SerializeField] TagCarouselDisplay tagCarousel;
+    [SerializeField] GameObject farMarker;
     [SerializeField] float heightOffset = 1.5f;
+
+    [Header("Distance & Scanning")]
     [SerializeField] float triggerDistance = 3f;
-    [Tooltip("Color applied to the info display's background while the detector is pointed at this source.")]
-    [SerializeField] Color displayHoverColor = Color.yellow;
-
-    [Header("Hover Highlight")]
-    [Tooltip("Prefab affiché uniquement pendant le survol, par exemple un sprite qui entoure la zone.")]
-    [SerializeField] GameObject hoverHighlightPrefab;
-    [SerializeField] Vector3 hoverHighlightOffset = Vector3.zero;
-    [Tooltip("Oriente le highlight vers la caméra à chaque frame. À laisser décoché pour un sprite posé au sol.")]
-    [SerializeField] bool hoverHighlightFacesCamera = false;
-
-    [Header("Tags")]
-    [SerializeField] GameObject tagPrefab;
-    [SerializeField] TagData emptyTagData;
-    [SerializeField] TagData[] availableTags;
-
-    [Tooltip("Tags accepted as correct answers")]
-    [SerializeField] TagData[] validTags;
-
-    [SerializeField] float tagHeightOffset = 2f;
-    [Tooltip("Played whenever a tag is selected, regardless of whether it's correct.")]
-    [SerializeField] AudioClip tagSelectSFX;
-    [Tooltip("Scale multiplier reached mid-bounce when a tag is selected, before settling back to normal size.")]
-    [SerializeField] float tagPunchScale = 1.25f;
-    [SerializeField] float tagPunchDuration = 0.2f;
-
-    [Header("Far Marker")]
-    [SerializeField] GameObject farMarkerPrefab;
-    [SerializeField] float farMarkerHeightOffset = 2f;
-
-    [Header("Scanning")]
-    [Tooltip("UI shown while the detector is pointed at this source, displaying scan progress.")]
-    [SerializeField] GameObject scanUIPrefab;
-    [SerializeField] float scanUIHeightOffset = 2.5f;
-    [Tooltip("Time in seconds needed to fully analyze the source while it is being pointed at.")]
     [SerializeField] float scanDuration = 2f;
-    [Tooltip("How fast scan progress falls off (in 'scans per second') once the detector stops pointing at the source. Use a large value for a near-instant reset.")]
     [SerializeField] float scanDecaySpeed = 1f;
 
-    [Header("Scan Validation")]
+    [Header("Scanned Marker Animation")]
+    [Tooltip("Distance the scanned marker floats upward while fading out.")]
+    [SerializeField] float scannedMarkerFloatDistance = 0.4f;
+    [Tooltip("Duration in seconds for the scanned marker to float up and fade out.")]
+    [SerializeField] float scannedMarkerFadeDuration = 1.5f;
+
+    [Header("Tags & Validation")]
+    [SerializeField] TagData emptyTagData;
+    [SerializeField] TagData[] availableTags;
+    [Tooltip("Tags accepted as correct answers.")]
+    [SerializeField] TagData[] validTags;    
+
+    [Header("Audio & Effects")]
+    [SerializeField] AudioClip tagSelectSFX;
+    [SerializeField] float tagPunchScale = 1.25f;
+    [SerializeField] float tagPunchDuration = 0.2f;
     [SerializeField] GameObject validationFXPrefab;
     [SerializeField] AudioClip validationSFX;
     [SerializeField] AudioSource audioSource;
-    [Tooltip("Duration in seconds of the bounce/pop animation played when the scanned indicator appears.")]
-    [SerializeField] float scanCompletePopDuration = 0.35f;
-
-    [Header("Scanned Indicator")]
-    [Tooltip("Persistent indicator shown once the source has been fully scanned. Stays visible even after the player walks away.")]
-    [SerializeField] GameObject scannedIndicatorPrefab;
-    [SerializeField] float scannedIndicatorHeightOffset = 2f;
-    [Tooltip("Uniform scale applied to the indicator once the player leaves range, to reduce visual clutter.")]
-    [SerializeField] float scannedIndicatorMinifiedScale = 0.4f;
 
     [Header("Idle Animation")]
-    [Tooltip("Vertical bobbing amplitude, in local units, applied to the far marker and the scanned indicator.")]
+    [Tooltip("Vertical bobbing amplitude applied to the canvas.")]
     [SerializeField] float idleBobAmplitude = 0.05f;
     [Tooltip("Speed of the idle bobbing motion.")]
     [SerializeField] float idleBobSpeed = 1.5f;
@@ -113,179 +90,123 @@ public class PointOfInterest : MonoBehaviour
         }
     }
 
-    private GameObject displayRoot;
-    private TextMeshProUGUI textLabel;
-    private Image displayBackground;
-    private Color displayNormalColor;
-    private LocalizedKey localizedKey;
-    private Transform camTransform;
-    private bool isVisible = false;
+    Transform camTransform;
+    Collider poiCollider;
+    XRSimpleInteractable interactable;
+    ScanProgressDisplay scanProgressDisplay;
+    GameObject hoverHighlightInstance;
 
-    private GameObject hoverHighlightInstance;
-    private bool isHovered = false;
-
-    private GameObject tagInstance;
-    private TagCarouselDisplay tagCarousel;
-    private Vector3 tagBaseScale = Vector3.one;
-    private Image tagBackground;
-    private Color tagNormalColor;
-    private int currentTagIndex = -1;
-    private bool isTagValidated = false;
-    private XRSimpleInteractable interactable;
-
-    private GameObject farMarkerInstance;
-
-    private GameObject scanUIInstance;
-    private ScanProgressDisplay scanProgressDisplay;
-    private bool isHoveredForScan = false;
-    private float scanProgress = 0f;
-    private bool isScanned = false;
-
-    private GameObject scannedIndicatorInstance;
-    private Vector3 scannedIndicatorBaseScale = Vector3.one;
-    private bool isPlayingScanCompletePop = false;
+    Vector3 canvasBaseLocalPosition;
+    int currentTagIndex = -1;
+    float scanProgress = 0f;
+    bool isScanned = false;
+    bool isTagValidated = false;
+    bool isHoveredByRightHand = false;
+    bool isHovered = false;
 
 #if UNITY_EDITOR
-    private void Reset()
+    void OnValidate()
     {
-        if (GetComponent<LocalizedKey>() == null)
-        {
-            LocalizedKey localizedKey = gameObject.AddComponent<LocalizedKey>();
-            Undo.RegisterCreatedObjectUndo(localizedKey, "Add LocalizedKey");
-        }
-    }
-
-    private void OnValidate()
-    {
-        LocalizedKey localizedKey = GetComponent<LocalizedKey>();
-
-        if (localizedKey != null)
-        {
-            localizedKey.localizationKey = localizationKey;
-        }
+        FindOrValidateReferences();
+        ApplyCanvasPosition();
     }
 #endif
 
-    private void Awake()
+    void Awake()
     {
-        interactable = GetComponent<XRSimpleInteractable>();
+        FindOrValidateReferences();
+        SetupCanvasPositionAndBob();
+        SetupLocalization();
+        SetupTagCarousel();
 
-        if (interactable != null)
+        // Canvas components must be off initially before any interaction
+        SetCanvasSubComponentsActive(false);
+    }
+
+    void Start()
+    {
+        if (Camera.main != null)
         {
-            interactable.enabled = false;
-        }
-
-        localizedKey = GetComponent<LocalizedKey>();
-
-        if (localizedKey == null)
-        {
-            localizedKey = gameObject.AddComponent<LocalizedKey>();
-        }
-
-        localizedKey.localizationKey = unscannedPlaceholderKey;
-
-        if (displayPrefab != null)
-        {
-            displayRoot = Instantiate(displayPrefab, transform);
-            displayRoot.transform.localPosition = Vector3.up * heightOffset;
-            displayRoot.SetActive(false);
-
-            textLabel = displayRoot.GetComponentInChildren<TextMeshProUGUI>(true);
-            localizedKey.textComponent = textLabel;
-
-            displayBackground = displayRoot.GetComponentInChildren<Image>(true);
-
-            if (displayBackground != null)
-            {
-                displayNormalColor = displayBackground.color;
-            }
-        }
-
-        if (hoverHighlightPrefab != null)
-        {
-            hoverHighlightInstance = Instantiate(hoverHighlightPrefab, transform);
-            hoverHighlightInstance.transform.localPosition = hoverHighlightOffset;
-            hoverHighlightInstance.SetActive(false);
-        }
-
-        if (tagPrefab != null)
-        {
-            tagInstance = Instantiate(tagPrefab, transform);
-            tagInstance.transform.localPosition = Vector3.up * tagHeightOffset;
-            tagBaseScale = tagInstance.transform.localScale;
-
-            tagBackground = tagInstance.GetComponentInChildren<Image>(true);
-
-            if (tagBackground != null)
-            {
-                tagNormalColor = tagBackground.color;
-            }
-
-            tagCarousel = tagInstance.GetComponentInChildren<TagCarouselDisplay>(true);
-
-            if (tagCarousel != null)
-            {
-                // Charge le carrousel avec le emptyTagData visible au départ.
-                // Initialize masque aussi le bouton tant qu'aucun tag n'a été choisi.
-                tagCarousel.Initialize(availableTags, emptyTagData);
-                tagCarousel.OnValidatePressed += HandleValidateButtonPressed;
-            }
-
-            tagInstance.SetActive(false);
-        }
-
-        if (farMarkerPrefab != null)
-        {
-            farMarkerInstance = Instantiate(farMarkerPrefab, transform);
-            farMarkerInstance.transform.localPosition = Vector3.up * farMarkerHeightOffset;
-
-            TextMeshProUGUI farMarkerTextLabel = farMarkerInstance.GetComponentInChildren<TextMeshProUGUI>(true);
-
-            if (farMarkerTextLabel != null)
-            {
-                LocalizedKey farMarkerLocalizedKey = farMarkerTextLabel.GetComponent<LocalizedKey>();
-
-                if (farMarkerLocalizedKey == null)
-                {
-                    farMarkerLocalizedKey = farMarkerTextLabel.gameObject.AddComponent<LocalizedKey>();
-                }
-
-                farMarkerLocalizedKey.textComponent = farMarkerTextLabel;
-                farMarkerLocalizedKey.localizationKey = localizationKey;
-            }
-
-            StartIdleBob(farMarkerInstance.transform, farMarkerHeightOffset);
-            farMarkerInstance.SetActive(false);
-        }
-
-        if (scanUIPrefab != null)
-        {
-            scanUIInstance = Instantiate(scanUIPrefab, transform);
-            scanUIInstance.transform.localPosition = Vector3.up * scanUIHeightOffset;
-            scanProgressDisplay = scanUIInstance.GetComponent<ScanProgressDisplay>();
-            scanUIInstance.SetActive(false);
-        }
-
-        if (scannedIndicatorPrefab != null)
-        {
-            scannedIndicatorInstance = Instantiate(scannedIndicatorPrefab, transform);
-            scannedIndicatorInstance.transform.localPosition = Vector3.up * scannedIndicatorHeightOffset;
-            scannedIndicatorBaseScale = scannedIndicatorInstance.transform.localScale;
-
-            StartIdleBob(scannedIndicatorInstance.transform, scannedIndicatorHeightOffset);
-            scannedIndicatorInstance.SetActive(false);
+            camTransform = Camera.main.transform;
         }
     }
 
-    private void OnDestroy()
+    void OnEnable()
+    {
+        if (interactable != null)
+        {
+            interactable.hoverEntered.AddListener(OnHoverEntered);
+            interactable.hoverExited.AddListener(OnHoverExited);
+        }
+    }
+
+    void OnDisable()
+    {
+        if (interactable != null)
+        {
+            interactable.hoverEntered.RemoveListener(OnHoverEntered);
+            interactable.hoverExited.RemoveListener(OnHoverExited);
+        }
+    }
+
+    void OnDestroy()
     {
         if (tagCarousel != null)
         {
             tagCarousel.OnValidatePressed -= HandleValidateButtonPressed;
+            tagCarousel.OnCyclePressed -= CycleTag;
         }
     }
 
-    private void StartIdleBob(Transform target, float baseHeight)
+    void Update()
+    {
+        if (camTransform == null)
+            return;
+
+        // Proper squared distance calculation
+        float sqrDistance = (camTransform.position - transform.position).sqrMagnitude;
+        bool inRange = sqrDistance <= (triggerDistance * triggerDistance);
+
+        UpdateScanning(inRange);
+        UpdateProximityDisplay(inRange);
+    }
+
+    void FindOrValidateReferences()
+    {
+        poiCollider = GetComponent<BoxCollider>();
+        interactable = GetComponent<XRSimpleInteractable>();
+        scanProgressDisplay = scanningUI.GetComponent<ScanProgressDisplay>();
+        
+    }
+
+    void SetupCanvasPositionAndBob()
+    {
+        ApplyCanvasPosition();
+
+        if (displayCanvas != null)
+        {
+            StartIdleBob(displayCanvas.transform, canvasBaseLocalPosition.y);
+        }
+    }
+
+    void ApplyCanvasPosition()
+    {
+        if (displayCanvas == null)
+            return;
+
+        BoxCollider boxCollider = GetComponent<BoxCollider>();
+        Vector3 centerOffset = boxCollider != null ? boxCollider.center : Vector3.zero;
+
+        canvasBaseLocalPosition = new Vector3(
+            centerOffset.x,
+            transform.position.y + heightOffset,
+            centerOffset.z
+        );
+
+        displayCanvas.transform.localPosition = canvasBaseLocalPosition;
+    }
+
+    void StartIdleBob(Transform target, float baseHeight)
     {
         target
             .DOLocalMoveY(baseHeight + idleBobAmplitude, 1f / idleBobSpeed)
@@ -294,161 +215,39 @@ public class PointOfInterest : MonoBehaviour
             .SetDelay(UnityEngine.Random.Range(0f, 1f / idleBobSpeed));
     }
 
-    private void OnEnable()
+    void SetupLocalization()
     {
-        if (interactable != null)
+        if (farMarker != null)
         {
-            interactable.selectEntered.AddListener(OnSelectEntered);
-            interactable.hoverEntered.AddListener(OnHoverEntered);
-            interactable.hoverExited.AddListener(OnHoverExited);
+            farMarkerLocalizedKey.localizationKey = localizationKey;
+            farMarkerLocalizedKey.UpdateText();
         }
     }
 
-    private void OnDisable()
+    void SetupTagCarousel()
     {
-        if (interactable != null)
+        if (tagCarousel != null)
         {
-            interactable.selectEntered.RemoveListener(OnSelectEntered);
-            interactable.hoverEntered.RemoveListener(OnHoverEntered);
-            interactable.hoverExited.RemoveListener(OnHoverExited);
+            tagCarousel.Initialize(availableTags, emptyTagData);
+            tagCarousel.OnValidatePressed += HandleValidateButtonPressed;
+            tagCarousel.OnCyclePressed += CycleTag;
         }
     }
 
-    private void Start()
+    void SetCanvasSubComponentsActive(bool active)
     {
-        if (Camera.main != null)
-        {
-            camTransform = Camera.main.transform;
-        }
+        if (scanningUI != null) scanningUI.SetActive(active);
+        if (scannedMarker != null) scannedMarker.SetActive(active);
+        if (tagCarousel != null) tagCarousel.gameObject.SetActive(active);
+        if (farMarker != null) farMarker.SetActive(active);
     }
 
-    private void Update()
+    void UpdateScanning(bool inRange)
     {
-        if (camTransform == null)
+        if (isScanned)
             return;
 
-        UpdateInfoDisplay();
-        UpdateHoverHighlight();
-        UpdateTagVisibility();
-        UpdateFarMarkerVisibility();
-        UpdateScanning();
-        UpdateScannedIndicator();
-    }
-
-    private void UpdateInfoDisplay()
-    {
-        if (displayRoot == null)
-            return;
-
-        float distance = Vector3.Distance(camTransform.position, transform.position);
-        bool shouldBeVisible = distance <= triggerDistance;
-
-        if (shouldBeVisible != isVisible)
-        {
-            isVisible = shouldBeVisible;
-            displayRoot.SetActive(isVisible);
-
-            if (interactable != null)
-            {
-                interactable.enabled = isVisible;
-            }
-
-            if (!isVisible)
-            {
-                // Sécurité : un interactable désactivé n'envoie pas toujours hoverExited
-                SetHovered(false);
-            }
-        }
-
-        if (isVisible)
-        {
-            displayRoot.transform.rotation =
-                Quaternion.LookRotation(displayRoot.transform.position - camTransform.position);
-        }
-    }
-
-    private void UpdateHoverHighlight()
-    {
-        if (hoverHighlightInstance == null || !hoverHighlightFacesCamera)
-            return;
-
-        if (!hoverHighlightInstance.activeSelf)
-            return;
-
-        hoverHighlightInstance.transform.rotation =
-            Quaternion.LookRotation(hoverHighlightInstance.transform.position - camTransform.position);
-    }
-
-    private void SetHovered(bool hovered)
-    {
-        isHovered = hovered;
-
-        if (hoverHighlightInstance != null &&
-            hoverHighlightInstance.activeSelf != hovered)
-        {
-            hoverHighlightInstance.SetActive(hovered);
-        }
-
-        if (displayBackground != null)
-        {
-            displayBackground.color = hovered ? displayHoverColor : displayNormalColor;
-        }
-
-        if (tagBackground != null)
-        {
-            tagBackground.color = hovered ? displayHoverColor : tagNormalColor;
-        }
-
-        if (!hovered)
-        {
-            isHoveredForScan = false;
-        }
-    }
-
-    private void UpdateTagVisibility()
-    {
-        if (tagInstance == null)
-            return;
-
-        bool shouldShowTag = isVisible && isScanned;
-
-        if (tagInstance.activeSelf != shouldShowTag)
-        {
-            tagInstance.SetActive(shouldShowTag);
-        }
-
-        if (shouldShowTag)
-        {
-            tagInstance.transform.rotation =
-                Quaternion.LookRotation(tagInstance.transform.position - camTransform.position);
-        }
-    }
-
-    private void UpdateFarMarkerVisibility()
-    {
-        if (farMarkerInstance == null)
-            return;
-
-        bool shouldShowMarker = HasTag && !isVisible;
-
-        if (farMarkerInstance.activeSelf != shouldShowMarker)
-        {
-            farMarkerInstance.SetActive(shouldShowMarker);
-        }
-
-        if (shouldShowMarker)
-        {
-            farMarkerInstance.transform.rotation =
-                Quaternion.LookRotation(farMarkerInstance.transform.position - camTransform.position);
-        }
-    }
-
-    private void UpdateScanning()
-    {
-        if (scanUIInstance == null || isScanned)
-            return;
-
-        if (isHoveredForScan)
+        if (isHoveredByRightHand && inRange)
         {
             scanProgress += Time.deltaTime / scanDuration;
         }
@@ -459,22 +258,16 @@ public class PointOfInterest : MonoBehaviour
 
         scanProgress = Mathf.Clamp01(scanProgress);
 
-        bool shouldShowScanUI = scanProgress > 0f && isVisible;
+        bool shouldShowScanUI = scanProgress > 0f && inRange;
 
-        if (scanUIInstance.activeSelf != shouldShowScanUI)
+        if (scanningUI != null && scanningUI.activeSelf != shouldShowScanUI)
         {
-            scanUIInstance.SetActive(shouldShowScanUI);
+            scanningUI.SetActive(shouldShowScanUI);
         }
 
-        if (shouldShowScanUI)
+        if (shouldShowScanUI && scanProgressDisplay != null)
         {
-            if (scanProgressDisplay != null)
-            {
-                scanProgressDisplay.SetProgress(scanProgress);
-            }
-
-            scanUIInstance.transform.rotation =
-                Quaternion.LookRotation(scanUIInstance.transform.position - camTransform.position);
+            scanProgressDisplay.SetProgress(scanProgress);
         }
 
         if (scanProgress >= 1f)
@@ -483,37 +276,15 @@ public class PointOfInterest : MonoBehaviour
         }
     }
 
-    private void UpdateScannedIndicator()
-    {
-        if (scannedIndicatorInstance == null || !isScanned)
-            return;
-
-        if (!isPlayingScanCompletePop)
-        {
-            float targetScale = isVisible ? 1f : scannedIndicatorMinifiedScale;
-
-            scannedIndicatorInstance.transform.localScale =
-                scannedIndicatorBaseScale * targetScale;
-        }
-
-        scannedIndicatorInstance.transform.rotation =
-            Quaternion.LookRotation(scannedIndicatorInstance.transform.position - camTransform.position);
-    }
-
-    private void CompleteScan()
+    void CompleteScan()
     {
         isScanned = true;
-        isHoveredForScan = false;
+        isHoveredByRightHand = false;
+        SetHovered(false);
 
-        if (scanUIInstance != null)
+        if (scanningUI != null)
         {
-            scanUIInstance.SetActive(false);
-        }
-
-        if (localizedKey != null)
-        {
-            localizedKey.localizationKey = localizationKey;
-            localizedKey.UpdateText();
+            scanningUI.SetActive(false);
         }
 
         if (validationFXPrefab != null)
@@ -526,53 +297,139 @@ public class PointOfInterest : MonoBehaviour
             audioSource.PlayOneShot(validationSFX);
         }
 
-        if (scannedIndicatorInstance != null)
+        PlayScannedMarkerAnimation();
+
+        // Disable collider and interactable so player interacts with carousel button next
+        if (poiCollider != null)
         {
-            scannedIndicatorInstance.SetActive(true);
-            scannedIndicatorInstance.transform.localScale = Vector3.zero;
+            poiCollider.enabled = false;
+        }
 
-            Vector3 targetScale =
-                scannedIndicatorBaseScale *
-                (isVisible ? 1f : scannedIndicatorMinifiedScale);
-
-            isPlayingScanCompletePop = true;
-
-            scannedIndicatorInstance.transform
-                .DOScale(targetScale, scanCompletePopDuration)
-                .SetEase(Ease.OutBack)
-                .OnComplete(() => isPlayingScanCompletePop = false);
+        if (interactable != null)
+        {
+            interactable.enabled = false;
         }
 
         OnScanCompleted?.Invoke(this);
     }
 
-    private void OnHoverEntered(HoverEnterEventArgs args)
+    void PlayScannedMarkerAnimation()
     {
-        SetHovered(true);
+        if (scannedMarker == null)
+            return;
 
+        scannedMarker.SetActive(true);
+
+        CanvasGroup group = scannedMarker.GetComponent<CanvasGroup>();
+        if (group == null)
+        {
+            group = scannedMarker.AddComponent<CanvasGroup>();
+        }
+
+        group.alpha = 1f;
+        Vector3 initialPos = scannedMarker.transform.localPosition;
+
+        scannedMarker.transform.DOKill();
+        group.DOKill();
+
+        Sequence seq = DOTween.Sequence();
+        seq.Join(scannedMarker.transform.DOLocalMoveY(initialPos.y + scannedMarkerFloatDistance, scannedMarkerFadeDuration).SetEase(Ease.OutQuad));
+        seq.Join(group.DOFade(0f, scannedMarkerFadeDuration).SetEase(Ease.InQuad));
+        seq.OnComplete(() =>
+        {
+            scannedMarker.SetActive(false);
+            scannedMarker.transform.localPosition = initialPos;
+            group.alpha = 1f;
+        });
+    }
+
+    void UpdateProximityDisplay(bool inRange)
+    {
+        if (!isScanned)
+        {
+            if (tagCarousel != null && tagCarousel.gameObject.activeSelf)
+            {
+                tagCarousel.gameObject.SetActive(false);
+            }
+
+            if (farMarker != null && farMarker.activeSelf)
+            {
+                farMarker.SetActive(false);
+            }
+
+            return;
+        }
+
+        // Once scanned: close proximity shows TagCarousel, far distance shows FarMarker
+        if (tagCarousel != null && tagCarousel.gameObject.activeSelf != inRange)
+        {
+            tagCarousel.gameObject.SetActive(inRange);
+        }
+
+        if (farMarker != null && farMarker.activeSelf == inRange)
+        {
+            farMarker.SetActive(!inRange);
+        }
+    }
+
+    void OnHoverEntered(HoverEnterEventArgs args)
+    {
         if (isScanned)
             return;
 
-        isHoveredForScan = true;
+        if (IsRightHandInteractor(args.interactorObject))
+        {
+            isHoveredByRightHand = true;
+            SetHovered(true);
+        }
     }
 
-    private void OnHoverExited(HoverExitEventArgs args)
+    void OnHoverExited(HoverExitEventArgs args)
     {
-        SetHovered(false);
+        if (IsRightHandInteractor(args.interactorObject))
+        {
+            isHoveredByRightHand = false;
+            SetHovered(false);
+        }
     }
 
-    private void OnSelectEntered(SelectEnterEventArgs args)
+    bool IsRightHandInteractor(IXRInteractor interactor)
     {
-        CycleTag();
+        if (interactor is NearFarInteractor nearFar)
+        {
+            return nearFar.handedness == InteractorHandedness.Right;
+        }
+
+        if (interactor is Component comp)
+        {
+            NearFarInteractor parentNearFar = comp.GetComponentInParent<NearFarInteractor>();
+            if (parentNearFar != null)
+            {
+                return parentNearFar.handedness == InteractorHandedness.Right;
+            }
+
+            if (comp.name.IndexOf("right", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    private void CycleTag()
+    void SetHovered(bool hovered)
     {
-        if (!isScanned)
-            return;
+        isHovered = hovered;
 
-        // Un tag validé ne change plus tant que le joueur n'a pas rappuyé sur le bouton
-        if (isTagValidated)
+        if (hoverHighlightInstance != null && hoverHighlightInstance.activeSelf != hovered)
+        {
+            hoverHighlightInstance.SetActive(hovered);
+        }
+    }
+
+    void CycleTag()
+    {
+        if (!isScanned || isTagValidated)
             return;
 
         if (tagCarousel == null || availableTags == null || availableTags.Length == 0)
@@ -592,7 +449,6 @@ public class PointOfInterest : MonoBehaviour
             tagCarousel.SetIndex(currentTagIndex, animate: true);
         }
 
-        // Le bouton n'apparaît qu'une fois un tag réellement choisi
         tagCarousel.SetValidateButtonVisible(true);
 
         if (audioSource != null && tagSelectSFX != null)
@@ -600,23 +456,20 @@ public class PointOfInterest : MonoBehaviour
             audioSource.PlayOneShot(tagSelectSFX);
         }
 
-        if (tagInstance != null)
-        {
-            tagInstance.transform.DOKill();
-            tagInstance.transform.localScale = tagBaseScale;
-
-            tagInstance.transform.DOPunchScale(
-                tagBaseScale * (tagPunchScale - 1f),
-                tagPunchDuration,
-                vibrato: 1,
-                elasticity: 0.5f
-            );
-        }
+        Transform tagTransform = tagCarousel.transform;
+        tagTransform.DOKill();
+        tagTransform.localScale = Vector3.one;
+        tagTransform.DOPunchScale(
+            Vector3.one * (tagPunchScale - 1f),
+            tagPunchDuration,
+            vibrato: 1,
+            elasticity: 0.5f
+        );
 
         OnTagChanged?.Invoke(this);
     }
 
-    private void HandleValidateButtonPressed()
+    void HandleValidateButtonPressed()
     {
         if (!isScanned || !HasTag)
             return;
@@ -625,8 +478,7 @@ public class PointOfInterest : MonoBehaviour
     }
 
     /// <summary>
-    /// Valide le tag ou le rend à nouveau modifiable.
-    /// Le bouton bascule entre "Valider" et "Changer de tag".
+    /// Validates the chosen tag or unlocks it for editing.
     /// </summary>
     public void SetTagValidated(bool validated)
     {

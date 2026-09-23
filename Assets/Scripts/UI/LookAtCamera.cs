@@ -2,11 +2,9 @@ using UnityEngine;
 
 public class LookAtCamera : MonoBehaviour
 {
-    [SerializeField]
-    private Camera targetCamera;
-
-    [SerializeField]
-    private bool lockYAxis = true;
+    [SerializeField] Camera targetCamera;
+    [SerializeField] bool lockYAxis = true;
+    [SerializeField] bool reverseZ = false;
 
     void Start()
     {
@@ -19,6 +17,7 @@ public class LookAtCamera : MonoBehaviour
     void LateUpdate()
     {
         Vector3 direction = targetCamera.transform.position - transform.position;
+        direction = reverseZ ? -direction : direction;
 
         if (lockYAxis)
         {
