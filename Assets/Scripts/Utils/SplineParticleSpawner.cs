@@ -21,7 +21,9 @@ public class ParticleSpawnGroup
 public class SplineParticleSpawner : MonoBehaviour
 {
     [SerializeField] private SplineContainer splineContainer;
-
+    
+    [SerializeField] private PointOfInterest pollutionSource;
+    
     [SerializeField] private List<ParticleSpawnGroup> spawnGroups = new List<ParticleSpawnGroup>();
 
     [Tooltip("Optional parent for spawned instances, keeps the hierarchy tidy. If left empty, instances are parented to this object.")]
@@ -63,7 +65,9 @@ public class SplineParticleSpawner : MonoBehaviour
         for (var i = 0; i < group.Count; i++)
         {
             var instance = Instantiate(group.Prefab, parent);
-            var follow = instance.GetComponent<FollowSpline>();
+            FollowSpline follow = instance.GetComponent<FollowSpline>();
+            
+            follow.SetPollutionSource(pollutionSource);
 
             var splineIndex = FollowSpline.PickWeightedRandomSplineIndex(splineContainer, group.AllowedSplineIndices);
 

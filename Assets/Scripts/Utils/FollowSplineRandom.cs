@@ -31,6 +31,11 @@ public class FollowSpline : MonoBehaviour
     [Tooltip("Used only when RandomizeSplineIndex is false")]
     public int SplineIndex = 0;
 
+    private static readonly int Grayscale = Shader.PropertyToID("Grayscale");
+    private Renderer renderer;
+    private MaterialPropertyBlock _propertyBlock;
+    private PointOfInterest _pollutionSource;
+    
     private Spline _spline;
     private float _t;
     private float _splineLength;
@@ -42,6 +47,9 @@ public class FollowSpline : MonoBehaviour
         // If nothing external called Initialize yet (e.g. particle placed manually in the scene),
         // fall back to self-initializing with the inspector settings.
         if (!_initialized) Initialize();
+        
+        _propertyBlock ??= new MaterialPropertyBlock();
+        renderer = GetComponent<Renderer>();
     }
 
     /// <summary>
@@ -169,5 +177,34 @@ public class FollowSpline : MonoBehaviour
             + worldUp * VerticalOffset;
 
         transform.SetPositionAndRotation(offsetPosition, Quaternion.LookRotation(worldTangent, worldUp));
+    }
+    
+    public void SetPollutionSource(PointOfInterest source)
+    {
+        _pollutionSource = source;
+        
+        _pollutionSource.OnScanCompleted += OnPollutionSourceScanned;
+
+        UpdateGrayscale();
+    }
+
+    private void OnPollutionSourceScanned(PointOfInterest source)
+    {
+        UpdateGrayscale();
+    }
+
+    private void UpdateGrayscale()
+    {
+        _propertyBlock.SetFloat(Grayscale, _pollutionSource.IsScanned ? 0f : 1f);
+
+        renderer.SetPropertyBlock(_propertyBlock);
+    }
+
+    private void OnDestroy()
+    {
+        if (_pollutionSource != null)
+        {
+            _pollutionSource.OnScanCompleted -= OnPollutionSourceScanned;
+        }
     }
 }
