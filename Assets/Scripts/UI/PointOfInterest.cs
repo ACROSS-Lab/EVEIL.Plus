@@ -19,7 +19,6 @@ public class PointOfInterest : MonoBehaviour
     [Header("Canvas & Sub-Elements")]
     [Tooltip("World space canvas containing all POI UI markers and carousel.")]
     [SerializeField] Canvas displayCanvas;
-    [SerializeField] GameObject scanningUI;
     [SerializeField] GameObject scannedMarker;
     [SerializeField] TagCarouselDisplay tagCarousel;
     [SerializeField] GameObject farMarker;
@@ -167,7 +166,6 @@ public class PointOfInterest : MonoBehaviour
         float sqrDistance = (camTransform.position - transform.position).sqrMagnitude;
         bool inRange = sqrDistance <= (triggerDistance * triggerDistance);
 
-        UpdateScanning(inRange);
         UpdateProximityDisplay(inRange);
     }
 
@@ -175,8 +173,6 @@ public class PointOfInterest : MonoBehaviour
     {
         poiCollider = GetComponent<BoxCollider>();
         interactable = GetComponent<XRSimpleInteractable>();
-        scanProgressDisplay = scanningUI.GetComponent<ScanProgressDisplay>();
-        
     }
 
     void SetupCanvasPositionAndBob()
@@ -236,56 +232,16 @@ public class PointOfInterest : MonoBehaviour
 
     void SetCanvasSubComponentsActive(bool active)
     {
-        if (scanningUI != null) scanningUI.SetActive(active);
         if (scannedMarker != null) scannedMarker.SetActive(active);
         if (tagCarousel != null) tagCarousel.gameObject.SetActive(active);
         if (farMarker != null) farMarker.SetActive(active);
     }
 
-    void UpdateScanning(bool inRange)
-    {
-        if (isScanned)
-            return;
-
-        if (isHoveredByRightHand && inRange)
-        {
-            scanProgress += Time.deltaTime / scanDuration;
-        }
-        else
-        {
-            scanProgress -= Time.deltaTime * scanDecaySpeed;
-        }
-
-        scanProgress = Mathf.Clamp01(scanProgress);
-
-        bool shouldShowScanUI = scanProgress > 0f && inRange;
-
-        if (scanningUI != null && scanningUI.activeSelf != shouldShowScanUI)
-        {
-            scanningUI.SetActive(shouldShowScanUI);
-        }
-
-        if (shouldShowScanUI && scanProgressDisplay != null)
-        {
-            scanProgressDisplay.SetProgress(scanProgress);
-        }
-
-        if (scanProgress >= 1f)
-        {
-            CompleteScan();
-        }
-    }
-
-    void CompleteScan()
+    public void CompleteScan()
     {
         isScanned = true;
         isHoveredByRightHand = false;
         SetHovered(false);
-
-        if (scanningUI != null)
-        {
-            scanningUI.SetActive(false);
-        }
 
         if (validationFXPrefab != null)
         {

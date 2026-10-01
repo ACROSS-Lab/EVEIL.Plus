@@ -210,7 +210,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.26779342, y: 2.177}
+  m_AnchoredPosition: {x: -0.26779342, y: 1.5}
   m_SizeDelta: {x: 100, y: 39.12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2677406492397546798
@@ -736,7 +736,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3084999123385625351, guid: 2cbd6e00945a85b4891001c59bc70f38, type: 3}
       propertyPath: m_Name
-      value: TagFarMarker_01
+      value: TagFarMarker
       objectReference: {fileID: 0}
     - target: {fileID: 3095151636111055028, guid: 2cbd6e00945a85b4891001c59bc70f38, type: 3}
       propertyPath: m_PresetInfoIsWorld
