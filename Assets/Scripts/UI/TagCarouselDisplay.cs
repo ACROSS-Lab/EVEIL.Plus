@@ -82,6 +82,18 @@ public class TagCarouselDisplay : MonoBehaviour
     [SerializeField] float validatePunchScale = 1.15f;
     [SerializeField] float validatePunchDuration = 0.15f;
 
+    [Header("Validation Result Feedback")]
+    [Tooltip("Feedback image color when the selected tag is correct.")]
+    [SerializeField] Color correctFeedbackColor = new Color(0.2f, 0.85f, 0.3f, 1f);
+    [Tooltip("Feedback image color when the selected tag is incorrect.")]
+    [SerializeField] Color incorrectFeedbackColor = new Color(0.9f, 0.25f, 0.2f, 1f);
+    [Tooltip("Scale punch multiplier applied to the feedback icon when validating.")]
+    [SerializeField] float feedbackPunchScale = 1.25f;
+    [Tooltip("Duration of the scale punch animation.")]
+    [SerializeField] float feedbackPunchDuration = 0.3f;
+    [Tooltip("Time in seconds incorrect feedback remains visible before hiding.")]
+    [SerializeField] float incorrectDisplayDuration = 1.0f;
+
     /// <summary>Triggered whenever the validate/unlock button is pressed.</summary>
     public event Action OnValidatePressed;
 
@@ -93,6 +105,8 @@ public class TagCarouselDisplay : MonoBehaviour
     bool hasActiveTagList = false;
 
     Button validateUIButton;
+    Image feedbackImage;
+    Sequence feedbackSequence;
     Vector3 validatedFeedbackBaseScale = Vector3.one;
     Vector3 validateButtonBaseScale = Vector3.one;
     bool isValidated = false;
@@ -110,6 +124,11 @@ public class TagCarouselDisplay : MonoBehaviour
 
     void OnDestroy()
     {
+        if (feedbackSequence != null && feedbackSequence.IsActive())
+        {
+            feedbackSequence.Kill();
+        }
+
         validateUIButton.onClick.RemoveListener(HandleValidateClicked);
         itemsContainerButton.onClick.RemoveListener(HandleItemsContainerClicked);
     }
@@ -129,6 +148,19 @@ public class TagCarouselDisplay : MonoBehaviour
 
     void HandleItemsContainerClicked()
     {
+        if (isValidated)
+            return;
+
+        if (feedbackSequence != null && feedbackSequence.IsActive() && !isValidated)
+        {
+            feedbackSequence.Kill();
+            if (validatedFeedbackRoot != null)
+            {
+                validatedFeedbackRoot.SetActive(false);
+                validatedFeedbackRoot.transform.localScale = validatedFeedbackBaseScale;
+            }
+        }
+
         PlayItemsContainerPunch();
         OnCyclePressed?.Invoke();
     }
@@ -171,6 +203,7 @@ public class TagCarouselDisplay : MonoBehaviour
         if (validatedFeedbackRoot != null)
         {
             validatedFeedbackBaseScale = validatedFeedbackRoot.transform.localScale;
+            feedbackImage = validatedFeedbackRoot.GetComponent<Image>();
             validatedFeedbackRoot.SetActive(false);
         }
 
@@ -234,14 +267,118 @@ public class TagCarouselDisplay : MonoBehaviour
     }
 
     /// <summary>
+    /// Displays success feedback (green + scale punch), hides validate button, and locks cycling.
+    /// </summary>
+    public void ShowCorrectFeedback()
+    {
+        isValidated = true;
+
+        if (feedbackSequence != null && feedbackSequence.IsActive())
+        {
+            feedbackSequence.Kill();
+        }
+
+        SetValidateButtonVisible(false);
+
+        if (itemsContainerButton != null)
+        {
+            itemsContainerButton.interactable = false;
+        }
+
+        if (validatedFeedbackRoot != null)
+        {
+            if (feedbackImage != null)
+            {
+                feedbackImage.color = correctFeedbackColor;
+            }
+
+            validatedFeedbackRoot.SetActive(true);
+            PlayFeedbackPunchAnimation();
+        }
+    }
+
+    /// <summary>
+    /// Displays failure feedback (red + scale punch), holds for 1s, then hides so the player can retry.
+    /// </summary>
+    public void ShowIncorrectFeedback()
+    {
+        if (feedbackSequence != null && feedbackSequence.IsActive())
+        {
+            feedbackSequence.Kill();
+        }
+
+        if (validatedFeedbackRoot != null)
+        {
+            if (feedbackImage != null)
+            {
+                feedbackImage.color = incorrectFeedbackColor;
+            }
+
+            validatedFeedbackRoot.SetActive(true);
+            Transform t = validatedFeedbackRoot.transform;
+            t.DOKill();
+            t.localScale = validatedFeedbackBaseScale;
+
+            feedbackSequence = DOTween.Sequence();
+            feedbackSequence.Append(t.DOScale(validatedFeedbackBaseScale * feedbackPunchScale, feedbackPunchDuration * 0.5f).SetEase(Ease.OutQuad));
+            feedbackSequence.Append(t.DOScale(validatedFeedbackBaseScale, feedbackPunchDuration * 0.5f).SetEase(Ease.InQuad));
+            feedbackSequence.AppendInterval(incorrectDisplayDuration);
+            feedbackSequence.OnComplete(() =>
+            {
+                if (!isValidated && validatedFeedbackRoot != null)
+                {
+                    validatedFeedbackRoot.SetActive(false);
+                    t.localScale = validatedFeedbackBaseScale;
+                }
+            });
+        }
+    }
+
+    void PlayFeedbackPunchAnimation()
+    {
+        if (validatedFeedbackRoot == null)
+            return;
+
+        Transform t = validatedFeedbackRoot.transform;
+        t.DOKill();
+        t.localScale = validatedFeedbackBaseScale;
+
+        feedbackSequence = DOTween.Sequence();
+        feedbackSequence.Append(t.DOScale(validatedFeedbackBaseScale * feedbackPunchScale, feedbackPunchDuration * 0.5f).SetEase(Ease.OutQuad));
+        feedbackSequence.Append(t.DOScale(validatedFeedbackBaseScale, feedbackPunchDuration * 0.5f).SetEase(Ease.InQuad));
+    }
+
+    /// <summary>
     /// Toggles the button between "Validate" and "Change tag", and updates validation feedback.
     /// </summary>
     public void SetValidated(bool validated)
     {
-        isValidated = validated;
+        if (validated)
+        {
+            ShowCorrectFeedback();
+        }
+        else
+        {
+            isValidated = false;
 
-        RefreshValidateButton();
-        RefreshValidatedFeedback();
+            if (feedbackSequence != null && feedbackSequence.IsActive())
+            {
+                feedbackSequence.Kill();
+            }
+
+            if (validatedFeedbackRoot != null)
+            {
+                validatedFeedbackRoot.SetActive(false);
+                validatedFeedbackRoot.transform.localScale = validatedFeedbackBaseScale;
+            }
+
+            if (itemsContainerButton != null)
+            {
+                itemsContainerButton.interactable = true;
+            }
+
+            RefreshValidateButton();
+        }
     }
 
     void RefreshValidateButton()
@@ -309,6 +446,22 @@ public class TagCarouselDisplay : MonoBehaviour
         if (itemsContainer == null || itemPrefab == null)
             return;
 
+        if (feedbackSequence != null && feedbackSequence.IsActive())
+        {
+            feedbackSequence.Kill();
+        }
+
+        if (itemsContainerButton != null)
+        {
+            itemsContainerButton.interactable = true;
+        }
+
+        if (validatedFeedbackRoot != null)
+        {
+            validatedFeedbackRoot.SetActive(false);
+            validatedFeedbackRoot.transform.localScale = validatedFeedbackBaseScale;
+        }
+
         for (int i = itemsContainer.childCount - 1; i >= 0; i--)
         {
             Destroy(itemsContainer.GetChild(i).gameObject);
@@ -319,7 +472,8 @@ public class TagCarouselDisplay : MonoBehaviour
         hasActiveTagList = false;
 
         SetValidateButtonVisible(false);
-        SetValidated(false);
+        isValidated = false;
+        RefreshValidateButton();
 
         List<TagData> allTags = new List<TagData>();
 

@@ -16,6 +16,9 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField] string localizationKey;
     [SerializeField] LocalizedKey farMarkerLocalizedKey;
 
+    [Header("Gameobject Interactable")]
+    [SerializeField] GameObject interactableObject;
+
     [Header("Canvas & Sub-Elements")]
     [Tooltip("World space canvas containing all POI UI markers and carousel.")]
     [SerializeField] Canvas displayCanvas;
@@ -47,6 +50,8 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField] float tagPunchDuration = 0.2f;
     [SerializeField] GameObject validationFXPrefab;
     [SerializeField] AudioClip validationSFX;
+    [Tooltip("SFX played when an incorrect tag is validated.")]
+    [SerializeField] AudioClip incorrectSFX;
     [SerializeField] AudioSource audioSource;
 
     [Header("Idle Animation")]
@@ -128,6 +133,8 @@ public class PointOfInterest : MonoBehaviour
         {
             camTransform = Camera.main.transform;
         }
+
+        // ToggleInteractableColliders(false);
     }
 
     void OnEnable()
@@ -237,6 +244,15 @@ public class PointOfInterest : MonoBehaviour
         if (farMarker != null) farMarker.SetActive(active);
     }
 
+    void ToggleInteractableColliders(bool enable)
+    {
+        Collider[] colliders = interactableObject.GetComponentsInChildren<Collider>();
+        foreach (Collider collider in colliders)
+        {
+            collider.enabled = enable;
+        }
+    }
+
     public void CompleteScan()
     {
         isScanned = true;
@@ -265,6 +281,8 @@ public class PointOfInterest : MonoBehaviour
         {
             interactable.enabled = false;
         }
+
+        // ToggleInteractableColliders(true);
 
         OnScanCompleted?.Invoke(this);
     }
@@ -427,10 +445,42 @@ public class PointOfInterest : MonoBehaviour
 
     void HandleValidateButtonPressed()
     {
-        if (!isScanned || !HasTag)
+        if (!isScanned || !HasTag || isTagValidated)
             return;
 
-        SetTagValidated(!isTagValidated);
+        if (IsCorrect)
+        {
+            isTagValidated = true;
+
+            if (tagCarousel != null)
+            {
+                tagCarousel.ShowCorrectFeedback();
+            }
+
+            if (audioSource != null && validationSFX != null)
+            {
+                audioSource.PlayOneShot(validationSFX);
+            }
+
+            if (validationFXPrefab != null)
+            {
+                Instantiate(validationFXPrefab, transform.position, Quaternion.identity);
+            }
+
+            OnTagValidated?.Invoke(this);
+        }
+        else
+        {
+            if (tagCarousel != null)
+            {
+                tagCarousel.ShowIncorrectFeedback();
+            }
+
+            if (audioSource != null && incorrectSFX != null)
+            {
+                audioSource.PlayOneShot(incorrectSFX);
+            }
+        }
     }
 
     /// <summary>
