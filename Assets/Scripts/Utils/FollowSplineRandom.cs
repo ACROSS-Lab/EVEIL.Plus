@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
+using Random = UnityEngine.Random;
 
 public class FollowSpline : MonoBehaviour
 {
@@ -31,8 +33,8 @@ public class FollowSpline : MonoBehaviour
     [Tooltip("Used only when RandomizeSplineIndex is false")]
     public int SplineIndex = 0;
 
-    private static readonly int Grayscale = Shader.PropertyToID("Grayscale");
-    private Renderer renderer;
+    private static readonly int Grayscale = Shader.PropertyToID("_Grayscale");
+    private Renderer _targetRenderer;
     private MaterialPropertyBlock _propertyBlock;
     private PointOfInterest _pollutionSource;
     
@@ -42,14 +44,17 @@ public class FollowSpline : MonoBehaviour
     private bool _isValid;
     private bool _initialized;
 
+    private void Awake()
+    {
+        _propertyBlock ??= new MaterialPropertyBlock();
+        _targetRenderer = GetComponent<Renderer>();
+    }
+
     private void Start()
     {
         // If nothing external called Initialize yet (e.g. particle placed manually in the scene),
         // fall back to self-initializing with the inspector settings.
         if (!_initialized) Initialize();
-        
-        _propertyBlock ??= new MaterialPropertyBlock();
-        renderer = GetComponent<Renderer>();
     }
 
     /// <summary>
@@ -197,7 +202,7 @@ public class FollowSpline : MonoBehaviour
     {
         _propertyBlock.SetFloat(Grayscale, _pollutionSource.IsScanned ? 0f : 1f);
 
-        renderer.SetPropertyBlock(_propertyBlock);
+        _targetRenderer.SetPropertyBlock(_propertyBlock);
     }
 
     private void OnDestroy()
