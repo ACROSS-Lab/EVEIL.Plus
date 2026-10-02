@@ -133,8 +133,6 @@ public class PointOfInterest : MonoBehaviour
         {
             camTransform = Camera.main.transform;
         }
-
-        // ToggleInteractableColliders(false);
     }
 
     void OnEnable()
@@ -244,15 +242,6 @@ public class PointOfInterest : MonoBehaviour
         if (farMarker != null) farMarker.SetActive(active);
     }
 
-    void ToggleInteractableColliders(bool enable)
-    {
-        Collider[] colliders = interactableObject.GetComponentsInChildren<Collider>();
-        foreach (Collider collider in colliders)
-        {
-            collider.enabled = enable;
-        }
-    }
-
     public void CompleteScan()
     {
         isScanned = true;
@@ -281,8 +270,6 @@ public class PointOfInterest : MonoBehaviour
         {
             interactable.enabled = false;
         }
-
-        // ToggleInteractableColliders(true);
 
         OnScanCompleted?.Invoke(this);
     }

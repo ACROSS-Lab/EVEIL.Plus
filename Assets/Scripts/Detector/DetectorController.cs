@@ -7,6 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.XR.Interaction.Toolkit.Feedback;
 
 public class DetectorController : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class DetectorController : MonoBehaviour
         Idle,
         Scanning,
         DisplayingResult,
-        Cooldown
+        Cooldown,
+        WaitingForTriggerRelease
     }
 
     [Header("XR Interactor")]
@@ -41,6 +43,11 @@ public class DetectorController : MonoBehaviour
     [SerializeField] GameObject detectedSection;
     [SerializeField] GameObject undetectedSection;
     [SerializeField] ScanProgressDisplay progressDisplay;
+
+    [Header("Haptic Feedback on Scan")]
+    [SerializeField] bool enableHaptics = true;
+    [SerializeField] float hapticAmplitude = 0.1f;
+    [SerializeField] float hapticDurationPerFrame = 0.05f;
 
     [Header("Result Display")]
     [SerializeField] float resultDisplayDuration = 1.5f;
@@ -85,6 +92,13 @@ public class DetectorController : MonoBehaviour
             case DetectorState.Scanning:
                 ProcessScanning();
                 break;
+            
+            case DetectorState.WaitingForTriggerRelease:
+                if (!IsTriggerHeld())
+                {
+                    currentState = DetectorState.Idle;
+                }
+                break;
 
             case DetectorState.DisplayingResult:
             case DetectorState.Cooldown:
@@ -125,14 +139,12 @@ public class DetectorController : MonoBehaviour
 
     void ProcessScanning()
     {
-        // 1. Check if trigger was released early
         if (!IsTriggerHeld())
         {
             CancelScan(disrupted: true);
             return;
         }
 
-        // 2. Check for excess movement or rotation
         float posDelta = Vector3.Distance(transform.position, scanStartPosition);
         float rotDelta = Quaternion.Angle(transform.rotation, scanStartRotation);
 
@@ -142,12 +154,12 @@ public class DetectorController : MonoBehaviour
             return;
         }
 
-        // 3. Accumulate progress
         scanTimer += Time.deltaTime;
         float progress = Mathf.Clamp01(scanTimer / scanDuration);
         UpdateProgress(progress);
 
-        // 4. Completed 1 second hold
+        if (enableHaptics) rightInteractor.SendHapticImpulse(hapticAmplitude, hapticDurationPerFrame);
+
         if (scanTimer >= scanDuration)
         {
             CompleteScan();
@@ -223,7 +235,14 @@ public class DetectorController : MonoBehaviour
         UpdateProgress(0f);
         ResetAllUI();
 
-        currentState = DetectorState.Idle;
+        if (IsTriggerHeld())
+        {
+            currentState = DetectorState.WaitingForTriggerRelease;
+        }
+        else
+        {
+            currentState = DetectorState.Idle;
+        }
     }
 
     IEnumerator ShowResultAndCooldownRoutine()
