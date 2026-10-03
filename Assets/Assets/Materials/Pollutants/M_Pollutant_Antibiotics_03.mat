@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_New_Pollutant_01 2
+  m_Name: M_Pollutant_Antibiotics_03
   m_Shader: {fileID: -6465566751694194690, guid: 56e6cda1c92a9cd4d924a68002d8fe3f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -114,7 +114,7 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _ColumnSeed: 0
+    - _ColumnSeed: 0.3
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -137,7 +137,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Row: 7
+    - _Row: 5
     - _SampleGI: 0
     - _ShadowLimit: 0
     - _Shadow_Limit: -0.42

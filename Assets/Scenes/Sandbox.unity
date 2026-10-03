@@ -6477,7 +6477,7 @@ MonoBehaviour:
   pollutionSource: {fileID: 1482672367}
   spawnGroups:
   - Name: Pollutants_test_01
-    Prefab: {fileID: 8184073214969815094, guid: 3ba6a90eac6133a48afdce939ba8cdd2, type: 3}
+    Prefab: {fileID: 8184073214969815094, guid: 4ce7dbe4ffceda44bab3c07682bf05c8, type: 3}
     Count: 10
     AllowedSplineIndices: 
   spawnParent: {fileID: 0}
@@ -9764,7 +9764,7 @@ MonoBehaviour:
   pollutionSource: {fileID: 1846761505}
   spawnGroups:
   - Name: Pollutants_test_01
-    Prefab: {fileID: 8184073214969815094, guid: f1575ff4e0bafc0409de2091b2eac1e6, type: 3}
+    Prefab: {fileID: 8184073214969815094, guid: c889f116d3a08334d9674d408ee7e9c5, type: 3}
     Count: 50
     AllowedSplineIndices: 
   spawnParent: {fileID: 0}
@@ -12241,7 +12241,7 @@ MonoBehaviour:
   pollutionSource: {fileID: 2070038175}
   spawnGroups:
   - Name: Pollutants_test_01
-    Prefab: {fileID: 8184073214969815094, guid: 3ba6a90eac6133a48afdce939ba8cdd2, type: 3}
+    Prefab: {fileID: 8184073214969815094, guid: c74405aa63986704786bc0201e8e9db6, type: 3}
     Count: 30
     AllowedSplineIndices: 
   spawnParent: {fileID: 0}
@@ -12651,7 +12651,7 @@ MonoBehaviour:
   pollutionSource: {fileID: 1961318371}
   spawnGroups:
   - Name: Pollutants_test_01
-    Prefab: {fileID: 8184073214969815094, guid: 3ba6a90eac6133a48afdce939ba8cdd2, type: 3}
+    Prefab: {fileID: 8184073214969815094, guid: 105cfc60aa14a294c89b53be1577cd73, type: 3}
     Count: 40
     AllowedSplineIndices: 
   spawnParent: {fileID: 0}

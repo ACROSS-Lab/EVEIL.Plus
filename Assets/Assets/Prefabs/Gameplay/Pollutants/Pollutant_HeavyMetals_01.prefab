@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7909833109824553873}
   - component: {fileID: 6499810431069975628}
   m_Layer: 6
-  m_Name: Pollutant_01 1
+  m_Name: Pollutant_HeavyMetals_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9507ab0d35b58f54c941567879018e02, type: 2}
+  - {fileID: 2100000, guid: 3a0ef336aa206374d8822e656b346793, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

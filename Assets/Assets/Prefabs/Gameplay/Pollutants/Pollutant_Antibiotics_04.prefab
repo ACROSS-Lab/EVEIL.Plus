@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7909833109824553873}
   - component: {fileID: 6499810431069975628}
   m_Layer: 6
-  m_Name: Pollutant_01 2
+  m_Name: Pollutant_Antibiotics_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ea5bc1b384c72b34183a55dc895ec051, type: 2}
+  - {fileID: 2100000, guid: bedbba3c2fe8cc94388925877fd5fc5e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
