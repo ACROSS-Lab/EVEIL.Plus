@@ -10,6 +10,8 @@ Poi.Well,,,,Well,,Puits
 Poi.Ditch,,,,Ditch,,Fossé
 ,,,,,,
 tag.pfas,,,,PFAS,,PFAS
+tag.heavymetals,,,,Heavy metals,,Métaux lourds
+tag.microplastics,,,,Microplastics,,Microplastiques
 tag.antibiotics,,,,Antibiotics,,Antibiotiques
 tag.pesticids,,,,Pesticids,,Pesticides
 tag.empty,,,,Click here to select a pollutant,,Cliquez ici pour choisir un polluant

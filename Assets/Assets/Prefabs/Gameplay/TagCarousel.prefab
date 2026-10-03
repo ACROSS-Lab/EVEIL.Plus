@@ -274,6 +274,11 @@ MonoBehaviour:
   validatedPopDuration: 0.25
   validatePunchScale: 1.15
   validatePunchDuration: 0.15
+  correctFeedbackColor: {r: 0.2, g: 0.85, b: 0.3, a: 1}
+  incorrectFeedbackColor: {r: 0.9, g: 0.25, b: 0.2, a: 1}
+  feedbackPunchScale: 1.25
+  feedbackPunchDuration: 0.3
+  incorrectDisplayDuration: 1
 --- !u!114 &6012816504156641282
 MonoBehaviour:
   m_ObjectHideFlags: 0
