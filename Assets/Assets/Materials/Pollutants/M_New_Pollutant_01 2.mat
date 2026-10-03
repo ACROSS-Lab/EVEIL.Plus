@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Pollutant_02
+  m_Name: M_New_Pollutant_01 2
   m_Shader: {fileID: -6465566751694194690, guid: 56e6cda1c92a9cd4d924a68002d8fe3f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -82,7 +82,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: 67a278a75ccd2244b8d1e88f90cdb473, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8f72096e393f98947975d293e59ee11e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture_01:
@@ -137,7 +137,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Row: 6
+    - _Row: 7
     - _SampleGI: 0
     - _ShadowLimit: 0
     - _Shadow_Limit: -0.42
