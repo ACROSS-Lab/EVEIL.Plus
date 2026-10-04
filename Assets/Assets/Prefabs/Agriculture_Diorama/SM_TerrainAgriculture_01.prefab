@@ -48,6 +48,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: f59d7089fc3e4c845b2c445cd49c215c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -8559731736929697333, guid: f59d7089fc3e4c845b2c445cd49c215c, type: 3}
+    - target: {fileID: -7511558181221131132, guid: f59d7089fc3e4c845b2c445cd49c215c, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: -2079470167762540836, guid: f59d7089fc3e4c845b2c445cd49c215c, type: 3}
+    - target: {fileID: -7511558181221131132, guid: f59d7089fc3e4c845b2c445cd49c215c, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e3c05336a0d7e042a2fd07adb0349cf, type: 2}
     - target: {fileID: 919132149155446097, guid: f59d7089fc3e4c845b2c445cd49c215c, type: 3}
       propertyPath: m_Name
       value: SM_TerrainAgriculture_01
