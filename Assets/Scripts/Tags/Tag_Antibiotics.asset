@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc650e2c31356ed42919b9a3c133469c, type: 3}
   m_Name: Tag_Antibiotics
   m_EditorClassIdentifier: Assembly-CSharp::TagData
-  icon: {fileID: 2077594542, guid: 4b002f3b3dcf76b41a8ab54b877af4e8, type: 3}
+  icon: {fileID: 1001425664, guid: 4b002f3b3dcf76b41a8ab54b877af4e8, type: 3}
   localizationKey: tag.antibiotics

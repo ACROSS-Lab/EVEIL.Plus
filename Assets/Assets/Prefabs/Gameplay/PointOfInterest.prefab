@@ -442,6 +442,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2168224284913228407}
     m_Modifications:
+    - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
+      propertyPath: validateHoverColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
+      propertyPath: validateHoverColor.g
+      value: 0.39058137
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
+      propertyPath: validateHoverColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3084999123385625351, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: m_Name
       value: TagCaroussel
