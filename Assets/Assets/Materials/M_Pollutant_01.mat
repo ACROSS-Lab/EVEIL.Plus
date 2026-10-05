@@ -126,6 +126,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Grayscale: 0
     - _Highlight: 0
     - _Lightmapping: 1
     - _Metallic: 0
@@ -136,6 +137,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _Rotation: 1
     - _Row: 5
     - _SampleGI: 0
     - _ShadowLimit: 0
@@ -143,6 +145,7 @@ Material:
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SpriteSheet: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0

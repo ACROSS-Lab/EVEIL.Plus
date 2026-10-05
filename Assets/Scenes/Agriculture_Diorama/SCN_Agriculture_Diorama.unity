@@ -14953,6 +14953,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SplineParticleSpawner
   splineContainer: {fileID: 1059833570}
+  pollutionSource: {fileID: 0}
   spawnGroups:
   - Name: Pollutants_test_01
     Prefab: {fileID: 8184073214969815094, guid: d408880a955aa8c459c65480642485a6, type: 3}
@@ -14988,6 +14989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SplineParticleSpawner
   splineContainer: {fileID: 1216859525}
+  pollutionSource: {fileID: 0}
   spawnGroups:
   - Name: Pollutants_test_01
     Prefab: {fileID: 5611972936050636724, guid: 78b7558fb1b64e2428a4060ab2a5f058, type: 3}
@@ -15007,6 +15009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SplineParticleSpawner
   splineContainer: {fileID: 1652419204}
+  pollutionSource: {fileID: 0}
   spawnGroups:
   - Name: Pollutants_test_01
     Prefab: {fileID: 5611972936050636724, guid: 78b7558fb1b64e2428a4060ab2a5f058, type: 3}
@@ -15026,6 +15029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SplineParticleSpawner
   splineContainer: {fileID: 1866630758}
+  pollutionSource: {fileID: 0}
   spawnGroups:
   - Name: Pollutants_test_01
     Prefab: {fileID: 988802992944983839, guid: e328a96250fc9d842a81db199f22d934, type: 3}
@@ -15045,6 +15049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SplineParticleSpawner
   splineContainer: {fileID: 850032651}
+  pollutionSource: {fileID: 0}
   spawnGroups:
   - Name: Pollutants_test_01
     Prefab: {fileID: 5611972936050636724, guid: 78b7558fb1b64e2428a4060ab2a5f058, type: 3}
