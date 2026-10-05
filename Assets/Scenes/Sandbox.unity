@@ -14958,6 +14958,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerWIthDetector
       objectReference: {fileID: 0}
+    - target: {fileID: 8756927221968587754, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
+      propertyPath: maxX
+      value: -11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8756927221968587754, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
+      propertyPath: maxZ
+      value: -7.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 8756927221968587754, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
+      propertyPath: minX
+      value: 7.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 8756927221968587754, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
+      propertyPath: minZ
+      value: 12.67
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
