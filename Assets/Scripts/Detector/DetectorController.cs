@@ -1,13 +1,9 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using TMPro;
 using System.Collections.Generic;
-using UnityEngine.XR.Interaction.Toolkit.Feedback;
 
 public class DetectorController : MonoBehaviour
 {
@@ -53,7 +49,8 @@ public class DetectorController : MonoBehaviour
     [SerializeField] float resultDisplayDuration = 1.5f;
 
     [Header("Audio Feedback (Optional)")]
-    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioPitchRandomizer audioPitchRandomizer;
+    [SerializeField] AudioClip scanStartSFX;
     [SerializeField] AudioClip scanLoopSFX;
     [SerializeField] AudioClip scanDisruptedSFX;
     [SerializeField] AudioClip detectedSFX;
@@ -129,11 +126,16 @@ public class DetectorController : MonoBehaviour
 
         UpdateProgress(0f);
 
-        if (audioSource != null && scanLoopSFX != null)
+        if (audioPitchRandomizer != null)
         {
-            audioSource.clip = scanLoopSFX;
-            audioSource.loop = true;
-            audioSource.Play();
+            if (scanLoopSFX != null)
+            {
+                audioPitchRandomizer.PlayLoopSound(scanLoopSFX);
+            }
+            if (scanStartSFX != null)
+            {
+                PlayOneShotSFX(scanStartSFX);
+            }
         }
     }
 
@@ -226,9 +228,9 @@ public class DetectorController : MonoBehaviour
     {
         StopScanAudio();
 
-        if (disrupted && audioSource != null && scanDisruptedSFX != null)
+        if (disrupted && audioPitchRandomizer != null && scanDisruptedSFX != null)
         {
-            audioSource.PlayOneShot(scanDisruptedSFX);
+            audioPitchRandomizer.PlayPopSound(scanDisruptedSFX);
         }
 
         scanTimer = 0f;
@@ -302,33 +304,22 @@ public class DetectorController : MonoBehaviour
                 return true;
             }
         }
-#if UNITY_EDITOR
-        if (Keyboard.current != null && Keyboard.current.spaceKey.isPressed)
-        {
-            return true;
-        }
-        if (Mouse.current != null && Mouse.current.leftButton.isPressed)
-        {
-            return true;
-        }
-#endif
         return false;
     }
 
     void StopScanAudio()
     {
-        if (audioSource != null && audioSource.isPlaying && audioSource.clip == scanLoopSFX)
+        if (audioPitchRandomizer != null && audioPitchRandomizer.IsPlaying)
         {
-            audioSource.Stop();
-            audioSource.loop = false;
+            audioPitchRandomizer.StopSound();
         }
     }
 
     void PlayOneShotSFX(AudioClip clip)
     {
-        if (audioSource != null && clip != null)
+        if (audioPitchRandomizer != null && clip != null)
         {
-            audioSource.PlayOneShot(clip);
+            audioPitchRandomizer.PlayPopSound(clip);
         }
     }
 }

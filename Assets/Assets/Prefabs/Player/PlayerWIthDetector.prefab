@@ -2106,6 +2106,10 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 407
       objectReference: {fileID: 0}
+    - target: {fileID: 3937672997652861274, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
+      propertyPath: volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5644621924428215923, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
       propertyPath: m_Camera
       value: 
