@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.UI;
+using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 public class DetectorController : MonoBehaviour
@@ -62,6 +64,7 @@ public class DetectorController : MonoBehaviour
     Vector3 scanStartPosition;
     Quaternion scanStartRotation;
     Coroutine resultRoutine;
+    bool isHoveringUI = false;
 
     void Awake()
     {
@@ -73,10 +76,28 @@ public class DetectorController : MonoBehaviour
         ResetAllUI();
     }
 
+    void OnEnable()
+    {
+        if (rightInteractor != null)
+        {
+            rightInteractor.uiHoverEntered.AddListener(OnUIHoverEntered);
+            rightInteractor.uiHoverExited.AddListener(OnUIHoverExited);
+        }
+    }
+
     void OnDisable()
     {
+        if (rightInteractor != null)
+        {
+            rightInteractor.uiHoverEntered.RemoveListener(OnUIHoverEntered);
+            rightInteractor.uiHoverExited.RemoveListener(OnUIHoverExited);
+        }
+
         CancelScan(disrupted: false);
     }
+
+    void OnUIHoverEntered(UIHoverEventArgs args) => isHoveringUI = true;
+    void OnUIHoverExited(UIHoverEventArgs args) => isHoveringUI = false;
 
     void Update()
     {
@@ -105,6 +126,16 @@ public class DetectorController : MonoBehaviour
 
     void CheckStartScanInput()
     {
+        // Do not initiate scanning if currently pointing at or interacting with a UI element
+        if (IsOverUI())
+        {
+            if (IsTriggerHeld())
+            {
+                currentState = DetectorState.WaitingForTriggerRelease;
+            }
+            return;
+        }
+
         if (IsTriggerHeld())
         {
             StartScan();
@@ -142,6 +173,12 @@ public class DetectorController : MonoBehaviour
     void ProcessScanning()
     {
         if (!IsTriggerHeld())
+        {
+            CancelScan(disrupted: true);
+            return;
+        }
+
+        if (IsOverUI())
         {
             CancelScan(disrupted: true);
             return;
@@ -321,5 +358,22 @@ public class DetectorController : MonoBehaviour
         {
             audioPitchRandomizer.PlayPopSound(clip);
         }
+    }
+
+    bool IsOverUI()
+    {
+        if (rightInteractor == null)
+            return false;
+
+        if (isHoveringUI)
+            return true;
+
+        if (rightInteractor.TryGetCurrentUIRaycastResult(out RaycastResult uiHit) && uiHit.isValid)
+            return true;
+
+        if (rightInteractor.TryGetUIModel(out TrackedDeviceModel model) && model.currentRaycast.isValid)
+            return true;
+
+        return false;
     }
 }
