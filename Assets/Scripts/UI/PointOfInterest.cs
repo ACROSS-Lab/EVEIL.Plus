@@ -63,6 +63,7 @@ public class PointOfInterest : MonoBehaviour
     public event Action<PointOfInterest> OnTagChanged;
     public event Action<PointOfInterest> OnScanCompleted;
     public event Action<PointOfInterest> OnTagValidated;
+    public event Action<PointOfInterest> OnValidateButtonPressed;
     public event Action<PointOfInterest> OnTagValidationCancelled;
 
     public bool HasTag => currentTagIndex != -1;
@@ -468,6 +469,8 @@ public class PointOfInterest : MonoBehaviour
                 audioSource.PlayOneShot(incorrectSFX);
             }
         }
+
+        OnValidateButtonPressed?.Invoke(this);
     }
 
     /// <summary>

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -60,11 +61,17 @@ public class DetectorController : MonoBehaviour
 
     DetectorState currentState = DetectorState.Idle;
 
+    [Header("Detection Events")]
+    [SerializeField] UnityEvent onFirstDetection;
+    [SerializeField] UnityEvent onFirstUndetection;
+
     float scanTimer = 0f;
     Vector3 scanStartPosition;
     Quaternion scanStartRotation;
     Coroutine resultRoutine;
     bool isHoveringUI = false;
+
+    bool firstDetection, firstUndetection;
 
     void Awake()
     {
@@ -223,6 +230,12 @@ public class DetectorController : MonoBehaviour
 
             PlayOneShotSFX(detectedSFX);
             targetPOI.CompleteScan();
+
+            if (!firstDetection)
+            {
+                firstDetection = true;
+                onFirstDetection?.Invoke();
+            }
         }
         else
         {
@@ -230,6 +243,12 @@ public class DetectorController : MonoBehaviour
             detectedSection.SetActive(false);
 
             PlayOneShotSFX(undetectedSFX);
+
+            if (!firstUndetection)
+            {
+                firstUndetection = true;
+                onFirstUndetection?.Invoke();
+            }
         }
 
         currentState = DetectorState.DisplayingResult;

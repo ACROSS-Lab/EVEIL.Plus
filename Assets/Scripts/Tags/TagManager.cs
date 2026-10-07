@@ -7,13 +7,15 @@ public class TagManager : MonoBehaviour
     [SerializeField] PointOfInterest[] pointsOfInterest;
 
     [Header("Events")]
-    [Tooltip("Invoked when all points of interest have been correctly validated.")]
     public UnityEvent onCompleted;
-
-    [Tooltip("Invoked whenever a tag is validated. Passes (solvedCount, totalCount).")]
     public UnityEvent<int, int> onProgressChanged;
+    public UnityEvent onFirstCorrectValidation;
+    public UnityEvent onFirstIncorrectValidation;
+
 
     bool isCompleted = false;
+    bool firstCorrectValidationOccurred = false;
+    bool firstIncorrectValidationOccurred = false;
 
     public int TotalCount => pointsOfInterest != null ? pointsOfInterest.Length : 0;
     public bool IsCompleted => isCompleted;
@@ -30,6 +32,7 @@ public class TagManager : MonoBehaviour
             if (point != null)
             {
                 point.OnTagValidated += OnPointValidated;
+                point.OnValidateButtonPressed += OnValidateButtonPressed;
             }
         }
 
@@ -44,6 +47,7 @@ public class TagManager : MonoBehaviour
                 if (point != null)
                 {
                     point.OnTagValidated -= OnPointValidated;
+                    point.OnValidateButtonPressed -= OnValidateButtonPressed;
                 }
             }
         }
@@ -60,6 +64,20 @@ public class TagManager : MonoBehaviour
         {
             isCompleted = true;
             onCompleted?.Invoke();
+        }
+    }
+
+    void OnValidateButtonPressed(PointOfInterest point)
+    {
+        if (point.IsCorrect && !firstCorrectValidationOccurred)
+        {
+            firstCorrectValidationOccurred = true;
+            onFirstCorrectValidation?.Invoke();
+        }
+        else if (!point.IsCorrect && !firstIncorrectValidationOccurred)
+        {
+            firstIncorrectValidationOccurred = true;
+            onFirstIncorrectValidation?.Invoke();
         }
     }
 

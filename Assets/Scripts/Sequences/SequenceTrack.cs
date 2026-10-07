@@ -11,11 +11,12 @@ public class SequenceTrack : MonoBehaviour
         End,
     }
 
+    [Header("Auto Trigger")]
+    [SerializeField] bool triggerOnStart = false;
+
     [Header("List of adding steps")]
     [SerializeField] List<SequenceStep> sequenceSteps;
 
-    [Header("Auto Trigger")]
-    [SerializeField] bool triggerOnStart = false;
     [SerializeField] ExecutionMode insertMode = ExecutionMode.Next;
 
     bool isTriggered = false;
