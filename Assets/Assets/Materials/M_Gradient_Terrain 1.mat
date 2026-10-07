@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Gradient_01
+  m_Name: M_Gradient_Terrain 1
   m_Shader: {fileID: -6465566751694194690, guid: 850a53dfcf2e85a4d8365db9ad81bf96, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -86,7 +86,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Texture_01:
-        m_Texture: {fileID: 2800000, guid: 0cb535c2c1ba5a5418f3569902ba4bb4, type: 3}
+        m_Texture: {fileID: 2800000, guid: bdfe3eadb8550c044a97831a41771f3c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -104,7 +104,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AddPrecomputedVelocity: 0
-    - _Additionnal_Color: 1
+    - _Additionnal_Color: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -132,7 +132,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _ShadowLimit: -0.23
+    - _ShadowLimit: -1.8
     - _Shadow_Limit: -0.42
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -154,7 +154,7 @@ Material:
     - _LightDir: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _Multiply_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Outline_Color: {r: 0, g: 0, b: 0, a: 0}
-    - _Shadow_Color: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 0}
+    - _Shadow_Color: {r: 0.8396226, g: 0.8158868, b: 0.7802154, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _UV_Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
