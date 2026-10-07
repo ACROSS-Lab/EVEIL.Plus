@@ -1,40 +1,79 @@
- ,Speaker,Addressee ,Context,English,Vietnamese,French
-Test.01,,,,this is a test,,this is a test
-Poi.crop.sprayer,,,,Crop sprayer,,Pulvérisateur
-Poi.animal.pen,,,,Animal pen,,Enclos à animaux
-Poi.manure.pile,,,,Manure pile,,Tas de fumier
-Poi.plastic.cover,,,,Plastic cover,,Bâche plastique
-Poi.chemical.shed,,,,Chemical shed,,Local de stockage
-Poi.washing.area,,,,Washing area,,Aire de lavage
-Poi.Well,,,,Well,,Puits
-Poi.Ditch,,,,Ditch,,Fossé
+Localization Key,Scène,French,English,Vietnamese,Nb mots (FR),Notes / Contexte
+Key.Narrator.Dialogue.01,1. Tutorial place,"Bienvenue dans l'univers RIVIERE, je suis Giang, l'esprit de la rivière.","Welcome to the world of RIVIERE. I'm Giang, the spirit of the river.","Chào mừng bạn đến với thế giới của RIVIERE! Mình là Giang, một tinh linh của dòng sông.",11,
+Key.Narrator.Dialogue.02,1. Tutorial place,"Depuis quelque temps, j'ai remarqué beaucoup de changements.","For some time now, I've noticed a lot of changes.","Trong suốt thời gian qua, mình đã nhận thấy rất nhiều thay đổi trên con sông.",8,
+Key.Narrator.Dialogue.03,1. Tutorial place,"De nouvelles molécules apparaissent tout au long de la rivière, jusque dans la mer.","New molecules are appearing all along the river, right down to the sea.",Ngày càng có nhiều phân tử mới bơi dọc theo nó ra đến tận biển.,14,
+Key.Narrator.Dialogue.04,1. Tutorial place,On m'a dit que tu étais parmi les meilleures détectives de toute la région.,I've been told you're one of the best detectives in the whole region.,Mình được nghe nói rằng bạn là một trong những thám tử giỏi nhất của cả vùng này.,14,
+Key.Narrator.Dialogue.05,1. Tutorial place,Voici donc ta nouvelle mission : découvrir les sources de ces molécules.,So here's your new mission: to discover the sources of these molecules.,"Vì vậy, mình có một nhiệm vụ cho bạn đây: hãy khám phá nguồn gốc của những phân tử này.",12,
+Key.Narrator.Onboarding.01,2. Onboarding,"D'abord, rends-toi dans la zone en surbrillance.","First, move to the highlighted area.","Trước tiên, hãy di chuyển đến khu vực được đánh dấu.",7,Apprentissage du déplacement. Zone au sol lumineuse + vidéo/image/hologramme de la manette.
+Key.Narrator.Onboarding.02,2. Onboarding,Super ! Prends le détecteur.,Great! Take the detector.,Tuyệt! Hãy cầm lấy máy dò.,5,Le joueur a atteint la zone. Détecteur posé verticalement sur un support flottant.
+Key.Narrator.Onboarding.03,2. Onboarding,Super ! Voyons s'il fonctionne. Rends-toi dans la prochaine zone en surbrillance.,Great! Let's see if it works. Move to the next highlighted area.,Tuyệt! Hãy xem nó có hoạt động không. Di chuyển đến khu vực được đánh dấu tiếp theo.,12,Le joueur a pris le détecteur.
+Key.Narrator.Observe.01,2. Onboarding,La pollution est parfois difficile à voir à l'œil nu. Regarde à travers le détecteur.,Pollution can be hard to see with the naked eye. Look through the detector.,Ô nhiễm có thể khó nhìn thấy bằng mắt thường. Hãy nhìn qua máy dò.,15,Mini-diorama avec mini-rivière et source de pollution. L'écran du détecteur s'allume / est mis en évidence.
+Key.Narrator.Observe.02,2. Onboarding,Vois-tu les molécules qui circulent avec la rivière ?,Can you see the molecules flowing with the river?,Bạn có thấy các phân tử đang trôi theo dòng sông không?,9,
+Key.Narrator.Observe.03,2. Onboarding,Remonte leur trajet. Peux-tu trouver d'où elles viennent ?,Trace its path back. Can you find where they come from?,Hãy lần theo đường đi của chúng. Bạn có tìm ra chúng đến từ đâu không?,9,
+Key.Narrator.Scan.01,2. Onboarding,Ta mission est d'identifier les polluants et leurs sources.,Your mission is to identify pollutants and their sources.,Nhiệm vụ của bạn là xác định các chất ô nhiễm và nguồn của chúng.,9,Apprentissage du scan.
+Key.Narrator.Scan.02,2. Onboarding,Vise une source de pollution et maintiens la gâchette de l'index pour la scanner.,Point at a pollution source and hold the index trigger to scan it.,Hãy chỉ vào một nguồn ô nhiễm và giữ nút cò bằng ngón trỏ để quét.,14,La source est mise en évidence.
+Key.Narrator.ScanFail.01,2. Onboarding,Il n'y a rien ici. La source doit se trouver ailleurs.,Nothing here. The source must be somewhere else.,Ở đây không có gì cả. Nguồn chắc chắn nằm ở nơi khác.,11,Si le joueur scanne autre chose que la source.
+Key.Narrator.ScanSuccess.01,2. Onboarding,Bravo ! Les molécules sont maintenant plus faciles à identifier grâce à leur couleur.,Great! The molecules are now easier to identify by their color.,Tuyệt vời! Giờ đây các phân tử dễ nhận biết hơn nhờ màu sắc của chúng.,14,Source scannée. Les molécules se distinguent par leurs couleurs.
+Key.Narrator.GuideSolo.01,2. Onboarding,Appuie sur n'importe quel bouton de ta manette pour ouvrir la fiche guide.,Press any button on your controller to open the guide sheet.,Nhấn bất kỳ nút nào trên tay cầm để mở bảng hướng dẫn.,13,Option SOLO. La fenêtre d'hypothèse apparaît.
+Key.Narrator.GuideSolo.02,2. Onboarding,"Utilise la forme et la couleur des molécules, ainsi que la fiche guide, pour identifier la famille de polluants.","Use the molecules' shape and color, together with the information on the guide sheet, to identify the pollutant family.","Hãy dùng hình dạng và màu sắc của các phân tử, cùng thông tin trên bảng hướng dẫn, để xác định họ chất ô nhiễm.",19,Option SOLO.
+Key.Narrator.GuideCoop.01,2. Onboarding,Ton coéquipier a une fiche guide. Parle avec lui pour identifier la famille de polluants.,Your teammate has a guide sheet. Talk to them to identify the pollutant family.,Đồng đội của bạn có bảng hướng dẫn. Hãy trao đổi với họ để xác định họ chất ô nhiễm.,15,Option CO-OP. La fenêtre d'hypothèse apparaît.
+Key.Narrator.Hypothesis.01,2. Onboarding,Tu penses connaître la famille de polluants ? Fais ton hypothèse.,Think you know the pollutant family? Make your hypothesis.,Bạn nghĩ mình biết họ chất ô nhiễm rồi chứ? Hãy đưa ra giả thuyết của bạn.,11,
+Key.Narrator.Hypothesis.02,2. Onboarding,Pointe l'interface pour sélectionner et confirmer ta réponse.,Point at the interface to select and confirm your answer.,Hãy chỉ vào giao diện để chọn và xác nhận câu trả lời.,8,
+Key.Narrator.CorrectAnswer.01,2. Onboarding,Bien joué ! Tu es prête à enquêter sur le reste de la rivière.,Great job! You're ready to investigate the rest of the river.,Làm tốt lắm! Bạn đã sẵn sàng điều tra phần còn lại của dòng sông.,14,"Réponse correcte. Fin de l'onboarding, TP vers la vue Top-Down. Accord au féminin à valider (genre du joueur)."
+Key.Narrator.WrongAnswer.01,2. Onboarding,"Pas tout à fait. Vérifie la forme et la couleur des molécules, puis utilise la fiche guide pour réessayer.","Not quite. Check the molecules' shape and color, then use the guide sheet to try again.","Chưa đúng lắm. Hãy kiểm tra hình dạng và màu sắc của các phân tử, rồi dùng bảng hướng dẫn để thử lại.",19,Réponse incorrecte.
+Key.Narrator.Dialogue.06,3. Vue Top-Down,On se trouve ici au-dessus d'un cours d'eau typique de l'Asie du Sud-Est.,Here we are looking down on a river typical of South-East Asia.,Chúng ta đang nhìn từ trên cao xuống một dòng sông đặc trưng ở Đông Nam Á.,13,Présentation de l'environnement.
+Key.Narrator.Dialogue.07,3. Vue Top-Down,"Il prend sa source dans ces montagnes et parcourt différents environnements, naturels ou artificiels, avant d'arriver à la mer.","It rises in these mountains and flows through a variety of environments, both natural and man-made, before reaching the sea.","Nó bắt nguồn từ những ngọn núi này và chảy qua nhiều môi trường khác nhau, cả tự nhiên lẫn do con người tạo ra, trước khi đổ ra biển.",19,Suivi lumineux/brillant du cours d'eau pendant l'explication.
+Key.Narrator.Dialogue.08,3. Vue Top-Down,"En effet, les humains qui habitent sur les berges modifient et façonnent les paysages au travers de leurs activités.","Indeed, the people who live along the riverbanks alter and shape the landscape through their activities.","Quả nhiên, việc sinh hoạt của con người sống dọc hai bên bờ sông đã góp phần thay đổi và định hình cảnh quan thông qua các hoạt động của mình.",19,"Clignotement lumineux/brillant des zones agricoles, villes, parcs industriels."
+Key.Narrator.Dialogue.09,3. Vue Top-Down,"Malheureusement, ces activités peuvent parfois avoir des conséquences sur l'environnement, les animaux et les plantes.","Unfortunately, these activities can sometimes have an impact on the environment, animals and plants.","Đáng tiếc rằng, chính những hoạt động này có thể gây ảnh hưởng đến môi trường, cũng như các loài động thực vật.",15,"Problématique de la pollution aquatique au Vietnam. Giang pas content, un peu triste."
+Key.Narrator.Dialogue.10,3. Vue Top-Down,Viens découvrir une nouvelle zone en cliquant sur le bouton … du joystick gauche.,Come and discover a new area by clicking the … button on the left joystick.,Hãy đến khám phá một khu vực mới bằng cách nhấn nút … trên cần điều khiển bên trái.,14,Clignotement lumineux/brillant de la zone agricole. Nom du bouton à définir. Ensuite passage en diorama (zone agriculture).
+Key.Narrator.ConclusionWrong.01,4. Conclusion du narrateur,Tu as découvert toutes les sources mais {x}/5 sources sont justes.,"You have discovered all the sources, but {x}/5 sources are correct.","Bạn đã tìm ra tất cả các nguồn, nhưng chỉ có {x}/5 nguồn là đúng.",11,Si une ou plusieurs sources sont fausses. {x} = variable numérique.
+Key.Narrator.ConclusionWrong.02,4. Conclusion du narrateur,Modifie les sources qui sont fausses et reviens me voir quand c'est fait !,Fix the sources that are wrong and come back to see me when you're done!,Hãy sửa những nguồn sai rồi quay lại gặp mình khi hoàn thành nhé!,14,
+Key.Narrator.ConclusionSuccess.01,4. Conclusion du narrateur,Génial ! Tu as pu identifier chaque source de pollution invisible ici.,Great! You were able to identify every invisible pollution source here.,Tuyệt vời! Bạn đã xác định được từng nguồn ô nhiễm vô hình ở đây.,12,"Toutes les sources sont trouvées, validées et justes."
+Key.Narrator.ConclusionSuccess.02,4. Conclusion du narrateur,"Comme tu peux le voir, différents types de polluants sont produits par les activités humaines.","As you can see, different types of pollutants are produced by human activities.","Như bạn thấy, nhiều loại chất ô nhiễm khác nhau được tạo ra từ các hoạt động của con người.",15,
+Key.Narrator.ConclusionPesticides.01,4. Conclusion du narrateur,"Les pesticides utilisés en agriculture, dans les rizières et dans énormément de cultures, sont disséminés dans les champs.","Pesticides used in agriculture, in rice paddies and in a great many crops, are spread across the fields.","Thuốc trừ sâu được sử dụng trong nông nghiệp, ở các ruộng lúa và rất nhiều loại cây trồng, được rải khắp các cánh đồng.",18,Giang se déplace vers un champ traité aux pesticides.
+Key.Narrator.ConclusionPesticides.02,4. Conclusion du narrateur,Mais ils ne s'arrêtent pas forcément à la frontière des champs.,But they don't necessarily stop at the edge of the fields.,Nhưng chúng không nhất thiết dừng lại ở ranh giới của những cánh đồng.,11,
+Key.Narrator.ConclusionPesticides.03,4. Conclusion du narrateur,"Lorsqu'il pleut, la pluie entraîne les pesticides jusqu'aux cours d'eau voisins par « ruissellement ».","When it rains, the rain carries the pesticides to the nearby waterways by ""runoff"".","Khi trời mưa, nước mưa cuốn thuốc trừ sâu xuống các dòng nước gần đó theo cơ chế ""dòng chảy tràn"".",15,
+Key.Narrator.ConclusionPesticides.04,4. Conclusion du narrateur,"Des produits qui tuent insectes, champignons ou plantes se retrouvent alors dans les cours d'eau et la biodiversité.","Products that kill insects, fungi or plants then end up in the waterways and in biodiversity.","Khi đó, những sản phẩm diệt côn trùng, nấm hay cây cỏ sẽ đi vào sông ngòi và hệ đa dạng sinh học.",18,
+Key.Narrator.ConclusionLivestock.01,4. Conclusion du narrateur,La plupart des animaux d'élevage sont traités aux antibiotiques et aux médicaments.,Most farm animals are treated with antibiotics and medicines.,Phần lớn vật nuôi được điều trị bằng kháng sinh và thuốc.,12,Giang se déplace vers une ferme d'élevage. Clignotement lumineux/brillant des sources d'élevage et d'animaux.
+Key.Narrator.ConclusionLivestock.02,4. Conclusion du narrateur,"Or, les excréments rejettent une partie de ces molécules dans les eaux usées des fermes.","However, their excrement releases part of these molecules into the farms' wastewater.","Tuy nhiên, chất thải của chúng thải một phần các phân tử này vào nước thải của trang trại.",15,
+Key.Narrator.ConclusionLivestock.03,4. Conclusion du narrateur,"Si les bêtes sont en extérieur, ces molécules atteignent aussi directement la rivière par le ruissellement de la pluie, du sol à la rivière.","If the animals are outdoors, these molecules also reach the river directly through rainwater runoff, from the ground to the river.","Nếu vật nuôi ở ngoài trời, các phân tử này còn đi thẳng ra sông nhờ nước mưa chảy tràn từ mặt đất.",24,
 ,,,,,,
-tag.pfas,,,,PFAS,,PFAS
-tag.heavymetals,,,,Heavy metals,,Métaux lourds
-tag.microplastics,,,,Microplastics,,Microplastiques
-tag.antibiotics,,,,Antibiotics,,Antibiotiques
-tag.pesticids,,,,Pesticids,,Pesticides
-tag.empty,,,,Click here to select a pollutant,,Cliquez ici pour choisir un polluant
+Test.01,,this is a test,this is a test,,,
+Poi.crop.sprayer,,Crop sprayer,Pulvérisateur,,,
+Poi.animal.pen,,Animal pen,Enclos à animaux,,,
+Poi.manure.pile,,Manure pile,Tas de fumier,,,
+Poi.plastic.cover,,Plastic cover,Bâche plastique,,,
+Poi.chemical.shed,,Chemical shed,Local de stockage,,,
+Poi.washing.area,,Washing area,Aire de lavage,,,
+Poi.Well,,Well,Puits,,,
+Poi.Ditch,,Ditch,Fossé,,,
 ,,,,,,
-Zone.Locked,,,,Locked zone,,Zone indisponible
-Zone.Agriculture,,,,Agricultural zone,,Zone Agricole
+tag.pfas,,PFAS,PFAS,,,
+tag.heavymetals,,Heavy metals,Métaux lourds,,,
+tag.microplastics,,Microplastics,Microplastiques,,,
+tag.antibiotics,,Antibiotics,Antibiotiques,,,
+tag.pesticids,,Pesticids,Pesticides,,,
+tag.empty,,Click here to select a pollutant,Cliquez ici pour choisir un polluant,,,
 ,,,,,,
-Gameplay.RemainingScore,,,,Remaining sources:{0} ,,Sources restantes : {0}
-Gameplay.PollutionErrors,,,,{0}Errors left,,Il reste {0} erreurs à corriger.
-Tag.Validate,,,,Validate Tag,,Valider le tag
-Tag.Change,,,,Change Tag,,Changer le tag
-Dialogue.key.test.01,,,,Test Dialogue,Test Dialogue,Test Dialogue
-pollution.source.UI,,,,Pollution Source,,Source de pollution
-Scanned.UI,,,,Scanned,,Scanné
-Poi.Unscanned,,,,?,?,?
-Dialogue.key.Onboarding.Area01.01,Narrator,Player,"In Top down scene, first time when launching the game",Hello! Welcome to Éveil plus,,
-Dialogue.key.Onboarding.Area01.02,Narrator,Player,,Point your hand towards an available area and select it to start the experience,,
+Zone.Locked,,Locked zone,Zone indisponible,,,
+Zone.Agriculture,,Agricultural zone,Zone Agricole,,,
 ,,,,,,
-Dialogue.key.Onboarding.Area02.01,Narrator,Player,"In Sandbox scene, first time launching the scene",Welcome to the agricultural area,,
-Dialogue.key.Onboarding.Area02.02,Narrator,Player,,"Notice the tool in your right hand, use it to find invisible particles",,
-Dialogue.key.Onboarding.Area02.03,Narrator,Player,,Can you trace the particles back to their source and uncover where they came from? ,,
-Dialogue.key.Onboarding.Area02.04,Narrator,Player,Once player discovered a source,You found a pollution source! Point your tool on it to scan it!,,
-Dialogue.key.Onboarding.Area02.05,Narrator,Player,Once player scanned a source,"Great job! Observe the source to identify its group of pollutants, then select one to make your hypothesis.",,
-Dialogue.key.Onboarding.Area02.06,Narrator,Player,,"Once all sources have been found and hypothesis made, validate your answer to test if you are right!",,
+Gameplay.RemainingScore,,Remaining sources:{0},Sources restantes : {0},,,
+Gameplay.PollutionErrors,,{0}Errors left,Il reste {0} erreurs à corriger.,,,
+Tag.Validate,,Validate Tag,Valider le tag,,,
+Tag.Change,,Change Tag,Changer le tag,,,
+Dialogue.key.test.01,,Test Dialogue,Test Dialogue,Test Dialogue,,
+pollution.source.UI,,Pollution Source,Source de pollution,,,
+Scanned.UI,,Scanned,Scanné,,,
+Poi.Unscanned,,?,?,?,,
+Dialogue.key.Onboarding.Area01.01,,Hello! Welcome to Éveil plus,,,,
+Dialogue.key.Onboarding.Area01.02,,Point your hand towards an available area and select it to start the experience,,,,
 ,,,,,,
-Dialogue.key.Hint.01,Narrator,Player,If player got errors and tries to validate,Oh no! Try again by observing more carefully what types of particles comes from the pollution sources to establish their pollution groups!,,
+Dialogue.key.Onboarding.Area02.01,,Welcome to the agricultural area,,,,
+Dialogue.key.Onboarding.Area02.02,,"Notice the tool in your right hand, use it to find invisible particles",,,,
+Dialogue.key.Onboarding.Area02.03,,Can you trace the particles back to their source and uncover where they came from?,,,,
+Dialogue.key.Onboarding.Area02.04,,You found a pollution source! Point your tool on it to scan it!,,,,
+Dialogue.key.Onboarding.Area02.05,,"Great job! Observe the source to identify its group of pollutants, then select one to make your hypothesis.",,,,
+Dialogue.key.Onboarding.Area02.06,,"Once all sources have been found and hypothesis made, validate your answer to test if you are right!",,,,
+,,,,,,
+Dialogue.key.Hint.01,,Oh no! Try again by observing more carefully what types of particles comes from the pollution sources to establish their pollution groups!,,,,
