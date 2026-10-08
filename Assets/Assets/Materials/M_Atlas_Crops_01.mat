@@ -29,7 +29,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
@@ -106,7 +106,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _Additionnal_Color: 0
     - _AlphaClip: 0
-    - _AlphaClipping: 0.43
+    - _AlphaClipping: 0.78
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
@@ -134,7 +134,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _ShadowLimit: -0.03
-    - _Shadow_Limit: -0.42
+    - _Shadow_Limit: 0.59
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -155,7 +155,7 @@ Material:
     - _LightDir: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _Multiply_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Outline_Color: {r: 0, g: 0, b: 0, a: 0}
-    - _Shadow_Color: {r: 0.63171947, g: 0.7924528, b: 0.7402659, a: 0}
+    - _Shadow_Color: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _UV_Tiling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []

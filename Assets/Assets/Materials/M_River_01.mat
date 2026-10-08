@@ -133,13 +133,13 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Reflection_Offset: -0.4
-    - _Reflection_Opacity: 0.5
-    - _Reflections: 0
+    - _Reflection_Offset: -0.31
+    - _Reflection_Opacity: 0.322
+    - _Reflections: 1
     - _Salinity: 0
     - _Salinity_Contrast: 10
     - _ShadowContrast: 0.56
-    - _ShadowLimit: 0.25
+    - _ShadowLimit: 0.44
     - _Shore: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0

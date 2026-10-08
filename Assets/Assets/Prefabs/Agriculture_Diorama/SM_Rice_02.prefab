@@ -80,9 +80,17 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4360463652683071932, guid: 150f292a79bf3744aa8e0a5699f452c7, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 150f292a79bf3744aa8e0a5699f452c7, type: 3}
       propertyPath: m_LODs.Array.data[0].screenRelativeHeight
       value: 0.08455047
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975789476493022469, guid: 150f292a79bf3744aa8e0a5699f452c7, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

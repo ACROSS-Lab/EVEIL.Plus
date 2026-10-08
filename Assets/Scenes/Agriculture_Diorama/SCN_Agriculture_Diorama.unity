@@ -6934,6 +6934,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (89)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 9124886096265861098, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.025
@@ -7347,6 +7359,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8040,6 +8064,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8649,6 +8685,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (73)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9605,6 +9653,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (55)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10094,6 +10154,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (36)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10267,6 +10339,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10529,6 +10613,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (84)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10965,6 +11061,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12414,6 +12522,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (37)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12563,6 +12683,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13163,6 +13295,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (69)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13404,6 +13548,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13551,6 +13707,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (53)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13819,6 +13987,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (58)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13892,6 +14072,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (59)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15213,6 +15405,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (61)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21180,6 +21384,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (63)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21430,6 +21646,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21930,6 +22158,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22242,6 +22482,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (57)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22790,6 +23042,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (66)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23469,6 +23733,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (78)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23762,6 +24038,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24192,6 +24480,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (85)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24924,6 +25224,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (47)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25303,6 +25615,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25602,6 +25926,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25676,6 +26012,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (50)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25745,6 +26093,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (76)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26001,6 +26361,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (82)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26653,6 +27025,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (81)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27914,6 +28298,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28448,6 +28844,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (51)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29097,6 +29505,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -29249,6 +29669,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (42)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30595,6 +31027,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31187,6 +31631,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -31228,6 +31684,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 906444339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1045451925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1045451926}
+  - component: {fileID: 1045451927}
+  m_Layer: 0
+  m_Name: Reflection Probe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1045451926
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045451925}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1306169074}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!215 &1045451927
+ReflectionProbe:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1045451925}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Type: 0
+  m_Mode: 0
+  m_RefreshMode: 0
+  m_TimeSlicingMode: 0
+  m_Resolution: 128
+  m_UpdateFrequency: 0
+  m_BoxSize: {x: 20.5781, y: 3.41, z: 20.62}
+  m_BoxOffset: {x: -2.8335273, y: 0, z: 0}
+  m_NearClip: 0.3
+  m_FarClip: 1000
+  m_ShadowDistance: 100
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 455
+  m_IntensityMultiplier: 1
+  m_BlendDistance: 1
+  m_HDR: 1
+  m_BoxProjection: 0
+  m_RenderDynamicObjects: 0
+  m_UseOcclusionCulling: 1
+  m_Importance: 1
+  m_CustomBakedTexture: {fileID: 0}
 --- !u!1001 &1045672339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31881,6 +32402,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32666,6 +33199,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33558,6 +34103,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -33705,6 +34262,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (62)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34459,6 +35028,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -34515,6 +35096,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34726,6 +35319,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (77)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -34874,6 +35479,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (90)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -34947,6 +35564,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (52)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35026,6 +35655,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35170,6 +35811,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35941,6 +36594,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36041,6 +36706,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (75)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36177,6 +36854,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (80)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36717,6 +37406,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -37219,6 +37920,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (68)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -43786,6 +44499,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -43894,6 +44619,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1045451926}
   - {fileID: 297021426}
   m_Father: {fileID: 584310709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -44018,6 +44744,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45219,6 +45957,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -45811,6 +46561,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (74)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46784,6 +47546,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -47955,6 +48729,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (91)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -48790,6 +49576,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (87)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 9124886096265861098, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.025
@@ -48967,6 +49765,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -49036,6 +49846,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (79)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -49303,6 +50125,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (40)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -49865,6 +50699,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (60)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -50706,6 +51552,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (72)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -52151,6 +53009,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (54)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -52224,6 +53094,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9124886096265861098, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -53320,6 +54202,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (67)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -53394,6 +54288,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (43)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -53467,6 +54373,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (41)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -53933,6 +54851,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (64)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -54411,6 +55341,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -55718,6 +56660,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -55852,6 +56806,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 9124886096265861098, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -57572,6 +58538,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -58076,6 +59054,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -58149,6 +59139,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -58477,6 +59479,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -58570,6 +59584,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (83)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -65106,6 +66132,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (56)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -65184,6 +66222,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -65962,6 +67012,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (88)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 9124886096265861098, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.025
@@ -66154,6 +67216,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (49)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -66387,6 +67461,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -66603,6 +67689,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (48)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -67211,6 +68309,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Rice_02 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -67329,6 +68439,18 @@ PrefabInstance:
     - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
       propertyPath: m_Name
       value: SM_Rice_02 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409489462135779806, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168065332127143423, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467759031986109723, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

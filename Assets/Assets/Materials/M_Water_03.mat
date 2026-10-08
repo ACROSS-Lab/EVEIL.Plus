@@ -144,8 +144,8 @@ Material:
     - _Reflection_Offset: -0.4
     - _Reflection_Opacity: 0.272
     - _Reflections: 1
-    - _ShadowContrast: 0.76
-    - _ShadowLimit: 0.55
+    - _ShadowContrast: 1.54
+    - _ShadowLimit: 0.59
     - _Shadow_Limit: -0.42
     - _Shore: 0
     - _Smoothness: 0.5
@@ -172,7 +172,7 @@ Material:
     - _LightDir: {r: 1.19, g: 0.69, b: -3.63, a: 0}
     - _Multiply_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Outline_Color: {r: 0, g: 0, b: 0, a: 0}
-    - _Shadow_Color: {r: 0.7636837, g: 0.9056604, b: 0.72196513, a: 0}
+    - _Shadow_Color: {r: 0.85851705, g: 0.8679245, b: 0.85564256, a: 0}
     - _Shore_Color: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _UV_Tiling: {r: 1, g: 1, b: 0, a: 0}
