@@ -27,10 +27,8 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField] GameObject farMarker;
     [SerializeField] float heightOffset = 1.5f;
 
-    [Header("Distance & Scanning")]
+    [Header("Proximity Trigger Distance")]
     [SerializeField] float triggerDistance = 3f;
-    [SerializeField] float scanDuration = 2f;
-    [SerializeField] float scanDecaySpeed = 1f;
 
     [Header("Scanned Marker Animation")]
     [Tooltip("Distance the scanned marker floats upward while fading out.")]
