@@ -28751,6 +28751,10 @@ PrefabInstance:
       value: Poi.crop.sprayer
       objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
+      propertyPath: triggerDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: validTags.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -28758,6 +28762,10 @@ PrefabInstance:
       propertyPath: 'validTags.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: 61341ca8a6a89fa4487a5544b1cd4b30, type: 2}
+    - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
+      propertyPath: scannedMarkerFloatDistance
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 4507857671377134875, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_Size.x
       value: 2.33
@@ -36047,6 +36055,10 @@ PrefabInstance:
       value: 4.09
       objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
+      propertyPath: triggerDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: validTags.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -36054,6 +36066,10 @@ PrefabInstance:
       propertyPath: 'validTags.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: bfd28b1e4fbdf2b428579a33ba7fcb3d, type: 2}
+    - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
+      propertyPath: scannedMarkerFloatDistance
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 4507857671377134875, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_Size.x
       value: 2.1859505
@@ -64692,6 +64708,10 @@ PrefabInstance:
       value: 4.85
       objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
+      propertyPath: triggerDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: validTags.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -64699,6 +64719,10 @@ PrefabInstance:
       propertyPath: 'validTags.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: bfd28b1e4fbdf2b428579a33ba7fcb3d, type: 2}
+    - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
+      propertyPath: scannedMarkerFloatDistance
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 4507857671377134875, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_Size.x
       value: 2.290113
