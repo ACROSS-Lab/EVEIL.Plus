@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Water_01
+  m_Name: M_Water_04
   m_Shader: {fileID: -6465566751694194690, guid: f7245f57c5e8d8a4db286c2aa1045988, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -155,7 +155,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _Texture: 1
-    - _Tiling: 2.1
+    - _Tiling: -23.98
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
@@ -163,7 +163,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color1: {r: 0, g: 0, b: 0, a: 0}
-    - _Color_01: {r: 0.34042364, g: 0.4716981, b: 0.36914107, a: 1}
+    - _Color_01: {r: 0.37254903, g: 0.4666667, b: 0.30588236, a: 1}
     - _Color_02: {r: 0.6384834, g: 0.6415094, b: 0.6410659, a: 1}
     - _Color_Shore: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
@@ -172,7 +172,7 @@ Material:
     - _LightDir: {r: 1.19, g: 0.69, b: -3.63, a: 0}
     - _Multiply_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Outline_Color: {r: 0, g: 0, b: 0, a: 0}
-    - _Shadow_Color: {r: 0.5690637, g: 0.81811434, b: 0.8679245, a: 0}
+    - _Shadow_Color: {r: 1, g: 1, b: 1, a: 0}
     - _Shore_Color: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _UV_Tiling: {r: 1, g: 1, b: 0, a: 0}

@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 8f2868c5bdc80324c9bfddab08471a95
+guid: 16a935422d920e84fb04768186fbadff
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MAT_GRADIENT_01
-    second: {fileID: 2100000, guid: d0525c88c11b9444baf021be51e2a62e, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
