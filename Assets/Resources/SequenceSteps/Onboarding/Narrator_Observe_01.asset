@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 272b3340dec6323418bfbb3b98283410, type: 3}
-  m_Name: ONB_01_ReachFirstTarget
+  m_Name: Narrator_Observe_01
   m_EditorClassIdentifier: Assembly-CSharp::SequenceStep
   hasSequenceEvents: 1
   hasNarratorMovement: 0
@@ -24,26 +24,21 @@ MonoBehaviour:
   playerTargetPosition: {x: 0, y: 0, z: 0}
   hasPlayerRotation: 0
   playerTargetRotation: {x: 0, y: 0, z: 0}
-  hasDialogue: 0
+  hasDialogue: 1
   characterStates: {fileID: 11400000, guid: 1fa3470f8cdcfd44592bb98dd66da925, type: 2}
-  timeWaitBeforeTalking: 0
-  dialogueKey: Dialogue.key.Onboarding.Area02.02
+  timeWaitBeforeTalking: 0.2
+  dialogueKey: Key.Narrator.Observe.01
   isUsingOverlay: 0
   eyesState: 0
-  bodyStartState: 0
-  bodyEndState: 0
-  mouthStartState: 0
+  bodyStartState: 3
+  bodyEndState: 4
+  mouthStartState: 1
   mouthEndState: 0
-  timeWaitAfterTalking: 0
-  hasInteraction: 1
-  hasInfiniteTimeout: 1
+  timeWaitAfterTalking: 0.5
+  hasInteraction: 0
+  hasInfiniteTimeout: 0
   waitTimeout: 0
   isSceneTransition: 0
   sceneToLoad: 
-  hasSubStep: 1
-  subStepEntries:
-  - subStep: {fileID: 11400000, guid: 99a81f90ff27689429718db8b9d7dafa, type: 2}
-    triggerType: 1
-    delayTime: 0
-    triggerKey: ReachFirstTarget
-    completesParentStep: 1
+  hasSubStep: 0
+  subStepEntries: []

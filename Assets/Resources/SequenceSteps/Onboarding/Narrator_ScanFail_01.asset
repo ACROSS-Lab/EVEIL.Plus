@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 272b3340dec6323418bfbb3b98283410, type: 3}
-  m_Name: Narrator_Onboarding_01
+  m_Name: Narrator_ScanFail_01
   m_EditorClassIdentifier: Assembly-CSharp::SequenceStep
   hasSequenceEvents: 1
   hasNarratorMovement: 0
@@ -27,14 +27,14 @@ MonoBehaviour:
   hasDialogue: 1
   characterStates: {fileID: 11400000, guid: 1fa3470f8cdcfd44592bb98dd66da925, type: 2}
   timeWaitBeforeTalking: 0.2
-  dialogueKey: Key.Narrator.Onboarding.01
+  dialogueKey: Narrator_ScanFail_01
   isUsingOverlay: 0
   eyesState: 0
-  bodyStartState: 2
-  bodyEndState: 0
+  bodyStartState: 3
+  bodyEndState: 4
   mouthStartState: 1
   mouthEndState: 0
-  timeWaitAfterTalking: 1
+  timeWaitAfterTalking: 0.5
   hasInteraction: 1
   hasInfiniteTimeout: 0
   waitTimeout: 0

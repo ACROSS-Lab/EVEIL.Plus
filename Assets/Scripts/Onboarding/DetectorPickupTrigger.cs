@@ -6,8 +6,6 @@ public class DetectorPickupTrigger : MonoBehaviour
     
     [SerializeField] private GameObject objectToActivate;
     [SerializeField] private GameObject objectToHide;
-    
-    [SerializeField] private string sequenceTriggerKey = "DetectorPickedUp";
 
     private bool hasTriggered;
 
@@ -24,6 +22,6 @@ public class DetectorPickupTrigger : MonoBehaviour
         objectToActivate.SetActive(true);
         objectToHide.SetActive(false);
         
-        SequenceDirector.Instance.SetTrigger(sequenceTriggerKey);
+        SequenceDirector.Instance.PerformAction();
     }
 }
