@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class OnboardingTrigger : MonoBehaviour
@@ -7,7 +8,15 @@ public class OnboardingTrigger : MonoBehaviour
     [SerializeField] private GameObject highlightVisual;
     
     private bool hasTriggered;
+    
+    private Renderer objRenderer;
 
+    void Start()
+    {
+        objRenderer = GetComponent<Renderer>();
+        HideHighlights();
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         
@@ -24,13 +33,23 @@ public class OnboardingTrigger : MonoBehaviour
         SequenceDirector.Instance.PerformAction();
     }
     
-    public void ShowHighlights()
+    public IEnumerator Blink()
     {
-        highlightVisual.SetActive(true);
+        while (true)
+        {
+            objRenderer.enabled = !objRenderer.enabled;
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
+    public void ShowHighlights()
+    {
+        StartCoroutine(Blink());
+    }
+    
     public void HideHighlights()
     {
-        highlightVisual.SetActive(false);
+        StopCoroutine(Blink());
+        objRenderer.enabled = false;
     }
 }
