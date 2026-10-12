@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class VRHandMenu : MonoBehaviour
@@ -10,7 +11,9 @@ public class VRHandMenu : MonoBehaviour
     [Header("Inputs")]
     [Tooltip("Reference to the Input Action assigned to the controller button.")]
     [SerializeField] private InputActionReference menuButton;
-
+    
+    public UnityEvent guideOpened;
+    
     private void Update()
     {
         ToggleMenuInput();
@@ -31,6 +34,7 @@ public class VRHandMenu : MonoBehaviour
         {
             // Toggle the active state of the canvas
             menuCanvas.SetActive(!menuCanvas.activeInHierarchy);
+            guideOpened.Invoke();
         }
     }
 }
