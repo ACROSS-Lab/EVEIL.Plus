@@ -19,6 +19,14 @@ public class FlyHorizontally : MonoBehaviour
     [SerializeField] private InputActionReference inputLeft;
     [SerializeField] private InputActionReference inputRight;
 
+    [Header("New Boundaries")]
+    public bool showNewBoundaries = true;
+
+    [SerializeField] float newMinX = 0;
+    [SerializeField] float newMaxX = 0;
+    [SerializeField] float newMinZ = 0;
+    [SerializeField] float newMaxZ = 0;
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -26,6 +34,15 @@ public class FlyHorizontally : MonoBehaviour
         Gizmos.DrawLine(new Vector3(maxX, transform.position.y, minZ), new Vector3(maxX, transform.position.y, maxZ));
         Gizmos.DrawLine(new Vector3(maxX, transform.position.y, maxZ), new Vector3(minX, transform.position.y, maxZ));
         Gizmos.DrawLine(new Vector3(minX, transform.position.y, maxZ), new Vector3(minX, transform.position.y, minZ));
+
+        if (showNewBoundaries)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(new Vector3(newMinX, transform.position.y, newMinZ), new Vector3(newMaxX, transform.position.y, newMinZ));
+            Gizmos.DrawLine(new Vector3(newMaxX, transform.position.y, newMinZ), new Vector3(newMaxX, transform.position.y, newMaxZ));
+            Gizmos.DrawLine(new Vector3(newMaxX, transform.position.y, newMaxZ), new Vector3(newMinX, transform.position.y, newMaxZ));
+            Gizmos.DrawLine(new Vector3(newMinX, transform.position.y, newMaxZ), new Vector3(newMinX, transform.position.y, newMinZ));
+        }
     }
 
     void Start()
@@ -68,5 +85,13 @@ public class FlyHorizontally : MonoBehaviour
         }
 
         transform.position = newPosition;    
+    }
+
+    public void ApplyNewBoundaries()
+    {
+        minX = newMinX;
+        maxX = newMaxX;
+        minZ = newMinZ;
+        maxZ = newMaxZ;
     }
 }

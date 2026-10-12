@@ -35,8 +35,8 @@ MonoBehaviour:
   mouthStartState: 1
   mouthEndState: 0
   timeWaitAfterTalking: 1
-  hasInteraction: 1
-  hasInfiniteTimeout: 1
+  hasInteraction: 0
+  hasInfiniteTimeout: 0
   waitTimeout: 0
   isSceneTransition: 0
   sceneToLoad: 

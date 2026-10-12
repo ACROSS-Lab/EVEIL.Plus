@@ -10,7 +10,8 @@ public class TagManager : MonoBehaviour
     public UnityEvent onCompleted;
     public UnityEvent<int, int> onProgressChanged;
     public UnityEvent onFirstCorrectValidation;
-    public UnityEvent onFirstIncorrectValidation;
+    // public UnityEvent onFirstIncorrectValidation;
+    public UnityEvent onIncorrectValidation;
 
 
     bool isCompleted = false;
@@ -74,10 +75,14 @@ public class TagManager : MonoBehaviour
             firstCorrectValidationOccurred = true;
             onFirstCorrectValidation?.Invoke();
         }
-        else if (!point.IsCorrect && !firstIncorrectValidationOccurred)
+        // else if (!point.IsCorrect && !firstIncorrectValidationOccurred)
+        // {
+        //     firstIncorrectValidationOccurred = true;
+        //     onFirstIncorrectValidation?.Invoke();
+        // }
+        else if (!point.IsCorrect)
         {
-            firstIncorrectValidationOccurred = true;
-            onFirstIncorrectValidation?.Invoke();
+            onIncorrectValidation?.Invoke();
         }
     }
 

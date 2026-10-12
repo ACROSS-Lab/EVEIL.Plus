@@ -63,7 +63,8 @@ public class DetectorController : MonoBehaviour
 
     [Header("Detection Events")]
     [SerializeField] UnityEvent onFirstDetection;
-    [SerializeField] UnityEvent onFirstUndetection;
+    // [SerializeField] UnityEvent onFirstUndetection;
+    [SerializeField] UnityEvent onUndetection;
 
     float scanTimer = 0f;
     Vector3 scanStartPosition;
@@ -244,11 +245,12 @@ public class DetectorController : MonoBehaviour
 
             PlayOneShotSFX(undetectedSFX);
 
-            if (!firstUndetection)
-            {
-                firstUndetection = true;
-                onFirstUndetection?.Invoke();
-            }
+            // if (!firstUndetection)
+            // {
+            //     firstUndetection = true;
+            //     onFirstUndetection?.Invoke();
+            // }
+            onUndetection?.Invoke();
         }
 
         currentState = DetectorState.DisplayingResult;
