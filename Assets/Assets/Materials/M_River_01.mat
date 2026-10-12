@@ -133,8 +133,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Reflection_Offset: -0.31
-    - _Reflection_Opacity: 0.322
+    - _Reflection_Offset: -1
+    - _Reflection_Opacity: 0.216
     - _Reflections: 1
     - _Salinity: 0
     - _Salinity_Contrast: 10
