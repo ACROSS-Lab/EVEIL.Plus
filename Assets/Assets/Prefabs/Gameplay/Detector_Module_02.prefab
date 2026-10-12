@@ -278,7 +278,7 @@ Camera:
     height: 1
   near clip plane: 0.21
   far clip plane: 1000
-  field of view: 74
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -1294,7 +1294,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0, y: 0.2111}
+  m_AnchoredPosition: {x: -0, y: 0.2199}
   m_SizeDelta: {x: 411.6, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5644621924428215923
@@ -1442,6 +1442,12 @@ MonoBehaviour:
   scanDisruptedSFX: {fileID: 8300000, guid: 813e510222ea5984c84aba8f0039d08d, type: 3}
   detectedSFX: {fileID: 8300000, guid: 962dcd62d0f0148419a63a7d26f83057, type: 3}
   undetectedSFX: {fileID: 8300000, guid: 2eae65df55c2c01469546d78ba84b678, type: 3}
+  onFirstDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  onFirstUndetection:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &9165912592670062755
 GameObject:
   m_ObjectHideFlags: 0

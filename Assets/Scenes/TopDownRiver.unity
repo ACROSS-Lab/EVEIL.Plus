@@ -20108,7 +20108,7 @@ MonoBehaviour:
   - {fileID: 894996049}
   lockedTintColor: {r: 1, g: 0.504717, b: 0.504717, a: 1}
   hoverTintColor: {r: 0.5896226, g: 1, b: 0.6909885, a: 1}
-  tintColorProperty: _TintColor
+  tintColorProperty: _Multiply_Color
   shakeStrength: 0.05
   shakeDuration: 0.3
   interactable: {fileID: 419960512}
@@ -35610,6 +35610,58 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08954bcfce440764ab5a3d91e0c193ca, type: 3}
+--- !u!1 &777814674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 777814676}
+  - component: {fileID: 777814675}
+  m_Layer: 0
+  m_Name: SequenceTrack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &777814675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777814674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
+  triggerOnStart: 1
+  sequenceSteps:
+  - {fileID: 11400000, guid: 281d63e6c64763c4197e652cf56e3308, type: 2}
+  - {fileID: 11400000, guid: 7c6e1c80ab37813458429864d6c8c5bc, type: 2}
+  - {fileID: 11400000, guid: 7afa4a2f6fde26f48be3723b451757ed, type: 2}
+  - {fileID: 11400000, guid: aeb3829af998f3b4c87b82f72416c4bf, type: 2}
+  - {fileID: 11400000, guid: 83f9be057bbc62c4f9ec285b52a92148, type: 2}
+  insertMode: 0
+--- !u!4 &777814676
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777814674}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &778332287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42394,7 +42446,7 @@ MonoBehaviour:
   - {fileID: 1404188607}
   lockedTintColor: {r: 1, g: 0.504717, b: 0.504717, a: 1}
   hoverTintColor: {r: 0.5896226, g: 1, b: 0.6909885, a: 1}
-  tintColorProperty: _TintColor
+  tintColorProperty: _Multiply_Color
   shakeStrength: 0.05
   shakeDuration: 0.3
   interactable: {fileID: 968041650}
@@ -49756,7 +49808,7 @@ MonoBehaviour:
   - {fileID: 7804264858355898125}
   lockedTintColor: {r: 1, g: 0.504717, b: 0.504717, a: 1}
   hoverTintColor: {r: 0.5896226, g: 1, b: 0.6909885, a: 1}
-  tintColorProperty: _TintColor
+  tintColorProperty: _Multiply_Color
   shakeStrength: 0.05
   shakeDuration: 0.3
   interactable: {fileID: 1107683712}
@@ -49876,6 +49928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
+  triggerOnStart: 0
   sequenceSteps:
   - {fileID: 11400000, guid: d91e33159c73a4146a06e8af4b3e4f4a, type: 2}
   - {fileID: 11400000, guid: 665e1263b29fcd04baf09aa31d54c725, type: 2}
@@ -49883,7 +49936,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bad4b5f1602a9994b9c5c971e0aea418, type: 2}
   - {fileID: 11400000, guid: 3be2bdb0ef409be4ba0a9272677cc9e0, type: 2}
   - {fileID: 11400000, guid: 4fa5161e3f729284fbf57377876e8541, type: 2}
-  triggerOnStart: 0
   insertMode: 0
 --- !u!1001 &1108326265
 PrefabInstance:
@@ -65882,9 +65934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d984d45f50e406b4ba7c852f83b3d192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceDirector
-  sequenceSteps:
-  - {fileID: 11400000, guid: a12bba8d72d8f4846abd88fffba6c6f2, type: 2}
-  - {fileID: 11400000, guid: fea012a7365660247a70d9f5d5cce60f, type: 2}
+  sequenceSteps: []
   jumpToStepIndex: 0
 --- !u!4 &1492944039
 Transform:
@@ -84493,7 +84543,7 @@ MonoBehaviour:
   - {fileID: 257081807}
   lockedTintColor: {r: 1, g: 0.504717, b: 0.504717, a: 1}
   hoverTintColor: {r: 0.5896226, g: 1, b: 0.6909885, a: 1}
-  tintColorProperty: _TintColor
+  tintColorProperty: _Multiply_Color
   shakeStrength: 0.05
   shakeDuration: 0.3
   interactable: {fileID: 1859584926}
@@ -102724,6 +102774,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 8392975738412246531, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
+      propertyPath: currentLanguage
+      value: French
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 53250310508291866, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
@@ -102742,7 +102796,6 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1492944039}
   - {fileID: 2061009219}
   - {fileID: 8015126861834488140}
   - {fileID: 171229842}
@@ -102751,3 +102804,5 @@ SceneRoots:
   - {fileID: 759351521}
   - {fileID: 7656374574211627742}
   - {fileID: 4751956048985644259}
+  - {fileID: 1492944039}
+  - {fileID: 777814676}
