@@ -66,6 +66,40 @@ public class SequenceStepEditorWindow : EditorWindow
         }
     }
 
+    /// <summary>
+    /// Changes the displayed step in any open SequenceStepEditorWindow, or opens the window if requested.
+    /// Respects the window lock state.
+    /// </summary>
+    public static void SelectStep(SequenceStep step, bool openIfNotOpen = false)
+    {
+        if (step == null) return;
+
+        var windows = Resources.FindObjectsOfTypeAll<SequenceStepEditorWindow>();
+        bool anyFound = false;
+        if (windows != null && windows.Length > 0)
+        {
+            foreach (var window in windows)
+            {
+                if (window != null)
+                {
+                    anyFound = true;
+                    if (!window.isLocked)
+                    {
+                        window.SetTarget(step);
+                        window.Repaint();
+                    }
+                }
+            }
+        }
+
+        if (!anyFound && openIfNotOpen)
+        {
+            var window = GetWindow<SequenceStepEditorWindow>("Sequence Step");
+            window.SetTarget(step);
+            window.Show();
+        }
+    }
+
     public void SetTarget(SequenceStep step)
     {
         if (currentStep == step && cachedEditor != null) return;
