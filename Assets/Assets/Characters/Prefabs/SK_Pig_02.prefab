@@ -75,6 +75,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f602b8fe8136993418fde46689f4b3f7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4478659674177492220}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f602b8fe8136993418fde46689f4b3f7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3967688730579250080}
   m_SourcePrefab: {fileID: 100100000, guid: f602b8fe8136993418fde46689f4b3f7, type: 3}
 --- !u!1 &4217440750615340115 stripped
 GameObject:
@@ -103,3 +106,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3967688730579250080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4217440750615340115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8629e892d33848349b9d17542943ce45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NPCAnimationOffset
