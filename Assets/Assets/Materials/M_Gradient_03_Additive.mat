@@ -109,6 +109,7 @@ Material:
     m_Floats:
     - _AddPrecomputedVelocity: 0
     - _Additionnal_Color: 1
+    - _Alpha: 1
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
