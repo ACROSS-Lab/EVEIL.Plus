@@ -1493,6 +1493,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 931898102053475415}
     m_Modifications:
+    - target: {fileID: 145560335851494813, guid: 68b393caff51515468a6583ce905a7a8, type: 3}
+      propertyPath: pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 145560335851494813, guid: 68b393caff51515468a6583ce905a7a8, type: 3}
+      propertyPath: pitchVariance
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 2017151866195460000, guid: 68b393caff51515468a6583ce905a7a8, type: 3}
       propertyPath: m_Name
       value: AudioSource
