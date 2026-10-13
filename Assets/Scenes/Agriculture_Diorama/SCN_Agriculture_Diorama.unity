@@ -15321,7 +15321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
   triggerOnStart: 0
-  canBeRepeated: 0
+  canBeRepeated: 1
   sequenceSteps:
   - {fileID: 11400000, guid: ff280edba552aa94d90f48a70cdb28d1, type: 2}
   - {fileID: 11400000, guid: 0ee885de4ffa28343941041d9d982aa8, type: 2}
@@ -37929,7 +37929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
   triggerOnStart: 0
-  canBeRepeated: 0
+  canBeRepeated: 1
   sequenceSteps:
   - {fileID: 11400000, guid: b934a7d2cf16f9140a7d6590f285d1c2, type: 2}
   - {fileID: 11400000, guid: 990017315fc2799489bc66e40f1b4b6c, type: 2}
@@ -43780,7 +43780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
   triggerOnStart: 0
-  canBeRepeated: 0
+  canBeRepeated: 1
   sequenceSteps:
   - {fileID: 11400000, guid: b49f6d4514d1c4a42a0b66c8a5553e60, type: 2}
   - {fileID: 11400000, guid: 65e7bc15e8a34fe458e605041e67e2cd, type: 2}
@@ -54783,7 +54783,19 @@ MonoBehaviour:
       m_Calls: []
   onIncorrectValidation:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 349204209}
+        m_TargetAssemblyTypeName: SequenceTrack, Assembly-CSharp
+        m_MethodName: TriggerAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onPointScanned:
     m_PersistentCalls:
       m_Calls: []
