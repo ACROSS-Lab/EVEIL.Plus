@@ -30916,6 +30916,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 777814676}
+  - {fileID: 1290976448}
   - {fileID: 1229144876}
   - {fileID: 1492944039}
   m_Father: {fileID: 0}
@@ -35889,7 +35890,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7afa4a2f6fde26f48be3723b451757ed, type: 2}
   - {fileID: 11400000, guid: aeb3829af998f3b4c87b82f72416c4bf, type: 2}
   - {fileID: 11400000, guid: 83f9be057bbc62c4f9ec285b52a92148, type: 2}
-  - {fileID: 11400000, guid: 44ddde9125347e6419f9fb85c400e5a5, type: 2}
   insertMode: 0
 --- !u!4 &777814676
 Transform:
@@ -50084,19 +50084,7 @@ MonoBehaviour:
   onZoneSelected:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1492944038}
-        m_TargetAssemblyTypeName: SequenceDirector, Assembly-CSharp
-        m_MethodName: PerformAction
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 777814675}
+      - m_Target: {fileID: 1290976447}
         m_TargetAssemblyTypeName: SequenceTrack, Assembly-CSharp
         m_MethodName: TriggerAction
         m_Mode: 1
@@ -58074,6 +58062,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6093628770974053118, guid: f10bd5676fe1c0e469137e71db4076ca, type: 3}
   m_PrefabInstance: {fileID: 1284786301}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1290976446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1290976448}
+  - component: {fileID: 1290976447}
+  m_Layer: 0
+  m_Name: SequenceTrackOnClickAgricultural
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1290976447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290976446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
+  triggerOnStart: 0
+  canBeRepeated: 0
+  sequenceSteps:
+  - {fileID: 11400000, guid: 44ddde9125347e6419f9fb85c400e5a5, type: 2}
+  insertMode: 0
+--- !u!4 &1290976448
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290976446}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6.61469, y: -0.7434, z: -3.06892}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 680053332}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1294711272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -102687,6 +102724,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2526675390681307191, guid: a6df68a4957395a4594c4f7afe482473, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3576758152239782277, guid: a6df68a4957395a4594c4f7afe482473, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -103602,6 +103643,10 @@ PrefabInstance:
     - target: {fileID: 3342141311515936072, guid: 21f38e9ce3d10b44487fe924e36b9325, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8253815948076240963, guid: 21f38e9ce3d10b44487fe924e36b9325, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

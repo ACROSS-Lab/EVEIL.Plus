@@ -35,10 +35,10 @@ MonoBehaviour:
   mouthStartState: 1
   mouthEndState: 0
   timeWaitAfterTalking: 0.5
-  hasInteraction: 0
-  hasInfiniteTimeout: 1
-  waitTimeout: 0
-  isSceneTransition: 0
-  sceneToLoad: 
+  hasInteraction: 1
+  hasInfiniteTimeout: 0
+  waitTimeout: 3
+  isSceneTransition: 1
+  sceneToLoad: TopDownRiver
   hasSubStep: 0
   subStepEntries: []

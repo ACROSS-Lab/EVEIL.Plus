@@ -36,8 +36,8 @@ MonoBehaviour:
   mouthEndState: 0
   timeWaitAfterTalking: 1
   hasInteraction: 1
-  hasInfiniteTimeout: 1
-  waitTimeout: 0
+  hasInfiniteTimeout: 0
+  waitTimeout: 1
   isSceneTransition: 1
   sceneToLoad: SCN_Agriculture_Diorama
   hasSubStep: 0
