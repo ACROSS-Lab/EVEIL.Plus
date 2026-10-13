@@ -8,7 +8,7 @@ public class TagManager : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent onCompleted;
-    public UnityEvent<int, int> onProgressChanged;
+    // public UnityEvent<int, int> onProgressChanged;
     public UnityEvent onFirstCorrectValidation;
     public UnityEvent onIncorrectValidation;
     public UnityEvent onPointScanned;
@@ -69,9 +69,10 @@ public class TagManager : MonoBehaviour
     void OnPointValidated(PointOfInterest point)
     {
         int remaining = RemainingCount();
-        int solved = SolvedCount();
 
-        onProgressChanged?.Invoke(solved, TotalCount);
+        // int solved = SolvedCount();
+        // onProgressChanged?.Invoke(solved, TotalCount);
+        
         onPlayerProgressMade?.Invoke();
 
         if (remaining == 0 && !isCompleted)
