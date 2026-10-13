@@ -127,8 +127,6 @@ MonoBehaviour:
   farMarker: {fileID: 6055848192155513210}
   heightOffset: 1.5
   triggerDistance: 5
-  scanDuration: 2
-  scanDecaySpeed: 1
   scannedMarkerFloatDistance: 20
   scannedMarkerFadeDuration: 2
   emptyTagData: {fileID: 11400000, guid: 309c0daa9a2600c4e9fa421b5cdb0eaf, type: 2}
@@ -136,8 +134,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bfd28b1e4fbdf2b428579a33ba7fcb3d, type: 2}
   - {fileID: 11400000, guid: 61341ca8a6a89fa4487a5544b1cd4b30, type: 2}
   - {fileID: 11400000, guid: d125d38c3fe808342bd30176b2319a9e, type: 2}
-  - {fileID: 11400000, guid: ba045622a1eb9764f8197b8503bf3aa0, type: 2}
-  - {fileID: 11400000, guid: 2deb94d2ea02af54a90afd3a45f1e54b, type: 2}
+  - {fileID: 11400000, guid: ee0bf7db9dd74324180d55b0310a07ba, type: 2}
+  - {fileID: 11400000, guid: 1c3a449e2f6b89f48af1d70a08a1806c, type: 2}
   validTags: []
   tagSelectSFX: {fileID: 0}
   tagPunchScale: 1.25
