@@ -1,5 +1,3 @@
-using System.Collections;
-using TMPro;
 using UnityEngine;
 
 public class EventDirector : MonoBehaviour
@@ -29,5 +27,12 @@ public class EventDirector : MonoBehaviour
     {
         if (currentSequenceEvent == null) return;
         currentSequenceEvent.TriggerEvents();
+    }
+
+    public void PerformAction()
+    {
+        SequenceDirector sequenceDirector = SequenceDirector.Instance;
+        if (sequenceDirector == null) return;
+        sequenceDirector.PerformAction();
     }
 }

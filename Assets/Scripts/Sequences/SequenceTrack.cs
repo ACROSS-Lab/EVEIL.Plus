@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class SequenceTrack : MonoBehaviour
@@ -11,8 +12,9 @@ public class SequenceTrack : MonoBehaviour
         End,
     }
 
-    [Header("Auto Trigger")]
+    [Header("Trigger")]
     [SerializeField] bool triggerOnStart = false;
+    [SerializeField] bool canBeRepeated = false;
 
     [Header("List of adding steps")]
     [SerializeField] List<SequenceStep> sequenceSteps;
@@ -31,7 +33,7 @@ public class SequenceTrack : MonoBehaviour
 
     public void TriggerAction()
     {
-        if (isTriggered == true) return;
+        if (isTriggered && canBeRepeated) return;
         
         switch (insertMode)
         {

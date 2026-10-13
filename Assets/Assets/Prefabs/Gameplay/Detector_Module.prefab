@@ -1367,7 +1367,7 @@ GameObject:
   - component: {fileID: 4186643594066672018}
   - component: {fileID: 2203582850201245648}
   m_Layer: 0
-  m_Name: Detector_Module_02
+  m_Name: Detector_Module
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
