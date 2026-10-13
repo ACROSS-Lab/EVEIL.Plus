@@ -1445,7 +1445,7 @@ MonoBehaviour:
   onFirstDetection:
     m_PersistentCalls:
       m_Calls: []
-  onFirstUndetection:
+  onUndetection:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &9165912592670062755
