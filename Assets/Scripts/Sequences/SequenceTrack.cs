@@ -33,7 +33,7 @@ public class SequenceTrack : MonoBehaviour
 
     public void TriggerAction()
     {
-        if (isTriggered && canBeRepeated) return;
+        if (isTriggered && !canBeRepeated) return;
         
         switch (insertMode)
         {

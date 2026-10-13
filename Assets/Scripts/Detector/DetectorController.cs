@@ -132,10 +132,30 @@ public class DetectorController : MonoBehaviour
         }
     }
 
+    bool isScanningEnabled = true;
+
+    public void SetScanningEnabled(bool enabled)
+    {
+        isScanningEnabled = enabled;
+        if (!enabled && currentState == DetectorState.Scanning)
+        {
+            CancelScan(disrupted: false);
+        }
+    }
+
     void CheckStartScanInput()
     {
-        // Do not initiate scanning if currently pointing at or interacting with a UI element
-        if (IsOverUI())
+        if (!isScanningEnabled)
+        {
+            if (IsTriggerHeld())
+            {
+                currentState = DetectorState.WaitingForTriggerRelease;
+            }
+            return;
+        }
+
+        // Do not initiate scanning if currently pointing at or interacting with a UI element or non-scan interactable (e.g. Narrator)
+        if (IsOverUI() || IsOverNonScanInteractable())
         {
             if (IsTriggerHeld())
             {
@@ -186,7 +206,7 @@ public class DetectorController : MonoBehaviour
             return;
         }
 
-        if (IsOverUI())
+        if (IsOverUI() || IsOverNonScanInteractable())
         {
             CancelScan(disrupted: true);
             return;
@@ -282,7 +302,7 @@ public class DetectorController : MonoBehaviour
         return null;
     }
 
-    void CancelScan(bool disrupted)
+    public void CancelScan(bool disrupted = false)
     {
         StopScanAudio();
 
@@ -394,6 +414,34 @@ public class DetectorController : MonoBehaviour
 
         if (rightInteractor.TryGetUIModel(out TrackedDeviceModel model) && model.currentRaycast.isValid)
             return true;
+
+        return false;
+    }
+
+    bool IsOverNonScanInteractable()
+    {
+        if (rightInteractor == null)
+            return false;
+
+        // Check hovered interactables
+        for (int i = 0; i < rightInteractor.interactablesHovered.Count; i++)
+        {
+            var interactable = rightInteractor.interactablesHovered[i];
+            if (interactable != null && interactable.transform.GetComponentInParent<PointOfInterest>() == null)
+            {
+                return true;
+            }
+        }
+
+        // Check selected interactables (e.g. actively clicking the Narrator or another interactable)
+        for (int i = 0; i < rightInteractor.interactablesSelected.Count; i++)
+        {
+            var interactable = rightInteractor.interactablesSelected[i];
+            if (interactable != null && interactable.transform.GetComponentInParent<PointOfInterest>() == null)
+            {
+                return true;
+            }
+        }
 
         return false;
     }

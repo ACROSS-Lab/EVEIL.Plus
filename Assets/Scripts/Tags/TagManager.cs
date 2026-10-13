@@ -10,16 +10,20 @@ public class TagManager : MonoBehaviour
     public UnityEvent onCompleted;
     public UnityEvent<int, int> onProgressChanged;
     public UnityEvent onFirstCorrectValidation;
-    // public UnityEvent onFirstIncorrectValidation;
     public UnityEvent onIncorrectValidation;
-
+    public UnityEvent onPointScanned;
+    [Tooltip("Fired whenever any progress or interaction occurs (source scanned, tag validated, or button pressed).")]
+    public UnityEvent onPlayerProgressMade;
 
     bool isCompleted = false;
     bool firstCorrectValidationOccurred = false;
-    bool firstIncorrectValidationOccurred = false;
 
     public int TotalCount => pointsOfInterest != null ? pointsOfInterest.Length : 0;
     public bool IsCompleted => isCompleted;
+    public bool HasUnscannedSources => ScannedCount() < TotalCount;
+    public bool AreAllSourcesScanned => TotalCount > 0 && ScannedCount() >= TotalCount;
+    public bool HasIncorrectOrUnsolvedTags => RemainingCount() > 0;
+    public bool AreAllTagsValidated => TotalCount > 0 && SolvedCount() >= TotalCount;
 
     void Awake()
     {
@@ -32,6 +36,7 @@ public class TagManager : MonoBehaviour
         {
             if (point != null)
             {
+                point.OnScanCompleted += OnPointScanned;
                 point.OnTagValidated += OnPointValidated;
                 point.OnValidateButtonPressed += OnValidateButtonPressed;
             }
@@ -47,11 +52,18 @@ public class TagManager : MonoBehaviour
             {
                 if (point != null)
                 {
+                    point.OnScanCompleted -= OnPointScanned;
                     point.OnTagValidated -= OnPointValidated;
                     point.OnValidateButtonPressed -= OnValidateButtonPressed;
                 }
             }
         }
+    }
+
+    void OnPointScanned(PointOfInterest point)
+    {
+        onPointScanned?.Invoke();
+        onPlayerProgressMade?.Invoke();
     }
 
     void OnPointValidated(PointOfInterest point)
@@ -60,6 +72,7 @@ public class TagManager : MonoBehaviour
         int solved = SolvedCount();
 
         onProgressChanged?.Invoke(solved, TotalCount);
+        onPlayerProgressMade?.Invoke();
 
         if (remaining == 0 && !isCompleted)
         {
@@ -70,20 +83,35 @@ public class TagManager : MonoBehaviour
 
     void OnValidateButtonPressed(PointOfInterest point)
     {
+        onPlayerProgressMade?.Invoke();
+
         if (point.IsCorrect && !firstCorrectValidationOccurred)
         {
             firstCorrectValidationOccurred = true;
             onFirstCorrectValidation?.Invoke();
         }
-        // else if (!point.IsCorrect && !firstIncorrectValidationOccurred)
-        // {
-        //     firstIncorrectValidationOccurred = true;
-        //     onFirstIncorrectValidation?.Invoke();
-        // }
         else if (!point.IsCorrect)
         {
             onIncorrectValidation?.Invoke();
         }
+    }
+
+    public int ScannedCount()
+    {
+        if (pointsOfInterest == null) return 0;
+
+        int count = 0;
+        foreach (PointOfInterest point in pointsOfInterest)
+        {
+            if (point != null && point.IsScanned)
+                count++;
+        }
+        return count;
+    }
+
+    public int UnscannedCount()
+    {
+        return TotalCount - ScannedCount();
     }
 
     public int SolvedCount()

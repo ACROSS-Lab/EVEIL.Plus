@@ -10,8 +10,9 @@ public class VRHandMenu : MonoBehaviour
 
     [Header("Inputs")]
     [Tooltip("Reference to the Input Action assigned to the controller button.")]
-    [SerializeField] private InputActionReference menuButton;
-    
+    [SerializeField] private InputActionReference AButton;
+    [SerializeField] private InputActionReference BButton;
+
     public UnityEvent guideOpened;
     
     private void Update()
@@ -22,7 +23,7 @@ public class VRHandMenu : MonoBehaviour
     private void ToggleMenuInput()
     {
         // Check if the button mapped to the InputActionReference was pressed this frame
-        if (menuButton != null && menuButton.action.WasPerformedThisFrame())
+        if (AButton != null && AButton.action.WasPerformedThisFrame() || BButton != null && BButton.action.WasPerformedThisFrame())
         {
             ToggleMenu();
         }

@@ -1339,6 +1339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
   triggerOnStart: 0
+  canBeRepeated: 1
   sequenceSteps:
   - {fileID: 11400000, guid: d91e33159c73a4146a06e8af4b3e4f4a, type: 2}
   insertMode: 0
@@ -2415,21 +2416,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onFirstIncorrectValidation:
+  onIncorrectValidation:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 60986847}
-        m_TargetAssemblyTypeName: SequenceTrack, Assembly-CSharp
-        m_MethodName: TriggerAction
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  onPointScanned:
+    m_PersistentCalls:
+      m_Calls: []
+  onPlayerProgressMade:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &269512783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2982,6 +2977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
   triggerOnStart: 0
+  canBeRepeated: 1
   sequenceSteps:
   - {fileID: 11400000, guid: bad4b5f1602a9994b9c5c971e0aea418, type: 2}
   insertMode: 0
@@ -3879,6 +3875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
   triggerOnStart: 0
+  canBeRepeated: 1
   sequenceSteps:
   - {fileID: 11400000, guid: 3be2bdb0ef409be4ba0a9272677cc9e0, type: 2}
   - {fileID: 11400000, guid: 4fa5161e3f729284fbf57377876e8541, type: 2}
@@ -8267,6 +8264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
   triggerOnStart: 0
+  canBeRepeated: 1
   sequenceSteps:
   - {fileID: 11400000, guid: 665e1263b29fcd04baf09aa31d54c725, type: 2}
   insertMode: 0
@@ -15090,6 +15088,26 @@ PrefabInstance:
       propertyPath: distanceFromCamera.z
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 6726427456039802078, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+      propertyPath: tagManager
+      value: 
+      objectReference: {fileID: 256675403}
+    - target: {fileID: 6726427456039802078, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+      propertyPath: inactivityThreshold
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726427456039802078, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+      propertyPath: unscannedSourcesTrack
+      value: 
+      objectReference: {fileID: 1265498333}
+    - target: {fileID: 6726427456039802078, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+      propertyPath: checkSourcesAgainTrack
+      value: 
+      objectReference: {fileID: 60986847}
+    - target: {fileID: 6726427456039802078, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+      propertyPath: inactivityReminderTrack
+      value: 
+      objectReference: {fileID: 305743906}
     - target: {fileID: 7188824293127082369, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
