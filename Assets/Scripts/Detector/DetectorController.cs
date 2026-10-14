@@ -62,6 +62,9 @@ public class DetectorController : MonoBehaviour
     DetectorState currentState = DetectorState.Idle;
 
     [Header("Detection Events")]
+    [Tooltip("Invoked on every successful detection (use it to trigger an FX for example).")]
+    [SerializeField] UnityEvent onDetection;
+    [Tooltip("Invoked only once, on the very first successful detection.")]
     [SerializeField] UnityEvent onFirstDetection;
     // [SerializeField] UnityEvent onFirstUndetection;
     [SerializeField] UnityEvent onUndetection;
@@ -251,6 +254,9 @@ public class DetectorController : MonoBehaviour
 
             PlayOneShotSFX(detectedSFX);
             targetPOI.CompleteScan();
+
+            // Invoked on every successful detection
+            onDetection?.Invoke();
 
             if (!firstDetection)
             {
