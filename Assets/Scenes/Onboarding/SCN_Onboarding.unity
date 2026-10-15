@@ -2270,7 +2270,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4165,7 +4165,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -4560,7 +4560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2168224284913228407, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 5.5775
+      value: 3.8775
       objectReference: {fileID: 0}
     - target: {fileID: 2168224284913228407, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -4588,7 +4588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: heightOffset
-      value: 5
+      value: 3.3
       objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: triggerDistance
@@ -4604,15 +4604,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: bfd28b1e4fbdf2b428579a33ba7fcb3d, type: 2}
     - target: {fileID: 4507857671377134875, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_Size.x
-      value: 3.8745418
+      value: 3.33
       objectReference: {fileID: 0}
     - target: {fileID: 4507857671377134875, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_Size.y
-      value: 1.6812441
+      value: 1.89
       objectReference: {fileID: 0}
     - target: {fileID: 4507857671377134875, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_Size.z
-      value: 3.9773831
+      value: 3.12
       objectReference: {fileID: 0}
     - target: {fileID: 4507857671377134875, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_Center.x
@@ -6286,7 +6286,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
