@@ -2054,9 +2054,17 @@ PrefabInstance:
       propertyPath: 'm_Cameras.Array.data[0]'
       value: 
       objectReference: {fileID: 5203290759062100696}
+    - target: {fileID: 7211401576114730367, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8303866961996292299, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
       propertyPath: m_Name
       value: Detector_Module_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8968013693904291260, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
