@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Narrator_Dialogue_01
   m_EditorClassIdentifier: Assembly-CSharp::SequenceStep
   hasSequenceEvents: 1
-  hasNarratorMovement: 0
-  targetNarratorPosition: {x: 0, y: 0, z: 0}
+  hasNarratorMovement: 1
+  targetNarratorPosition: {x: -1.96, y: 1.5, z: 4.13}
   offsetAtCenter: {x: 0, y: 0, z: 0}
-  hasNarratorRotation: 0
-  targetNarratorRotation: {x: 0, y: 0, z: 0}
-  targetNarratorScale: 0
+  hasNarratorRotation: 1
+  targetNarratorRotation: {x: 0, y: 180, z: 0}
+  targetNarratorScale: 1
   flyDuration: 0
   hasPlayerMovement: 0
   playerTargetPosition: {x: 0, y: 0, z: 0}
@@ -26,7 +26,7 @@ MonoBehaviour:
   playerTargetRotation: {x: 0, y: 0, z: 0}
   hasDialogue: 1
   characterStates: {fileID: 11400000, guid: 1fa3470f8cdcfd44592bb98dd66da925, type: 2}
-  timeWaitBeforeTalking: 0.2
+  timeWaitBeforeTalking: 1
   dialogueKey: Key.Narrator.Dialogue.01
   isUsingOverlay: 0
   eyesState: 0

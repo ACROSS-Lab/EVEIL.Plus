@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Narrator_Onboarding_02
   m_EditorClassIdentifier: Assembly-CSharp::SequenceStep
   hasSequenceEvents: 0
-  hasNarratorMovement: 1
+  hasNarratorMovement: 0
   targetNarratorPosition: {x: 1.66, y: 2.64, z: 9.98}
   offsetAtCenter: {x: 0, y: 0, z: 0}
   hasNarratorRotation: 0
