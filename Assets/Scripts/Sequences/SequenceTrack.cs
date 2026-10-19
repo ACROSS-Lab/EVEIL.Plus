@@ -14,6 +14,7 @@ public class SequenceTrack : MonoBehaviour
 
     [Header("Trigger")]
     [SerializeField] bool triggerOnStart = false;
+    [HideIf("triggerOnStart")]
     [SerializeField] bool canBeRepeated = false;
 
     [Header("List of adding steps")]
@@ -21,7 +22,15 @@ public class SequenceTrack : MonoBehaviour
 
     [SerializeField] ExecutionMode insertMode = ExecutionMode.Next;
 
-    bool isTriggered = false;
+    // Persists across all scene transitions during this play session
+    static readonly HashSet<string> triggeredTracks = new HashSet<string>();
+
+    string trackId => $"{gameObject.scene.name}_{gameObject.name}";
+    bool isRepeatable => !triggerOnStart && canBeRepeated;
+
+    // Resets static tracking when entering Play Mode in the Unity Editor
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    public static void ResetTriggeredTracks() => triggeredTracks.Clear();
 
     void Start()
     {
@@ -33,8 +42,10 @@ public class SequenceTrack : MonoBehaviour
 
     public void TriggerAction()
     {
-        if (isTriggered && !canBeRepeated) return;
-        
+        if (!isRepeatable && triggeredTracks.Contains(trackId)) return;
+
+        if (SequenceDirector.Instance == null) return;
+
         switch (insertMode)
         {
             case ExecutionMode.Next:
@@ -44,6 +55,8 @@ public class SequenceTrack : MonoBehaviour
                 Append();
                 break;
         }
+
+        triggeredTracks.Add(trackId);
     }
 
     void Insert()
@@ -51,7 +64,6 @@ public class SequenceTrack : MonoBehaviour
         if (SequenceDirector.Instance != null)
         {
             SequenceDirector.Instance.InsertNextSteps(sequenceSteps);
-            isTriggered = true;
         }
     }
 
@@ -60,7 +72,6 @@ public class SequenceTrack : MonoBehaviour
         if (SequenceDirector.Instance != null)
         {
             SequenceDirector.Instance.EnqueueSteps(sequenceSteps);
-            isTriggered = true;
         }
     }
 }
