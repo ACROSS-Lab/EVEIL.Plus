@@ -1107,7 +1107,7 @@ Transform:
   m_GameObject: {fileID: 136247548}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.46269968, z: -0, w: 0.8865151}
-  m_LocalPosition: {x: 13.038, y: 2.91, z: 20.272}
+  m_LocalPosition: {x: 12.67, y: 2.91, z: 20.81}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1489,7 +1489,7 @@ GameObject:
   - component: {fileID: 175062614}
   - component: {fileID: 175062613}
   - component: {fileID: 175062612}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2525,7 +2525,7 @@ GameObject:
   - component: {fileID: 339848247}
   - component: {fileID: 339848249}
   - component: {fileID: 339848248}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2747,7 +2747,7 @@ GameObject:
   - component: {fileID: 341996658}
   - component: {fileID: 341996660}
   - component: {fileID: 341996659}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2828,7 +2828,7 @@ GameObject:
   - component: {fileID: 350845644}
   - component: {fileID: 350845643}
   - component: {fileID: 350845642}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3460,7 +3460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &416055412
 Transform:
   m_ObjectHideFlags: 0
@@ -3493,7 +3493,7 @@ MonoBehaviour:
     unityEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 1599605280}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -3503,7 +3503,7 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
-            m_BoolArgument: 1
+            m_BoolArgument: 0
           m_CallState: 2
   animationIndex: 0
   simulationDelayStart: 0
@@ -3528,7 +3528,7 @@ GameObject:
   - component: {fileID: 422484473}
   - component: {fileID: 422484475}
   - component: {fileID: 422484474}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3656,7 +3656,7 @@ Transform:
   m_GameObject: {fileID: 475481526}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.007, y: 2.518, z: 8.7939}
+  m_LocalPosition: {x: -2.008, y: 2.518, z: 8.703}
   m_LocalScale: {x: 0.175185, y: 0.5581044, z: 0.175185}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3678,54 +3678,6 @@ MonoBehaviour:
   onOnboardingTriggerEnter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 584310708}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 584310710}
-        m_TargetAssemblyTypeName: StaticMeshFader, Assembly-CSharp
-        m_MethodName: FadeIn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 53144942}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 53144944}
-        m_TargetAssemblyTypeName: StaticMeshFader, Assembly-CSharp
-        m_MethodName: FadeIn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 547797698}
         m_TargetAssemblyTypeName: SequenceTrack, Assembly-CSharp
         m_MethodName: TriggerAction
@@ -4241,7 +4193,7 @@ GameObject:
   - component: {fileID: 505523818}
   - component: {fileID: 505523820}
   - component: {fileID: 505523819}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5087,7 +5039,7 @@ GameObject:
   - component: {fileID: 591882758}
   - component: {fileID: 591882760}
   - component: {fileID: 591882759}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5628,6 +5580,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2670554462471276749, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1494993665}
+    - targetCorrespondingSourceObject: {fileID: 2670554462471276749, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2043870753}
     - targetCorrespondingSourceObject: {fileID: 2670554462471276749, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
       insertIndex: -1
       addedObject: {fileID: 785888741}
@@ -6288,7 +6243,7 @@ GameObject:
   - component: {fileID: 827796746}
   - component: {fileID: 827796745}
   - component: {fileID: 827796744}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6973,7 +6928,7 @@ GameObject:
   - component: {fileID: 989741640}
   - component: {fileID: 989741642}
   - component: {fileID: 989741641}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7502,8 +7457,8 @@ Transform:
   m_GameObject: {fileID: 1098491902}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.1765022, z: -0, w: 0.98430026}
-  m_LocalPosition: {x: 5.64, y: 0.102, z: 13.44}
-  m_LocalScale: {x: 3.5592587, y: 1.29, z: 1.7624117}
+  m_LocalPosition: {x: 6.3, y: 0.159, z: 15.22}
+  m_LocalScale: {x: 2.28, y: 1.29, z: 1.61}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 993074371}
@@ -7669,18 +7624,6 @@ MonoBehaviour:
   onOnboardingTriggerEnter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1098491909}
-        m_TargetAssemblyTypeName: OnboardingHighlight, Assembly-CSharp
-        m_MethodName: HideHighlights
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1910929711}
         m_TargetAssemblyTypeName: SequenceTrack, Assembly-CSharp
         m_MethodName: TriggerAction
@@ -9016,7 +8959,7 @@ GameObject:
   - component: {fileID: 1352665380}
   - component: {fileID: 1352665379}
   - component: {fileID: 1352665378}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9169,7 +9112,7 @@ GameObject:
   - component: {fileID: 1370289905}
   - component: {fileID: 1370289907}
   - component: {fileID: 1370289906}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10252,7 +10195,7 @@ GameObject:
   - component: {fileID: 1486303539}
   - component: {fileID: 1486303538}
   - component: {fileID: 1486303537}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10518,6 +10461,54 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 584310708}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 584310710}
+          m_TargetAssemblyTypeName: StaticMeshFader, Assembly-CSharp
+          m_MethodName: FadeIn
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 53144942}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 53144944}
+          m_TargetAssemblyTypeName: StaticMeshFader, Assembly-CSharp
+          m_MethodName: FadeIn
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11195,18 +11186,6 @@ MonoBehaviour:
   onOnboardingTriggerEnter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1599605289}
-        m_TargetAssemblyTypeName: OnboardingHighlight, Assembly-CSharp
-        m_MethodName: HideHighlights
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1366192102}
         m_TargetAssemblyTypeName: SequenceTrack, Assembly-CSharp
         m_MethodName: TriggerAction
@@ -11349,7 +11328,7 @@ GameObject:
   - component: {fileID: 1612987282}
   - component: {fileID: 1612987281}
   - component: {fileID: 1612987280}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11515,14 +11494,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1642145180}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.3100484, z: -0, w: 0.95072085}
-  m_LocalPosition: {x: -5.73, y: 1.59, z: 0.83}
+  m_LocalRotation: {x: -0, y: -0.22411126, z: -0, w: 0.9745636}
+  m_LocalPosition: {x: -4.78, y: 1.898, z: 2.2}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 175062611}
   m_Father: {fileID: 146959372}
-  m_LocalEulerAnglesHint: {x: 0, y: -36.124, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -25.901, z: 0}
 --- !u!95 &1642145183
 Animator:
   serializedVersion: 7
@@ -11886,7 +11865,7 @@ GameObject:
   - component: {fileID: 1688818539}
   - component: {fileID: 1688818541}
   - component: {fileID: 1688818540}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12675,7 +12654,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b0c3b8a961f52f4c866cb8b73beba21, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.8549062
+      value: -0.8559061
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b0c3b8a961f52f4c866cb8b73beba21, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12683,7 +12662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b0c3b8a961f52f4c866cb8b73beba21, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.401
+      value: 0.31010053
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b0c3b8a961f52f4c866cb8b73beba21, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12838,7 +12817,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1c16ced11c670bd4599717a8695dfef7, type: 2}
   - {fileID: 11400000, guid: 71de5d10aabc29140becefaa398efd8d, type: 2}
   - {fileID: 11400000, guid: 210d2d3da235d7347bd234e4f63ab73e, type: 2}
-  - {fileID: 11400000, guid: 6f6080b30b93ea849bb1dcff60fc955f, type: 2}
   - {fileID: 11400000, guid: cd9ef7ad00b8bcd4bbafa9e8473885dd, type: 2}
   - {fileID: 11400000, guid: 486eb990ab77ea049b6085c848d1bf62, type: 2}
   insertMode: 0
@@ -12942,7 +12920,7 @@ GameObject:
   - component: {fileID: 1925669363}
   - component: {fileID: 1925669365}
   - component: {fileID: 1925669364}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13375,6 +13353,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3239337411469659796, guid: 80788064a98893145956f24d55abbcd3, type: 3}
   m_PrefabInstance: {fileID: 2029650210}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2043870752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2043870753}
+  - component: {fileID: 2043870754}
+  m_Layer: 0
+  m_Name: Narrator_Observe_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2043870753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043870752}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1385166122}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2043870754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043870752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25ba1930f9c63d143b9a9e07ef139942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SequenceEvent
+  eventsWithDelay:
+  - delay: 0
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1098491902}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  animationIndex: 0
+  simulationDelayStart: 0
+  startTime:
+    month: 0
+    day: 0
+    hour: 0
+  endTime:
+    month: 0
+    day: 0
+    hour: 0
+  startHeight: 0
+  endHeight: 0
 --- !u!1001 &2045040783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13982,7 +14033,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1250462808022648655, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3393036437358151217, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14058,7 +14109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8756927221968587754, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
       propertyPath: minZ
-      value: 8.69
+      value: 8.1
       objectReference: {fileID: 0}
     - target: {fileID: 8756927221968587754, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
       propertyPath: newMaxX
