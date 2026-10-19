@@ -11578,6 +11578,10 @@ PrefabInstance:
       propertyPath: pitchVariance
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 619434476539876252, guid: 68b393caff51515468a6583ce905a7a8, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0.788
+      objectReference: {fileID: 0}
     - target: {fileID: 2017151866195460000, guid: 68b393caff51515468a6583ce905a7a8, type: 3}
       propertyPath: m_Name
       value: AudioSource
