@@ -20,13 +20,13 @@ MonoBehaviour:
   targetNarratorRotation: {x: 0, y: 0, z: 0}
   targetNarratorScale: 0
   flyDuration: 0
-  hasPlayerMovement: 0
-  playerTargetPosition: {x: 0, y: 0, z: 0}
-  hasPlayerRotation: 0
-  playerTargetRotation: {x: 0, y: 0, z: 0}
+  hasPlayerMovement: 1
+  playerTargetPosition: {x: 0.321, y: 2, z: -14.51}
+  hasPlayerRotation: 1
+  playerTargetRotation: {x: 0, y: 348.53394, z: 0}
   hasDialogue: 1
   characterStates: {fileID: 11400000, guid: 1fa3470f8cdcfd44592bb98dd66da925, type: 2}
-  timeWaitBeforeTalking: 0
+  timeWaitBeforeTalking: 2.5
   dialogueKey: Key.Narrator.ConclusionSuccess.02
   isUsingOverlay: 0
   eyesState: 0
