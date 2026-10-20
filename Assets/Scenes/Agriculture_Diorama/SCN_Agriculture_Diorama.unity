@@ -22567,6 +22567,95 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6192553934528228748, guid: 787f6c961c6072648b476f82020cb370, type: 3}
   m_PrefabInstance: {fileID: 494133243}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &495179119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 495179120}
+  - component: {fileID: 495179121}
+  m_Layer: 0
+  m_Name: Narrator_Conclusion_Pesticides_03
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &495179120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495179119}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1937198311}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &495179121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495179119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25ba1930f9c63d143b9a9e07ef139942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SequenceEvent
+  eventsWithDelay:
+  - delay: 0
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2137903766}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  - delay: 10
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2137903766}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  animationIndex: 0
+  simulationDelayStart: 0
+  startTime:
+    month: 0
+    day: 0
+    hour: 0
+  endTime:
+    month: 0
+    day: 0
+    hour: 0
+  startHeight: 0
+  endHeight: 0
 --- !u!1 &496286601
 GameObject:
   m_ObjectHideFlags: 0
@@ -52220,9 +52309,21 @@ PrefabInstance:
       value: POI_Animal_Pen
       objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1428073679}
+    - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: heightOffset
       value: 4.09
       objectReference: {fileID: 0}
+    - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
+      propertyPath: incorrectSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 2eae65df55c2c01469546d78ba84b678, type: 3}
+    - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
+      propertyPath: validationSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: a4683777711efab4eac904ab63c6273a, type: 3}
     - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: triggerDistance
       value: 10
@@ -66289,6 +66390,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7aac49901991e24cb9026974fc4b62b, type: 3}
+--- !u!82 &1428073679 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6737780901915898351, guid: ee759962537907145b5d89a54cba5c62, type: 3}
+  m_PrefabInstance: {fileID: 1193262447}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1429212495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72800,6 +72906,11 @@ PrefabInstance:
       addedObject: {fileID: 460049068}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ad41afa1097c41469c0f96f5b536a58, type: 3}
+--- !u!4 &1603793331 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4089578780229862220, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
+  m_PrefabInstance: {fileID: 1753088961444038821}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1608243390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76818,6 +76929,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28d0f03e873c57747ae33711d7b586f1, type: 3}
+--- !u!114 &1737553923 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 184987524156570607, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+  m_PrefabInstance: {fileID: 2137903764}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf49f027e7cd53438ed63b44a8db57f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeadLookAt
 --- !u!1001 &1742547653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82304,7 +82426,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 495179120}
+  - {fileID: 2069074226}
   m_Father: {fileID: 534899612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1937198312
@@ -90691,6 +90815,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d72d10a0edb88543bd5bcb7830691a9, type: 3}
+--- !u!1 &2069074225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2069074226}
+  - component: {fileID: 2069074227}
+  m_Layer: 0
+  m_Name: Narrator_Conclusion_Livestock_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2069074226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069074225}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1937198311}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2069074227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069074225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25ba1930f9c63d143b9a9e07ef139942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SequenceEvent
+  eventsWithDelay:
+  - delay: 0
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1737553923}
+          m_TargetAssemblyTypeName: HeadLookAt, Assembly-CSharp
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+  animationIndex: 0
+  simulationDelayStart: 0
+  startTime:
+    month: 0
+    day: 0
+    hour: 0
+  endTime:
+    month: 0
+    day: 0
+    hour: 0
+  startHeight: 0
+  endHeight: 0
 --- !u!1001 &2070038171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -93346,6 +93543,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1015307426}
     m_Modifications:
+    - target: {fileID: 184987524156570607, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1603793331}
     - target: {fileID: 1084932862926897580, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
       propertyPath: m_Name
       value: NarratorSetup
@@ -93506,6 +93707,11 @@ PrefabInstance:
 --- !u!4 &2137903765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4650585704086883670, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+  m_PrefabInstance: {fileID: 2137903764}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2137903766 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9214348166577703267, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
   m_PrefabInstance: {fileID: 2137903764}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2140358856 stripped

@@ -899,25 +899,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4650585704086883670}
     m_Modifications:
-    - target: {fileID: 241487446006746379, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: enableLookAt
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1779393466918347280, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
       propertyPath: m_Name
       value: Narrator_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2237046890377667699, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2237046890377667699, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2237046890377667699, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2237046890377667699, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -959,10 +943,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2237046890377667699, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3755041324433164926, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
       propertyPath: nestedText
       value: 
@@ -980,54 +960,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6699015271490509171}
     - target: {fileID: 3755041324433164926, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: overlayCanvas
-      value: 
-      objectReference: {fileID: 8149811429027183937}
-    - target: {fileID: 3838233584643956064, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3838233584643956064, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3838233584643956064, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3838233584643956064, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3838233584643956064, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3838233584643956064, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8873942565881172994, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: nestedText
-      value: 
-      objectReference: {fileID: 7382675804187482129}
-    - target: {fileID: 8873942565881172994, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: overlayText
-      value: 
-      objectReference: {fileID: 2802964886169025416}
-    - target: {fileID: 8873942565881172994, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: localizedKey
-      value: 
-      objectReference: {fileID: 5619454890894397814}
-    - target: {fileID: 8873942565881172994, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: nestedCanvas
-      value: 
-      objectReference: {fileID: 4243650497615958618}
-    - target: {fileID: 8873942565881172994, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-      propertyPath: dialogueBoxes
-      value: 
-      objectReference: {fileID: 6699015271490509171}
-    - target: {fileID: 8873942565881172994, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
       propertyPath: overlayCanvas
       value: 
       objectReference: {fileID: 8149811429027183937}
@@ -1041,14 +973,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2237046890377667699, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
   m_PrefabInstance: {fileID: 128592975172859620}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5619454890894397814 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5491166480602916754, guid: 6a2f6315b56699341a911ac43fb630b4, type: 3}
-  m_PrefabInstance: {fileID: 128592975172859620}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a48447bd24caa44f8dff8ce07e87973, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LocalizedKey

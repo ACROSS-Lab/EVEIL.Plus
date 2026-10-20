@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272b3340dec6323418bfbb3b98283410, type: 3}
   m_Name: Narrator_Conclusion_Livestock_01
   m_EditorClassIdentifier: Assembly-CSharp::SequenceStep
-  hasSequenceEvents: 0
+  hasSequenceEvents: 1
   hasNarratorMovement: 1
   targetNarratorPosition: {x: -5.948, y: -0.207, z: 7.059}
   offsetAtCenter: {x: 0, y: 1, z: 0}
