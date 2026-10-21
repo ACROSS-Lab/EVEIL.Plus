@@ -4,10 +4,15 @@ using TMPro;
 
 public class TagDisplay : MonoBehaviour
 {
-    [SerializeField] Image iconImage;
     [SerializeField] TextMeshProUGUI label;
 
+    [Tooltip("Optional. Fill image used by the pie menu while an option is held, when this display is the center element. Leave empty on the option items.")]
+    [SerializeField] Image holdFill;
+
     private LocalizedKey localizedKey;
+
+    /// <summary>Fill image driven by the pie menu when this display is used as the center element.</summary>
+    public Image HoldFill => holdFill;
 
     private void Awake()
     {
@@ -19,11 +24,6 @@ public class TagDisplay : MonoBehaviour
         if (label == null)
         {
             label = GetComponentInChildren<TextMeshProUGUI>(true);
-        }
-
-        if (iconImage == null)
-        {
-            iconImage = GetComponentInChildren<Image>(true);
         }
 
         if (localizedKey == null)
@@ -47,15 +47,10 @@ public class TagDisplay : MonoBehaviour
 
         EnsureComponents();
 
-        if (iconImage != null)
-        {
-            iconImage.sprite = data.icon;
-        }
-
         if (localizedKey != null)
         {
             localizedKey.localizationKey = data.localizationKey;
-            
+
             if (localizedKey.textComponent != null)
             {
                 localizedKey.UpdateText();

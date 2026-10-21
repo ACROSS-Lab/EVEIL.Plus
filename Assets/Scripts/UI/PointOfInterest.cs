@@ -20,7 +20,7 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField] GameObject interactableObject;
 
     [Header("Canvas & Sub-Elements")]
-    [Tooltip("World space canvas containing all POI UI markers and carousel.")]
+    [Tooltip("World space canvas containing all POI UI markers and the tag pie menu.")]
     [SerializeField] Canvas displayCanvas;
     [SerializeField] GameObject scannedMarker;
     [SerializeField] TagCarouselDisplay tagCarousel;
@@ -43,9 +43,8 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField] TagData[] validTags;    
 
     [Header("Audio & Effects")]
+    [Tooltip("SFX played when an option has been held long enough to be confirmed.")]
     [SerializeField] AudioClip tagSelectSFX;
-    [SerializeField] float tagPunchScale = 1.25f;
-    [SerializeField] float tagPunchDuration = 0.2f;
     [SerializeField] GameObject validationFXPrefab;
     [SerializeField] AudioClip validationSFX;
     [Tooltip("SFX played when an incorrect tag is validated.")]
@@ -58,9 +57,11 @@ public class PointOfInterest : MonoBehaviour
     [Tooltip("Speed of the idle bobbing motion.")]
     [SerializeField] float idleBobSpeed = 1.5f;
 
+    /// <summary>Triggered when an option is confirmed, and when the selection is cleared after an incorrect answer.</summary>
     public event Action<PointOfInterest> OnTagChanged;
     public event Action<PointOfInterest> OnScanCompleted;
     public event Action<PointOfInterest> OnTagValidated;
+    /// <summary>Triggered every time the player confirms an option (correct or not).</summary>
     public event Action<PointOfInterest> OnValidateButtonPressed;
     public event Action<PointOfInterest> OnTagValidationCancelled;
 
@@ -156,8 +157,8 @@ public class PointOfInterest : MonoBehaviour
     {
         if (tagCarousel != null)
         {
-            tagCarousel.OnValidatePressed -= HandleValidateButtonPressed;
-            tagCarousel.OnCyclePressed -= CycleTag;
+            tagCarousel.OnOptionConfirmed -= HandleOptionConfirmed;
+            tagCarousel.OnIncorrectFeedbackFinished -= HandleIncorrectFeedbackFinished;
         }
     }
 
@@ -229,8 +230,8 @@ public class PointOfInterest : MonoBehaviour
         if (tagCarousel != null)
         {
             tagCarousel.Initialize(availableTags, emptyTagData);
-            tagCarousel.OnValidatePressed += HandleValidateButtonPressed;
-            tagCarousel.OnCyclePressed += CycleTag;
+            tagCarousel.OnOptionConfirmed += HandleOptionConfirmed;
+            tagCarousel.OnIncorrectFeedbackFinished += HandleIncorrectFeedbackFinished;
         }
     }
 
@@ -259,7 +260,7 @@ public class PointOfInterest : MonoBehaviour
 
         PlayScannedMarkerAnimation();
 
-        // Disable collider and interactable so player interacts with carousel button next
+        // Disable collider and interactable so player interacts with the pie menu next
         if (poiCollider != null)
         {
             poiCollider.enabled = false;
@@ -320,7 +321,7 @@ public class PointOfInterest : MonoBehaviour
             return;
         }
 
-        // Once scanned: close proximity shows TagCarousel, far distance shows FarMarker
+        // Once scanned: close proximity shows the pie menu, far distance shows FarMarker
         if (tagCarousel != null && tagCarousel.gameObject.activeSelf != inRange)
         {
             tagCarousel.gameObject.SetActive(inRange);
@@ -387,52 +388,26 @@ public class PointOfInterest : MonoBehaviour
         }
     }
 
-    void CycleTag()
+    /// <summary>
+    /// Called by the pie menu once an option has been held long enough.
+    /// Selects the tag, checks it, and asks the pie menu to show the matching feedback.
+    /// </summary>
+    void HandleOptionConfirmed(int optionIndex)
     {
         if (!isScanned || isTagValidated)
             return;
 
-        if (tagCarousel == null || availableTags == null || availableTags.Length == 0)
+        if (availableTags == null || optionIndex < 0 || optionIndex >= availableTags.Length)
             return;
 
-        bool isFirstSelection = currentTagIndex == -1;
-
-        if (isFirstSelection)
-        {
-            currentTagIndex = 0;
-            tagCarousel.EnableAvailableTagsMode();
-            tagCarousel.SetIndex(currentTagIndex, animate: true);
-        }
-        else
-        {
-            currentTagIndex = (currentTagIndex + 1) % availableTags.Length;
-            tagCarousel.SetIndex(currentTagIndex, animate: true);
-        }
-
-        tagCarousel.SetValidateButtonVisible(true);
+        currentTagIndex = optionIndex;
 
         if (audioSource != null && tagSelectSFX != null)
         {
             audioSource.PlayOneShot(tagSelectSFX);
         }
 
-        Transform tagTransform = tagCarousel.transform;
-        tagTransform.DOKill();
-        tagTransform.localScale = Vector3.one;
-        tagTransform.DOPunchScale(
-            Vector3.one * (tagPunchScale - 1f),
-            tagPunchDuration,
-            vibrato: 1,
-            elasticity: 0.5f
-        );
-
         OnTagChanged?.Invoke(this);
-    }
-
-    void HandleValidateButtonPressed()
-    {
-        if (!isScanned || !HasTag || isTagValidated)
-            return;
 
         if (IsCorrect)
         {
@@ -440,7 +415,7 @@ public class PointOfInterest : MonoBehaviour
 
             if (tagCarousel != null)
             {
-                tagCarousel.ShowCorrectFeedback();
+                tagCarousel.ShowCorrectFeedback(currentTagIndex);
             }
 
             if (audioSource != null && validationSFX != null)
@@ -459,7 +434,7 @@ public class PointOfInterest : MonoBehaviour
         {
             if (tagCarousel != null)
             {
-                tagCarousel.ShowIncorrectFeedback();
+                tagCarousel.ShowIncorrectFeedback(currentTagIndex);
             }
 
             if (audioSource != null && incorrectSFX != null)
@@ -472,7 +447,38 @@ public class PointOfInterest : MonoBehaviour
     }
 
     /// <summary>
+    /// Called by the pie menu when the incorrect feedback is over and everything is back to its initial state.
+    /// </summary>
+    void HandleIncorrectFeedbackFinished()
+    {
+        if (isTagValidated)
+            return;
+
+        currentTagIndex = -1;
+        OnTagChanged?.Invoke(this);
+    }
+
+    int FindFirstValidTagIndex()
+    {
+        if (validTags == null || availableTags == null)
+            return -1;
+
+        foreach (TagData validTag in validTags)
+        {
+            for (int i = 0; i < availableTags.Length; i++)
+            {
+                if (availableTags[i] == validTag)
+                    return i;
+            }
+        }
+
+        return -1;
+    }
+
+    /// <summary>
     /// Validates the chosen tag or unlocks it for editing.
+    /// When validated without any selected tag, the first valid tag is shown in the center.
+    /// Unlocking resets the pie menu and clears the selection.
     /// </summary>
     public void SetTagValidated(bool validated)
     {
@@ -481,9 +487,23 @@ public class PointOfInterest : MonoBehaviour
 
         isTagValidated = validated;
 
+        if (validated && !HasTag)
+        {
+            int validIndex = FindFirstValidTagIndex();
+            if (validIndex >= 0)
+            {
+                currentTagIndex = validIndex;
+            }
+        }
+
         if (tagCarousel != null)
         {
-            tagCarousel.SetValidated(validated);
+            tagCarousel.SetValidated(validated, currentTagIndex);
+        }
+
+        if (!validated)
+        {
+            currentTagIndex = -1;
         }
 
         if (validated)

@@ -30771,6 +30771,7 @@ Transform:
   - {fileID: 1937198311}
   - {fileID: 1383965402}
   - {fileID: 1960246837}
+  - {fileID: 2023014217}
   - {fileID: 1138455715}
   - {fileID: 79196874}
   - {fileID: 484814724}
@@ -73239,7 +73240,7 @@ MonoBehaviour:
   onIncorrectValidation:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 349204209}
+      - m_Target: {fileID: 2023014218}
         m_TargetAssemblyTypeName: SequenceTrack, Assembly-CSharp
         m_MethodName: TriggerAction
         m_Mode: 1
@@ -93203,6 +93204,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1555940569141306512, guid: e75afab4bb698fa4e87831564e58c57c, type: 3}
   m_PrefabInstance: {fileID: 1512197827}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2023014216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2023014217}
+  - component: {fileID: 2023014218}
+  m_Layer: 0
+  m_Name: SequenceTrack_WrongAnswer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2023014217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023014216}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 534899612}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2023014218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023014216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
+  triggerOnStart: 0
+  canBeRepeated: 1
+  sequenceSteps:
+  - {fileID: 11400000, guid: dbfd48c349b8b794eba9711c1cd8331e, type: 2}
+  insertMode: 0
 --- !u!4 &2025477356 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a32d85df5314b3f4797d1185e08dc0ba, type: 3}

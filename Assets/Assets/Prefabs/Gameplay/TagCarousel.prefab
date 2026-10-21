@@ -250,35 +250,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TagCarouselDisplay
   itemsContainer: {fileID: 4881403055673167377}
+  centerContainer: {fileID: 0}
   itemPrefab: {fileID: 3084999123385625351, guid: a95177d04491fd949a83f203691fd4ee, type: 3}
-  itemSpacing: 35
-  slideDuration: 0.25
-  slideEase: 9
-  focusedScale: 1
-  unfocusedScale: 0.6
-  unfocusedAlpha: 0.3
-  itemsContainerButton: {fileID: 5268708370943287688}
-  itemsContainerBackground: {fileID: 7893480333390154348}
-  itemsContainerHoverColor: {r: 1, g: 1, b: 0.8, a: 1}
-  itemsContainerPunchScale: 1.05
-  itemsContainerPunchDuration: 0.15
-  validateButtonRoot: {fileID: 1250010626239101740}
-  validateBackground: {fileID: 3102708145163042409}
-  validatedFeedbackRoot: {fileID: 7428042499231598579}
-  validateButtonLocalizedKey: {fileID: 3375061852457136335}
-  validateLocalizationKey: Tag.Validate
-  changeLocalizationKey: Tag.Change
-  validateColor: {r: 0, g: 0.7575803, b: 1, a: 0.9}
-  changeColor: {r: 1, g: 0.9254902, b: 0.6392157, a: 0.9}
-  validateHoverColor: {r: 1, g: 1, b: 1, a: 0.9019608}
-  validatedPopDuration: 0.25
-  validatePunchScale: 1.15
-  validatePunchDuration: 0.15
+  centerPrefab: {fileID: 8557878287301645399, guid: 2dd9132900dcb6c4196072441fe1bfd1, type: 3}
+  radius: 140
+  startAngle: 90
+  hoveredScale: 1.2
+  shrunkScale: 0.75
+  hoverScaleDuration: 0.15
+  hoverEase: 9
+  unhoveredAlpha: 0.5
+  hoverFadeDuration: 0.15
+  holdDuration: 0.8
+  fillReleaseDuration: 0.25
+  holdExitGraceDuration: 0.25
+  hitAreaPadding: 8
+  hitZoneColor: {r: 1, g: 1, b: 1, a: 0.01}
+  fallbackHitZoneSize: {x: 100, y: 100}
+  optionsShowDuration: 0.3
+  optionsShowStagger: 0.03
+  optionsHideDuration: 0.2
   correctFeedbackColor: {r: 0.2, g: 0.85, b: 0.3, a: 1}
   incorrectFeedbackColor: {r: 0.9, g: 0.25, b: 0.2, a: 1}
+  tintCenterOnCorrect: 1
+  tintCenterText: 1
+  tintCenterGraphics: 1
+  feedbackTintStrength: 1
   feedbackPunchScale: 1.25
   feedbackPunchDuration: 0.3
   incorrectDisplayDuration: 1
+  debugLogs: 0
 --- !u!114 &6012816504156641282
 MonoBehaviour:
   m_ObjectHideFlags: 0
