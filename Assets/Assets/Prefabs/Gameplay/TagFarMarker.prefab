@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Pollution Source
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 46af40c260715ea43b1c15086c6c4a25, type: 2}
-  m_sharedMaterial: {fileID: -6769982209448160499, guid: 46af40c260715ea43b1c15086c6c4a25, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 53d944a7279bdaa4b83a40c70f04d3a3, type: 2}
+  m_sharedMaterial: {fileID: 5861578820526593033, guid: 53d944a7279bdaa4b83a40c70f04d3a3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
