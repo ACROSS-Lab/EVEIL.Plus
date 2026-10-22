@@ -681,6 +681,10 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
+      propertyPath: hoverSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 9b9c395d52d869e4c83ac1c24d5341eb, type: 3}
+    - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: debugLogs
       value: 0
       objectReference: {fileID: 0}
@@ -688,6 +692,10 @@ PrefabInstance:
       propertyPath: fillSprite
       value: 
       objectReference: {fileID: 21300000, guid: 2f8349570a152884fb6cf7ebdc8c18b3, type: 3}
+    - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
+      propertyPath: holdLoopSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f7aea70cac028240ad57ecf1bc33b1c, type: 3}
     - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: shrunkScale
       value: 0.4
@@ -697,8 +705,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8557878287301645399, guid: 2dd9132900dcb6c4196072441fe1bfd1, type: 3}
     - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
+      propertyPath: holdPitchEnd
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
+      propertyPath: tintHeldText
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: autoFixXRSetup
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
+      propertyPath: holdPitchStart
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: tintCenterText
@@ -709,12 +729,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1904316332822457185}
     - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
+      propertyPath: heldOptionColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
+      propertyPath: heldOptionColor.g
+      value: 0.7275679
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
+      propertyPath: heldOptionColor.r
+      value: 0.0990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: tintCenterGraphics
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: tintCenterOnCorrect
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
+      propertyPath: unhoveredRadiusScale
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: validateHoverColor.b
