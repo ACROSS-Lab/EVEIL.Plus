@@ -7251,15 +7251,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2168224284913228407, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.03
+      value: 0.015
       objectReference: {fileID: 0}
     - target: {fileID: 2168224284913228407, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.03
+      value: 0.015
       objectReference: {fileID: 0}
     - target: {fileID: 2168224284913228407, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.03
+      value: 0.015
       objectReference: {fileID: 0}
     - target: {fileID: 2168224284913228407, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7271,7 +7271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2168224284913228407, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3.8775
+      value: 2.5774999
       objectReference: {fileID: 0}
     - target: {fileID: 2168224284913228407, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -7299,7 +7299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: heightOffset
-      value: 3.3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: triggerDistance
