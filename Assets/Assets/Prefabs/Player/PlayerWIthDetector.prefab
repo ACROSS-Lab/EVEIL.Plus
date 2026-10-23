@@ -2042,6 +2042,30 @@ PrefabInstance:
       propertyPath: volume
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4339467555143262043, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
+      propertyPath: MaxDistance
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339467555143262043, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
+      propertyPath: MinDistance
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339467555143262043, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4339467555143262043, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449855030135413293, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2205
+      objectReference: {fileID: 0}
+    - target: {fileID: 5449855030135413293, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0935
+      objectReference: {fileID: 0}
     - target: {fileID: 5644621924428215923, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
       propertyPath: m_Camera
       value: 
