@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: M_Gradient.011
-    second: {fileID: 2100000, guid: f5c992d90b77b50458c567b19d87d82b, type: 2}
+      name: M_Gradient.002
+    second: {fileID: 2100000, guid: d290b66cdeb9c9a4c9867a19cc94d742, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
