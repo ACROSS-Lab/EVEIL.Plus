@@ -26,6 +26,11 @@ public class SequenceEvent : MonoBehaviour
         }
     }
 
+    public void StopDelayedEvents()
+    {
+        StopAllCoroutines();
+    }
+
     IEnumerator InvokeEventWithDelay(UnityEvent unityEvent, float delay)
     {
         yield return new WaitForSeconds(delay);

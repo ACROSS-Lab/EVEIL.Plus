@@ -30,51 +30,101 @@ public class Narrator : MonoBehaviour
         return action;
     }
 
+    public void StopMovement()
+    {
+        DOTween.Kill(transform);
+    }
+
+    public void SnapMovement(Vector3 targetPosition, bool hasRotation, Vector3 targetRotation, float targetScale)
+    {
+        DOTween.Kill(transform);
+        transform.position = targetPosition;
+        if (hasRotation)
+        {
+            transform.eulerAngles = targetRotation;
+        }
+        if (targetScale > 0f)
+        {
+            transform.localScale = Vector3.one * targetScale;
+        }
+    }
+
     public float StartTalking(string key, int bodyStartState, int eyesState, int mouthStartState, bool isUsingOverlay)
     {
         IsTalking = true;
         
-        dialogueBoxes.SetActive(true);
+        if (dialogueBoxes != null) dialogueBoxes.SetActive(true);
 
         localizedKey.localizationKey = key;
 
         if (isUsingOverlay)
         {
-            overlayCanvas.SetActive(true);
-            nestedCanvas.SetActive(false);
+            if (overlayCanvas != null) overlayCanvas.SetActive(true);
+            if (nestedCanvas != null) nestedCanvas.SetActive(false);
             localizedKey.textComponent = overlayText;
         }
         else
         {
-            overlayCanvas.SetActive(false);
-            nestedCanvas.SetActive(true);
+            if (overlayCanvas != null) overlayCanvas.SetActive(false);
+            if (nestedCanvas != null)
+            {
+                nestedCanvas.SetActive(true);
+                nestedCanvas.GetComponent<TrajectoryCanvasFollower>()?.SetPosition();
+            }
             localizedKey.textComponent = nestedText;
-            nestedCanvas.GetComponent<TrajectoryCanvasFollower>().SetPosition();
         }
 
         localizedKey.UpdateText();
         localizedKey.UpdateAudioClip();
 
-        animator.SetInteger("BodyState", bodyStartState);
-        animator.SetInteger("EyesState", eyesState);
-        animator.SetInteger("MouthState", mouthStartState);
+        if (animator != null)
+        {
+            animator.SetInteger("BodyState", bodyStartState);
+            animator.SetInteger("EyesState", eyesState);
+            animator.SetInteger("MouthState", mouthStartState);
+        }
 
-        audioSource.Play();
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
 
-        float talkingTime = audioSource.clip.length;
+        float talkingTime = (audioSource != null && audioSource.clip != null) ? audioSource.clip.length : 0f;
         return talkingTime;
     }
 
     public void FinishDialogue(int bodyEndState, int mouthEndState)
     {
-        animator.SetInteger("BodyState", bodyEndState);
-        animator.SetInteger("MouthState", mouthEndState);
-       
+        if (animator != null)
+        {
+            animator.SetInteger("BodyState", bodyEndState);
+            animator.SetInteger("MouthState", mouthEndState);
+        }
+    }
+
+    public void StopDialogue(int bodyEndState = 0, int mouthEndState = 0)
+    {
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+
+        DisableDialogueBox();
+
+        if (animator != null)
+        {
+            animator.SetInteger("BodyState", bodyEndState);
+            animator.SetInteger("MouthState", mouthEndState);
+        }
+
+        IsTalking = false;
     }
 
     public void DisableDialogueBox()
     {
-        dialogueBoxes.SetActive(false);
+        if (dialogueBoxes != null) dialogueBoxes.SetActive(false);
+        if (overlayCanvas != null) overlayCanvas.SetActive(false);
+        if (nestedCanvas != null) nestedCanvas.SetActive(false);
         
         IsTalking = false;
     }

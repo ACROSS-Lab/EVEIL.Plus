@@ -31,6 +31,13 @@ public class SequenceStep : ScriptableObject
     [ShowIf("hasDialogue")][Dropdown("GetBodyStates")][OnValueChanged("OnDropdownChanged")] public int bodyStartState, bodyEndState;
     [ShowIf("hasDialogue")][Dropdown("GetMouthStates")][OnValueChanged("OnDropdownChanged")] public int mouthStartState, mouthEndState;
     [ShowIf("hasDialogue")] public float timeWaitAfterTalking;
+    [ShowIf("hasDialogue")]
+    [Tooltip("If true and this step has an interaction, performing the action during dialogue will immediately cut off speech and proceed to the next step.")]
+    public bool allowEarlyAction = true;
+
+    [Header("Interrupt Settings")]
+    [Tooltip("If true, this step can be immediately interrupted by an incoming Immediate SequenceTrack.")]
+    public bool canBeInterrupted = true;
 
     [Header("Phase 3: Interaction")]
     public bool hasInteraction;

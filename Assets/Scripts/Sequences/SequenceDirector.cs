@@ -19,7 +19,7 @@ public class SequenceDirector : MonoBehaviour
     bool isSceneLoading = false;
     bool isReadyToProceed = true;
 
-    //Automatically assign references
+    // Automatically assign references
     Player player;
     Narrator narrator;
     EventDirector eventDirector;
@@ -27,6 +27,9 @@ public class SequenceDirector : MonoBehaviour
     public static SequenceDirector Instance { get; private set; }
 
     readonly HashSet<string> pendingTriggers = new HashSet<string>();
+
+    Coroutine currentSequenceCoroutine;
+    SequenceStep currentExecutingStep;
 
     void Awake()
     {
@@ -41,13 +44,15 @@ public class SequenceDirector : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(ExecuteSequence());
+        currentSequenceCoroutine = StartCoroutine(ExecuteSequence());
     }
 
-    // void Update()
-    // {
-    //     KeyboardPerformAction();
-    // }
+#if UNITY_EDITOR
+    void Update()
+    {
+        KeyboardPerformAction();
+    }
+#endif
 
     void OnEnable()
     {
@@ -85,12 +90,16 @@ public class SequenceDirector : MonoBehaviour
           
             if (step != null)
             {
+                currentExecutingStep = step;
+
                 bool fastForward = false;
                 #if UNITY_EDITOR
                 fastForward = currentStepIndex < jumpToStepIndex;
                 #endif
 
                 yield return StartCoroutine(ExecuteStep(step, fastForward));
+
+                currentExecutingStep = null;
             } 
             
             currentStepIndex++;
@@ -107,28 +116,32 @@ public class SequenceDirector : MonoBehaviour
         }
         #endif
 
+        hasPerformedAction = false;
+
         yield return HandleEventsStart(step);
         HandlePlayer(step);
         yield return HandleNarrator(step);
         yield return HandleDialogue(step);
         yield return HandleInteraction(step);
+
+        hasPerformedAction = false;
     }
 
     void ApplyFastForward(SequenceStep step)
     {
-        if (step.hasSequenceEvents)
+        if (step.hasSequenceEvents && eventDirector != null)
         {
             eventDirector.SetCurrentSequenceEvent(step.name);
             eventDirector.TriggerEventsForStep();
         }
 
-        if (step.hasNarratorMovement)
+        if (step.hasNarratorMovement && narrator != null)
         {
             narrator.transform.position = step.targetNarratorPosition;
             narrator.transform.localScale = Vector3.one * step.targetNarratorScale;
         }
 
-        if (step.hasPlayerMovement)
+        if (step.hasPlayerMovement && player != null)
         {
             player.transform.SetPositionAndRotation(
                 step.playerTargetPosition,
@@ -139,7 +152,7 @@ public class SequenceDirector : MonoBehaviour
 
     IEnumerator HandleEventsStart(SequenceStep step)
     {
-        if (!step.hasSequenceEvents) yield break;
+        if (!step.hasSequenceEvents || eventDirector == null) yield break;
         eventDirector.SetCurrentSequenceEvent(step.name);
         eventDirector.TriggerEventsForStep();
 
@@ -148,7 +161,7 @@ public class SequenceDirector : MonoBehaviour
 
     void HandlePlayer(SequenceStep step)
     {
-        if (!step.hasPlayerMovement) return;
+        if (!step.hasPlayerMovement || player == null) return;
 
         player.MovePlayer(
             step.playerTargetPosition,
@@ -159,7 +172,7 @@ public class SequenceDirector : MonoBehaviour
 
     IEnumerator HandleNarrator(SequenceStep step)
     {
-        if (!step.hasNarratorMovement) yield break;
+        if (!step.hasNarratorMovement || narrator == null) yield break;
 
         Tween action = narrator.Move(
             step.targetNarratorPosition,
@@ -175,9 +188,22 @@ public class SequenceDirector : MonoBehaviour
 
     IEnumerator HandleDialogue(SequenceStep step)
     {
-        if (!step.hasDialogue) yield break;
+        if (!step.hasDialogue || narrator == null) yield break;
 
-        yield return new WaitForSeconds(step.timeWaitBeforeTalking);
+        // Check if player already performed action before dialogue wait begins
+        if (CanInterruptDialogueWithAction(step) && hasPerformedAction)
+        {
+            yield break;
+        }
+
+        if (step.timeWaitBeforeTalking > 0f)
+        {
+            yield return WaitForDialogueDuration(step.timeWaitBeforeTalking, step);
+            if (CanInterruptDialogueWithAction(step) && hasPerformedAction)
+            {
+                yield break;
+            }
+        }
 
         float talkingTime = narrator.StartTalking(
             step.dialogueKey,
@@ -187,18 +213,68 @@ public class SequenceDirector : MonoBehaviour
             step.isUsingOverlay
         );
 
-        yield return new WaitForSeconds(talkingTime);
+        yield return WaitForDialogueDuration(talkingTime, step);
+
+        if (CanInterruptDialogueWithAction(step) && hasPerformedAction)
+        {
+            // Early action during dialogue: immediately halt speech, close UI, update animator
+            narrator.StopDialogue(step.bodyEndState, step.mouthEndState);
+            yield break;
+        }
 
         narrator.FinishDialogue(step.bodyEndState, step.mouthEndState);
 
-        yield return new WaitForSeconds(step.timeWaitAfterTalking);
+        if (step.timeWaitAfterTalking > 0f)
+        {
+            yield return WaitForDialogueDuration(step.timeWaitAfterTalking, step);
+            if (CanInterruptDialogueWithAction(step) && hasPerformedAction)
+            {
+                narrator.DisableDialogueBox();
+                yield break;
+            }
+        }
 
         narrator.DisableDialogueBox();
+    }
+
+    IEnumerator WaitForDialogueDuration(float duration, SequenceStep step)
+    {
+        float timer = 0f;
+        while (timer < duration)
+        {
+            if (CanInterruptDialogueWithAction(step) && hasPerformedAction)
+            {
+                yield break;
+            }
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+    bool CanInterruptDialogueWithAction(SequenceStep step)
+    {
+        return step != null && step.hasInteraction && step.allowEarlyAction;
     }
 
     IEnumerator HandleInteraction(SequenceStep step)
     {
         if (!step.hasInteraction) yield break;
+
+        // If player already performed action early (e.g. during Phase 2 speech), proceed immediately
+        if (hasPerformedAction)
+        {
+            hasPerformedAction = false;
+            pendingTriggers.Clear();
+
+            if (step.isSceneTransition)
+            {
+                isSceneLoading = true;
+                isReadyToProceed = false;
+                SceneTransition.Instance.SwitchScene(step.sceneToLoad);
+            }
+            yield break;
+        }
 
         hasPerformedAction = false;
         float timer = 0f;
@@ -236,7 +312,9 @@ public class SequenceDirector : MonoBehaviour
                     if (triggered)
                     {
                         triggeredSubSteps.Add(subStepEntry);
+                        currentExecutingStep = subStepEntry.subStep;
                         yield return StartCoroutine(ExecuteStep(subStepEntry.subStep, false));
+                        currentExecutingStep = step;
                         break;
                     }
                 }
@@ -275,7 +353,6 @@ public class SequenceDirector : MonoBehaviour
     }
     #endregion
 
-
     #region Steps Management
     public void InsertNextSteps(IEnumerable<SequenceStep> newSteps)
     {
@@ -283,13 +360,92 @@ public class SequenceDirector : MonoBehaviour
         int insertIndex = Mathf.Clamp(currentStepIndex + 1, 0, sequenceSteps.Count);
         sequenceSteps.InsertRange(insertIndex, newSteps);
     }
+
     public void EnqueueSteps(IEnumerable<SequenceStep> newSteps)
     {
         if (newSteps == null) return;
         sequenceSteps.AddRange(newSteps);
     }
-    #endregion
 
+    public void InterruptAndPlaySteps(IEnumerable<SequenceStep> newSteps, bool discardCurrentStep = true)
+    {
+        if (newSteps == null) return;
+        if (isSceneLoading || !isReadyToProceed) return;
+
+        SequenceStep stepToInterrupt = currentExecutingStep != null
+            ? currentExecutingStep
+            : (currentStepIndex < sequenceSteps.Count ? sequenceSteps[currentStepIndex] : null);
+
+        // Check if the step being interrupted permits immediate interruption
+        if (stepToInterrupt != null && !stepToInterrupt.canBeInterrupted)
+        {
+            InsertNextSteps(newSteps);
+            return;
+        }
+
+        // 1. Stop all active sequence and step coroutines
+        StopAllCoroutines();
+        currentSequenceCoroutine = null;
+
+        // 2. Clean up current step visual/audio/state
+        CleanupCurrentStep();
+
+        // 3. Mutate the queue
+        if (discardCurrentStep && currentStepIndex < sequenceSteps.Count)
+        {
+            sequenceSteps.RemoveAt(currentStepIndex);
+        }
+
+        int insertIndex = Mathf.Clamp(currentStepIndex, 0, sequenceSteps.Count);
+        sequenceSteps.InsertRange(insertIndex, newSteps);
+
+        // 4. Resume sequence execution immediately
+        currentSequenceCoroutine = StartCoroutine(ExecuteSequence());
+    }
+
+    void CleanupCurrentStep()
+    {
+        hasPerformedAction = false;
+        pendingTriggers.Clear();
+
+        SequenceStep step = currentExecutingStep != null
+            ? currentExecutingStep
+            : (currentStepIndex < sequenceSteps.Count ? sequenceSteps[currentStepIndex] : null);
+
+        if (narrator != null)
+        {
+            if (step != null && step.hasDialogue)
+            {
+                narrator.StopDialogue(step.bodyEndState, step.mouthEndState);
+            }
+            else
+            {
+                narrator.StopDialogue();
+            }
+
+            if (step != null && step.hasNarratorMovement)
+            {
+                narrator.SnapMovement(
+                    step.targetNarratorPosition,
+                    step.hasNarratorRotation,
+                    step.targetNarratorRotation,
+                    step.targetNarratorScale
+                );
+            }
+            else
+            {
+                narrator.StopMovement();
+            }
+        }
+
+        if (eventDirector != null && eventDirector.currentSequenceEvent != null)
+        {
+            eventDirector.currentSequenceEvent.StopDelayedEvents();
+        }
+
+        currentExecutingStep = null;
+    }
+    #endregion
 
     public void PerformAction()
     {
@@ -299,7 +455,7 @@ public class SequenceDirector : MonoBehaviour
 
     void KeyboardPerformAction()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             PerformAction();
         }
