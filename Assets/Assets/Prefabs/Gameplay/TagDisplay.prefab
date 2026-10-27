@@ -65,10 +65,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Test Word Test Word '
+  m_text: Antibiotiques
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 53d944a7279bdaa4b83a40c70f04d3a3, type: 2}
-  m_sharedMaterial: {fileID: 5861578820526593033, guid: 53d944a7279bdaa4b83a40c70f04d3a3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 5147954925533015253}
   - component: {fileID: 5075279372224988314}
   - component: {fileID: 5572336707387417363}
+  - component: {fileID: 5389565976286423837}
   m_Layer: 5
   m_Name: TagDisplay
   m_TagString: Untagged
@@ -267,6 +268,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &5389565976286423837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3084999123385625351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a48447bd24caa44f8dff8ce07e87973, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LocalizedKey
+  localizationKey: tag.antibiotics
+  audioSource: {fileID: 0}
+  textComponent: {fileID: 8102558882551354819}
 --- !u!1 &6620690562291598029
 GameObject:
   m_ObjectHideFlags: 0

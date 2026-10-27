@@ -27,6 +27,10 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField] GameObject farMarker;
     [SerializeField] float heightOffset = 1.5f;
 
+    [Header("Far Marker Pollutant")]
+    [Tooltip("Optional. TagDisplay placed as a child of the Far Marker. It shows the pollutant once it has been found (tag validated).")]
+    [SerializeField] TagDisplay farTagDisplay;
+
     [Header("Proximity Trigger Distance")]
     [SerializeField] float triggerDistance = 3f;
 
@@ -125,6 +129,9 @@ public class PointOfInterest : MonoBehaviour
 
         // Canvas components must be off initially before any interaction
         SetCanvasSubComponentsActive(false);
+
+        // The pollutant is hidden on the far marker until it has been found
+        RefreshFarTagDisplay();
     }
 
     void Start()
@@ -240,6 +247,29 @@ public class PointOfInterest : MonoBehaviour
         if (scannedMarker != null) scannedMarker.SetActive(active);
         if (tagCarousel != null) tagCarousel.gameObject.SetActive(active);
         if (farMarker != null) farMarker.SetActive(active);
+    }
+
+    /// <summary>
+    /// Shows the found pollutant on the far marker when the tag is validated,
+    /// hides it otherwise. The display should be a child of the far marker so it
+    /// follows the far marker visibility (only visible when the player is far).
+    /// </summary>
+    void RefreshFarTagDisplay()
+    {
+        if (farTagDisplay == null)
+            return;
+
+        TagData foundTag = isTagValidated ? CurrentTag : null;
+
+        if (foundTag != null)
+        {
+            farTagDisplay.SetData(foundTag);
+            farTagDisplay.gameObject.SetActive(true);
+        }
+        else
+        {
+            farTagDisplay.gameObject.SetActive(false);
+        }
     }
 
     public void CompleteScan()
@@ -428,6 +458,8 @@ public class PointOfInterest : MonoBehaviour
                 Instantiate(validationFXPrefab, transform.position, Quaternion.identity);
             }
 
+            RefreshFarTagDisplay();
+
             OnTagValidated?.Invoke(this);
         }
         else
@@ -505,6 +537,8 @@ public class PointOfInterest : MonoBehaviour
         {
             currentTagIndex = -1;
         }
+
+        RefreshFarTagDisplay();
 
         if (validated)
         {

@@ -127,9 +127,10 @@ MonoBehaviour:
   tagCarousel: {fileID: 4425063417069363176}
   farMarker: {fileID: 6055848192155513210}
   heightOffset: 1.5
+  farTagDisplay: {fileID: 1472931089777674719}
   triggerDistance: 5
-  scannedMarkerFloatDistance: 20
-  scannedMarkerFadeDuration: 2
+  scannedMarkerFloatDistance: 1.5
+  scannedMarkerFadeDuration: 3
   emptyTagData: {fileID: 11400000, guid: 309c0daa9a2600c4e9fa421b5cdb0eaf, type: 2}
   availableTags:
   - {fileID: 11400000, guid: bfd28b1e4fbdf2b428579a33ba7fcb3d, type: 2}
@@ -766,15 +767,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: correctFeedbackColor.b
-      value: 0.18609825
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: correctFeedbackColor.g
-      value: 0.9622642
+      value: 0.4811321
       objectReference: {fileID: 0}
     - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: correctFeedbackColor.r
-      value: 0.50515
+      value: 0.29634947
       objectReference: {fileID: 0}
     - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: incorrectFeedbackColor.b
@@ -1012,7 +1013,7 @@ PrefabInstance:
     - target: {fileID: 448617979833691652, guid: 3ed94b76e5353c849aed481c895ad792, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 53d944a7279bdaa4b83a40c70f04d3a3, type: 2}
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 448617979833691652, guid: 3ed94b76e5353c849aed481c895ad792, type: 3}
       propertyPath: m_fontStyle
       value: 1
@@ -1020,7 +1021,7 @@ PrefabInstance:
     - target: {fileID: 448617979833691652, guid: 3ed94b76e5353c849aed481c895ad792, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 5861578820526593033, guid: 53d944a7279bdaa4b83a40c70f04d3a3, type: 2}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 448617979833691652, guid: 3ed94b76e5353c849aed481c895ad792, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
@@ -1354,6 +1355,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cbd6e00945a85b4891001c59bc70f38, type: 3}
+--- !u!114 &1472931089777674719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7686035455800218530, guid: 2cbd6e00945a85b4891001c59bc70f38, type: 3}
+  m_PrefabInstance: {fileID: 9140811374682987133}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f70581d5d6ff04a89c79d2aba4c76b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TagDisplay
 --- !u!224 &1758198743632253917 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7403020529074522528, guid: 2cbd6e00945a85b4891001c59bc70f38, type: 3}
