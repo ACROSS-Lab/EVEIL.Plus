@@ -224,7 +224,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &5147954925533015253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -259,6 +259,8 @@ MonoBehaviour:
   background: {fileID: 0}
   gradient1: {fileID: 0}
   gradient2: {fileID: 0}
+  inputHintLabel: {fileID: 0}
+  answerLabel: {fileID: 0}
 --- !u!225 &5572336707387417363
 CanvasGroup:
   m_ObjectHideFlags: 0

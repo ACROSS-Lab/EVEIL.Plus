@@ -15,7 +15,8 @@ public class TagDisplay : MonoBehaviour
     [SerializeField] Image background;
     [SerializeField] Image gradient1;
     [SerializeField] Image gradient2;
-    [SerializeField] TMP_Text holdHintLabel;
+    [SerializeField] TMP_Text inputHintLabel;
+    [SerializeField] TMP_Text answerLabel;
     
     Color backgroundBase = Color.white;
     Color gradient2Base = Color.white;
@@ -82,8 +83,12 @@ public class TagDisplay : MonoBehaviour
         SetActive(gradient1, true);
         SetActive(background, false);
         SetActive(gradient2, false);
-        if (holdHintLabel != null) holdHintLabel.gameObject.SetActive(true);
+        
+        if (label != null) label.gameObject.SetActive(true);
+        if (inputHintLabel != null) inputHintLabel.gameObject.SetActive(true);
+        if (answerLabel != null) answerLabel.gameObject.SetActive(false);
 
+        
         if (background != null) background.color = backgroundBase;
         if (gradient2 != null) gradient2.color = gradient2Base;
     }
@@ -94,7 +99,15 @@ public class TagDisplay : MonoBehaviour
         SetActive(gradient1, false);
         SetActive(background, true);
         SetActive(gradient2, true);
-        if (holdHintLabel != null) holdHintLabel.gameObject.SetActive(false);
+        
+        if (answerLabel != null)
+        {
+            if (label != null) answerLabel.text = label.text;
+            answerLabel.gameObject.SetActive(true);
+        }
+        
+        if (label != null) label.gameObject.SetActive(false); 
+        if (inputHintLabel != null) inputHintLabel.gameObject.SetActive(false);
 
         if (background != null) background.color = Tinted(backgroundBase, tint);
         if (gradient2 != null) gradient2.color = Tinted(gradient2Base, tint);

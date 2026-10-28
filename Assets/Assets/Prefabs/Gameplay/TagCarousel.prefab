@@ -257,15 +257,28 @@ MonoBehaviour:
   startAngle: 90
   hoveredScale: 1.2
   shrunkScale: 0.75
-  hoverScaleDuration: 0.15
-  hoverEase: 9
   unhoveredAlpha: 0.5
-  hoverFadeDuration: 0.15
+  unhoveredRadiusScale: 0.85
+  hoverDuration: 0.15
+  hoverEase: 9
   holdDuration: 0.8
   fillReleaseDuration: 0.25
   holdExitGraceDuration: 0.25
+  heldOptionColor: {r: 1, g: 0.85, b: 0.2, a: 1}
+  tintHeldText: 1
+  tintHeldGraphics: 1
+  heldTintStrength: 1
+  heldTintDuration: 0.1
+  hoverAudioSource: {fileID: 0}
+  holdAudioSource: {fileID: 0}
+  hoverSFX: {fileID: 0}
+  hoverSFXVolume: 1
+  holdLoopSFX: {fileID: 0}
+  holdSFXVolume: 1
+  holdPitchStart: 0.8
+  holdPitchEnd: 1.4
   hitAreaPadding: 8
-  hitZoneColor: {r: 1, g: 1, b: 1, a: 0.01}
+  hitZoneColor: {r: 1, g: 1, b: 1, a: 0}
   fallbackHitZoneSize: {x: 100, y: 100}
   optionsShowDuration: 0.3
   optionsShowStagger: 0.03
@@ -273,13 +286,9 @@ MonoBehaviour:
   correctFeedbackColor: {r: 0.2, g: 0.85, b: 0.3, a: 1}
   incorrectFeedbackColor: {r: 0.9, g: 0.25, b: 0.2, a: 1}
   tintCenterOnCorrect: 1
-  tintCenterText: 1
-  tintCenterGraphics: 1
-  feedbackTintStrength: 1
   feedbackPunchScale: 1.25
   feedbackPunchDuration: 0.3
   incorrectDisplayDuration: 1
-  debugLogs: 0
 --- !u!114 &6012816504156641282
 MonoBehaviour:
   m_ObjectHideFlags: 0
