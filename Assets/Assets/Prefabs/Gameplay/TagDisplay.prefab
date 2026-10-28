@@ -256,6 +256,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TagDisplay
   label: {fileID: 8102558882551354819}
   holdFill: {fileID: 0}
+  background: {fileID: 0}
+  gradient1: {fileID: 0}
+  gradient2: {fileID: 0}
 --- !u!225 &5572336707387417363
 CanvasGroup:
   m_ObjectHideFlags: 0

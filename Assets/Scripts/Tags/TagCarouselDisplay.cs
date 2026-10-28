@@ -186,13 +186,6 @@ public class TagCarouselDisplay : MonoBehaviour
     [SerializeField] Color incorrectFeedbackColor = new Color(0.9f, 0.25f, 0.2f, 1f);
     [Tooltip("If false, the center is not tinted when the answer is correct.")]
     [SerializeField] bool tintCenterOnCorrect = true;
-    [Tooltip("Tint the text of the center. Uncheck to keep the text color of the prefab.")]
-    [SerializeField] bool tintCenterText = true;
-    [Tooltip("Tint the other graphics of the center (background, decorations).")]
-    [SerializeField] bool tintCenterGraphics = true;
-    [Tooltip("How much of the feedback color replaces the original color. 0 keeps the prefab colors, 1 uses the feedback color fully.")]
-    [Range(0f, 1f)]
-    [SerializeField] float feedbackTintStrength = 1f;
     [Tooltip("Scale punch multiplier of the center when the feedback appears.")]
     [SerializeField] float feedbackPunchScale = 1.25f;
     [SerializeField] float feedbackPunchDuration = 0.3f;
@@ -206,7 +199,6 @@ public class TagCarouselDisplay : MonoBehaviour
     public event Action OnIncorrectFeedbackFinished;
 
     readonly List<OptionItem> options = new List<OptionItem>();
-    readonly GraphicSet centerColors = new GraphicSet();
 
     TagData[] tags;
     TagData emptyData;
@@ -682,23 +674,18 @@ public class TagCarouselDisplay : MonoBehaviour
     // Shows the tag in the center with its original colors. A null tag hides the center.
     void SetCenter(TagData data)
     {
-        centerColors.Restore();
         centerDisplay.SetData(data);
-        centerColors.Cache(centerRect, holdFill);
+        centerDisplay.ShowNeutral();
         centerInstance.SetActive(data != null);
     }
 
     void ShowInCenter(int index, bool tint, Color color)
     {
-        if (index >= 0 && tags != null && index < tags.Length && tags[index] != null) SetCenter(tags[index]);
-        else centerColors.Restore();
+        bool validIndex = index >= 0 && tags != null && index < tags.Length && tags[index] != null;
+        if (validIndex) centerDisplay.SetData(tags[index]);
 
+        centerDisplay.ShowResult(tint ? color : (Color?)null);
         centerInstance.SetActive(true);
-
-        if (tint)
-        {
-            centerColors.Apply(color, tintCenterText, tintCenterGraphics, feedbackTintStrength, 0f);
-        }
 
         centerRect.DOKill();
         centerRect.localScale = centerBaseScale;
