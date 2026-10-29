@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7931499321851682693}
   - component: {fileID: 3573861549144454460}
   - component: {fileID: 3426192824951069459}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 622713949435430799}
   - component: {fileID: 2134627166339982507}
   - component: {fileID: 3675430474805596827}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: AnswerLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 6101884374571554090}
   - component: {fileID: 2333552764097101866}
   - component: {fileID: 5537857446464783099}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: InputHintLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 241884202585369362}
   - component: {fileID: 8523509765405116872}
   - component: {fileID: 561368957134135367}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +506,7 @@ GameObject:
   - component: {fileID: 478103378954172473}
   - component: {fileID: 3106435417376822998}
   - component: {fileID: 2360829162762868300}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Gradient
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +607,7 @@ GameObject:
   - component: {fileID: 967157537704475391}
   - component: {fileID: 6823428700382428957}
   - component: {fileID: 3198044956875221651}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: ActionHintLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,7 +745,7 @@ GameObject:
   - component: {fileID: 6587932233975047207}
   - component: {fileID: 4799650353471257970}
   - component: {fileID: 3435931136787559524}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Gradient (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -849,7 +849,7 @@ GameObject:
   - component: {fileID: 1973310099903484805}
   - component: {fileID: 1908590680372460490}
   - component: {fileID: 1245038693419080771}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: TagDisplay_Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -927,7 +927,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1973310099903484805
 MonoBehaviour:
   m_ObjectHideFlags: 0

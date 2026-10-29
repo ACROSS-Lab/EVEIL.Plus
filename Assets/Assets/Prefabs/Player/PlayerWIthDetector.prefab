@@ -557,7 +557,13 @@ MonoBehaviour:
   menuCanvas: {fileID: 4633277329776085084}
   AButton: {fileID: 0}
   BButton: {fileID: 0}
-  guideOpened:
+  GuideToggled:
+    m_PersistentCalls:
+      m_Calls: []
+  GuideOpened:
+    m_PersistentCalls:
+      m_Calls: []
+  GuideClosed:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &6098888186140502465
@@ -1259,7 +1265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1767192439, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 407
+      value: 919
       objectReference: {fileID: 0}
     - target: {fileID: 1142518704764219382, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_RestingVisualLineLength

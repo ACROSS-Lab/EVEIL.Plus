@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5872594985506391471}
   - component: {fileID: 189748143398699085}
   - component: {fileID: 8102558882551354819}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 5075279372224988314}
   - component: {fileID: 5572336707387417363}
   - component: {fileID: 5389565976286423837}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: TagDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &5147954925533015253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 3603431873081417941}
   - component: {fileID: 7893480333390154348}
   - component: {fileID: 8331631371191411779}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
