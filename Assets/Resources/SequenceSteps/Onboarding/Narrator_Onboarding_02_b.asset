@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 272b3340dec6323418bfbb3b98283410, type: 3}
-  m_Name: Narrator_Scan_02_b
+  m_Name: Narrator_Onboarding_02_b
   m_EditorClassIdentifier: Assembly-CSharp::SequenceStep
   hasSequenceEvents: 1
   hasNarratorMovement: 0
-  targetNarratorPosition: {x: 0, y: 0, z: 0}
+  targetNarratorPosition: {x: -5.02, y: 1.5, z: 11.68}
   offsetAtCenter: {x: 0, y: 0, z: 0}
-  hasNarratorRotation: 0
-  targetNarratorRotation: {x: 0, y: 0, z: 0}
-  targetNarratorScale: 0
-  flyDuration: 0
+  hasNarratorRotation: 1
+  targetNarratorRotation: {x: 0, y: 149.44685, z: 0}
+  targetNarratorScale: 1
+  flyDuration: 0.7
   hasPlayerMovement: 0
   playerTargetPosition: {x: 0, y: 0, z: 0}
   hasPlayerRotation: 0
@@ -27,18 +27,24 @@ MonoBehaviour:
   hasDialogue: 0
   characterStates: {fileID: 11400000, guid: 1fa3470f8cdcfd44592bb98dd66da925, type: 2}
   timeWaitBeforeTalking: 0.2
-  dialogueKey: Key.Narrator.Scan.02
+  dialogueKey: Key.Narrator.Onboarding.01
   isUsingOverlay: 0
   eyesState: 0
-  bodyStartState: 3
-  bodyEndState: 4
+  bodyStartState: 2
+  bodyEndState: 0
   mouthStartState: 1
   mouthEndState: 0
-  timeWaitAfterTalking: 0.5
+  timeWaitAfterTalking: 1
+  allowEarlyAction: 0
+  canBeInterrupted: 0
   hasInteraction: 0
-  hasInfiniteTimeout: 1
+  hasInfiniteTimeout: 0
   waitTimeout: 0
   isSceneTransition: 0
   sceneToLoad: 
   hasSubStep: 0
-  subStepEntries: []
+  subStepEntries:
+  - subStep: {fileID: 11400000, guid: 99a81f90ff27689429718db8b9d7dafa, type: 2}
+    triggerType: 1
+    delayTime: 0
+    triggerKey: ReachFirstTarget

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Narrator_Onboarding_03
   m_EditorClassIdentifier: Assembly-CSharp::SequenceStep
   hasSequenceEvents: 1
-  hasNarratorMovement: 1
+  hasNarratorMovement: 0
   targetNarratorPosition: {x: 2.43, y: 1.5, z: 20.46}
   offsetAtCenter: {x: 0, y: 0, z: 0}
   hasNarratorRotation: 1
@@ -35,6 +35,8 @@ MonoBehaviour:
   mouthStartState: 1
   mouthEndState: 0
   timeWaitAfterTalking: 1
+  allowEarlyAction: 1
+  canBeInterrupted: 1
   hasInteraction: 0
   hasInfiniteTimeout: 1
   waitTimeout: 0
