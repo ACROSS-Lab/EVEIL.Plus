@@ -11,7 +11,7 @@ public class TagDisplay : MonoBehaviour
 
     private LocalizedKey localizedKey;
     
-    [Header("Look du centre")]
+    [Header("Pie center appearance")]
     [SerializeField] Image background;
     [SerializeField] Image gradient1;
     [SerializeField] Image gradient2;

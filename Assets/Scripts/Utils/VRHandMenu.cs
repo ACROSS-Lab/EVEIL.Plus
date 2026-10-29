@@ -13,7 +13,9 @@ public class VRHandMenu : MonoBehaviour
     [SerializeField] private InputActionReference AButton;
     [SerializeField] private InputActionReference BButton;
 
-    public UnityEvent guideOpened;
+    public UnityEvent GuideToggled;
+    public UnityEvent GuideOpened;
+    public UnityEvent GuideClosed;
     
     private void Update()
     {
@@ -33,9 +35,22 @@ public class VRHandMenu : MonoBehaviour
     {
         if (menuCanvas != null)
         {
+            bool isOpening = !menuCanvas.activeSelf;
+            
             // Toggle the active state of the canvas
             menuCanvas.SetActive(!menuCanvas.activeInHierarchy);
-            guideOpened.Invoke();
+            GuideToggled.Invoke();
+            
+            if (isOpening)
+            {
+                GuideOpened?.Invoke();
+            }
+            else
+            {
+                GuideClosed?.Invoke();
+            }
         }
+        
+        
     }
 }
