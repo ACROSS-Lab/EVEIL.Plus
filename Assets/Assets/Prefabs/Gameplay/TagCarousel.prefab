@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7632549353875664312}
   - component: {fileID: 3102708145163042409}
   - component: {fileID: 8572517876210489268}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ValidationButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 3453147323974828917}
   - component: {fileID: 9107949228895779782}
   - component: {fileID: 2006951748650754078}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 7403020529074522528}
   - component: {fileID: 2641341661470969653}
   - component: {fileID: 6012816504156641282}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TagCarousel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 907731223424192850}
   - component: {fileID: 6615006683040549348}
   - component: {fileID: 3375061852457136335}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Validate_Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -470,7 +470,7 @@ GameObject:
   - component: {fileID: 5268708370943287688}
   - component: {fileID: 7893480333390154348}
   - component: {fileID: 3987769103228841420}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: ItemsContainerButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,7 +603,7 @@ GameObject:
   - component: {fileID: 6993318170382239102}
   - component: {fileID: 2926904053308367493}
   - component: {fileID: 3319263035791131756}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Validated_Contour
   m_TagString: Untagged
   m_Icon: {fileID: 0}

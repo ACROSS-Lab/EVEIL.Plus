@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1907301503564353340}
   - component: {fileID: 448617979833691652}
   - component: {fileID: 1799693776726476573}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 7989866984315009528}
   - component: {fileID: 3095151636111055028}
   - component: {fileID: 5147954925533015253}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TagScannedMarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &5147954925533015253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 3269310958182950425}
   - component: {fileID: 932346994790505327}
   - component: {fileID: 3327265707785549646}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 8276450485503478926}
   - component: {fileID: 4154034958253900368}
   - component: {fileID: 4318519205859078809}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

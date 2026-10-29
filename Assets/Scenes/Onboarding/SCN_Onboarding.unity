@@ -928,7 +928,8 @@ MonoBehaviour:
   canBeRepeated: 1
   sequenceSteps:
   - {fileID: 11400000, guid: dbfd48c349b8b794eba9711c1cd8331e, type: 2}
-  insertMode: 0
+  insertMode: 2
+  discardCurrentStep: 1
 --- !u!1 &94518215
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,7 +960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceDirector
   sequenceSteps: []
-  jumpToStepIndex: 0
+  jumpToStepIndex: 5
 --- !u!4 &94518217
 Transform:
   m_ObjectHideFlags: 0
@@ -1719,7 +1720,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c5dfaa7f0249d7345b024e0b8f1ba2c6, type: 2}
   - {fileID: 11400000, guid: 1c8d80bbd145dd841813eedc3e0ef567, type: 2}
   - {fileID: 11400000, guid: 8cf3a3624aad4504fa831e002b9c271c, type: 2}
-  insertMode: 0
+  insertMode: 2
+  discardCurrentStep: 1
 --- !u!1001 &229473698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3090,6 +3092,30 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1426582679}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 475481526}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   animationIndex: 0
   simulationDelayStart: 0
   startTime:
@@ -4152,7 +4178,8 @@ MonoBehaviour:
   canBeRepeated: 0
   sequenceSteps:
   - {fileID: 11400000, guid: 86e509a908a46e14b9a37b15896f11da, type: 2}
-  insertMode: 0
+  insertMode: 2
+  discardCurrentStep: 1
 --- !u!1 &548297482
 GameObject:
   m_ObjectHideFlags: 0
@@ -4201,7 +4228,8 @@ MonoBehaviour:
   canBeRepeated: 0
   sequenceSteps:
   - {fileID: 11400000, guid: 075505f83c2bba84d8387e6e5a4feb34, type: 2}
-  insertMode: 0
+  insertMode: 2
+  discardCurrentStep: 1
 --- !u!1001 &557199303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4789,15 +4817,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8977365062671881994, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
       propertyPath: eventsWithDelay.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8977365062671881994, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
       propertyPath: eventsWithDelay.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8977365062671881994, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
       propertyPath: eventsWithDelay.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8977365062671881994, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
       propertyPath: eventsWithDelay.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
@@ -4806,11 +4834,11 @@ PrefabInstance:
     - target: {fileID: 8977365062671881994, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
       propertyPath: eventsWithDelay.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1599605289}
+      objectReference: {fileID: 1599605280}
     - target: {fileID: 8977365062671881994, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
       propertyPath: eventsWithDelay.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1642145180}
+      objectReference: {fileID: 1599605289}
     - target: {fileID: 8977365062671881994, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
       propertyPath: eventsWithDelay.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
@@ -4829,11 +4857,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8977365062671881994, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
       propertyPath: eventsWithDelay.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowHighlights
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 8977365062671881994, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
       propertyPath: eventsWithDelay.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
+      value: ShowHighlights
       objectReference: {fileID: 0}
     - target: {fileID: 8977365062671881994, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
       propertyPath: eventsWithDelay.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
@@ -4841,15 +4869,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8977365062671881994, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
       propertyPath: eventsWithDelay.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: OnboardingHighlight, Assembly-CSharp
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8977365062671881994, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
       propertyPath: eventsWithDelay.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: OnboardingHighlight, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8977365062671881994, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
       propertyPath: eventsWithDelay.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8977365062671881994, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
+      propertyPath: eventsWithDelay.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8977365062671881994, guid: f7d56eb85ceb3814f9901d987476ab27, type: 3}
       propertyPath: eventsWithDelay.Array.data[0].unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -6023,6 +6055,18 @@ MonoBehaviour:
         - m_Target: {fileID: 1642145180}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1408665988}
+          m_TargetAssemblyTypeName: FlyHorizontally, Assembly-CSharp
+          m_MethodName: set_enabled
           m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7803,7 +7847,8 @@ MonoBehaviour:
   canBeRepeated: 1
   sequenceSteps:
   - {fileID: 11400000, guid: a52bca88ce1b56b4e9f040918deaea33, type: 2}
-  insertMode: 0
+  insertMode: 2
+  discardCurrentStep: 1
 --- !u!1001 &1284096645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7928,7 +7973,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cfafdf94931e4614aacb2de9a45de108, type: 2}
   - {fileID: 11400000, guid: e4119829b67d804419b8695948a42cc1, type: 2}
   - {fileID: 11400000, guid: a4e457a62f5f5ae42af6ec7c993d7b2b, type: 2}
-  insertMode: 0
+  insertMode: 2
+  discardCurrentStep: 1
 --- !u!1001 &1298974481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8230,7 +8276,8 @@ MonoBehaviour:
   canBeRepeated: 0
   sequenceSteps:
   - {fileID: 11400000, guid: e2d8e024b428c2a49a0d96b50d8e0128, type: 2}
-  insertMode: 0
+  insertMode: 2
+  discardCurrentStep: 1
 --- !u!1001 &1382103594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8553,6 +8600,66 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
         - m_Target: {fileID: 865181076}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1408665988}
+          m_TargetAssemblyTypeName: FlyHorizontally, Assembly-CSharp
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1426582679}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1599605280}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 475481526}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1098491902}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
@@ -9263,6 +9370,18 @@ MonoBehaviour:
     unityEvent:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 1098491902}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
         - m_Target: {fileID: 1098491909}
           m_TargetAssemblyTypeName: OnboardingHighlight, Assembly-CSharp
           m_MethodName: ShowHighlights
@@ -9407,6 +9526,51 @@ MonoBehaviour:
     hour: 0
   startHeight: 0
   endHeight: 0
+--- !u!1 &1495959500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1495959502}
+  - component: {fileID: 1495959501}
+  m_Layer: 0
+  m_Name: LocalizationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1495959501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495959500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cd0e14959149054eb7aae955b22ebbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LocalizationManager
+  currentLanguage: English
+--- !u!4 &1495959502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495959500}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1511466222
 GameObject:
   m_ObjectHideFlags: 0
@@ -9462,6 +9626,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3762642f36514aa4691bc16d6e9d9cdf, type: 2}
   - {fileID: 11400000, guid: fdeac691b4a529649b1edbbfb04a6c29, type: 2}
   insertMode: 0
+  discardCurrentStep: 1
 --- !u!1001 &1519924611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11424,7 +11589,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 210d2d3da235d7347bd234e4f63ab73e, type: 2}
   - {fileID: 11400000, guid: cd9ef7ad00b8bcd4bbafa9e8473885dd, type: 2}
   - {fileID: 11400000, guid: 486eb990ab77ea049b6085c848d1bf62, type: 2}
-  insertMode: 0
+  insertMode: 2
+  discardCurrentStep: 1
 --- !u!4 &1910929712
 Transform:
   m_ObjectHideFlags: 0
@@ -12918,3 +13084,4 @@ SceneRoots:
   - {fileID: 433180515}
   - {fileID: 178474840}
   - {fileID: 4627611201279025942}
+  - {fileID: 1495959502}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8316364776367487922}
   - component: {fileID: 2789028583513725225}
   - component: {fileID: 8837474501216356657}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7897484630524645670}
   - component: {fileID: 7686035455800218530}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TagDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,6 +187,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TagDisplay
   label: {fileID: 8837474501216356657}
   holdFill: {fileID: 0}
+  background: {fileID: 0}
+  gradient1: {fileID: 0}
+  gradient2: {fileID: 0}
+  inputHintLabel: {fileID: 0}
+  answerLabel: {fileID: 0}
 --- !u!1 &2998952539811060779
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +204,7 @@ GameObject:
   - component: {fileID: 1907301503564353340}
   - component: {fileID: 448617979833691652}
   - component: {fileID: 1799693776726476573}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -352,7 +357,7 @@ GameObject:
   - component: {fileID: 7989866984315009528}
   - component: {fileID: 3095151636111055028}
   - component: {fileID: 5147954925533015253}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: TagFarMarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,7 +459,7 @@ GameObject:
   - component: {fileID: 8975661794720837528}
   - component: {fileID: 6400524659725249332}
   - component: {fileID: 4370516085700793498}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: FarPollutant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,7 +536,7 @@ GameObject:
   - component: {fileID: 8276450485503478926}
   - component: {fileID: 4154034958253900368}
   - component: {fileID: 4318519205859078809}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -607,7 +612,7 @@ GameObject:
   - component: {fileID: 4497391248703146430}
   - component: {fileID: 3073757550037199293}
   - component: {fileID: 6917747846518286059}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
