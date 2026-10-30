@@ -12,6 +12,14 @@ public enum InterruptionDiscardMode
     DiscardAllRemainingSteps = 2,
 }
 
+public enum StepSelectionMode
+{
+    [Tooltip("Add all steps in the list in order")]
+    All = 0,
+    [Tooltip("Pick one random step from the list")]
+    RandomOne = 1,
+}
+
 public class SequenceTrack : MonoBehaviour
 {
     public enum ExecutionMode
@@ -30,6 +38,13 @@ public class SequenceTrack : MonoBehaviour
     [SerializeField] bool canBeRepeated = false;
 
     [Header("List of adding steps")]
+    [Tooltip("How steps from this track are chosen when triggered.")]
+    [SerializeField] StepSelectionMode selectionMode = StepSelectionMode.All;
+
+    [ShowIf("isRandom")]
+    [Tooltip("If true, avoids picking the exact same step consecutively when this track is triggered multiple times.")]
+    [SerializeField] bool avoidConsecutiveRepeat = true;
+
     [SerializeField] List<SequenceStep> sequenceSteps;
 
     [SerializeField] ExecutionMode insertMode = ExecutionMode.Next;
@@ -41,9 +56,12 @@ public class SequenceTrack : MonoBehaviour
     // Persists across all scene transitions during this play session
     static readonly HashSet<string> triggeredTracks = new HashSet<string>();
 
+    int lastRandomIndex = -1;
+
     string trackId => $"{gameObject.scene.name}_{gameObject.name}";
     bool isRepeatable => !triggerOnStart && canBeRepeated;
     bool isImmediate => insertMode == ExecutionMode.Immediate;
+    bool isRandom => selectionMode == StepSelectionMode.RandomOne;
 
     // Resets static tracking when entering Play Mode in the Unity Editor
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
@@ -79,11 +97,41 @@ public class SequenceTrack : MonoBehaviour
         triggeredTracks.Add(trackId);
     }
 
+    List<SequenceStep> GetStepsToExecute()
+    {
+        if (sequenceSteps == null || sequenceSteps.Count == 0) return null;
+
+        if (selectionMode == StepSelectionMode.RandomOne)
+        {
+            if (sequenceSteps.Count == 1)
+            {
+                return sequenceSteps[0] != null ? new List<SequenceStep> { sequenceSteps[0] } : null;
+            }
+
+            int index = Random.Range(0, sequenceSteps.Count);
+            if (avoidConsecutiveRepeat && index == lastRandomIndex)
+            {
+                // Shift to a different index within [0, Count-1]
+                index = (index + 1 + Random.Range(0, sequenceSteps.Count - 1)) % sequenceSteps.Count;
+            }
+            lastRandomIndex = index;
+
+            SequenceStep chosenStep = sequenceSteps[index];
+            return chosenStep != null ? new List<SequenceStep> { chosenStep } : null;
+        }
+
+        return sequenceSteps;
+    }
+
     void InterruptAndPlay()
     {
         if (SequenceDirector.Instance != null)
         {
-            SequenceDirector.Instance.InterruptAndPlaySteps(sequenceSteps, discardMode);
+            var steps = GetStepsToExecute();
+            if (steps != null && steps.Count > 0)
+            {
+                SequenceDirector.Instance.InterruptAndPlaySteps(steps, discardMode);
+            }
         }
     }
 
@@ -91,7 +139,11 @@ public class SequenceTrack : MonoBehaviour
     {
         if (SequenceDirector.Instance != null)
         {
-            SequenceDirector.Instance.InsertNextSteps(sequenceSteps);
+            var steps = GetStepsToExecute();
+            if (steps != null && steps.Count > 0)
+            {
+                SequenceDirector.Instance.InsertNextSteps(steps);
+            }
         }
     }
 
@@ -99,7 +151,11 @@ public class SequenceTrack : MonoBehaviour
     {
         if (SequenceDirector.Instance != null)
         {
-            SequenceDirector.Instance.EnqueueSteps(sequenceSteps);
+            var steps = GetStepsToExecute();
+            if (steps != null && steps.Count > 0)
+            {
+                SequenceDirector.Instance.EnqueueSteps(steps);
+            }
         }
     }
 }
