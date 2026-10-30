@@ -33,6 +33,20 @@ public class FollowSpline : MonoBehaviour
     [Tooltip("Used only when RandomizeSplineIndex is false")]
     public int SplineIndex = 0;
 
+    
+    [Header("Spawn Scale Animation")]
+    [SerializeField] private bool animateSpawnScale = true;
+    [SerializeField] private float spawnScaleDuration = 1f;
+    
+    [SerializeField] private Vector3 spawnStartScale = Vector3.zero;
+    [SerializeField] private Vector3 spawnTargetScale = Vector3.one;
+    
+    [SerializeField] private AnimationCurve spawnScaleCurve =
+    AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
+    
+    private float _spawnScaleTimer;
+    private bool _isAnimatingSpawnScale;
+    
     private static readonly int Grayscale = Shader.PropertyToID("_Grayscale");
     private static readonly int Scanned = Shader.PropertyToID("_Scanned");
     
@@ -111,6 +125,8 @@ public class FollowSpline : MonoBehaviour
             _t += Random.Range(-RandomAlongSplineRange, RandomAlongSplineRange);
             _t = ((_t % 1f) + 1f) % 1f; // wrap into 0-1 regardless of sign
         }
+        
+        PlaySpawnScaleAnimation();
     }
 
     /// <summary>
@@ -159,8 +175,17 @@ public class FollowSpline : MonoBehaviour
 
         if (Loop)
         {
-            _t %= 1f;
-            if (_t < 0f) _t += 1f;
+            if (_t >= 1f)
+            {
+                _t %= 1f;
+                PlaySpawnScaleAnimation();
+            }
+            else if (_t < 0f)
+            {
+                _t = (_t % 1f + 1f) % 1f;
+                PlaySpawnScaleAnimation();
+            }
+            
         }
         else
         {
@@ -184,6 +209,8 @@ public class FollowSpline : MonoBehaviour
             + worldUp * VerticalOffset;
 
         transform.SetPositionAndRotation(offsetPosition, Quaternion.LookRotation(worldTangent, worldUp));
+        
+        UpdateSpawnScaleAnimation();
     }
     
     public void SetPollutionSource(PointOfInterest source)
@@ -192,20 +219,65 @@ public class FollowSpline : MonoBehaviour
         
         _pollutionSource.OnScanCompleted += OnPollutionSourceScanned;
 
-        UpdateGrayscale();
+        ApplyScannedAppearance();
     }
 
     private void OnPollutionSourceScanned(PointOfInterest source)
     {
-        UpdateGrayscale();
+        ApplyScannedAppearance();
     }
 
-    private void UpdateGrayscale()
+    private void ApplyScannedAppearance()
     {
         // _propertyBlock.SetFloat(Grayscale, _pollutionSource.IsScanned ? 0f : 1f);
         _propertyBlock.SetFloat(Scanned, _pollutionSource.IsScanned ? 0f : 1f);
         
         _targetRenderer.SetPropertyBlock(_propertyBlock);
+    }
+    
+    private void PlaySpawnScaleAnimation()
+    {
+        Debug.Log("adwigawfoiuygaiuwdygfawdf");
+        if (!animateSpawnScale)
+        {
+            _isAnimatingSpawnScale = false;
+            return;
+        }
+    
+        _spawnScaleTimer = 0f;
+        _isAnimatingSpawnScale = true;
+    
+        transform.localScale = spawnStartScale;
+    
+        if (spawnScaleDuration <= 0f)
+        {
+            transform.localScale = spawnTargetScale;
+            _isAnimatingSpawnScale = false;
+        }
+    }
+    
+    private void UpdateSpawnScaleAnimation()
+    {
+        if (!_isAnimatingSpawnScale)
+            return;
+    
+        _spawnScaleTimer += Time.deltaTime;
+    
+        float progress = Mathf.Clamp01(_spawnScaleTimer / spawnScaleDuration);
+    
+        float curveValue = spawnScaleCurve.Evaluate(progress);
+    
+        transform.localScale = Vector3.LerpUnclamped(
+            spawnStartScale,
+            spawnTargetScale,
+            curveValue
+        );
+    
+        if (progress >= 1f)
+        {
+            transform.localScale = spawnTargetScale;
+            _isAnimatingSpawnScale = false;
+        }
     }
 
     private void OnDestroy()
