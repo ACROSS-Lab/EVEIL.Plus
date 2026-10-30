@@ -12,6 +12,10 @@ public class MaterialFloatTweener : MonoBehaviour
     [SerializeField] private float outValue = 0f;
     [SerializeField] private float inValue = 1f;
     [SerializeField] private float duration = 0.5f;
+    [Tooltip("Delay in seconds before FadeIn starts.")]
+    [SerializeField] private float delayIn = 0f;
+    [Tooltip("Delay in seconds before FadeOut starts.")]
+    [SerializeField] private float delayOut = 0f;
 
     private MaterialPropertyBlock block;
     private int propertyId;
@@ -26,19 +30,22 @@ public class MaterialFloatTweener : MonoBehaviour
         Apply(outValue);
     }
 
-    public void FadeIn() => StartTween(inValue);
+    public void FadeIn() => StartTween(inValue, delayIn);
 
-    public void FadeOut() => StartTween(outValue);
+    public void FadeOut() => StartTween(outValue, delayOut);
 
-    private void StartTween(float target)
+    private void StartTween(float target, float delay)
     {
-        // Restarts from the current value, so In/Out can be reversed mid-fade
+        // Cancels any running fade (including one still waiting on its delay)
         if (routine != null) StopCoroutine(routine);
-        routine = StartCoroutine(Tween(target));
+        routine = StartCoroutine(Tween(target, delay));
     }
 
-    private IEnumerator Tween(float target)
+    private IEnumerator Tween(float target, float delay)
     {
+        if (delay > 0f) yield return new WaitForSeconds(delay);
+
+        // Starts from the current value, so In/Out can be reversed mid-fade
         float start = currentValue;
         float t = 0f;
 
