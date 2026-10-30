@@ -2,6 +2,16 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 
+public enum InterruptionDiscardMode
+{
+    [Tooltip("Keep the interrupted step and push it back to resume after this track.")]
+    KeepCurrentStep = 0,
+    [Tooltip("Discard only the step currently playing, keep whatever was queued after it.")]
+    DiscardCurrentStepOnly = 1,
+    [Tooltip("Discard the current step AND all subsequent steps in the queue (full override/branch).")]
+    DiscardAllRemainingSteps = 2,
+}
+
 public class SequenceTrack : MonoBehaviour
 {
     public enum ExecutionMode
@@ -25,8 +35,8 @@ public class SequenceTrack : MonoBehaviour
     [SerializeField] ExecutionMode insertMode = ExecutionMode.Next;
 
     [ShowIf("isImmediate")]
-    [Tooltip("If true, the current step being interrupted will be discarded. If false, it will resume after this track finishes.")]
-    [SerializeField] bool discardCurrentStep = true;
+    [Tooltip("How to handle the currently playing step and any subsequent queued steps when interrupting.")]
+    [SerializeField] InterruptionDiscardMode discardMode = InterruptionDiscardMode.DiscardCurrentStepOnly;
 
     // Persists across all scene transitions during this play session
     static readonly HashSet<string> triggeredTracks = new HashSet<string>();
@@ -73,7 +83,7 @@ public class SequenceTrack : MonoBehaviour
     {
         if (SequenceDirector.Instance != null)
         {
-            SequenceDirector.Instance.InterruptAndPlaySteps(sequenceSteps, discardCurrentStep);
+            SequenceDirector.Instance.InterruptAndPlaySteps(sequenceSteps, discardMode);
         }
     }
 

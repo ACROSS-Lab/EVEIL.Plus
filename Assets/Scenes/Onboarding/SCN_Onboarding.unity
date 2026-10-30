@@ -929,7 +929,7 @@ MonoBehaviour:
   sequenceSteps:
   - {fileID: 11400000, guid: dbfd48c349b8b794eba9711c1cd8331e, type: 2}
   insertMode: 2
-  discardCurrentStep: 1
+  discardMode: 2
 --- !u!1 &94518215
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,7 +1720,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c5dfaa7f0249d7345b024e0b8f1ba2c6, type: 2}
   - {fileID: 11400000, guid: 1c8d80bbd145dd841813eedc3e0ef567, type: 2}
   insertMode: 2
-  discardCurrentStep: 1
+  discardMode: 2
 --- !u!1001 &229473698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4184,7 +4184,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7f53b81f98c2fba45a31340c404291ad, type: 2}
   - {fileID: 11400000, guid: 5eaea6a704032b74baf108937ebb01d8, type: 2}
   insertMode: 2
-  discardCurrentStep: 1
+  discardMode: 1
 --- !u!1 &548297482
 GameObject:
   m_ObjectHideFlags: 0
@@ -4234,7 +4234,7 @@ MonoBehaviour:
   sequenceSteps:
   - {fileID: 11400000, guid: 075505f83c2bba84d8387e6e5a4feb34, type: 2}
   insertMode: 2
-  discardCurrentStep: 1
+  discardMode: 2
 --- !u!1001 &557199303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8040,7 +8040,7 @@ MonoBehaviour:
   sequenceSteps:
   - {fileID: 11400000, guid: a52bca88ce1b56b4e9f040918deaea33, type: 2}
   insertMode: 2
-  discardCurrentStep: 1
+  discardMode: 0
 --- !u!1001 &1284096645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8167,7 +8167,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e4119829b67d804419b8695948a42cc1, type: 2}
   - {fileID: 11400000, guid: a4e457a62f5f5ae42af6ec7c993d7b2b, type: 2}
   insertMode: 2
-  discardCurrentStep: 1
+  discardMode: 2
 --- !u!1001 &1298974481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8470,7 +8470,7 @@ MonoBehaviour:
   sequenceSteps:
   - {fileID: 11400000, guid: 86e509a908a46e14b9a37b15896f11da, type: 2}
   insertMode: 2
-  discardCurrentStep: 1
+  discardMode: 1
 --- !u!1001 &1382103594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9760,7 +9760,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e2d8e024b428c2a49a0d96b50d8e0128, type: 2}
   - {fileID: 11400000, guid: 473f9feb6731c7d42aebdd1446410863, type: 2}
   insertMode: 0
-  discardCurrentStep: 1
+  discardMode: 1
 --- !u!1001 &1519924611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11858,7 +11858,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f6080b30b93ea849bb1dcff60fc955f, type: 2}
   - {fileID: 11400000, guid: 486eb990ab77ea049b6085c848d1bf62, type: 2}
   insertMode: 2
-  discardCurrentStep: 1
+  discardMode: 1
 --- !u!4 &1910929712
 Transform:
   m_ObjectHideFlags: 0

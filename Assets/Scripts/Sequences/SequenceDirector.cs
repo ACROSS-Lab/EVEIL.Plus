@@ -367,7 +367,7 @@ public class SequenceDirector : MonoBehaviour
         sequenceSteps.AddRange(newSteps);
     }
 
-    public void InterruptAndPlaySteps(IEnumerable<SequenceStep> newSteps, bool discardCurrentStep = true)
+    public void InterruptAndPlaySteps(IEnumerable<SequenceStep> newSteps, InterruptionDiscardMode discardMode = InterruptionDiscardMode.DiscardCurrentStepOnly)
     {
         if (newSteps == null) return;
         if (isSceneLoading || !isReadyToProceed) return;
@@ -390,10 +390,24 @@ public class SequenceDirector : MonoBehaviour
         // 2. Clean up current step visual/audio/state
         CleanupCurrentStep();
 
-        // 3. Mutate the queue
-        if (discardCurrentStep && currentStepIndex < sequenceSteps.Count)
+        // 3. Mutate the queue based on discardMode
+        if (currentStepIndex < sequenceSteps.Count)
         {
-            sequenceSteps.RemoveAt(currentStepIndex);
+            switch (discardMode)
+            {
+                case InterruptionDiscardMode.DiscardAllRemainingSteps:
+                    int countToRemove = sequenceSteps.Count - currentStepIndex;
+                    sequenceSteps.RemoveRange(currentStepIndex, countToRemove);
+                    break;
+
+                case InterruptionDiscardMode.DiscardCurrentStepOnly:
+                    sequenceSteps.RemoveAt(currentStepIndex);
+                    break;
+
+                case InterruptionDiscardMode.KeepCurrentStep:
+                    // Keep the interrupted step: it will be pushed back by inserting at currentStepIndex
+                    break;
+            }
         }
 
         int insertIndex = Mathf.Clamp(currentStepIndex, 0, sequenceSteps.Count);
@@ -401,6 +415,11 @@ public class SequenceDirector : MonoBehaviour
 
         // 4. Resume sequence execution immediately
         currentSequenceCoroutine = StartCoroutine(ExecuteSequence());
+    }
+
+    public void InterruptAndPlaySteps(IEnumerable<SequenceStep> newSteps, bool discardCurrentStep)
+    {
+        InterruptAndPlaySteps(newSteps, discardCurrentStep ? InterruptionDiscardMode.DiscardCurrentStepOnly : InterruptionDiscardMode.KeepCurrentStep);
     }
 
     void CleanupCurrentStep()
