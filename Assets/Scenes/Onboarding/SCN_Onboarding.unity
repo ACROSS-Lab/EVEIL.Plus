@@ -926,6 +926,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
   triggerOnStart: 0
   canBeRepeated: 1
+  selectionMode: 0
+  avoidConsecutiveRepeat: 1
   sequenceSteps:
   - {fileID: 11400000, guid: dbfd48c349b8b794eba9711c1cd8331e, type: 2}
   insertMode: 2
@@ -1716,6 +1718,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
   triggerOnStart: 0
   canBeRepeated: 0
+  selectionMode: 0
+  avoidConsecutiveRepeat: 1
   sequenceSteps:
   - {fileID: 11400000, guid: c5dfaa7f0249d7345b024e0b8f1ba2c6, type: 2}
   - {fileID: 11400000, guid: 1c8d80bbd145dd841813eedc3e0ef567, type: 2}
@@ -4180,6 +4184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
   triggerOnStart: 0
   canBeRepeated: 0
+  selectionMode: 0
+  avoidConsecutiveRepeat: 1
   sequenceSteps:
   - {fileID: 11400000, guid: 7f53b81f98c2fba45a31340c404291ad, type: 2}
   - {fileID: 11400000, guid: 5eaea6a704032b74baf108937ebb01d8, type: 2}
@@ -4231,6 +4237,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
   triggerOnStart: 0
   canBeRepeated: 0
+  selectionMode: 0
+  avoidConsecutiveRepeat: 1
   sequenceSteps:
   - {fileID: 11400000, guid: 075505f83c2bba84d8387e6e5a4feb34, type: 2}
   insertMode: 2
@@ -6821,7 +6829,7 @@ MonoBehaviour:
   spawnGroups:
   - Name: Pollutants_test_01
     Prefab: {fileID: 8184073214969815094, guid: 4ce7dbe4ffceda44bab3c07682bf05c8, type: 3}
-    Count: 10
+    Count: 6
     AllowedSplineIndices: 
   spawnParent: {fileID: 0}
 --- !u!1 &1098491902
@@ -8037,6 +8045,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
   triggerOnStart: 0
   canBeRepeated: 1
+  selectionMode: 0
+  avoidConsecutiveRepeat: 1
   sequenceSteps:
   - {fileID: 11400000, guid: a52bca88ce1b56b4e9f040918deaea33, type: 2}
   insertMode: 2
@@ -8161,6 +8171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
   triggerOnStart: 0
   canBeRepeated: 0
+  selectionMode: 0
+  avoidConsecutiveRepeat: 1
   sequenceSteps:
   - {fileID: 11400000, guid: cfafdf94931e4614aacb2de9a45de108, type: 2}
   - {fileID: 11400000, guid: 99b9d7493690c94499076fde13d3018d, type: 2}
@@ -8467,6 +8479,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
   triggerOnStart: 0
   canBeRepeated: 0
+  selectionMode: 0
+  avoidConsecutiveRepeat: 1
   sequenceSteps:
   - {fileID: 11400000, guid: 86e509a908a46e14b9a37b15896f11da, type: 2}
   insertMode: 2
@@ -9750,6 +9764,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
   triggerOnStart: 1
   canBeRepeated: 0
+  selectionMode: 0
+  avoidConsecutiveRepeat: 1
   sequenceSteps:
   - {fileID: 11400000, guid: cb38ed20563434146a4b2114edbaff3c, type: 2}
   - {fileID: 11400000, guid: 5f3a6b19d7fabbe4e9ec99b4cc2daf1c, type: 2}
@@ -11850,6 +11866,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
   triggerOnStart: 0
   canBeRepeated: 0
+  selectionMode: 0
+  avoidConsecutiveRepeat: 1
   sequenceSteps:
   - {fileID: 11400000, guid: 1c16ced11c670bd4599717a8695dfef7, type: 2}
   - {fileID: 11400000, guid: 71de5d10aabc29140becefaa398efd8d, type: 2}
