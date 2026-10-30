@@ -9639,8 +9639,8 @@ MonoBehaviour:
   canBeRepeated: 0
   sequenceSteps:
   - {fileID: 11400000, guid: e6daf3cafe0ff354fbca81d39ed08b7d, type: 2}
-  insertMode: 0
-  discardCurrentStep: 1
+  insertMode: 2
+  discardMode: 2
 --- !u!1001 &81624882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23008,8 +23008,8 @@ MonoBehaviour:
   sequenceSteps:
   - {fileID: 11400000, guid: ff280edba552aa94d90f48a70cdb28d1, type: 2}
   - {fileID: 11400000, guid: 0ee885de4ffa28343941041d9d982aa8, type: 2}
-  insertMode: 0
-  discardCurrentStep: 1
+  insertMode: 2
+  discardMode: 2
 --- !u!4 &349694016 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6093628770974053118, guid: f10bd5676fe1c0e469137e71db4076ca, type: 3}
@@ -29212,8 +29212,8 @@ MonoBehaviour:
   canBeRepeated: 1
   sequenceSteps:
   - {fileID: 11400000, guid: 2c4f7cb1aba618844ad3b2d89c7876b2, type: 2}
-  insertMode: 0
-  discardCurrentStep: 1
+  insertMode: 2
+  discardMode: 2
 --- !u!1001 &485055393
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54650,6 +54650,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6192553934528228748, guid: 787f6c961c6072648b476f82020cb370, type: 3}
   m_PrefabInstance: {fileID: 921144244}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &924218242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 924218244}
+  - component: {fileID: 924218243}
+  m_Layer: 0
+  m_Name: LocalizationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &924218243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924218242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cd0e14959149054eb7aae955b22ebbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LocalizationManager
+  currentLanguage: English
+--- !u!4 &924218244
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 924218242}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &924414776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55455,8 +55500,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bfbb7bf832d9a0f49b0c37a629d51868, type: 2}
   - {fileID: 11400000, guid: ee02d2639d73c1649b54414990f28ca6, type: 2}
   - {fileID: 11400000, guid: 26c4f681049876746bf2cfafbeea82c0, type: 2}
-  insertMode: 0
-  discardCurrentStep: 1
+  insertMode: 2
+  discardMode: 2
 --- !u!1001 &952051568
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62859,8 +62904,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b934a7d2cf16f9140a7d6590f285d1c2, type: 2}
   - {fileID: 11400000, guid: 990017315fc2799489bc66e40f1b4b6c, type: 2}
   - {fileID: 11400000, guid: 79a0b89093193494cb7525b3ebc6cde8, type: 2}
-  insertMode: 0
-  discardCurrentStep: 1
+  insertMode: 2
+  discardMode: 2
 --- !u!4 &1083892942 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6775168472287884214, guid: f8cf29a2d0f3a0e4e964685adfc8bfca, type: 3}
@@ -66363,8 +66408,8 @@ MonoBehaviour:
   canBeRepeated: 0
   sequenceSteps:
   - {fileID: 11400000, guid: 74aa5841ea25246418980396e3a2c430, type: 2}
-  insertMode: 0
-  discardCurrentStep: 1
+  insertMode: 2
+  discardMode: 2
 --- !u!1001 &1138609321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71711,8 +71756,8 @@ MonoBehaviour:
   sequenceSteps:
   - {fileID: 11400000, guid: b49f6d4514d1c4a42a0b66c8a5553e60, type: 2}
   - {fileID: 11400000, guid: 65e7bc15e8a34fe458e605041e67e2cd, type: 2}
-  insertMode: 0
-  discardCurrentStep: 1
+  insertMode: 2
+  discardMode: 2
 --- !u!1001 &1243573304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -83192,7 +83237,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 230bf8255e7a7ff479db5a404e043d91, type: 2}
   - {fileID: 11400000, guid: bc825b4b2cf851542ad35434b90d7b68, type: 2}
   insertMode: 0
-  discardCurrentStep: 1
+  discardMode: 1
 --- !u!1001 &1383972013
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110709,8 +110754,8 @@ MonoBehaviour:
   canBeRepeated: 0
   sequenceSteps:
   - {fileID: 11400000, guid: 2881f4e0ecd6b764d8201ff1de4587ba, type: 2}
-  insertMode: 0
-  discardCurrentStep: 1
+  insertMode: 2
+  discardMode: 2
 --- !u!1001 &1963092934
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112964,8 +113009,8 @@ MonoBehaviour:
   canBeRepeated: 1
   sequenceSteps:
   - {fileID: 11400000, guid: dbfd48c349b8b794eba9711c1cd8331e, type: 2}
-  insertMode: 0
-  discardCurrentStep: 1
+  insertMode: 2
+  discardMode: 2
 --- !u!1001 &2024166437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -125922,3 +125967,4 @@ SceneRoots:
   - {fileID: 534899612}
   - {fileID: 1584816825}
   - {fileID: 607500878}
+  - {fileID: 924218244}

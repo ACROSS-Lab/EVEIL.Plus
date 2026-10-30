@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Onboarding/SCN_Onboarding.unity
+    guid: 0059b265658eecb4b92488b5c6cf3655
+  - enabled: 1
     path: Assets/Scenes/TopDownRiver.unity
     guid: 91d211b08675c5c409cb264232c1537e
-  - enabled: 1
-    path: Assets/Scenes/Sandbox.unity
-    guid: d9fc0e45953d2354a8a2a2d65c04e882
   - enabled: 1
     path: Assets/Scenes/Agriculture_Diorama/SCN_Agriculture_Diorama.unity
     guid: abbd2b703f6f7dc498da7b0fae918347
