@@ -126,7 +126,7 @@ public class FollowSpline : MonoBehaviour
             _t = ((_t % 1f) + 1f) % 1f; // wrap into 0-1 regardless of sign
         }
         
-        PlaySpawnScaleAnimation();
+        // PlaySpawnAnimation();
     }
 
     /// <summary>
@@ -178,12 +178,12 @@ public class FollowSpline : MonoBehaviour
             if (_t >= 1f)
             {
                 _t %= 1f;
-                PlaySpawnScaleAnimation();
+                PlaySpawnAnimation();
             }
             else if (_t < 0f)
             {
                 _t = (_t % 1f + 1f) % 1f;
-                PlaySpawnScaleAnimation();
+                PlaySpawnAnimation();
             }
             
         }
@@ -210,7 +210,7 @@ public class FollowSpline : MonoBehaviour
 
         transform.SetPositionAndRotation(offsetPosition, Quaternion.LookRotation(worldTangent, worldUp));
         
-        UpdateSpawnScaleAnimation();
+        UpdateSpawnAnimation();
     }
     
     public void SetPollutionSource(PointOfInterest source)
@@ -235,9 +235,8 @@ public class FollowSpline : MonoBehaviour
         _targetRenderer.SetPropertyBlock(_propertyBlock);
     }
     
-    private void PlaySpawnScaleAnimation()
+    private void PlaySpawnAnimation()
     {
-        Debug.Log("adwigawfoiuygaiuwdygfawdf");
         if (!animateSpawnScale)
         {
             _isAnimatingSpawnScale = false;
@@ -256,7 +255,7 @@ public class FollowSpline : MonoBehaviour
         }
     }
     
-    private void UpdateSpawnScaleAnimation()
+    private void UpdateSpawnAnimation()
     {
         if (!_isAnimatingSpawnScale)
             return;
