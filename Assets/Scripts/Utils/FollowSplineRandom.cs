@@ -34,6 +34,8 @@ public class FollowSpline : MonoBehaviour
     public int SplineIndex = 0;
 
     private static readonly int Grayscale = Shader.PropertyToID("_Grayscale");
+    private static readonly int Scanned = Shader.PropertyToID("_Scanned");
+    
     private Renderer _targetRenderer;
     private MaterialPropertyBlock _propertyBlock;
     private PointOfInterest _pollutionSource;
@@ -200,8 +202,9 @@ public class FollowSpline : MonoBehaviour
 
     private void UpdateGrayscale()
     {
-        _propertyBlock.SetFloat(Grayscale, _pollutionSource.IsScanned ? 0f : 1f);
-
+        // _propertyBlock.SetFloat(Grayscale, _pollutionSource.IsScanned ? 0f : 1f);
+        _propertyBlock.SetFloat(Scanned, _pollutionSource.IsScanned ? 0f : 1f);
+        
         _targetRenderer.SetPropertyBlock(_propertyBlock);
     }
 
