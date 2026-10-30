@@ -63635,7 +63635,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1092305240}
-  - component: {fileID: 1092305239}
   - component: {fileID: 1092305241}
   - component: {fileID: 1092305242}
   - component: {fileID: 1092305243}
@@ -63646,26 +63645,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1092305239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1092305238}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a5a7705d897524f82594b070da3143, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SplineParticleSpawner
-  splineContainer: {fileID: 1059833570}
-  pollutionSource: {fileID: 0}
-  spawnGroups:
-  - Name: Pollutants_test_01
-    Prefab: {fileID: 8184073214969815094, guid: d408880a955aa8c459c65480642485a6, type: 3}
-    Count: 50
-    AllowedSplineIndices: 
-  spawnParent: {fileID: 477634568}
 --- !u!4 &1092305240
 Transform:
   m_ObjectHideFlags: 0
@@ -63698,8 +63677,8 @@ MonoBehaviour:
   pollutionSource: {fileID: 896817037}
   spawnGroups:
   - Name: Pollutants_test_01
-    Prefab: {fileID: 8184073214969815094, guid: c43d0acbfa8eb1247b3c107ccc2d05e1, type: 3}
-    Count: 10
+    Prefab: {fileID: 7406605689117705949, guid: c99231a0badfd9948b5b47788440932e, type: 3}
+    Count: 6
     AllowedSplineIndices: 
   spawnParent: {fileID: 0}
 --- !u!114 &1092305242
@@ -63718,8 +63697,8 @@ MonoBehaviour:
   pollutionSource: {fileID: 670653854}
   spawnGroups:
   - Name: Pollutants_test_01
-    Prefab: {fileID: 8184073214969815094, guid: 105cfc60aa14a294c89b53be1577cd73, type: 3}
-    Count: 40
+    Prefab: {fileID: 7406605689117705949, guid: ffc3f793456e5c14fb1681640f0617e2, type: 3}
+    Count: 10
     AllowedSplineIndices: 
   spawnParent: {fileID: 0}
 --- !u!114 &1092305243
@@ -63738,8 +63717,8 @@ MonoBehaviour:
   pollutionSource: {fileID: 2070038173}
   spawnGroups:
   - Name: Pollutants_test_01
-    Prefab: {fileID: 8184073214969815094, guid: 4ce7dbe4ffceda44bab3c07682bf05c8, type: 3}
-    Count: 50
+    Prefab: {fileID: 7406605689117705949, guid: f25616e6fa0c2d7409e2d81f2b53bf1c, type: 3}
+    Count: 10
     AllowedSplineIndices: 
   spawnParent: {fileID: 0}
 --- !u!1001 &1092388290

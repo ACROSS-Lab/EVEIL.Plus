@@ -6828,7 +6828,7 @@ MonoBehaviour:
   pollutionSource: {fileID: 1482672367}
   spawnGroups:
   - Name: Pollutants_test_01
-    Prefab: {fileID: 8184073214969815094, guid: 4ce7dbe4ffceda44bab3c07682bf05c8, type: 3}
+    Prefab: {fileID: 7406605689117705949, guid: f25616e6fa0c2d7409e2d81f2b53bf1c, type: 3}
     Count: 6
     AllowedSplineIndices: 
   spawnParent: {fileID: 0}
