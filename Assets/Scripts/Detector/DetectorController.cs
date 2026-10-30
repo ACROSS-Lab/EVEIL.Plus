@@ -7,6 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 public class DetectorController : MonoBehaviour
 {
@@ -45,8 +46,11 @@ public class DetectorController : MonoBehaviour
 
     [Header("Haptic Feedback on Scan")]
     [SerializeField] bool enableHaptics = true;
-    [SerializeField] float hapticAmplitude = 0.1f;
-    [SerializeField] float hapticDurationPerFrame = 0.05f;
+    [SerializeField, Range(0f, 1f)] float hapticImpulseAmplitude = 0.15f;
+    [SerializeField] float hapticImpulseDuration = 0.05f;
+    [SerializeField, Range(0f, 1f)] float hapticProgressMinAmplitude = 0.00f;
+    [SerializeField, Range(0f, 1f)] float hapticProgressMaxAmplitude = 0.08f;
+    [SerializeField] float hapticProgressDuration = 0.05f;
 
     [Header("Result Display")]
     [SerializeField] float resultDisplayDuration = 1.5f;
@@ -199,6 +203,8 @@ public class DetectorController : MonoBehaviour
                 PlayOneShotSFX(scanStartSFX);
             }
         }
+        
+        if (enableHaptics) rightInteractor.SendHapticImpulse(hapticImpulseAmplitude, hapticImpulseDuration);
     }
 
     void ProcessScanning()
@@ -228,7 +234,7 @@ public class DetectorController : MonoBehaviour
         float progress = Mathf.Clamp01(scanTimer / scanDuration);
         UpdateProgress(progress);
 
-        if (enableHaptics) rightInteractor.SendHapticImpulse(hapticAmplitude, hapticDurationPerFrame);
+        if (enableHaptics) rightInteractor.SendHapticImpulse(hapticProgressMinAmplitude + hapticProgressMaxAmplitude * progress, hapticProgressDuration);
 
         if (scanTimer >= scanDuration)
         {
@@ -253,6 +259,8 @@ public class DetectorController : MonoBehaviour
             undetectedSection.SetActive(false);
 
             PlayOneShotSFX(detectedSFX);
+            if (enableHaptics) StartCoroutine(PlayDetectionHaptics());
+            
             targetPOI.CompleteScan();
 
             // Invoked on every successful detection
@@ -270,7 +278,8 @@ public class DetectorController : MonoBehaviour
             detectedSection.SetActive(false);
 
             PlayOneShotSFX(undetectedSFX);
-
+            if (enableHaptics) StartCoroutine(PlayUndetectionHaptics());
+            
             // if (!firstUndetection)
             // {
             //     firstUndetection = true;
@@ -450,5 +459,19 @@ public class DetectorController : MonoBehaviour
         }
 
         return false;
+    }
+    
+    IEnumerator PlayDetectionHaptics()
+    {
+        yield return new WaitForSeconds(0.1f);
+        rightInteractor.SendHapticImpulse(hapticImpulseAmplitude, hapticImpulseDuration);
+    }
+    
+    IEnumerator PlayUndetectionHaptics()
+    {
+        yield return new WaitForSeconds(0.1f);
+        rightInteractor.SendHapticImpulse(hapticImpulseAmplitude, hapticImpulseDuration);
+        yield return new WaitForSeconds(0.1f);
+        rightInteractor.SendHapticImpulse(hapticImpulseAmplitude, hapticImpulseDuration);
     }
 }

@@ -12923,8 +12923,11 @@ MonoBehaviour:
   undetectedSection: {fileID: 5915364250228541227}
   progressDisplay: {fileID: 993233077618570649}
   enableHaptics: 1
-  hapticAmplitude: 0.1
-  hapticDurationPerFrame: 0.05
+  hapticImpulseAmplitude: 0.15
+  hapticImpulseDuration: 0.05
+  hapticProgressMinAmplitude: 0
+  hapticProgressMaxAmplitude: 0.8
+  hapticProgressDuration: 0.05
   resultDisplayDuration: 1.5
   audioPitchRandomizer: {fileID: 3937672997652861274}
   scanStartSFX: {fileID: 8300000, guid: 74385d42151efb74a8f45b9835c10e94, type: 3}
