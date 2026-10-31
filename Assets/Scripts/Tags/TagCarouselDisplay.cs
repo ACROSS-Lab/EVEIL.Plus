@@ -96,6 +96,8 @@ public class TagCarouselDisplay : MonoBehaviour
         // Fixed detection zone, the only raycast target of the option
         public Image HitImage;
         public Button HitButton;
+        
+        public Image HoldFill;
     }
 
     [Header("Layout")]
@@ -216,6 +218,8 @@ public class TagCarouselDisplay : MonoBehaviour
     float holdProgress;
     float graceTimer;
     Tween incorrectTimer;
+    
+    int fillIndex = -1;
 
     void OnDisable()
     {
@@ -341,6 +345,7 @@ public class TagCarouselDisplay : MonoBehaviour
         centerDisplay = null;
         holdFill = null;
         heldVisualIndex = -1;
+        fillIndex = -1;
     }
 
     // Creates an item that never receives raycasts, with centered anchors and a TagDisplay.
@@ -377,9 +382,9 @@ public class TagCarouselDisplay : MonoBehaviour
         centerBaseScale = centerRect.localScale;
 
         // The fill is assigned on the TagDisplay of the center prefab
-        holdFill = centerDisplay.HoldFill;
-        if (holdFill != null) holdFill.type = Image.Type.Filled;
-        else Debug.LogWarning("TagCarouselDisplay: no Hold Fill assigned on the TagDisplay of the center prefab.", this);
+        // holdFill = centerDisplay.HoldFill;
+        // if (holdFill != null) holdFill.type = Image.Type.Filled;
+        // else Debug.LogWarning("TagCarouselDisplay: no Hold Fill assigned on the TagDisplay of the center prefab.", this);
 
         SetHoldProgress(0f);
         SetCenter(emptyData);
@@ -405,10 +410,17 @@ public class TagCarouselDisplay : MonoBehaviour
                 Rect = rect,
                 Group = group,
                 BaseScale = rect.localScale,
-                BasePos = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius
+                BasePos = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius,
+                HoldFill = display.HoldFill
             };
+            
+            if (option.HoldFill != null)
+            {
+                option.HoldFill.type = Image.Type.Filled;
+                option.HoldFill.fillAmount = 0f;
+            }
 
-            option.Colors.Cache(rect);
+            option.Colors.Cache(rect, option.HoldFill);
             options.Add(option);
         }
 
@@ -498,6 +510,7 @@ public class TagCarouselDisplay : MonoBehaviour
 
         // Every new press restarts the fill from zero
         SetHoldProgress(0f);
+        fillIndex = index;
         holdingIndex = index;
         graceTimer = holdExitGraceDuration;
     }
@@ -596,7 +609,14 @@ public class TagCarouselDisplay : MonoBehaviour
     void SetHoldProgress(float progress)
     {
         holdProgress = progress;
-        if (holdFill != null) holdFill.fillAmount = progress;
+        if (fillIndex >= 0 && fillIndex < options.Count)
+        {
+            Image fill = options[fillIndex].HoldFill;
+            if (fill != null) fill.fillAmount = progress;
+        }
+
+        // Once the fill has fully drained, nobody owns it anymore
+        if (progress <= 0f && holdingIndex < 0) fillIndex = -1;
     }
 
     // Keeps the held option color and the hold sound in sync with the current hold.

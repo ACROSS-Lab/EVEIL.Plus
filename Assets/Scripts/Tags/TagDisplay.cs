@@ -7,7 +7,7 @@ public class TagDisplay : MonoBehaviour
     [SerializeField] TextMeshProUGUI label;
 
     [Tooltip("Optional. Fill image used by the pie menu while an option is held, when this display is the center element. Leave empty on the option items.")]
-    [SerializeField] Image holdFill;
+    [SerializeField] public Image HoldFill;
 
     private LocalizedKey localizedKey;
     
@@ -23,7 +23,7 @@ public class TagDisplay : MonoBehaviour
     bool cached;
     
     /// <summary>Fill image driven by the pie menu when this display is used as the center element.</summary>
-    public Image HoldFill => holdFill;
+    // public Image HoldFill => holdFill;
 
     private void Awake()
     {

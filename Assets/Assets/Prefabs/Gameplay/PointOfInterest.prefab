@@ -730,6 +730,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1904316332822457185}
     - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
+      propertyPath: tintHeldGraphics
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
+      propertyPath: heldOptionColor.a
+      value: 0.019607844
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: heldOptionColor.b
       value: 1
       objectReference: {fileID: 0}
