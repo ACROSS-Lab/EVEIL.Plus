@@ -2052,6 +2052,18 @@ PrefabInstance:
       propertyPath: rightInteractor
       value: 
       objectReference: {fileID: 2514004565314332756}
+    - target: {fileID: 2203582850201245648, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
+      propertyPath: hapticImpulseDuration
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2203582850201245648, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
+      propertyPath: hapticImpulseAmplitude
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2203582850201245648, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
+      propertyPath: hapticProgressMaxAmplitude
+      value: 0.08
+      objectReference: {fileID: 0}
     - target: {fileID: 3459464109368555952, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 407
