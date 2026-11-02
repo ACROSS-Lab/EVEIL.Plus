@@ -16,9 +16,12 @@ public class VRHandMenu : MonoBehaviour
     public UnityEvent GuideToggled;
     public UnityEvent GuideOpened;
     public UnityEvent GuideClosed;
+
+    bool isActivated = true;
     
     private void Update()
     {
+        if (!isActivated) return;
         ToggleMenuInput();
     }
 
@@ -50,7 +53,22 @@ public class VRHandMenu : MonoBehaviour
                 GuideClosed?.Invoke();
             }
         }
-        
-        
+    }
+
+    public void ToggleClose()
+    {
+        if (menuCanvas != null && menuCanvas.activeSelf)
+        {
+            menuCanvas.SetActive(false);
+            GuideToggled.Invoke();
+            GuideClosed?.Invoke();
+        }
+
+        isActivated = false;
+    }
+
+    public void ToggleOpen()
+    {
+        isActivated = true;
     }
 }

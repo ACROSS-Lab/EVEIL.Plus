@@ -7,7 +7,6 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
-using UnityEngine.Serialization;
 
 public class DetectorController : MonoBehaviour
 {

@@ -124310,6 +124310,10 @@ PrefabInstance:
       propertyPath: minZ
       value: 13.66
       objectReference: {fileID: 0}
+    - target: {fileID: 8806921265903917279, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
+      propertyPath: flyHorizontally
+      value: 
+      objectReference: {fileID: 1753088961444038822}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
