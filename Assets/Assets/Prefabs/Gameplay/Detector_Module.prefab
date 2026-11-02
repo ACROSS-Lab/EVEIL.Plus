@@ -12975,13 +12975,16 @@ MonoBehaviour:
   vrHandMenu: {fileID: 7791096997293576364}
   flyHorizontally: {fileID: 0}
   targetRenderTexture: {fileID: 8400000, guid: 1b04a2ca5fc1d414bba63d5b3d6bbfe2, type: 2}
-  customBlitMaterial: {fileID: 0}
+  customBlitMaterial: {fileID: 2100000, guid: 6219f217d54950d479cdef4f05ef8772, type: 2}
   screenRotation: 3
   flipHorizontal: 0
   flipVertical: 0
   screenZoom: 1
-  aspectCorrection: 1
+  aspectCorrection: 1.5
   screenOffset: {x: 0, y: 0}
+  transitionEffect: 1
+  transitionDuration: 0.35
+  transitionSFX: {fileID: 0}
   triggerAction: {fileID: 1895115000005906023, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   gripAction: {fileID: -6341550969895588263, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   thumbstickAction: {fileID: -1623746026655643991, guid: c348712bda248c246b8c49b3db54643f, type: 3}

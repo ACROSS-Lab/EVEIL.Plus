@@ -18,6 +18,14 @@ public class DetectorDoomEasterEgg : MonoBehaviour
         Rotate270CW = 3
     }
 
+    public enum TransitionEffect
+    {
+        None = 0,
+        CrtPowerOn = 1,
+        DigitalGlitch = 2,
+        RetroStatic = 3
+    }
+
     [Header("Detector & Player References")]
     [SerializeField] private DetectorController detectorController;
     [SerializeField] private Canvas scanningCanvas;
@@ -45,6 +53,14 @@ public class DetectorDoomEasterEgg : MonoBehaviour
     [SerializeField] private float aspectCorrection = 1.0f;
     [Tooltip("Nudge Doom screen left/right (X) or up/down (Y)")]
     [SerializeField] private Vector2 screenOffset = Vector2.zero;
+
+    [Header("Screen Transition Effect")]
+    [SerializeField] private TransitionEffect transitionEffect = TransitionEffect.CrtPowerOn;
+    [Tooltip("Duration of the boot-up and shut-down transition in seconds")]
+    [Range(0.05f, 1.5f)]
+    [SerializeField] private float transitionDuration = 0.35f;
+    [Tooltip("Optional sound effect to play during screen transition")]
+    [SerializeField] private AudioClip transitionSFX;
 
     [Header("VR Input Actions (Right Hand)")]
     [SerializeField] private InputActionReference triggerAction;
@@ -77,6 +93,11 @@ public class DetectorDoomEasterEgg : MonoBehaviour
     private bool menuVWasCentered = true;
     private float menuHRepeatTimer = 0f;
     private bool menuHWasCentered = true;
+
+    // Transition State
+    private float currentTransitionProgress = 1.0f;
+    private Coroutine transitionCoroutine;
+    private bool isTransitioningOut = false;
 
     // Doom Engine
     private UnityDoom doom;
@@ -144,7 +165,7 @@ public class DetectorDoomEasterEgg : MonoBehaviour
     {
         if (isPlayingDoom)
         {
-            StopDoom();
+            ShutdownDoomImmediate();
         }
     }
 
@@ -295,10 +316,75 @@ public class DetectorDoomEasterEgg : MonoBehaviour
             menu.ToggleClose();
         }
 
+        // 5. Trigger screen boot-up transition
+        currentTransitionProgress = (transitionEffect != TransitionEffect.None) ? 0.0f : 1.0f;
+        isTransitioningOut = false;
+        if (transitionCoroutine != null) StopCoroutine(transitionCoroutine);
+        if (transitionEffect != TransitionEffect.None)
+        {
+            transitionCoroutine = StartCoroutine(TransitionInRoutine());
+        }
+
         Debug.Log("<color=green>[DoomEasterEgg] DOOM ACTIVATED ON DETECTOR SCREEN!</color>");
     }
 
     public void StopDoom()
+    {
+        if (!isPlayingDoom && doom == null) return;
+        if (isTransitioningOut) return;
+
+        if (transitionEffect != TransitionEffect.None && gameObject.activeInHierarchy)
+        {
+            if (transitionCoroutine != null) StopCoroutine(transitionCoroutine);
+            transitionCoroutine = StartCoroutine(TransitionOutAndShutdownRoutine());
+        }
+        else
+        {
+            ShutdownDoomImmediate();
+        }
+    }
+
+    private IEnumerator TransitionInRoutine()
+    {
+        PlayTransitionAudio();
+        float timer = 0f;
+        while (timer < transitionDuration)
+        {
+            timer += Time.deltaTime;
+            currentTransitionProgress = Mathf.Clamp01(timer / transitionDuration);
+            yield return null;
+        }
+        currentTransitionProgress = 1.0f;
+        transitionCoroutine = null;
+    }
+
+    private IEnumerator TransitionOutAndShutdownRoutine()
+    {
+        isTransitioningOut = true;
+        PlayTransitionAudio();
+        float dur = Mathf.Max(0.05f, transitionDuration * 0.6f);
+        float timer = dur;
+        while (timer > 0f)
+        {
+            timer -= Time.deltaTime;
+            currentTransitionProgress = Mathf.Clamp01(timer / dur);
+            yield return null;
+        }
+        currentTransitionProgress = 0.0f;
+        isTransitioningOut = false;
+        transitionCoroutine = null;
+        ShutdownDoomImmediate();
+    }
+
+    private void PlayTransitionAudio()
+    {
+        if (transitionSFX != null)
+        {
+            AudioSource.PlayClipAtPoint(transitionSFX, transform.position);
+        }
+    }
+
+    public void ShutdownDoomImmediate()
     {
         if (!isPlayingDoom && doom == null) return;
 
@@ -425,6 +511,30 @@ public class DetectorDoomEasterEgg : MonoBehaviour
             runtimeBlitMaterial.SetFloat("_AspectCorrection", aspectCorrection);
             runtimeBlitMaterial.SetFloat("_OffsetX", screenOffset.x);
             runtimeBlitMaterial.SetFloat("_OffsetY", screenOffset.y);
+
+            // Transition effect keywords & progress
+            runtimeBlitMaterial.DisableKeyword("_TRANSITIONTYPE_NONE");
+            runtimeBlitMaterial.DisableKeyword("_TRANSITIONTYPE_CRTPOWERON");
+            runtimeBlitMaterial.DisableKeyword("_TRANSITIONTYPE_DIGITALGLITCH");
+            runtimeBlitMaterial.DisableKeyword("_TRANSITIONTYPE_RETROSTATIC");
+
+            switch (transitionEffect)
+            {
+                case TransitionEffect.None:
+                    runtimeBlitMaterial.EnableKeyword("_TRANSITIONTYPE_NONE");
+                    break;
+                case TransitionEffect.CrtPowerOn:
+                    runtimeBlitMaterial.EnableKeyword("_TRANSITIONTYPE_CRTPOWERON");
+                    break;
+                case TransitionEffect.DigitalGlitch:
+                    runtimeBlitMaterial.EnableKeyword("_TRANSITIONTYPE_DIGITALGLITCH");
+                    break;
+                case TransitionEffect.RetroStatic:
+                    runtimeBlitMaterial.EnableKeyword("_TRANSITIONTYPE_RETROSTATIC");
+                    break;
+            }
+
+            runtimeBlitMaterial.SetFloat("_TransitionProgress", currentTransitionProgress);
 
             Graphics.Blit(source, destination, runtimeBlitMaterial);
         }
