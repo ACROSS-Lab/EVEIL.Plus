@@ -12853,6 +12853,7 @@ GameObject:
   - component: {fileID: 931898102053475415}
   - component: {fileID: 4186643594066672018}
   - component: {fileID: 2203582850201245648}
+  - component: {fileID: 1856383618689985839}
   m_Layer: 0
   m_Name: Detector_Module
   m_TagString: Untagged
@@ -12956,6 +12957,40 @@ MonoBehaviour:
   onUndetection:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1856383618689985839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8303866961996292299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01547caa0adebc547a46683810bb9af5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DetectorDoomEasterEgg
+  detectorController: {fileID: 2203582850201245648}
+  scanningCanvas: {fileID: 5644621924428215923}
+  magicCam: {fileID: 4186643594066672018}
+  vrHandMenu: {fileID: 7791096997293576364}
+  flyHorizontally: {fileID: 0}
+  targetRenderTexture: {fileID: 8400000, guid: 1b04a2ca5fc1d414bba63d5b3d6bbfe2, type: 2}
+  customBlitMaterial: {fileID: 0}
+  screenRotation: 3
+  flipHorizontal: 0
+  flipVertical: 0
+  screenZoom: 1
+  aspectCorrection: 1
+  screenOffset: {x: 0, y: 0}
+  triggerAction: {fileID: 1895115000005906023, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  gripAction: {fileID: -6341550969895588263, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  thumbstickAction: {fileID: -1623746026655643991, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  thumbstickClickAction: {fileID: 3771059991691376096, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  primaryButtonAction: {fileID: -6305627974217658116, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  secondaryButtonAction: {fileID: -6801079488616616899, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  activationHoldTime: 3
+  exitHoldTime: 2
+  doomTargetFps: 35
 --- !u!1 &8972422569400230634
 GameObject:
   m_ObjectHideFlags: 0
