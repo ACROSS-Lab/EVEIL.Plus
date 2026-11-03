@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -43,8 +44,8 @@ public class PointOfInterest : MonoBehaviour
     [Header("Tags & Validation")]
     [SerializeField] TagData emptyTagData;
     [SerializeField] TagData[] availableTags;
-    [Tooltip("Tags accepted as correct answers.")]
-    [SerializeField] TagData[] validTags;    
+    [Tooltip("Tags required as correct answers. All valid tags assigned here must be selected to complete this POI.")]
+    [SerializeField] TagData[] validTags;
 
     [Header("Audio & Effects")]
     [Tooltip("SFX played when an option has been held long enough to be confirmed.")]
@@ -69,32 +70,37 @@ public class PointOfInterest : MonoBehaviour
     public event Action<PointOfInterest> OnValidateButtonPressed;
     public event Action<PointOfInterest> OnTagValidationCancelled;
 
-    public bool HasTag => currentTagIndex != -1;
+    public bool HasTag => currentTagIndex != -1 || foundTagIndices.Count > 0;
     public bool IsScanned => isScanned;
     public bool IsTagValidated => isTagValidated;
     public float ScanProgress01 => scanProgress;
 
-    public TagData CurrentTag =>
-        HasTag && availableTags != null && currentTagIndex < availableTags.Length
-            ? availableTags[currentTagIndex]
-            : null;
+    /// <summary>True if the most recently confirmed tag option was one of the valid tags.</summary>
+    public bool IsLastSelectionCorrect => lastSelectionWasCorrect;
 
+    /// <summary>Total number of valid tags required to complete this Point of Interest.</summary>
+    public int RequiredTagCount => Mathf.Max(1, GetValidOptionCount());
+
+    /// <summary>Number of valid tags remaining to be found by the player.</summary>
+    public int RemainingTagCount => Mathf.Max(0, RequiredTagCount - foundTagIndices.Count);
+
+    public TagData CurrentTag =>
+        currentTagIndex >= 0 && availableTags != null && currentTagIndex < availableTags.Length
+            ? availableTags[currentTagIndex]
+            : (foundTagIndices.Count > 0 && availableTags != null && foundTagIndices[0] < availableTags.Length
+                ? availableTags[foundTagIndices[0]]
+                : null);
+
+    /// <summary>True once all required valid tags have been found.</summary>
     public bool IsCorrect
     {
         get
         {
-            if (!HasTag || validTags == null)
+            int goalCount = GetValidOptionCount();
+            if (goalCount <= 0)
                 return false;
 
-            TagData currentTag = availableTags[currentTagIndex];
-
-            foreach (TagData validTag in validTags)
-            {
-                if (validTag == currentTag)
-                    return true;
-            }
-
-            return false;
+            return foundTagIndices.Count >= goalCount;
         }
     }
 
@@ -105,7 +111,9 @@ public class PointOfInterest : MonoBehaviour
     GameObject hoverHighlightInstance;
 
     Vector3 canvasBaseLocalPosition;
+    readonly List<int> foundTagIndices = new List<int>();
     int currentTagIndex = -1;
+    bool lastSelectionWasCorrect = false;
     float scanProgress = 0f;
     bool isScanned = false;
     bool isTagValidated = false;
@@ -236,7 +244,7 @@ public class PointOfInterest : MonoBehaviour
     {
         if (tagCarousel != null)
         {
-            tagCarousel.Initialize(availableTags, emptyTagData);
+            tagCarousel.Initialize(availableTags, emptyTagData, RequiredTagCount);
             tagCarousel.OnOptionConfirmed += HandleOptionConfirmed;
             tagCarousel.OnIncorrectFeedbackFinished += HandleIncorrectFeedbackFinished;
         }
@@ -250,7 +258,7 @@ public class PointOfInterest : MonoBehaviour
     }
 
     /// <summary>
-    /// Shows the found pollutant on the far marker when the tag is validated,
+    /// Shows the found pollutant(s) on the far marker when the tag is validated,
     /// hides it otherwise. The display should be a child of the far marker so it
     /// follows the far marker visibility (only visible when the player is far).
     /// </summary>
@@ -259,17 +267,18 @@ public class PointOfInterest : MonoBehaviour
         if (farTagDisplay == null)
             return;
 
-        TagData foundTag = isTagValidated ? CurrentTag : null;
+        if (isTagValidated)
+        {
+            List<TagData> foundTags = GetFoundTagDataList();
+            if (foundTags.Count > 0)
+            {
+                farTagDisplay.SetMultipleData(foundTags);
+                farTagDisplay.gameObject.SetActive(true);
+                return;
+            }
+        }
 
-        if (foundTag != null)
-        {
-            farTagDisplay.SetData(foundTag);
-            farTagDisplay.gameObject.SetActive(true);
-        }
-        else
-        {
-            farTagDisplay.gameObject.SetActive(false);
-        }
+        farTagDisplay.gameObject.SetActive(false);
     }
 
     public void CompleteScan()
@@ -419,8 +428,81 @@ public class PointOfInterest : MonoBehaviour
     }
 
     /// <summary>
+    /// Checks whether the option at the given index in availableTags is one of the validTags.
+    /// </summary>
+    bool IsOptionValid(int optionIndex)
+    {
+        if (availableTags == null || validTags == null || optionIndex < 0 || optionIndex >= availableTags.Length)
+            return false;
+
+        TagData candidate = availableTags[optionIndex];
+        if (candidate == null)
+            return false;
+
+        for (int i = 0; i < validTags.Length; i++)
+        {
+            if (validTags[i] == candidate)
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Counts how many valid options must be found to complete this POI.
+    /// </summary>
+    int GetValidOptionCount()
+    {
+        if (validTags == null || validTags.Length == 0)
+            return 0;
+
+        int count = 0;
+        if (availableTags != null && availableTags.Length > 0)
+        {
+            for (int i = 0; i < availableTags.Length; i++)
+            {
+                if (IsOptionValid(i))
+                    count++;
+            }
+        }
+
+        if (count == 0)
+        {
+            for (int i = 0; i < validTags.Length; i++)
+            {
+                if (validTags[i] != null)
+                    count++;
+            }
+        }
+
+        return count;
+    }
+
+    /// <summary>
+    /// Returns the list of TagData objects for all valid options found so far.
+    /// </summary>
+    List<TagData> GetFoundTagDataList()
+    {
+        List<TagData> result = new List<TagData>(foundTagIndices.Count);
+        if (availableTags == null)
+            return result;
+
+        for (int i = 0; i < foundTagIndices.Count; i++)
+        {
+            int idx = foundTagIndices[i];
+            if (idx >= 0 && idx < availableTags.Length && availableTags[idx] != null)
+            {
+                result.Add(availableTags[idx]);
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
     /// Called by the pie menu once an option has been held long enough.
-    /// Selects the tag, checks it, and asks the pie menu to show the matching feedback.
+    /// Selects the tag, checks if it is valid, and either marks it as found (if more tags remain)
+    /// or completes the POI validation once all required tags are found.
     /// </summary>
     void HandleOptionConfirmed(int optionIndex)
     {
@@ -430,7 +512,16 @@ public class PointOfInterest : MonoBehaviour
         if (availableTags == null || optionIndex < 0 || optionIndex >= availableTags.Length)
             return;
 
+        if (foundTagIndices.Contains(optionIndex))
+            return;
+
         currentTagIndex = optionIndex;
+        lastSelectionWasCorrect = IsOptionValid(optionIndex);
+
+        if (lastSelectionWasCorrect)
+        {
+            foundTagIndices.Add(optionIndex);
+        }
 
         if (audioSource != null && tagSelectSFX != null)
         {
@@ -439,15 +530,8 @@ public class PointOfInterest : MonoBehaviour
 
         OnTagChanged?.Invoke(this);
 
-        if (IsCorrect)
+        if (lastSelectionWasCorrect)
         {
-            isTagValidated = true;
-
-            if (tagCarousel != null)
-            {
-                tagCarousel.ShowCorrectFeedback(currentTagIndex);
-            }
-
             if (audioSource != null && validationSFX != null)
             {
                 audioSource.PlayOneShot(validationSFX);
@@ -458,9 +542,26 @@ public class PointOfInterest : MonoBehaviour
                 Instantiate(validationFXPrefab, transform.position, Quaternion.identity);
             }
 
-            RefreshFarTagDisplay();
+            if (IsCorrect)
+            {
+                isTagValidated = true;
 
-            OnTagValidated?.Invoke(this);
+                if (tagCarousel != null)
+                {
+                    tagCarousel.ShowCorrectFeedback(GetFoundTagDataList());
+                }
+
+                RefreshFarTagDisplay();
+
+                OnTagValidated?.Invoke(this);
+            }
+            else
+            {
+                if (tagCarousel != null)
+                {
+                    tagCarousel.MarkOptionFound(optionIndex, RemainingTagCount, RequiredTagCount, foundTagIndices.Count);
+                }
+            }
         }
         else
         {
@@ -479,38 +580,42 @@ public class PointOfInterest : MonoBehaviour
     }
 
     /// <summary>
-    /// Called by the pie menu when the incorrect feedback is over and everything is back to its initial state.
+    /// Called by the pie menu when the incorrect feedback is over and the remaining options return to idle.
     /// </summary>
     void HandleIncorrectFeedbackFinished()
     {
         if (isTagValidated)
             return;
 
-        currentTagIndex = -1;
+        currentTagIndex = foundTagIndices.Count > 0 ? foundTagIndices[foundTagIndices.Count - 1] : -1;
         OnTagChanged?.Invoke(this);
     }
 
-    int FindFirstValidTagIndex()
+    void PopulateAllValidTagIndices()
     {
-        if (validTags == null || availableTags == null)
-            return -1;
+        foundTagIndices.Clear();
 
-        foreach (TagData validTag in validTags)
+        if (availableTags == null || validTags == null)
+            return;
+
+        for (int i = 0; i < availableTags.Length; i++)
         {
-            for (int i = 0; i < availableTags.Length; i++)
+            if (IsOptionValid(i))
             {
-                if (availableTags[i] == validTag)
-                    return i;
+                foundTagIndices.Add(i);
             }
         }
 
-        return -1;
+        if (foundTagIndices.Count > 0)
+        {
+            currentTagIndex = foundTagIndices[0];
+        }
     }
 
     /// <summary>
-    /// Validates the chosen tag or unlocks it for editing.
-    /// When validated without any selected tag, the first valid tag is shown in the center.
-    /// Unlocking resets the pie menu and clears the selection.
+    /// Validates the required tags or unlocks them for editing.
+    /// When validated without all tags selected, all valid tags are automatically populated and shown in the center.
+    /// Unlocking resets the pie menu and clears all selections.
     /// </summary>
     public void SetTagValidated(bool validated)
     {
@@ -519,23 +624,20 @@ public class PointOfInterest : MonoBehaviour
 
         isTagValidated = validated;
 
-        if (validated && !HasTag)
+        if (validated && !IsCorrect)
         {
-            int validIndex = FindFirstValidTagIndex();
-            if (validIndex >= 0)
-            {
-                currentTagIndex = validIndex;
-            }
+            PopulateAllValidTagIndices();
+        }
+        else if (!validated)
+        {
+            foundTagIndices.Clear();
+            currentTagIndex = -1;
+            lastSelectionWasCorrect = false;
         }
 
         if (tagCarousel != null)
         {
-            tagCarousel.SetValidated(validated, currentTagIndex);
-        }
-
-        if (!validated)
-        {
-            currentTagIndex = -1;
+            tagCarousel.SetValidated(validated, GetFoundTagDataList(), RequiredTagCount);
         }
 
         RefreshFarTagDisplay();

@@ -10,8 +10,9 @@ using UnityEngine.UI;
 /// Pie menu of tags. The options are laid out in a circle around a center element that shows the empty tag.
 /// Hovering an option shrinks, fades and pulls the other options toward the center.
 /// Holding the press on an option fills the center fill, and the option is confirmed once the fill is complete.
-/// A correct answer is shown in the center and the options disappear.
-/// An incorrect answer is shown in the center for a few seconds, then everything returns to its initial state.
+/// When multiple tags are required, each correct answer locks/hides that option and updates the center count until all required tags are found.
+/// Once all required tags are found, the validated answer(s) are shown in the center and the options disappear.
+/// An incorrect answer is shown in the center for a few seconds, then the remaining options return to their idle state.
 /// Pointer detection uses fixed hit zones (Button + Image) separate from the option visuals, which never receive raycasts.
 /// </summary>
 public class TagCarouselDisplay : MonoBehaviour
@@ -96,7 +97,7 @@ public class TagCarouselDisplay : MonoBehaviour
         // Fixed detection zone, the only raycast target of the option
         public Image HitImage;
         public Button HitButton;
-        
+
         public Image HoldFill;
     }
 
@@ -201,9 +202,14 @@ public class TagCarouselDisplay : MonoBehaviour
     public event Action OnIncorrectFeedbackFinished;
 
     readonly List<OptionItem> options = new List<OptionItem>();
+    readonly HashSet<int> lockedOptionIndices = new HashSet<int>();
 
     TagData[] tags;
     TagData emptyData;
+
+    int totalRequiredCount = 1;
+    int remainingRequiredCount = 1;
+    int foundCount = 0;
 
     GameObject centerInstance;
     RectTransform centerRect;
@@ -218,7 +224,7 @@ public class TagCarouselDisplay : MonoBehaviour
     float holdProgress;
     float graceTimer;
     Tween incorrectTimer;
-    
+
     int fillIndex = -1;
 
     void OnDisable()
@@ -272,7 +278,7 @@ public class TagCarouselDisplay : MonoBehaviour
     // ---------------------------------------------------------------------
 
     /// <summary>Builds the pie menu: the empty tag in the center and one option per available tag around it.</summary>
-    public void Initialize(TagData[] availableTags, TagData emptyTagData)
+    public void Initialize(TagData[] availableTags, TagData emptyTagData, int requiredCount = 1)
     {
         if (itemsContainer == null || itemPrefab == null)
         {
@@ -285,6 +291,10 @@ public class TagCarouselDisplay : MonoBehaviour
 
         tags = availableTags;
         emptyData = emptyTagData;
+        totalRequiredCount = Mathf.Max(1, requiredCount);
+        remainingRequiredCount = totalRequiredCount;
+        foundCount = 0;
+
         state = State.Idle;
         holdingIndex = hoveredIndex = -1;
 
@@ -293,10 +303,56 @@ public class TagCarouselDisplay : MonoBehaviour
         ShowOptions(false);
     }
 
+    /// <summary>
+    /// Marks a single option as found when there are still more correct tags to discover.
+    /// Locks/hides the confirmed option and updates the center prompt count.
+    /// </summary>
+    public void MarkOptionFound(int availableIndex, int remainingCount, int totalCount, int currentFoundCount)
+    {
+        lockedOptionIndices.Add(availableIndex);
+        remainingRequiredCount = Mathf.Max(0, remainingCount);
+        totalRequiredCount = Mathf.Max(1, totalCount);
+        foundCount = Mathf.Max(0, currentFoundCount);
+
+        holdingIndex = hoveredIndex = -1;
+        SetHoldProgress(0f);
+        StopHoldFeedback();
+
+        if (availableIndex >= 0 && availableIndex < options.Count)
+        {
+            OptionItem option = options[availableIndex];
+            option.Rect.DOKill();
+            option.Group.DOKill();
+            SetHitActive(option, false);
+            option.Rect.DOScale(0f, optionsHideDuration).SetEase(Ease.InBack);
+            option.Group.DOFade(0f, optionsHideDuration);
+        }
+
+        ApplyHoverStyles(true);
+
+        if (centerRect != null)
+        {
+            SetCenter(emptyData);
+            centerRect.DOKill();
+            centerRect.localScale = centerBaseScale;
+
+            if (feedbackPunchDuration > 0f)
+            {
+                centerRect.DOPunchScale(centerBaseScale * (feedbackPunchScale - 1f), feedbackPunchDuration, 1, 0.5f);
+            }
+        }
+    }
+
     /// <summary>Shows the given tag in the center, hides the options and locks the pie menu.</summary>
     public void ShowCorrectFeedback(int availableIndex)
     {
         EnterResult(State.Validated, availableIndex, tintCenterOnCorrect, correctFeedbackColor);
+    }
+
+    /// <summary>Shows all validated tags in the center, hides the options and locks the pie menu.</summary>
+    public void ShowCorrectFeedback(IReadOnlyList<TagData> validatedTags)
+    {
+        EnterMultipleResult(State.Validated, validatedTags, tintCenterOnCorrect, correctFeedbackColor);
     }
 
     /// <summary>Shows the given tag in red in the center, hides the options, then resets the pie menu after a delay.</summary>
@@ -309,8 +365,37 @@ public class TagCarouselDisplay : MonoBehaviour
     /// <summary>Locks the pie menu on the validated tag, or unlocks it and returns to the initial state.</summary>
     public void SetValidated(bool validated, int availableIndex = -1)
     {
-        if (validated) ShowCorrectFeedback(availableIndex);
-        else if (state != State.Idle) ResetToInitial(true);
+        if (validated)
+        {
+            ShowCorrectFeedback(availableIndex);
+        }
+        else
+        {
+            lockedOptionIndices.Clear();
+            remainingRequiredCount = totalRequiredCount;
+            foundCount = 0;
+            ResetToInitial(true);
+        }
+    }
+
+    /// <summary>Locks the pie menu on multiple validated tags, or unlocks it and returns to the initial state.</summary>
+    public void SetValidated(bool validated, IReadOnlyList<TagData> validatedTags, int requiredCount)
+    {
+        totalRequiredCount = Mathf.Max(1, requiredCount);
+
+        if (validated)
+        {
+            remainingRequiredCount = 0;
+            foundCount = totalRequiredCount;
+            ShowCorrectFeedback(validatedTags);
+        }
+        else
+        {
+            lockedOptionIndices.Clear();
+            remainingRequiredCount = totalRequiredCount;
+            foundCount = 0;
+            ResetToInitial(true);
+        }
     }
 
     // ---------------------------------------------------------------------
@@ -333,6 +418,7 @@ public class TagCarouselDisplay : MonoBehaviour
         }
 
         options.Clear();
+        lockedOptionIndices.Clear();
 
         if (centerRect != null)
         {
@@ -413,7 +499,7 @@ public class TagCarouselDisplay : MonoBehaviour
                 BasePos = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius,
                 HoldFill = display.HoldFill
             };
-            
+
             if (option.HoldFill != null)
             {
                 option.HoldFill.type = Image.Type.Filled;
@@ -469,7 +555,7 @@ public class TagCarouselDisplay : MonoBehaviour
 
     void OnOptionEnter(int index)
     {
-        if (state != State.Idle || hoveredIndex == index)
+        if (state != State.Idle || hoveredIndex == index || lockedOptionIndices.Contains(index))
             return;
 
         hoveredIndex = index;
@@ -498,7 +584,7 @@ public class TagCarouselDisplay : MonoBehaviour
 
     void OnOptionDown(int index)
     {
-        if (state != State.Idle)
+        if (state != State.Idle || lockedOptionIndices.Contains(index))
             return;
 
         // A press means the pointer is on the option, even if the enter event was missed
@@ -529,6 +615,9 @@ public class TagCarouselDisplay : MonoBehaviour
     {
         for (int i = 0; i < options.Count; i++)
         {
+            if (lockedOptionIndices.Contains(i))
+                continue;
+
             OptionItem option = options[i];
             if (option.Rect == null)
                 continue;
@@ -572,6 +661,16 @@ public class TagCarouselDisplay : MonoBehaviour
             option.Rect.DOKill();
             option.Group.DOKill();
             option.Rect.anchoredPosition = option.BasePos;
+
+            // Keep already found options hidden and locked when returning from incorrect feedback
+            if (lockedOptionIndices.Contains(i))
+            {
+                SetHitActive(option, false);
+                option.Rect.localScale = Vector3.zero;
+                option.Group.alpha = 0f;
+                continue;
+            }
+
             SetHitActive(option, true);
 
             if (animate)
@@ -691,10 +790,10 @@ public class TagCarouselDisplay : MonoBehaviour
     // Center display and results
     // ---------------------------------------------------------------------
 
-    // Shows the tag in the center with its original colors. A null tag hides the center.
+    // Shows the tag in the center with its original colors, passing {0}=remaining, {1}=total, {2}=found.
     void SetCenter(TagData data)
     {
-        centerDisplay.SetData(data);
+        centerDisplay.SetData(data, remainingRequiredCount, totalRequiredCount, foundCount);
         centerDisplay.ShowNeutral();
         centerInstance.SetActive(data != null);
     }
@@ -703,6 +802,25 @@ public class TagCarouselDisplay : MonoBehaviour
     {
         bool validIndex = index >= 0 && tags != null && index < tags.Length && tags[index] != null;
         if (validIndex) centerDisplay.SetData(tags[index]);
+
+        centerDisplay.ShowResult(tint ? color : (Color?)null);
+        centerInstance.SetActive(true);
+
+        centerRect.DOKill();
+        centerRect.localScale = centerBaseScale;
+
+        if (feedbackPunchDuration > 0f)
+        {
+            centerRect.DOPunchScale(centerBaseScale * (feedbackPunchScale - 1f), feedbackPunchDuration, 1, 0.5f);
+        }
+    }
+
+    void ShowMultipleInCenter(IReadOnlyList<TagData> validatedTags, bool tint, Color color)
+    {
+        if (validatedTags != null && validatedTags.Count > 0)
+        {
+            centerDisplay.SetMultipleData(validatedTags);
+        }
 
         centerDisplay.ShowResult(tint ? color : (Color?)null);
         centerInstance.SetActive(true);
@@ -726,6 +844,19 @@ public class TagCarouselDisplay : MonoBehaviour
         StopHoldFeedback();
 
         if (centerInstance != null) ShowInCenter(index, tint, color);
+        HideOptions();
+    }
+
+    void EnterMultipleResult(State newState, IReadOnlyList<TagData> validatedTags, bool tint, Color color)
+    {
+        KillIncorrectTimer();
+
+        state = newState;
+        holdingIndex = hoveredIndex = -1;
+        SetHoldProgress(0f);
+        StopHoldFeedback();
+
+        if (centerInstance != null) ShowMultipleInCenter(validatedTags, tint, color);
         HideOptions();
     }
 

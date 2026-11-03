@@ -91,7 +91,7 @@ public class TagManager : MonoBehaviour
             firstCorrectValidationOccurred = true;
             onFirstCorrectValidation?.Invoke();
         }
-        else if (!point.IsCorrect)
+        else if (!point.IsLastSelectionCorrect)
         {
             onIncorrectValidation?.Invoke();
         }
