@@ -418,12 +418,6 @@ public class DetectorDoomEasterEgg : MonoBehaviour
             magicCam.enabled = true;
         }
 
-        // Resume scanning canvas
-        if (scanningCanvas != null)
-        {
-            scanningCanvas.gameObject.SetActive(true);
-        }
-
         // Resume normal scanning
         if (detectorController != null)
         {

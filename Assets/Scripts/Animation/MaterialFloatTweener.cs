@@ -1,17 +1,26 @@
-using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 /// <summary>
-/// Fades a float property of a material in and out.
+/// Fades a material float property and/or a CanvasGroup alpha using DOTween.
 /// Call FadeIn() and FadeOut() from external UnityEvents.
 /// </summary>
 public class MaterialFloatTweener : MonoBehaviour
 {
+    [Header("Material Settings")]
     [SerializeField] private Renderer targetRenderer;
     [SerializeField] private string propertyName = "_Cutoff";
+
+    [Header("UI CanvasGroup (Optional)")]
+    [SerializeField] private CanvasGroup targetCanvasGroup;
+
+    [Header("Fade Values")]
     [SerializeField] private float outValue = 0f;
     [SerializeField] private float inValue = 1f;
     [SerializeField] private float duration = 0.5f;
+    [SerializeField] private Ease easeType = Ease.Linear;
+
+    [Header("Delays")]
     [Tooltip("Delay in seconds before FadeIn starts.")]
     [SerializeField] private float delayIn = 0f;
     [Tooltip("Delay in seconds before FadeOut starts.")]
@@ -19,15 +28,21 @@ public class MaterialFloatTweener : MonoBehaviour
 
     private MaterialPropertyBlock block;
     private int propertyId;
-    private Coroutine routine;
-    private float currentValue;
+    private Sequence currentSequence;
+    private float currentMaterialValue;
 
     private void Awake()
     {
         if (targetRenderer == null) targetRenderer = GetComponent<Renderer>();
-        block = new MaterialPropertyBlock();
-        propertyId = Shader.PropertyToID(propertyName);
-        Apply(outValue);
+        if (targetRenderer != null)
+        {
+            block = new MaterialPropertyBlock();
+            propertyId = Shader.PropertyToID(propertyName);
+        }
+
+        if (targetCanvasGroup == null) targetCanvasGroup = GetComponent<CanvasGroup>();
+
+        ApplyImmediate(outValue);
     }
 
     public void FadeIn() => StartTween(inValue, delayIn);
@@ -36,35 +51,46 @@ public class MaterialFloatTweener : MonoBehaviour
 
     private void StartTween(float target, float delay)
     {
-        // Cancels any running fade (including one still waiting on its delay)
-        if (routine != null) StopCoroutine(routine);
-        routine = StartCoroutine(Tween(target, delay));
-    }
+        currentSequence?.Kill();
+        currentSequence = DOTween.Sequence();
 
-    private IEnumerator Tween(float target, float delay)
-    {
-        if (delay > 0f) yield return new WaitForSeconds(delay);
+        float safeDuration = Mathf.Max(duration, 0.0001f);
 
-        // Starts from the current value, so In/Out can be reversed mid-fade
-        float start = currentValue;
-        float t = 0f;
-
-        while (t < 1f)
+        if (targetRenderer != null)
         {
-            t += Time.deltaTime / Mathf.Max(duration, 0.0001f);
-            Apply(Mathf.Lerp(start, target, t));
-            yield return null;
+            Tween matTween = DOVirtual.Float(currentMaterialValue, target, safeDuration, ApplyMaterialProperty)
+                .SetEase(easeType);
+            currentSequence.Join(matTween);
         }
 
-        Apply(target);
-        routine = null;
+        if (targetCanvasGroup != null)
+        {
+            Tween cgTween = targetCanvasGroup.DOFade(target, safeDuration)
+                .SetEase(easeType);
+            currentSequence.Join(cgTween);
+        }
+
+        currentSequence
+            .SetDelay(delay)
+            .SetLink(gameObject);
     }
 
-    private void Apply(float value)
+    private void ApplyMaterialProperty(float value)
     {
-        currentValue = value;
+        currentMaterialValue = value;
         targetRenderer.GetPropertyBlock(block);
         block.SetFloat(propertyId, value);
         targetRenderer.SetPropertyBlock(block);
+    }
+
+    private void ApplyImmediate(float value)
+    {
+        if (targetRenderer != null) ApplyMaterialProperty(value);
+        if (targetCanvasGroup != null) targetCanvasGroup.alpha = value;
+    }
+
+    private void OnDestroy()
+    {
+        currentSequence?.Kill();
     }
 }

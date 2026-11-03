@@ -10549,9 +10549,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MaterialFloatTweener
   targetRenderer: {fileID: 1865979713076335606}
   propertyName: _TransparencyPhase
+  targetCanvasGroup: {fileID: 803247362410905884}
   outValue: 0
   inValue: 1
   duration: 0.5
+  easeType: 1
   delayIn: 1
   delayOut: 0
 --- !u!1 &3604792170465715941
@@ -12048,7 +12050,7 @@ GameObject:
   - component: {fileID: 6487692624684556108}
   - component: {fileID: 183507948119124039}
   - component: {fileID: 3484879666904230447}
-  - component: {fileID: 4252553138239542907}
+  - component: {fileID: 803247362410905884}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -12126,23 +12128,18 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &4252553138239542907
-MonoBehaviour:
+--- !u!225 &803247362410905884
+CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6214639175422754337}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &6256192641618046826
 GameObject:
   m_ObjectHideFlags: 0
@@ -12982,8 +12979,8 @@ MonoBehaviour:
   screenZoom: 1
   aspectCorrection: 1.5
   screenOffset: {x: 0, y: 0}
-  transitionEffect: 1
-  transitionDuration: 0.35
+  transitionEffect: 2
+  transitionDuration: 0.5
   transitionSFX: {fileID: 0}
   triggerAction: {fileID: 1895115000005906023, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   gripAction: {fileID: -6341550969895588263, guid: c348712bda248c246b8c49b3db54643f, type: 3}
