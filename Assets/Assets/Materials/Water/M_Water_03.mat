@@ -93,6 +93,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 0cb535c2c1ba5a5418f3569902ba4bb4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TextureFX:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture_01:
         m_Texture: {fileID: 2800000, guid: 0cb535c2c1ba5a5418f3569902ba4bb4, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -128,12 +132,13 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
+    - _FX: 0
     - _Fade: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Highlight: 0
-    - _Inverse_Flow: 0
+    - _Inverse_Flow: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Outline: 0

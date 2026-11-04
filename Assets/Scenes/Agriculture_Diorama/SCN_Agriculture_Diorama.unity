@@ -13394,6 +13394,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: b58ab96b9c3805549a05d62c42509efb, type: 3}
+      propertyPath: m_DynamicOccludee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b58ab96b9c3805549a05d62c42509efb, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: b017ec522ef96e544926d6879fde575d, type: 2}
@@ -19375,7 +19379,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.0531772e-19, y: 1.1693425e-19, z: 41989250, w: 7.365175e+31}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: -4.564018e-39}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
