@@ -127,7 +127,7 @@ MonoBehaviour:
   tagCarousel: {fileID: 4425063417069363176}
   farMarker: {fileID: 6055848192155513210}
   heightOffset: 1.5
-  farTagDisplay: {fileID: 1472931089777674719}
+  farTagDisplay: {fileID: 998435594995129029}
   triggerDistance: 5
   scannedMarkerFloatDistance: 1.5
   scannedMarkerFadeDuration: 3
@@ -1387,9 +1387,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cbd6e00945a85b4891001c59bc70f38, type: 3}
---- !u!114 &1472931089777674719 stripped
+--- !u!114 &998435594995129029 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7686035455800218530, guid: 2cbd6e00945a85b4891001c59bc70f38, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8287054743157473464, guid: 2cbd6e00945a85b4891001c59bc70f38, type: 3}
   m_PrefabInstance: {fileID: 9140811374682987133}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
