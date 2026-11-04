@@ -6,6 +6,8 @@ public class TagManager : MonoBehaviour
 {
     [SerializeField] PointOfInterest[] pointsOfInterest;
 
+    public int remainingSourcesToTag;
+
     [Header("Events")]
     public UnityEvent onCompleted;
     // public UnityEvent<int, int> onProgressChanged;
@@ -14,9 +16,15 @@ public class TagManager : MonoBehaviour
     public UnityEvent onPointScanned;
     [Tooltip("Fired whenever any progress or interaction occurs (source scanned, tag validated, or button pressed).")]
     public UnityEvent onPlayerProgressMade;
+    public bool tagThresholdEnabled;
+    public int remainingSourcesThreshold;
+    [Tooltip("Fired whenever player has tagged enough sources to pass the remainingSourcesThreshold")]
+    public UnityEvent onTagThresholdReached;
 
+    
     bool isCompleted = false;
     bool firstCorrectValidationOccurred = false;
+    bool tagThresholdReached = false;
 
     public int TotalCount => pointsOfInterest != null ? pointsOfInterest.Length : 0;
     public bool IsCompleted => isCompleted;
@@ -68,17 +76,23 @@ public class TagManager : MonoBehaviour
 
     void OnPointValidated(PointOfInterest point)
     {
-        int remaining = RemainingCount();
+        remainingSourcesToTag = RemainingCount();
 
         // int solved = SolvedCount();
         // onProgressChanged?.Invoke(solved, TotalCount);
         
         onPlayerProgressMade?.Invoke();
 
-        if (remaining == 0 && !isCompleted)
+        if (remainingSourcesToTag == 0 && !isCompleted)
         {
             isCompleted = true;
             onCompleted?.Invoke();
+        }
+
+        if (tagThresholdEnabled && !tagThresholdReached && remainingSourcesToTag <= remainingSourcesThreshold)
+        {
+            tagThresholdReached = true;
+            onTagThresholdReached?.Invoke();
         }
     }
 
