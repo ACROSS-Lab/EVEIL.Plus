@@ -14356,7 +14356,7 @@ MonoBehaviour:
   sequenceSteps:
   - {fileID: 11400000, guid: 59d8696fee0e55f4ebfc5f0e63317e35, type: 2}
   - {fileID: 11400000, guid: ee217391e8f8e304da0e2ff010ac5676, type: 2}
-  insertMode: 2
+  insertMode: 0
   discardMode: 2
 --- !u!1001 &813228436
 PrefabInstance:
@@ -17207,7 +17207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 807255492595196500, guid: 6e21d32b247ec2c4aba6731c65a322b9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1775701982175388532, guid: 6e21d32b247ec2c4aba6731c65a322b9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23811,7 +23811,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   tagThresholdEnabled: 1
-  remainingSourcesThreshold: 3
+  remainingSourcesThreshold: 1
   onTagThresholdReached:
     m_PersistentCalls:
       m_Calls:
@@ -23839,6 +23839,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2045948342}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
       - m_Target: {fileID: 1485732550}
         m_TargetAssemblyTypeName: RainCloudsEvent, Assembly-CSharp
         m_MethodName: Toggle
@@ -23852,6 +23864,21 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 812310393}
+        m_TargetAssemblyTypeName: SequenceTrack, Assembly-CSharp
+        m_MethodName: TriggerAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onFirstPartialTagFound:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1024202728}
         m_TargetAssemblyTypeName: SequenceTrack, Assembly-CSharp
         m_MethodName: TriggerAction
         m_Mode: 1
@@ -24080,7 +24107,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7365216049628742249, guid: 6e21d32b247ec2c4aba6731c65a322b9, type: 3}
   m_PrefabInstance: {fileID: 1170598928}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2045948342}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a266e75a79b9f240b6c26954141b826, type: 3}
@@ -26675,7 +26702,7 @@ MonoBehaviour:
   sequenceSteps:
   - {fileID: 11400000, guid: 2881f4e0ecd6b764d8201ff1de4587ba, type: 2}
   insertMode: 2
-  discardMode: 2
+  discardMode: 0
 --- !u!1001 &1975373143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32029,6 +32056,11 @@ Transform:
   - {fileID: 1106597710}
   m_Father: {fileID: 584310709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2045948342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 807255492595196500, guid: 6e21d32b247ec2c4aba6731c65a322b9, type: 3}
+  m_PrefabInstance: {fileID: 1170598928}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2058970835
 PrefabInstance:
   m_ObjectHideFlags: 0
