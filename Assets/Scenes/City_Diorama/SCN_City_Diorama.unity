@@ -5418,6 +5418,60 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e6daf3cafe0ff354fbca81d39ed08b7d, type: 2}
   insertMode: 2
   discardMode: 2
+--- !u!1 &96016814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 96016815}
+  - component: {fileID: 96016816}
+  m_Layer: 0
+  m_Name: SequenceTrack_Rain_Event_End
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &96016815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96016814}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 534899612}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &96016816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96016814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
+  triggerOnStart: 0
+  canBeRepeated: 0
+  selectionMode: 0
+  avoidConsecutiveRepeat: 1
+  sequenceSteps:
+  - {fileID: 11400000, guid: a456b6246e1a3ee408747ee81d4f009d, type: 2}
+  - {fileID: 11400000, guid: 2b9b958487f8f1e4b8efcfa2c1f75c10, type: 2}
+  - {fileID: 11400000, guid: c81fb6be72774db49b286e884cc80c6e, type: 2}
+  insertMode: 2
+  discardMode: 2
 --- !u!1 &116131607
 GameObject:
   m_ObjectHideFlags: 0
@@ -6105,7 +6159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: localizationKey
-      value: Poi.crop.sprayer
+      value: Poi.factory
       objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: triggerDistance
@@ -6637,59 +6691,6 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 5717607880172749067, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
   m_PrefabInstance: {fileID: 1753088961444038821}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &349204207
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 349204208}
-  - component: {fileID: 349204209}
-  m_Layer: 0
-  m_Name: SequenceTrack_Agriculture_Conclusion_Wrong
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &349204208
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 349204207}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 534899612}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &349204209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 349204207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
-  triggerOnStart: 0
-  canBeRepeated: 1
-  selectionMode: 0
-  avoidConsecutiveRepeat: 1
-  sequenceSteps:
-  - {fileID: 11400000, guid: ff280edba552aa94d90f48a70cdb28d1, type: 2}
-  - {fileID: 11400000, guid: 0ee885de4ffa28343941041d9d982aa8, type: 2}
-  insertMode: 2
-  discardMode: 2
 --- !u!1001 &371709645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11984,8 +11985,10 @@ Transform:
   - {fileID: 484814724}
   - {fileID: 1082167433}
   - {fileID: 1242788715}
-  - {fileID: 349204208}
   - {fileID: 950964079}
+  - {fileID: 1024202727}
+  - {fileID: 812310392}
+  - {fileID: 96016815}
   - {fileID: 1188207215}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13656,6 +13659,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8799f21b219d9704f80c52448baa097d, type: 3}
   m_PrefabInstance: {fileID: 800871105}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &812310391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 812310392}
+  - component: {fileID: 812310393}
+  m_Layer: 0
+  m_Name: SequenceTrack_Rain_Event_Intro
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &812310392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812310391}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 534899612}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &812310393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812310391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
+  triggerOnStart: 0
+  canBeRepeated: 0
+  selectionMode: 0
+  avoidConsecutiveRepeat: 1
+  sequenceSteps:
+  - {fileID: 11400000, guid: 59d8696fee0e55f4ebfc5f0e63317e35, type: 2}
+  - {fileID: 11400000, guid: ee217391e8f8e304da0e2ff010ac5676, type: 2}
+  insertMode: 2
+  discardMode: 2
 --- !u!1001 &813228436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14628,7 +14684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: localizationKey
-      value: Poi.crop.sprayer
+      value: Poi.factory
       objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: triggerDistance
@@ -14925,7 +14981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd0e14959149054eb7aae955b22ebbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocalizationManager
-  currentLanguage: English
+  currentLanguage: French
 --- !u!4 &924218244
 Transform:
   m_ObjectHideFlags: 0
@@ -15026,7 +15082,7 @@ GameObject:
   - component: {fileID: 950964079}
   - component: {fileID: 950964080}
   m_Layer: 0
-  m_Name: SequenceTrack_Agriculture_Conclusion_Success
+  m_Name: SequenceTrack_Conclusion_Success
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15064,15 +15120,19 @@ MonoBehaviour:
   selectionMode: 0
   avoidConsecutiveRepeat: 1
   sequenceSteps:
-  - {fileID: 11400000, guid: 3b0a4977d080d884e8c4b0ba2ff5c1ae, type: 2}
-  - {fileID: 11400000, guid: 298d986299ec5fc4fb6005ed31fc69d4, type: 2}
-  - {fileID: 11400000, guid: 2f639a20028cf5347aff874c6d710a99, type: 2}
-  - {fileID: 11400000, guid: 7600c639045355e4a85f57b9bc39b7c5, type: 2}
-  - {fileID: 11400000, guid: 586e696146db84443b43a2c5ebd4180e, type: 2}
-  - {fileID: 11400000, guid: a51dde5403743624fa4c4bbac1c4b9c9, type: 2}
-  - {fileID: 11400000, guid: bfbb7bf832d9a0f49b0c37a629d51868, type: 2}
-  - {fileID: 11400000, guid: ee02d2639d73c1649b54414990f28ca6, type: 2}
-  - {fileID: 11400000, guid: 26c4f681049876746bf2cfafbeea82c0, type: 2}
+  - {fileID: 11400000, guid: a1186512847674b4a9f5fff98c6fefc0, type: 2}
+  - {fileID: 11400000, guid: ddbc57f9d65aeca4aba4b003aef6b92d, type: 2}
+  - {fileID: 11400000, guid: 364fff92770ce394194704fbda80d594, type: 2}
+  - {fileID: 11400000, guid: b242b7255d3306f49835ff3aaebbf731, type: 2}
+  - {fileID: 11400000, guid: 79266b60f8f7e6a43b9dd9ff3cd1400d, type: 2}
+  - {fileID: 11400000, guid: a076c996415f8444381d2e8d75104f1b, type: 2}
+  - {fileID: 11400000, guid: 5fac6717d6fd43e4f9dc2f7b2870c50b, type: 2}
+  - {fileID: 11400000, guid: 042ba7233cc82944aad64a02b691d849, type: 2}
+  - {fileID: 11400000, guid: 2e9c6b8c41461b64a97c9a023e8bcfa8, type: 2}
+  - {fileID: 11400000, guid: ef325b3667793ab4aaf69eba2f8a8af5, type: 2}
+  - {fileID: 11400000, guid: 6c7aeba298d32cb4f945ad4b20e4b485, type: 2}
+  - {fileID: 11400000, guid: 3e0f7fe0baf7d404b9f8efffd9ab7ba7, type: 2}
+  - {fileID: 11400000, guid: dbe79992e713b8745a94a9a26518aada, type: 2}
   insertMode: 2
   discardMode: 2
 --- !u!1001 &961266987
@@ -15661,6 +15721,58 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8799f21b219d9704f80c52448baa097d, type: 3}
   m_PrefabInstance: {fileID: 1022063646}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1024202726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1024202727}
+  - component: {fileID: 1024202728}
+  m_Layer: 0
+  m_Name: SequenceTrack_1/2Pollutant_Validated
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1024202727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024202726}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 534899612}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1024202728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024202726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
+  triggerOnStart: 0
+  canBeRepeated: 0
+  selectionMode: 0
+  avoidConsecutiveRepeat: 1
+  sequenceSteps:
+  - {fileID: 11400000, guid: b0ef34c0044e7144c94f6b7e4d705d75, type: 2}
+  insertMode: 2
+  discardMode: 2
 --- !u!1 &1045451925
 GameObject:
   m_ObjectHideFlags: 0
@@ -15762,7 +15874,7 @@ GameObject:
   - component: {fileID: 1082167433}
   - component: {fileID: 1082167434}
   m_Layer: 0
-  m_Name: SequenceTrack_Agriculture_Sources_Left
+  m_Name: SequenceTrack_Sources_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17017,6 +17129,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: a4683777711efab4eac904ab63c6273a, type: 3}
     - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
+      propertyPath: localizationKey
+      value: Poi.hospital
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: triggerDistance
       value: 10
       objectReference: {fileID: 0}
@@ -17190,7 +17306,7 @@ GameObject:
   - component: {fileID: 1242788715}
   - component: {fileID: 1242788716}
   m_Layer: 0
-  m_Name: SequenceTrack_Agriculture_Type_Left
+  m_Name: SequenceTrack_Type_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22683,7 +22799,7 @@ GameObject:
   - component: {fileID: 1383965402}
   - component: {fileID: 1383965403}
   m_Layer: 0
-  m_Name: SequenceTrack_Agriculture_Intro
+  m_Name: SequenceTrack_City_Intro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22721,11 +22837,12 @@ MonoBehaviour:
   selectionMode: 0
   avoidConsecutiveRepeat: 1
   sequenceSteps:
-  - {fileID: 11400000, guid: f0e1e5fced886b045b2c81aa239961d9, type: 2}
-  - {fileID: 11400000, guid: 1fc525e5960f6f446b2e53deb34f389f, type: 2}
-  - {fileID: 11400000, guid: dadf664caac17c4498bebe6b152757a7, type: 2}
-  - {fileID: 11400000, guid: 230bf8255e7a7ff479db5a404e043d91, type: 2}
-  - {fileID: 11400000, guid: bc825b4b2cf851542ad35434b90d7b68, type: 2}
+  - {fileID: 11400000, guid: 1e725257d7135e64fac3d7171b1a712f, type: 2}
+  - {fileID: 11400000, guid: 023939e13f98eec4ca15c5802ed26e74, type: 2}
+  - {fileID: 11400000, guid: d153b6485ea3c564e9aa2a98985e3de6, type: 2}
+  - {fileID: 11400000, guid: db6c8c9257072d546bbd9077ab2cbaaa, type: 2}
+  - {fileID: 11400000, guid: 388138e734a8619408195573f3c3eba9, type: 2}
+  - {fileID: 11400000, guid: db4c2aa984a153f42af48c4b5e8a3933, type: 2}
   insertMode: 0
   discardMode: 1
 --- !u!1001 &1393441860
@@ -23267,6 +23384,7 @@ MonoBehaviour:
   - {fileID: 670653854}
   - {fileID: 2070038173}
   - {fileID: 896817037}
+  - {fileID: 2074553215}
   remainingSourcesToTag: 0
   onCompleted:
     m_PersistentCalls:
@@ -23343,11 +23461,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  tagThresholdEnabled: 0
-  remainingSourcesThreshold: 0
+  tagThresholdEnabled: 1
+  remainingSourcesThreshold: 3
   onTagThresholdReached:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 812310391}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1452316368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31777,6 +31907,10 @@ PrefabInstance:
     - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: heightOffset
       value: 4.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
+      propertyPath: localizationKey
+      value: Poi.houses
       objectReference: {fileID: 0}
     - target: {fileID: 4446870943401422348, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: triggerDistance
