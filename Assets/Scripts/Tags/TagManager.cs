@@ -20,11 +20,13 @@ public class TagManager : MonoBehaviour
     public int remainingSourcesThreshold;
     [Tooltip("Fired whenever player has tagged enough sources to pass the remainingSourcesThreshold")]
     public UnityEvent onTagThresholdReached;
-
+    [Tooltip("Fired the first time player finds the 1st valid tag of a source that requires 2+ validtags")]
+    public UnityEvent onFirstPartialTagFound;
     
     bool isCompleted = false;
     bool firstCorrectValidationOccurred = false;
     bool tagThresholdReached = false;
+    bool firstPartialTagFound = false;
 
     public int TotalCount => pointsOfInterest != null ? pointsOfInterest.Length : 0;
     public bool IsCompleted => isCompleted;
@@ -47,6 +49,7 @@ public class TagManager : MonoBehaviour
                 point.OnScanCompleted += OnPointScanned;
                 point.OnTagValidated += OnPointValidated;
                 point.OnValidateButtonPressed += OnValidateButtonPressed;
+                point.OnFirstPartialTagFound += OnFirstPartialTagFound;
             }
         }
 
@@ -63,6 +66,7 @@ public class TagManager : MonoBehaviour
                     point.OnScanCompleted -= OnPointScanned;
                     point.OnTagValidated -= OnPointValidated;
                     point.OnValidateButtonPressed -= OnValidateButtonPressed;
+                    point.OnFirstPartialTagFound -= OnFirstPartialTagFound;
                 }
             }
         }
@@ -109,6 +113,15 @@ public class TagManager : MonoBehaviour
         {
             onIncorrectValidation?.Invoke();
         }
+    }
+    
+    void OnFirstPartialTagFound(PointOfInterest point)
+    {
+        if (firstPartialTagFound)
+            return;
+
+        firstPartialTagFound = true;
+        onFirstPartialTagFound?.Invoke();
     }
 
     public int ScannedCount()

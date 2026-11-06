@@ -69,6 +69,7 @@ public class PointOfInterest : MonoBehaviour
     /// <summary>Triggered every time the player confirms an option (correct or not).</summary>
     public event Action<PointOfInterest> OnValidateButtonPressed;
     public event Action<PointOfInterest> OnTagValidationCancelled;
+    public event Action<PointOfInterest> OnFirstPartialTagFound;
 
     public bool HasTag => currentTagIndex != -1 || foundTagIndices.Count > 0;
     public bool IsScanned => isScanned;
@@ -560,6 +561,10 @@ public class PointOfInterest : MonoBehaviour
                 if (tagCarousel != null)
                 {
                     tagCarousel.MarkOptionFound(optionIndex, RemainingTagCount, RequiredTagCount, foundTagIndices.Count);
+                }
+                if (foundTagIndices.Count == 1)
+                {
+                    OnFirstPartialTagFound?.Invoke(this);
                 }
             }
         }
