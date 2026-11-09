@@ -1,9 +1,17 @@
-using System.Collections;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class TagManager : MonoBehaviour
 {
+    
+    [Serializable] public class POIEventBinding
+    {
+        public PointOfInterest poi;
+        public UnityEvent onValidated;
+    }
+    
     [SerializeField] PointOfInterest[] pointsOfInterest;
 
     public int remainingSourcesToTag;
@@ -23,6 +31,11 @@ public class TagManager : MonoBehaviour
     [Tooltip("Fired the first time player finds the 1st valid tag of a source that requires 2+ validtags")]
     public UnityEvent onFirstPartialTagFound;
     
+    [Header("POI Events")]
+    [SerializeField] List<POIEventBinding> poiBindings = new List<POIEventBinding>();
+
+    readonly Dictionary<PointOfInterest, POIEventBinding> bindingLookup = new Dictionary<PointOfInterest, POIEventBinding>();
+    
     bool isCompleted = false;
     bool firstCorrectValidationOccurred = false;
     bool tagThresholdReached = false;
@@ -37,6 +50,12 @@ public class TagManager : MonoBehaviour
 
     void Awake()
     {
+        foreach (POIEventBinding binding in poiBindings)
+        {
+            if (binding != null && binding.poi != null)
+                bindingLookup[binding.poi] = binding;
+        }
+        
         if (pointsOfInterest == null || pointsOfInterest.Length == 0)
         {
             pointsOfInterest = FindObjectsByType<PointOfInterest>(FindObjectsSortMode.None);
@@ -80,6 +99,8 @@ public class TagManager : MonoBehaviour
 
     void OnPointValidated(PointOfInterest point)
     {
+        if (bindingLookup.TryGetValue(point, out var b)) b.onValidated?.Invoke();
+        
         remainingSourcesToTag = RemainingCount();
 
         // int solved = SolvedCount();
