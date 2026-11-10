@@ -775,15 +775,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: correctFeedbackColor.b
-      value: 0
+      value: 0.0032039948
       objectReference: {fileID: 0}
     - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: correctFeedbackColor.g
-      value: 0.4811321
+      value: 0.6792453
       objectReference: {fileID: 0}
     - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: correctFeedbackColor.r
-      value: 0.29634947
+      value: 0.29562336
       objectReference: {fileID: 0}
     - target: {fileID: 2641341661470969653, guid: a4b248c490f1fdd40ac7f939536a6c7e, type: 3}
       propertyPath: incorrectFeedbackColor.b
