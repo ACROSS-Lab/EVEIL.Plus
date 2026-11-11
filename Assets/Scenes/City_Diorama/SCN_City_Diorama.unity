@@ -5470,7 +5470,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a456b6246e1a3ee408747ee81d4f009d, type: 2}
   - {fileID: 11400000, guid: 2b9b958487f8f1e4b8efcfa2c1f75c10, type: 2}
   - {fileID: 11400000, guid: c81fb6be72774db49b286e884cc80c6e, type: 2}
-  insertMode: 2
+  insertMode: 0
   discardMode: 2
 --- !u!1 &116131607
 GameObject:
@@ -6042,19 +6042,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3214313427221849671, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3214313427221849671, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3214313427221849671, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3214313427221849671, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3741458792292407174, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_Name
@@ -6122,19 +6122,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8057029269999568064, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8057029269999568064, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8057029269999568064, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8057029269999568064, guid: ee759962537907145b5d89a54cba5c62, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15767,7 +15767,6 @@ MonoBehaviour:
   avoidConsecutiveRepeat: 1
   sequenceSteps:
   - {fileID: 11400000, guid: a1186512847674b4a9f5fff98c6fefc0, type: 2}
-  - {fileID: 11400000, guid: ddbc57f9d65aeca4aba4b003aef6b92d, type: 2}
   - {fileID: 11400000, guid: 364fff92770ce394194704fbda80d594, type: 2}
   - {fileID: 11400000, guid: b242b7255d3306f49835ff3aaebbf731, type: 2}
   - {fileID: 11400000, guid: 79266b60f8f7e6a43b9dd9ff3cd1400d, type: 2}
@@ -15779,6 +15778,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6c7aeba298d32cb4f945ad4b20e4b485, type: 2}
   - {fileID: 11400000, guid: 3e0f7fe0baf7d404b9f8efffd9ab7ba7, type: 2}
   - {fileID: 11400000, guid: dbe79992e713b8745a94a9a26518aada, type: 2}
+  - {fileID: 11400000, guid: ddbc57f9d65aeca4aba4b003aef6b92d, type: 2}
   insertMode: 2
   discardMode: 2
 --- !u!1001 &961266987
@@ -23734,6 +23734,7 @@ MonoBehaviour:
   - {fileID: 2070038173}
   - {fileID: 896817037}
   - {fileID: 2074553215}
+  - {fileID: 305529677}
   remainingSourcesToTag: 0
   onCompleted:
     m_PersistentCalls:
@@ -23811,7 +23812,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   tagThresholdEnabled: 1
-  remainingSourcesThreshold: 1
+  remainingSourcesThreshold: 3
   onTagThresholdReached:
     m_PersistentCalls:
       m_Calls:
@@ -23890,6 +23891,59 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  poiBindings:
+  - poi: {fileID: 305529677}
+    onValidated:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1485732550}
+          m_TargetAssemblyTypeName: RainCloudsEvent, Assembly-CSharp
+          m_MethodName: Toggle
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1748746048}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 248312330}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 96016816}
+          m_TargetAssemblyTypeName: SequenceTrack, Assembly-CSharp
+          m_MethodName: TriggerAction
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1449695952
 GameObject:
   m_ObjectHideFlags: 0
@@ -25588,7 +25642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1748746049
 Transform:
   m_ObjectHideFlags: 0
