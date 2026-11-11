@@ -64,13 +64,21 @@ public class FlyHorizontally : MonoBehaviour
         float inputX = revertedX ? -input.x : input.x;
         float inputZ = revertedZ ? -input.y : input.y;
 
-        Vector3 forward = mainCameraTransform.forward;
-        forward.y = 0f;
+        // Flatten the camera's forward vector onto the horizontal plane
+        Vector3 forward = Vector3.ProjectOnPlane(mainCameraTransform.forward, Vector3.up);
+
+        // When looking near straight down or up, forward's horizontal projection vanishes.
+        // Fall back to the camera's up vector (which points horizontally forward when looking down).
+        if (forward.sqrMagnitude < 0.05f)
+        {
+            Vector3 cameraUp = Vector3.ProjectOnPlane(mainCameraTransform.up, Vector3.up);
+            forward = (mainCameraTransform.forward.y < 0f) ? cameraUp : -cameraUp;
+        }
+
         forward.Normalize();
 
-        Vector3 right = mainCameraTransform.right;
-        right.y = 0f;
-        right.Normalize();
+        // Calculate right vector perpendicularly to ensure strict orthogonality and zero Y component
+        Vector3 right = Vector3.Cross(Vector3.up, forward).normalized;
 
         Vector3 movement = (forward * inputZ + right * inputX) * speed * Time.deltaTime;
         Vector3 newPosition = transform.position + movement;

@@ -6,6 +6,7 @@ using ManagedDoom;
 using ManagedDoom.Unity;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Networking;
 
 [DisallowMultipleComponent]
 public class DetectorDoomEasterEgg : MonoBehaviour
@@ -152,6 +153,71 @@ public class DetectorDoomEasterEgg : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        StartCoroutine(ExtractAndroidAssetsRoutine());
+#endif
+    }
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+    private IEnumerator ExtractAndroidAssetsRoutine()
+    {
+        yield return StartCoroutine(ExtractFileFromStreamingAssets("DOOM1.WAD"));
+        yield return StartCoroutine(ExtractFileFromStreamingAssets("RLNDGM.SF2"));
+    }
+
+    private IEnumerator ExtractFileFromStreamingAssets(string fileName)
+    {
+        string destPath = Path.Combine(Application.persistentDataPath, fileName);
+        if (File.Exists(destPath) && new FileInfo(destPath).Length > 0)
+        {
+            yield break;
+        }
+
+        string srcPath = Path.Combine(Application.streamingAssetsPath, fileName);
+        using (UnityWebRequest uwr = UnityWebRequest.Get(srcPath))
+        {
+            yield return uwr.SendWebRequest();
+            if (uwr.result == UnityWebRequest.Result.Success)
+            {
+                try
+                {
+                    File.WriteAllBytes(destPath, uwr.downloadHandler.data);
+                    Debug.Log($"[DoomEasterEgg] Extracted {fileName} to: {destPath}");
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError($"[DoomEasterEgg] Error saving {fileName}: {ex}");
+                }
+            }
+            else
+            {
+                Debug.LogError($"[DoomEasterEgg] Failed to load {fileName} via UnityWebRequest: {uwr.error}");
+            }
+        }
+    }
+#endif
+
+    private string GetResolvedAssetPath(string fileName)
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        string persistentPath = Path.Combine(Application.persistentDataPath, fileName);
+        if (File.Exists(persistentPath) && new FileInfo(persistentPath).Length > 0)
+        {
+            return persistentPath;
+        }
+        return null;
+#else
+        string streamingPath = Path.Combine(Application.streamingAssetsPath, fileName);
+        if (File.Exists(streamingPath))
+        {
+            return streamingPath;
+        }
+        return null;
+#endif
+    }
+
     void OnDestroy()
     {
         if (runtimeBlitMaterial != null)
@@ -248,15 +314,40 @@ public class DetectorDoomEasterEgg : MonoBehaviour
     {
         if (isPlayingDoom) return;
 
-        string wadPath = Path.Combine(Application.streamingAssetsPath, "DOOM1.WAD");
-        if (!File.Exists(wadPath))
+#if UNITY_ANDROID && !UNITY_EDITOR
+        string targetWad = Path.Combine(Application.persistentDataPath, "DOOM1.WAD");
+        if (!File.Exists(targetWad) || new FileInfo(targetWad).Length == 0)
+        {
+            StartCoroutine(ExtractAndLaunchRoutine());
+            return;
+        }
+#endif
+
+        LaunchDoomEngine();
+    }
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+    private IEnumerator ExtractAndLaunchRoutine()
+    {
+        yield return StartCoroutine(ExtractFileFromStreamingAssets("DOOM1.WAD"));
+        yield return StartCoroutine(ExtractFileFromStreamingAssets("RLNDGM.SF2"));
+        LaunchDoomEngine();
+    }
+#endif
+
+    private void LaunchDoomEngine()
+    {
+        if (isPlayingDoom) return;
+
+        string wadPath = GetResolvedAssetPath("DOOM1.WAD");
+        if (string.IsNullOrEmpty(wadPath) || !File.Exists(wadPath))
         {
             Debug.LogError($"[DoomEasterEgg] DOOM1.WAD not found at: {wadPath}!");
             return;
         }
 
-        string sfPath = Path.Combine(Application.streamingAssetsPath, "RLNDGM.SF2");
-        if (!File.Exists(sfPath))
+        string sfPath = GetResolvedAssetPath("RLNDGM.SF2");
+        if (string.IsNullOrEmpty(sfPath) || !File.Exists(sfPath))
         {
             sfPath = null;
         }
@@ -308,12 +399,6 @@ public class DetectorDoomEasterEgg : MonoBehaviour
         if (vrHandMenu != null)
         {
             vrHandMenu.ToggleClose();
-        }
-
-        var allHandMenus = FindObjectsByType<VRHandMenu>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-        foreach (var menu in allHandMenus)
-        {
-            menu.ToggleClose();
         }
 
         // 5. Trigger screen boot-up transition
@@ -432,12 +517,6 @@ public class DetectorDoomEasterEgg : MonoBehaviour
         if (vrHandMenu != null)
         {
             vrHandMenu.ToggleOpen();
-        }
-
-        var allHandMenus = FindObjectsByType<VRHandMenu>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-        foreach (var menu in allHandMenus)
-        {
-            menu.ToggleOpen();
         }
 
         Debug.Log("<color=yellow>[DoomEasterEgg] Doom closed. Detector scanning restored.</color>");

@@ -45,6 +45,7 @@ public class SequenceStep : ScriptableObject
     [ShowIf("ShowWaitTimeout")] public float waitTimeout;
     [ShowIf("hasInteraction")] public bool isSceneTransition;
     [ShowIf("isSceneTransition")] public string sceneToLoad;
+    [ShowIf("isSceneTransition")] public bool advanceProgress;
     [ShowIf("hasInteraction")] public bool hasSubStep;
     [ShowIf("hasSubStep")] public List<SubstepEntry> subStepEntries = new List<SubstepEntry>();
     

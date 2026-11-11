@@ -31,6 +31,8 @@ public class SequenceDirector : MonoBehaviour
     Coroutine currentSequenceCoroutine;
     SequenceStep currentExecutingStep;
 
+    int completedDioramaCount = 0;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -331,6 +333,10 @@ public class SequenceDirector : MonoBehaviour
         {
             isSceneLoading = true;
             isReadyToProceed = false;
+            if (step.advanceProgress)
+            {
+                completedDioramaCount++;
+            }
             SceneTransition.Instance.SwitchScene(step.sceneToLoad);
         }
     }
@@ -478,5 +484,20 @@ public class SequenceDirector : MonoBehaviour
         {
             PerformAction();
         }
+    }
+
+    public int GetCompletedDioramaCount()
+    {
+        return completedDioramaCount;
+    }
+
+    public void ResetGame()
+    {
+        completedDioramaCount = 0;
+        currentStepIndex = 0;
+        pendingTriggers.Clear();
+        StopAllCoroutines();
+        SequenceTrack.ResetTriggeredTracks();
+        SceneManager.LoadScene(0);
     }
 }
