@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 272b3340dec6323418bfbb3b98283410, type: 3}
-  m_Name: Narrator_Dialogue_10_b
+  m_Name: TP_Agricultural_Zone
   m_EditorClassIdentifier: Assembly-CSharp::SequenceStep
   hasSequenceEvents: 0
   hasNarratorMovement: 0
@@ -35,10 +35,13 @@ MonoBehaviour:
   mouthStartState: 1
   mouthEndState: 0
   timeWaitAfterTalking: 1
+  allowEarlyAction: 1
+  canBeInterrupted: 0
   hasInteraction: 1
   hasInfiniteTimeout: 0
   waitTimeout: 1
   isSceneTransition: 1
   sceneToLoad: SCN_Agriculture_Diorama
+  advanceProgress: 0
   hasSubStep: 0
   subStepEntries: []
