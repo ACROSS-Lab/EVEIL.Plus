@@ -36,7 +36,7 @@ Key.Narrator.Dialogue.07,3. Vue Top-Down,"Il prend sa source dans ces montagnes 
 Key.Narrator.Dialogue.08,3. Vue Top-Down,"En effet, les humains qui habitent sur les berges modifient et façonnent les paysages au travers de leurs activités.","Indeed, the people who live along the riverbanks alter and shape the landscape through their activities.",Việc sinh hoạt của con người sống dọc hai bên bờ sông tất yếu đã góp phần thay đổi và định hình cảnh quan của con sông.,19,"Clignotement lumineux/brillant des zones agricoles, villes, parcs industriels."
 Key.Narrator.Dialogue.09,3. Vue Top-Down,"Malheureusement, ces activités peuvent parfois avoir des conséquences sur l'environnement, les animaux et les plantes.","Unfortunately, these activities can sometimes have an impact on the environment, animals and plants.","Nhưng đáng tiếc rằng, chính những hoạt động này có thể gây ảnh hưởng đến môi trường, cũng như các loài động thực vật.",15,"Problématique de la pollution aquatique au Vietnam. Giang pas content, un peu triste."
 Key.Narrator.Dialogue.10,3. Vue Top-Down,Vise une zone et maintiens la gâchette de l'index pour la découvrir.,Point at an area and hold the index trigger to discover it.,Hãy đến khám phá một khu vực mới bằng cách nhấn nút … trên cần điều khiển bên trái.,12,Clignotement lumineux/brillant de la zone agricole. Nom du bouton à définir. Ensuite passage en diorama (zone agriculture).
-Key.Narrator.Player1End.01,3. Vue Top-Down,"Nous voici de retour dans la vue du delta. Merci beaucoup pour ton aide, tu peux désormais poser le casque et le donner à ton binôme, à la prochaine !","Here we are back in the view of the delta. Thank you very much for your help, you can now put the headset down and give it to your partner, goodbye!",,,
+Key.Narrator.Dialogue.Player.01.End.01,3. Vue Top-Down,"Nous voici de retour dans la vue du delta. Merci beaucoup pour ton aide, tu peux désormais poser le casque et le donner à ton binôme, à la prochaine !","Here we are back in the view of the delta. Thank you very much for your help, you can now put the headset down and give it to your partner, goodbye!",,,
 Key.Narrator.AgriIntro.01,5. Diorama agriculture,Bienvenue en zone agricole !,Welcome to the agricultural zone!,Chào mừng bạn đến với khu vực nông nghiệp!,5,"Passage en diorama : zone agriculture (Manaut). Le narrateur est face au joueur avec un bouton ""Start"" au-dessus de lui, pour que le joueur lance l'expérience quand il le souhaite. Le dialogue démarre au clic sur ""Start"". Fade IN."
 Key.Narrator.AgriIntro.02,5. Diorama agriculture,"À l'aide de ton outil de détection et de ce que tu as appris lors du tutoriel,","Using your detection tool and what you learned in the tutorial,","Hãy dùng máy dò và những gì bạn đã học trong phần hướng dẫn,",17,"Le narrateur pointe les panneaux d'information (vidéos / illustrations de chaque action disponible, utilisés dans la scène du tutoriel)."
 Key.Narrator.AgriIntro.03,5. Diorama agriculture,découvre les sources de pollution et les types de polluants qui se retrouvent dans ce type d'environnement.,discover the pollution sources and types of pollutants that are found in this environment.,để khám phá những loại chất ô nhiễm có trong môi trường này và lý do tại sao.,16,
@@ -86,6 +86,7 @@ Key.Narrator.ConclusionCity.02,4. Conclusion du narrateur,Tu peux désormais ret
 Key.Narrator.FirstCorrectValidation.01,6. Feedback joueur,Super ! Continue comme ça pour les autres sources de pollution.,Great! Keep it up for the other pollution sources.,Tuyệt vời! Hãy tiếp tục như vậy với các nguồn ô nhiễm khác.,11,Première validation correcte du joueur.
 Key.Narrator.FirstScan.01,6. Feedback joueur,Bien vu ! Tu peux identifier les polluants désormais.,Well spotted! You can now identify the pollutants.,Tinh mắt lắm! Giờ đây bạn đã có thể xác định các chất ô nhiễm.,9,Premier scan du joueur.
 Key.Narrator.PlayerProgress.01,6. Feedback joueur,Génial !,Awesome!,Hay quá!,2,Progrès du joueur (réaction courte).
+,,,,,,
 Poi.hospital,Poi,Hôpital,Hospitals,,,
 Poi.roads,Poi,Routes,Roads,,,
 Poi.factory,Poi,Usines,Factories,,,
@@ -100,6 +101,7 @@ Poi.washing.area,Poi,Aire de lavage,Washing area,,,
 Poi.Well,Poi,Puits,Well,,,
 Poi.Ditch,Poi,Fossé,Ditch,,,
 Poi.Unscanned,Poi,?,?,?,,
+,,,,,,
 tag.pfas,Tag,PFAS,PFAS,,,
 tag.heavymetals,Tag,Métaux lourds,Heavy metals,,,
 tag.microplastics,Tag,Microplastiques,Microplastics,,,
@@ -115,8 +117,11 @@ Tag.Change,Tag,Changer le tag,Change Tag,,,
 Key.UI.Onboarding.Move,UI,Se déplacer,Move,,,
 Key.UI.Onboarding.Scan,UI,Scanner / Intéragir,Scan / Interact,,,
 Key.UI.Onboarding.Guide,UI,Ouvrir le guide,Open the guide,,,
-Zone.Locked,UI,Zone indisponible,Locked zone,,,
-Zone.Agriculture,UI,Zone Agricole,Agricultural zone,,,
+,,,,,,
+Key.UI.Area.Locked,UI,Zone indisponible,Locked area,,,
+Key.UI.Area.Agriculture,UI,Zone Agricole,Agricultural area,,,
+Key.UI.Area.City,UI,Zone Urbaine,Urban area,,,
+,,,,,,
 Gameplay.RemainingScore,UI,Sources restantes : {0},Remaining sources:{0},,,
 Gameplay.PollutionErrors,UI,Il reste {0} erreurs à corriger.,{0}Errors left,,,
 pollution.source.UI,UI,Source de pollution,Pollution Source,,,
