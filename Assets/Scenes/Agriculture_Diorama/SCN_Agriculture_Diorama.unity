@@ -84957,6 +84957,7 @@ MonoBehaviour:
   - {fileID: 670653854}
   - {fileID: 2070038173}
   - {fileID: 896817037}
+  remainingSourcesToTag: 0
   onCompleted:
     m_PersistentCalls:
       m_Calls:
@@ -85032,6 +85033,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  tagThresholdEnabled: 0
+  remainingSourcesThreshold: 0
+  onTagThresholdReached:
+    m_PersistentCalls:
+      m_Calls: []
+  onFirstPartialTagFound:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1447585435
 PrefabInstance:
   m_ObjectHideFlags: 0
