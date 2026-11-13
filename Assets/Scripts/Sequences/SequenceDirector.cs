@@ -13,8 +13,10 @@ public class SequenceDirector : MonoBehaviour
 
     [Header("Debugging")]
     [SerializeField] int jumpToStepIndex = 0;
-
     [ShowNonSerializedField] int currentStepIndex = 0;
+    [SerializeField] int jumpToProgressCount = 0;
+    [ShowNonSerializedField] int currentProgressCount = 0;
+
     bool hasPerformedAction = false;
     bool isSceneLoading = false;
     bool isReadyToProceed = true;
@@ -31,8 +33,6 @@ public class SequenceDirector : MonoBehaviour
     Coroutine currentSequenceCoroutine;
     SequenceStep currentExecutingStep;
 
-    int completedDioramaCount = 0;
-
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -42,6 +42,13 @@ public class SequenceDirector : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        #if UNITY_EDITOR
+        if (jumpToProgressCount > 0)
+        {
+            currentProgressCount = jumpToProgressCount;
+        }
+        #endif
     }
 
     void Start()
@@ -335,7 +342,7 @@ public class SequenceDirector : MonoBehaviour
             isReadyToProceed = false;
             if (step.advanceProgress)
             {
-                completedDioramaCount++;
+                currentProgressCount++;
             }
             SceneTransition.Instance.SwitchScene(step.sceneToLoad);
         }
@@ -385,7 +392,6 @@ public class SequenceDirector : MonoBehaviour
         // Check if the step being interrupted permits immediate interruption
         if (stepToInterrupt != null && !stepToInterrupt.canBeInterrupted)
         {
-            InsertNextSteps(newSteps);
             return;
         }
 
@@ -488,12 +494,12 @@ public class SequenceDirector : MonoBehaviour
 
     public int GetCompletedDioramaCount()
     {
-        return completedDioramaCount;
+        return currentProgressCount;
     }
 
     public void ResetGame()
     {
-        completedDioramaCount = 0;
+        currentProgressCount = 0;
         currentStepIndex = 0;
         pendingTriggers.Clear();
         StopAllCoroutines();

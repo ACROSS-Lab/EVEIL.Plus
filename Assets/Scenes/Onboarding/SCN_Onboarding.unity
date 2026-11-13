@@ -1205,7 +1205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceDirector
   sequenceSteps: []
-  jumpToStepIndex: 0
+  jumpToStepIndex: 7
+  jumpToProgressCount: 0
 --- !u!4 &94518217
 Transform:
   m_ObjectHideFlags: 0
@@ -12976,10 +12977,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1250462808022648655, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3393036437358151217, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2
@@ -13024,17 +13021,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerWIthDetector
       objectReference: {fileID: 0}
-    - target: {fileID: 3393036437358151218, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 4084575983232452863, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4089578780051169128, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 919
+      value: 1943
       objectReference: {fileID: 0}
     - target: {fileID: 4089578780207087599, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
       propertyPath: m_TagString
@@ -13349,8 +13342,8 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1015307426}
   - {fileID: 94518217}
+  - {fileID: 1015307426}
   - {fileID: 1471584463}
   - {fileID: 1365960304}
   - {fileID: 1495959502}

@@ -3,16 +3,13 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class LobbyManager : MonoBehaviour
+public class StartActionManager : MonoBehaviour
 {
-    [SerializeField] LobbyStartActions[] lobbyStartActions;
-    [ShowNonSerializedField] int currentProgressCount;
+    [SerializeField] StartActions[] lobbyStartActions;
 
     void Start()
     {
         int progressCount = SequenceDirector.Instance.GetCompletedDioramaCount();
-        currentProgressCount = progressCount;
-
         foreach (var action in lobbyStartActions)
         {
             if (action.progressCount == progressCount)
@@ -25,7 +22,7 @@ public class LobbyManager : MonoBehaviour
 }
 
 [Serializable]
-public class LobbyStartActions
+public class StartActions
 {
     public int progressCount;
     public UnityEvent onStartActions;

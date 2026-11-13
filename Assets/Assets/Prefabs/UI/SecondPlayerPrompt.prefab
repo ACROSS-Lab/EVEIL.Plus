@@ -86,9 +86,9 @@ GameObject:
   - component: {fileID: 4228311779215428315}
   - component: {fileID: 5556349284806074351}
   - component: {fileID: 972024828379413128}
-  - component: {fileID: 6713221382084622570}
   - component: {fileID: 7179850200399530269}
   - component: {fileID: 4988157809167808337}
+  - component: {fileID: 670648313776480446}
   m_Layer: 0
   m_Name: SecondPlayerPrompt
   m_TagString: Untagged
@@ -165,25 +165,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &6713221382084622570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3071188546031990061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ddb017fdf0fc2543855ac97b9cff4de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProximityBillboard
-  activationDistance: 7
-  deactivationMargin: 0.5
-  checkInterval: 0.2
-  playerCamera: {fileID: 0}
-  faceCamera: 1
-  lockYAxis: 1
-  flip180: 1
 --- !u!114 &7179850200399530269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +201,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &670648313776480446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3071188546031990061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 471faa24cc7bd494da7548ce0c8389a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CanvasFollower
+  distanceFromCamera: {x: 0, y: 0, z: 5}
+  yRotationOffset: 0
+  followSpeed: 8
+  followCameraHeight: 0
 --- !u!1 &5479690012354600815
 GameObject:
   m_ObjectHideFlags: 0
