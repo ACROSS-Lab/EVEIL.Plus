@@ -1205,7 +1205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceDirector
   sequenceSteps: []
-  jumpToStepIndex: 7
+  jumpToStepIndex: 0
   jumpToProgressCount: 0
 --- !u!4 &94518217
 Transform:
@@ -4289,67 +4289,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f96f6bc92b7f65449e345457f7ef5fc, type: 3}
---- !u!1 &565693205
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 565693206}
-  - component: {fileID: 565693207}
-  m_Layer: 0
-  m_Name: Narrator_Onboarding_02
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &565693206
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 565693205}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1365960304}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &565693207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 565693205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25ba1930f9c63d143b9a9e07ef139942, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SequenceEvent
-  eventsWithDelay:
-  - delay: 0
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls: []
-  animationIndex: 0
-  simulationDelayStart: 0
-  startTime:
-    month: 0
-    day: 0
-    hour: 0
-  endTime:
-    month: 0
-    day: 0
-    hour: 0
-  startHeight: 0
-  endHeight: 0
 --- !u!1 &584310708
 GameObject:
   m_ObjectHideFlags: 0
@@ -6303,79 +6242,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6c3802a17beca114695152cfa01bb942, type: 3}
   m_PrefabInstance: {fileID: 1608243390}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &931239148
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 931239149}
-  - component: {fileID: 931239150}
-  m_Layer: 0
-  m_Name: Narrator_Onboarding_01_b
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &931239149
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931239148}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1365960304}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &931239150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931239148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25ba1930f9c63d143b9a9e07ef139942, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SequenceEvent
-  eventsWithDelay:
-  - delay: 0
-    unityEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1642145180}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-  animationIndex: 0
-  simulationDelayStart: 0
-  startTime:
-    month: 0
-    day: 0
-    hour: 0
-  endTime:
-    month: 0
-    day: 0
-    hour: 0
-  startHeight: 0
-  endHeight: 0
 --- !u!1 &961794013
 GameObject:
   m_ObjectHideFlags: 0
@@ -8495,8 +8361,6 @@ Transform:
   m_Children:
   - {fileID: 66883498}
   - {fileID: 2028902827}
-  - {fileID: 931239149}
-  - {fileID: 565693206}
   - {fileID: 728367215}
   - {fileID: 154718990}
   - {fileID: 1551457077}
@@ -9432,7 +9296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd0e14959149054eb7aae955b22ebbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocalizationManager
-  currentLanguage: English
+  currentLanguage: French
 --- !u!4 &1495959502
 Transform:
   m_ObjectHideFlags: 0
@@ -13051,7 +12915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8756927221968587754, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
       propertyPath: minZ
-      value: 8.1
+      value: 9.25
       objectReference: {fileID: 0}
     - target: {fileID: 8756927221968587754, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
       propertyPath: newMaxX

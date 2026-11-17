@@ -35,12 +35,13 @@ MonoBehaviour:
   mouthStartState: 1
   mouthEndState: 0
   timeWaitAfterTalking: 0.5
-  allowEarlyAction: 0
-  canBeInterrupted: 0
+  allowEarlyAction: 1
+  canBeInterrupted: 1
   hasInteraction: 0
   hasInfiniteTimeout: 0
   waitTimeout: 0
   isSceneTransition: 0
   sceneToLoad: 
+  advanceProgress: 0
   hasSubStep: 0
   subStepEntries: []

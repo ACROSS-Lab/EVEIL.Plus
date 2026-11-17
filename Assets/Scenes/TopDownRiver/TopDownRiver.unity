@@ -20324,8 +20324,8 @@ MonoBehaviour:
   startUnlocked: 0
   lockedInfoPrefab: {fileID: 2377100771952737205, guid: 21f38e9ce3d10b44487fe924e36b9325, type: 3}
   unlockedInfoPrefab: {fileID: 7817301673964266631, guid: a6df68a4957395a4594c4f7afe482473, type: 3}
-  lockedLocalizationKey: Zone.Locked
-  unlockedLocalizationKey: Zone.Agriculture
+  lockedLocalizationKey: Key.UI.Area.Locked
+  unlockedLocalizationKey: Key.UI.Area.City
   infoAnchor: {fileID: 419960510}
   infoHeightOffset: 1
   playerCamera: {fileID: 0}
@@ -43397,7 +43397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &968041647
 Transform:
   m_ObjectHideFlags: 0
@@ -50927,8 +50927,8 @@ MonoBehaviour:
   startUnlocked: 0
   lockedInfoPrefab: {fileID: 2377100771952737205, guid: 21f38e9ce3d10b44487fe924e36b9325, type: 3}
   unlockedInfoPrefab: {fileID: 7817301673964266631, guid: a6df68a4957395a4594c4f7afe482473, type: 3}
-  lockedLocalizationKey: Zone.Locked
-  unlockedLocalizationKey: Zone.Agriculture
+  lockedLocalizationKey: Key.UI.Area.Locked
+  unlockedLocalizationKey: Key.UI.Area.Agriculture
   infoAnchor: {fileID: 1107683709}
   infoHeightOffset: 1
   playerCamera: {fileID: 0}
@@ -85823,7 +85823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1859584923
 Transform:
   m_ObjectHideFlags: 0

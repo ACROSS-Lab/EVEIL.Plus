@@ -12,14 +12,12 @@ public class OnboardingTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (hasTriggered)
-            return;
-
-        if (!other.CompareTag(objectTriggerTag))
-            return;
-
-        hasTriggered = true;
-        
-        onOnboardingTriggerEnter.Invoke();
+        if (hasTriggered) return;
+            
+        if (other.CompareTag(objectTriggerTag))
+        {
+            hasTriggered = true;
+            onOnboardingTriggerEnter.Invoke();
+        }        
     }
 }

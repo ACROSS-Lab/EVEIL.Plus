@@ -36,12 +36,13 @@ MonoBehaviour:
   mouthEndState: 0
   timeWaitAfterTalking: 1
   allowEarlyAction: 0
-  canBeInterrupted: 0
+  canBeInterrupted: 1
   hasInteraction: 0
   hasInfiniteTimeout: 0
   waitTimeout: 0
   isSceneTransition: 0
   sceneToLoad: 
+  advanceProgress: 0
   hasSubStep: 0
   subStepEntries:
   - subStep: {fileID: 11400000, guid: 99a81f90ff27689429718db8b9d7dafa, type: 2}

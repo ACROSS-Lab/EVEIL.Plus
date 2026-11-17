@@ -53861,7 +53861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd0e14959149054eb7aae955b22ebbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocalizationManager
-  currentLanguage: English
+  currentLanguage: French
 --- !u!4 &924218244
 Transform:
   m_ObjectHideFlags: 0
@@ -67527,6 +67527,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SequenceDirector
   sequenceSteps: []
   jumpToStepIndex: 0
+  jumpToProgressCount: 0
 --- !u!4 &1190546968 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6728402167737157446, guid: 98029b4892f1b0745a4e8d5d0970ca79, type: 3}
