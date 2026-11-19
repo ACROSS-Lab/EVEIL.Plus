@@ -567,6 +567,6 @@ public class SequenceDirector : MonoBehaviour
         SequenceTrack.ResetTriggeredTracks();
 
         currentSequenceCoroutine = StartCoroutine(ExecuteSequence());
-        SceneManager.LoadScene(0);
+        SceneTransition.Instance.SwitchScene("SCN_Onboarding");
     }
 }
