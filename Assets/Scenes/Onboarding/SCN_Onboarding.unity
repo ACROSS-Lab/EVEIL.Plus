@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
+  trackPlayMode: 0
   triggerOnStart: 0
   canBeRepeated: 1
   selectionMode: 0
@@ -1204,6 +1205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d984d45f50e406b4ba7c852f83b3d192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceDirector
+  currentPlayMode: 1
+  togglePlayModeAction: {fileID: -3446439100935378617, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   sequenceSteps: []
   jumpToStepIndex: 0
   jumpToProgressCount: 0
@@ -1266,6 +1269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
+  trackPlayMode: 0
   triggerOnStart: 0
   canBeRepeated: 0
   selectionMode: 0
@@ -3906,6 +3910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
+  trackPlayMode: 0
   triggerOnStart: 0
   canBeRepeated: 0
   selectionMode: 0
@@ -5418,6 +5423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
+  trackPlayMode: 0
   triggerOnStart: 0
   canBeRepeated: 1
   selectionMode: 0
@@ -6839,6 +6845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
+  trackPlayMode: 0
   triggerOnStart: 0
   canBeRepeated: 0
   selectionMode: 0
@@ -9021,6 +9028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
+  trackPlayMode: 0
   triggerOnStart: 1
   canBeRepeated: 0
   selectionMode: 0
@@ -10720,6 +10728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
+  trackPlayMode: 0
   triggerOnStart: 0
   canBeRepeated: 0
   selectionMode: 0
@@ -11190,6 +11199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
+  trackPlayMode: 0
   triggerOnStart: 0
   canBeRepeated: 0
   selectionMode: 0
@@ -12151,6 +12161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c36a0c9f578c34b9c1f52d15d5d4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceTrack
+  trackPlayMode: 0
   triggerOnStart: 0
   canBeRepeated: 0
   selectionMode: 0

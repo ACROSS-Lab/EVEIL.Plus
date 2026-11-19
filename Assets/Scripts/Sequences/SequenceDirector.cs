@@ -6,8 +6,19 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+public enum PlayMode
+{
+    Single = 0,
+    Duo = 1,
+}
+
 public class SequenceDirector : MonoBehaviour
 {
+    [Header("Play Mode")]
+    [SerializeField] PlayMode currentPlayMode = PlayMode.Duo;
+    [Tooltip("Input Action to toggle between Single and Duo modes.")]
+    [SerializeField] InputActionReference togglePlayModeAction;
+
     [Header("List of steps")]
     [SerializeField] List<SequenceStep> sequenceSteps;
 
@@ -27,6 +38,7 @@ public class SequenceDirector : MonoBehaviour
     EventDirector eventDirector;
 
     public static SequenceDirector Instance { get; private set; }
+    public PlayMode CurrentPlayMode => currentPlayMode;
 
     readonly HashSet<string> pendingTriggers = new HashSet<string>();
 
@@ -53,15 +65,17 @@ public class SequenceDirector : MonoBehaviour
 
     void Start()
     {
+        ApplyPlayModeLanguage();
         currentSequenceCoroutine = StartCoroutine(ExecuteSequence());
     }
 
-#if UNITY_EDITOR
     void Update()
     {
+        CheckTogglePlayModeInput();
+#if UNITY_EDITOR
         KeyboardPerformAction();
-    }
 #endif
+    }
 
     void OnEnable()
     {
@@ -497,13 +511,62 @@ public class SequenceDirector : MonoBehaviour
         return currentProgressCount;
     }
 
+    void CheckTogglePlayModeInput()
+    {
+        if (togglePlayModeAction != null && togglePlayModeAction.action.WasPerformedThisFrame())
+        {
+            TogglePlayMode();
+        }
+    }
+
+    public void TogglePlayMode()
+    {
+        PlayMode nextMode = currentPlayMode == PlayMode.Single ? PlayMode.Duo : PlayMode.Single;
+        SetPlayMode(nextMode);
+    }
+
+    public void SetPlayMode(PlayMode mode, bool resetAfterChange = true)
+    {
+        currentPlayMode = mode;
+        ApplyPlayModeLanguage();
+        Debug.Log($"[SequenceDirector] Switched PlayMode to: {currentPlayMode}");
+
+        if (resetAfterChange)
+        {
+            ResetGame();
+        }
+    }
+
+    void ApplyPlayModeLanguage()
+    {
+        if (currentPlayMode == PlayMode.Duo && LocalizationManager.Instance != null)
+        {
+            LocalizationManager.Instance.SetLanguage("French");
+        }
+    }
+
     public void ResetGame()
     {
+        StopAllCoroutines();
+        currentSequenceCoroutine = null;
+        CleanupCurrentStep();
+
+        if (sequenceSteps != null)
+        {
+            sequenceSteps.Clear();
+        }
+
         currentProgressCount = 0;
         currentStepIndex = 0;
+        hasPerformedAction = false;
         pendingTriggers.Clear();
-        StopAllCoroutines();
+        isSceneLoading = true;
+        isReadyToProceed = false;
+
+        ApplyPlayModeLanguage();
         SequenceTrack.ResetTriggeredTracks();
+
+        currentSequenceCoroutine = StartCoroutine(ExecuteSequence());
         SceneManager.LoadScene(0);
     }
 }

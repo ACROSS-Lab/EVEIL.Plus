@@ -20,6 +20,16 @@ public enum StepSelectionMode
     RandomOne = 1,
 }
 
+public enum TrackPlayMode
+{
+    [Tooltip("Run this track in both Single and Duo modes")]
+    Both = 0,
+    [Tooltip("Run this track only in Single mode")]
+    Single = 1,
+    [Tooltip("Run this track only in Duo mode")]
+    Duo = 2,
+}
+
 public class SequenceTrack : MonoBehaviour
 {
     public enum ExecutionMode
@@ -31,6 +41,10 @@ public class SequenceTrack : MonoBehaviour
         [Tooltip("Interrupt the current step immediately and play these steps")]
         Immediate = 2,
     }
+
+    [Header("Play Mode")]
+    [Tooltip("Which play mode(s) this track is allowed to run in.")]
+    [SerializeField] TrackPlayMode trackPlayMode = TrackPlayMode.Both;
 
     [Header("Trigger")]
     [SerializeField] bool triggerOnStart = false;
@@ -77,6 +91,8 @@ public class SequenceTrack : MonoBehaviour
 
     public void TriggerAction()
     {
+        if (!IsAllowedInCurrentPlayMode()) return;
+
         if (!isRepeatable && triggeredTracks.Contains(trackId)) return;
 
         if (SequenceDirector.Instance == null) return;
@@ -95,6 +111,16 @@ public class SequenceTrack : MonoBehaviour
         }
 
         triggeredTracks.Add(trackId);
+    }
+
+    bool IsAllowedInCurrentPlayMode()
+    {
+        if (trackPlayMode == TrackPlayMode.Both) return true;
+        if (SequenceDirector.Instance == null) return true;
+
+        PlayMode currentMode = SequenceDirector.Instance.CurrentPlayMode;
+        return (trackPlayMode == TrackPlayMode.Single && currentMode == PlayMode.Single)
+            || (trackPlayMode == TrackPlayMode.Duo && currentMode == PlayMode.Duo);
     }
 
     List<SequenceStep> GetStepsToExecute()
