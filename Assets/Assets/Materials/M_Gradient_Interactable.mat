@@ -152,7 +152,7 @@ Material:
     - _Fade_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Highlight_Color: {r: 1, g: 0.8196079, b: 0.5058824, a: 1}
     - _LightDir: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _Multiply_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Multiply_Color: {r: 1, g: 0.3443396, b: 0.3443396, a: 1}
     - _Outline_Color: {r: 0, g: 0, b: 0, a: 0}
     - _Shadow_Color: {r: 0.514151, g: 0.9190251, b: 1, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
