@@ -18,6 +18,7 @@ public class SequenceDirector : MonoBehaviour
     [SerializeField] PlayMode currentPlayMode = PlayMode.Duo;
     [Tooltip("Input Action to toggle between Single and Duo modes.")]
     [SerializeField] InputActionReference togglePlayModeAction;
+    [ShowIf("isDuoMode")] [SerializeField] string duoModeLanguage = "French";
 
     [Header("List of steps")]
     [SerializeField] List<SequenceStep> sequenceSteps;
@@ -44,6 +45,7 @@ public class SequenceDirector : MonoBehaviour
 
     Coroutine currentSequenceCoroutine;
     SequenceStep currentExecutingStep;
+    bool isDuoMode => currentPlayMode == PlayMode.Duo;
 
     void Awake()
     {
@@ -541,7 +543,7 @@ public class SequenceDirector : MonoBehaviour
     {
         if (currentPlayMode == PlayMode.Duo && LocalizationManager.Instance != null)
         {
-            LocalizationManager.Instance.SetLanguage("French");
+            LocalizationManager.Instance.SetLanguage(duoModeLanguage);
         }
     }
 
