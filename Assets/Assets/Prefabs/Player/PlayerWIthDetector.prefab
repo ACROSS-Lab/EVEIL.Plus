@@ -1660,7 +1660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8393186890254128703, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0019
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8393186890254128703, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1787,6 +1787,9 @@ MonoBehaviour:
   fadeCanvasGroup: {fileID: 0}
   fadeDuration: 0.5
   hasFadeOnStart: 1
+  raycastLine: {fileID: 5529168248843140640}
+  defaultPosition: {x: 0, y: -0.0119, z: 0.0191}
+  detectorPosition: {x: 0, y: 0.0873, z: 0.0316}
 --- !u!20 &4089578780051169128 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 1767192439, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -1855,6 +1858,11 @@ Transform:
 --- !u!4 &4089578780634791695 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 202364688, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+  m_PrefabInstance: {fileID: 4089578780702140447}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5529168248843140640 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8393186890254128703, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
   m_PrefabInstance: {fileID: 4089578780702140447}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5361728117107025680
@@ -1929,7 +1937,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 931898102053475415, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0027
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 931898102053475415, guid: adb6610cface9ac4bb7c7b7f8eadec5a, type: 3}
       propertyPath: m_LocalPosition.y

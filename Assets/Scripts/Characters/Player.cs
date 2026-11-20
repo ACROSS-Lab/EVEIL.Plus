@@ -11,12 +11,19 @@ public class Player : MonoBehaviour
     [SerializeField] float fadeDuration = 0.5f;
     [SerializeField] bool hasFadeOnStart = true;
 
+    [Header("Raycast Line Setup")]
+    [SerializeField] Transform raycastLine;
+    [SerializeField] Vector3 defaultPosition;
+    [SerializeField] Vector3 detectorPosition; 
+
     void Start()
     {
         if (fadeCanvasGroup == null)
         {
             fadeCanvasGroup = FindFirstObjectByType<SceneTransition>().GetComponent<CanvasGroup>();
         }
+
+        raycastLine.localPosition = detectorPosition;
     }
 
     public void MovePlayer(Vector3 position, bool hasRotation, Vector3 rotation)
@@ -44,8 +51,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SetLanguage(string languageName)
+    public void SetRaycastLinePositionToDetector(bool isDetector)
     {
-        LocalizationManager.Instance.SetLanguage(languageName);
+        raycastLine.localPosition = isDetector ? detectorPosition : defaultPosition;
     }
 }

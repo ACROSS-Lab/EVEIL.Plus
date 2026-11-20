@@ -530,7 +530,6 @@ public class SequenceDirector : MonoBehaviour
     public void SetPlayMode(PlayMode mode, bool resetAfterChange = true)
     {
         currentPlayMode = mode;
-        ApplyPlayModeLanguage();
         Debug.Log($"[SequenceDirector] Switched PlayMode to: {currentPlayMode}");
 
         if (resetAfterChange)
@@ -541,10 +540,15 @@ public class SequenceDirector : MonoBehaviour
 
     void ApplyPlayModeLanguage()
     {
-        if (currentPlayMode == PlayMode.Duo && LocalizationManager.Instance != null)
+        if (currentPlayMode == PlayMode.Duo)
         {
             LocalizationManager.Instance.SetLanguage(duoModeLanguage);
         }
+        else
+        {
+            LanguageSelection.isLanguageSelected = false;
+        }
+        
     }
 
     public void ResetGame()

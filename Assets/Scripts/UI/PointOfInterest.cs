@@ -17,9 +17,6 @@ public class PointOfInterest : MonoBehaviour
     [SerializeField] string localizationKey;
     [SerializeField] LocalizedKey farMarkerLocalizedKey;
 
-    [Header("Gameobject Interactable")]
-    [SerializeField] GameObject interactableObject;
-
     [Header("Canvas & Sub-Elements")]
     [Tooltip("World space canvas containing all POI UI markers and the tag pie menu.")]
     [SerializeField] Canvas displayCanvas;
@@ -108,8 +105,6 @@ public class PointOfInterest : MonoBehaviour
     Transform camTransform;
     Collider poiCollider;
     XRSimpleInteractable interactable;
-    ScanProgressDisplay scanProgressDisplay;
-    GameObject hoverHighlightInstance;
 
     Vector3 canvasBaseLocalPosition;
     readonly List<int> foundTagIndices = new List<int>();
@@ -118,8 +113,6 @@ public class PointOfInterest : MonoBehaviour
     float scanProgress = 0f;
     bool isScanned = false;
     bool isTagValidated = false;
-    bool isHoveredByRightHand = false;
-    bool isHovered = false;
 
 #if UNITY_EDITOR
     void OnValidate()
@@ -148,24 +141,6 @@ public class PointOfInterest : MonoBehaviour
         if (Camera.main != null)
         {
             camTransform = Camera.main.transform;
-        }
-    }
-
-    void OnEnable()
-    {
-        if (interactable != null)
-        {
-            interactable.hoverEntered.AddListener(OnHoverEntered);
-            interactable.hoverExited.AddListener(OnHoverExited);
-        }
-    }
-
-    void OnDisable()
-    {
-        if (interactable != null)
-        {
-            interactable.hoverEntered.RemoveListener(OnHoverEntered);
-            interactable.hoverExited.RemoveListener(OnHoverExited);
         }
     }
 
@@ -285,8 +260,6 @@ public class PointOfInterest : MonoBehaviour
     public void CompleteScan()
     {
         isScanned = true;
-        isHoveredByRightHand = false;
-        SetHovered(false);
 
         if (validationFXPrefab != null)
         {
@@ -370,61 +343,6 @@ public class PointOfInterest : MonoBehaviour
         if (farMarker != null && farMarker.activeSelf == inRange)
         {
             farMarker.SetActive(!inRange);
-        }
-    }
-
-    void OnHoverEntered(HoverEnterEventArgs args)
-    {
-        if (isScanned)
-            return;
-
-        if (IsRightHandInteractor(args.interactorObject))
-        {
-            isHoveredByRightHand = true;
-            SetHovered(true);
-        }
-    }
-
-    void OnHoverExited(HoverExitEventArgs args)
-    {
-        if (IsRightHandInteractor(args.interactorObject))
-        {
-            isHoveredByRightHand = false;
-            SetHovered(false);
-        }
-    }
-
-    bool IsRightHandInteractor(IXRInteractor interactor)
-    {
-        if (interactor is NearFarInteractor nearFar)
-        {
-            return nearFar.handedness == InteractorHandedness.Right;
-        }
-
-        if (interactor is Component comp)
-        {
-            NearFarInteractor parentNearFar = comp.GetComponentInParent<NearFarInteractor>();
-            if (parentNearFar != null)
-            {
-                return parentNearFar.handedness == InteractorHandedness.Right;
-            }
-
-            if (comp.name.IndexOf("right", StringComparison.OrdinalIgnoreCase) >= 0)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    void SetHovered(bool hovered)
-    {
-        isHovered = hovered;
-
-        if (hoverHighlightInstance != null && hoverHighlightInstance.activeSelf != hovered)
-        {
-            hoverHighlightInstance.SetActive(hovered);
         }
     }
 

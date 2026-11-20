@@ -1176,6 +1176,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1408665990}
+          m_TargetAssemblyTypeName: Player, Assembly-CSharp
+          m_MethodName: SetRaycastLinePositionToDetector
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   animationIndex: 0
   simulationDelayStart: 0
   startTime:
@@ -1217,8 +1229,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d984d45f50e406b4ba7c852f83b3d192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceDirector
-  currentPlayMode: 1
+  currentPlayMode: 0
   togglePlayModeAction: {fileID: -3446439100935378617, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  duoModeLanguage: English
   sequenceSteps: []
   jumpToStepIndex: 0
   jumpToProgressCount: 0
@@ -6802,6 +6815,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 1
           m_CallState: 2
+        - m_Target: {fileID: 1408665990}
+          m_TargetAssemblyTypeName: Player, Assembly-CSharp
+          m_MethodName: SetRaycastLinePositionToDetector
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   animationIndex: 0
   simulationDelayStart: 0
   startTime:
@@ -9164,6 +9189,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 534158ed01efd6a44a1328d3dd7e2e33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlyHorizontally
+--- !u!114 &1408665990 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1939128541124952882, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
+  m_PrefabInstance: {fileID: 1753088961444038821}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168714911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4a7145cccf2bdd41a74ae9a53dc6720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
 --- !u!4 &1413246812 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8ad41afa1097c41469c0f96f5b536a58, type: 3}
@@ -12937,6 +12973,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5749001763976060442, guid: f44a3095f38ac23419d6d38dc52cf0d0, type: 3}
   m_PrefabInstance: {fileID: 2094902778}
   m_PrefabAsset: {fileID: 0}
+--- !u!225 &2094902781 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 2725674616148605265, guid: f44a3095f38ac23419d6d38dc52cf0d0, type: 3}
+  m_PrefabInstance: {fileID: 2094902778}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2102151605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13286,6 +13327,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1939128541124952882, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
+      propertyPath: fadeCanvasGroup
+      value: 
+      objectReference: {fileID: 2094902781}
     - target: {fileID: 3393036437358151217, guid: f25d301b26b9b7d4c9d183be6cca0d14, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2
