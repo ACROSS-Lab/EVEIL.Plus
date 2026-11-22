@@ -9,10 +9,13 @@ using UnityEngine.UI;
 /// <summary>
 /// Pie menu of tags. The options are laid out in a circle around a center element that shows the empty tag.
 /// Hovering an option shrinks, fades and pulls the other options toward the center.
-/// Holding the press on an option fills the center fill, and the option is confirmed once the fill is complete.
-/// When multiple tags are required, each correct answer locks/hides that option and updates the center count until all required tags are found.
-/// Once all required tags are found, the validated answer(s) are shown in the center and the options disappear.
-/// An incorrect answer is shown in the center for a few seconds, then the remaining options return to their idle state.
+/// Holding the press on an option fills the hold fill, and the option is confirmed once the fill is complete.
+/// When multiple tags are required, each correct answer turns into a green circle (same look as the center) at its place
+/// in the pie, and the center count is updated until all required tags are found.
+/// Once all required tags are found, the other options and the center disappear and each answer is shown
+/// in its own green circle, lined up in the middle.
+/// An incorrect answer is shown in the center for a few seconds, then the remaining options return to their idle state
+/// (found answers come back as green circles).
 /// Pointer detection uses fixed hit zones (Button + Image) separate from the option visuals, which never receive raycasts.
 /// </summary>
 public class TagCarouselDisplay : MonoBehaviour
@@ -99,6 +102,12 @@ public class TagCarouselDisplay : MonoBehaviour
         public Button HitButton;
 
         public Image HoldFill;
+
+        // Green circle (center look) the option turns into once its answer is found. Created on first use.
+        public RectTransform Circle;
+        public CanvasGroup CircleGroup;
+        public TagDisplay CircleDisplay;
+        public Vector3 CircleBaseScale = Vector3.one;
     }
 
     [Header("Layout")]
@@ -108,7 +117,7 @@ public class TagCarouselDisplay : MonoBehaviour
     [SerializeField] RectTransform centerContainer;
     [Tooltip("Prefab of the options, also used for the center if no Center Prefab is set. Needs a TagDisplay or one is added.")]
     [SerializeField] GameObject itemPrefab;
-    [Tooltip("Optional custom prefab of the center display. Its TagDisplay can hold the Hold Fill image.")]
+    [Tooltip("Optional custom prefab of the center display. Also used for the green circles of the found answers.")]
     [SerializeField] GameObject centerPrefab;
     [Tooltip("Distance between the center and each option.")]
     [SerializeField] float radius = 140f;
@@ -182,12 +191,20 @@ public class TagCarouselDisplay : MonoBehaviour
     [SerializeField] float optionsShowStagger = 0.03f;
     [SerializeField] float optionsHideDuration = 0.2f;
 
+    [Header("Found Answers (green circles)")]
+    [Tooltip("Scale of a found answer's circle while the other options are still available. 1 = same size as the center.")]
+    [SerializeField] float foundCircleScale = 0.6f;
+    [Tooltip("Pause in seconds before the circles regroup in the middle once every answer is found.")]
+    [SerializeField] float completedLayoutDelay = 0.5f;
+    [Tooltip("Space between two circles when they are lined up at the end.")]
+    [SerializeField] float completedCircleGap = 20f;
+
     [Header("Validation Result Feedback")]
-    [Tooltip("Tint of the center when the answer is correct.")]
+    [Tooltip("Tint of the center and of the found answers' circles when the answer is correct.")]
     [SerializeField] Color correctFeedbackColor = new Color(0.2f, 0.85f, 0.3f, 1f);
     [Tooltip("Tint of the center when the answer is incorrect.")]
     [SerializeField] Color incorrectFeedbackColor = new Color(0.9f, 0.25f, 0.2f, 1f);
-    [Tooltip("If false, the center is not tinted when the answer is correct.")]
+    [Tooltip("If false, the center is not tinted when a single answer is validated.")]
     [SerializeField] bool tintCenterOnCorrect = true;
     [Tooltip("Scale punch multiplier of the center when the feedback appears.")]
     [SerializeField] float feedbackPunchScale = 1.25f;
@@ -221,6 +238,7 @@ public class TagCarouselDisplay : MonoBehaviour
     int hoveredIndex = -1;
     int holdingIndex = -1;
     int heldVisualIndex = -1;
+    int lastConfirmedIndex = -1;
     float holdProgress;
     float graceTimer;
     Tween incorrectTimer;
@@ -269,6 +287,7 @@ public class TagCarouselDisplay : MonoBehaviour
         {
             int index = holdingIndex;
             holdingIndex = -1;
+            lastConfirmedIndex = index;
             OnOptionConfirmed?.Invoke(index);
         }
     }
@@ -305,7 +324,7 @@ public class TagCarouselDisplay : MonoBehaviour
 
     /// <summary>
     /// Marks a single option as found when there are still more correct tags to discover.
-    /// Locks/hides the confirmed option and updates the center prompt count.
+    /// The option turns into a green circle at its place and the center prompt count is updated.
     /// </summary>
     public void MarkOptionFound(int availableIndex, int remainingCount, int totalCount, int currentFoundCount)
     {
@@ -320,11 +339,7 @@ public class TagCarouselDisplay : MonoBehaviour
 
         if (availableIndex >= 0 && availableIndex < options.Count)
         {
-            OptionItem option = options[availableIndex];
-            SetHitActive(option, false);
-            option.Rect.DOScale(option.BaseScale, hoverDuration);
-            option.Group.DOFade(1f, hoverDuration);
-            option.Colors.Apply(correctFeedbackColor, false, true, 1f, 0.25f);
+            ConvertToCircle(availableIndex);
         }
 
         ApplyHoverStyles(true);
@@ -348,10 +363,10 @@ public class TagCarouselDisplay : MonoBehaviour
         EnterResult(State.Validated, availableIndex, tintCenterOnCorrect, correctFeedbackColor);
     }
 
-    /// <summary>Shows all validated tags in the center, hides the options and locks the pie menu.</summary>
+    /// <summary>Shows every validated tag in its own green circle, lined up in the middle, and locks the pie menu.</summary>
     public void ShowCorrectFeedback(IReadOnlyList<TagData> validatedTags)
     {
-        EnterMultipleResult(State.Validated, validatedTags, tintCenterOnCorrect, correctFeedbackColor);
+        EnterMultipleResult(State.Validated, validatedTags);
     }
 
     /// <summary>Shows the given tag in red in the center, hides the options, then resets the pie menu after a delay.</summary>
@@ -414,6 +429,13 @@ public class TagCarouselDisplay : MonoBehaviour
             }
 
             if (option.HitImage != null) Destroy(option.HitImage.gameObject);
+
+            if (option.Circle != null)
+            {
+                option.Circle.DOKill();
+                option.CircleGroup.DOKill();
+                Destroy(option.Circle.gameObject);
+            }
         }
 
         options.Clear();
@@ -431,6 +453,7 @@ public class TagCarouselDisplay : MonoBehaviour
         holdFill = null;
         heldVisualIndex = -1;
         fillIndex = -1;
+        lastConfirmedIndex = -1;
     }
 
     // Creates an item that never receives raycasts, with centered anchors and a TagDisplay.
@@ -661,16 +684,17 @@ public class TagCarouselDisplay : MonoBehaviour
             option.Group.DOKill();
             option.Rect.anchoredPosition = option.BasePos;
 
-            // Keep already found options hidden and locked when returning from incorrect feedback
+            // Found options stay locked: the rectangle is hidden and its green circle comes back instead
             if (lockedOptionIndices.Contains(i))
             {
                 SetHitActive(option, false);
-                option.Colors.Apply(correctFeedbackColor, false, true, 1f, 0f);
-                option.Rect.localScale = option.BaseScale;
-                option.Group.alpha = 1f;
+                option.Rect.localScale = Vector3.zero;
+                option.Group.alpha = 0f;
+                ShowFoundCircle(i, animate, option.BasePos, foundCircleScale, i * optionsShowStagger);
                 continue;
             }
 
+            HideCircle(option, false);
             SetHitActive(option, true);
 
             if (animate)
@@ -689,15 +713,94 @@ public class TagCarouselDisplay : MonoBehaviour
         }
     }
 
-    void HideOptions()
+    // Hides the rectangles. Found circles are hidden too unless keepFoundCircles is set.
+    void HideOptions(float delay = 0f, bool keepFoundCircles = false)
     {
         foreach (OptionItem option in options)
         {
-            option.Rect.DOKill();
-            option.Group.DOKill();
             SetHitActive(option, false);
-            option.Rect.DOScale(0f, optionsHideDuration).SetEase(Ease.InBack);
-            option.Group.DOFade(0f, optionsHideDuration);
+            HideOptionRect(option, delay);
+            if (!keepFoundCircles) HideCircle(option, true);
+        }
+    }
+
+    void HideOptionRect(OptionItem option, float delay = 0f)
+    {
+        option.Rect.DOKill();
+        option.Group.DOKill();
+        option.Rect.DOScale(0f, optionsHideDuration).SetEase(Ease.InBack).SetDelay(delay);
+        option.Group.DOFade(0f, optionsHideDuration).SetDelay(delay);
+    }
+
+    // ---------------------------------------------------------------------
+    // Found answers: green circles
+    // ---------------------------------------------------------------------
+
+    // The rectangle of the option disappears and a green circle (same look as the center) pops in at its place.
+    void ConvertToCircle(int index)
+    {
+        OptionItem option = options[index];
+        lockedOptionIndices.Add(index);
+
+        SetHitActive(option, false);
+        HideOptionRect(option);
+        ShowFoundCircle(index, true, option.BasePos, foundCircleScale);
+    }
+
+    void ShowFoundCircle(int index, bool animate, Vector2 position, float scaleMultiplier, float delay = 0f)
+    {
+        OptionItem option = options[index];
+
+        if (option.Circle == null)
+        {
+            option.Circle = CreateItem(centerPrefab != null ? centerPrefab : itemPrefab, itemsContainer, out option.CircleDisplay);
+            option.CircleBaseScale = option.Circle.localScale;
+
+            option.CircleGroup = option.Circle.GetComponent<CanvasGroup>();
+            if (option.CircleGroup == null) option.CircleGroup = option.Circle.gameObject.AddComponent<CanvasGroup>();
+
+            if (tags != null && index < tags.Length) option.CircleDisplay.SetData(tags[index]);
+            option.CircleDisplay.ShowResult(correctFeedbackColor);
+        }
+
+        option.Circle.gameObject.SetActive(true);
+        option.Circle.DOKill();
+        option.CircleGroup.DOKill();
+        option.Circle.anchoredPosition = position;
+
+        Vector3 scale = option.CircleBaseScale * scaleMultiplier;
+
+        if (animate)
+        {
+            option.Circle.localScale = Vector3.zero;
+            option.CircleGroup.alpha = 0f;
+            option.Circle.DOScale(scale, optionsShowDuration).SetEase(Ease.OutBack).SetDelay(delay);
+            option.CircleGroup.DOFade(1f, optionsShowDuration).SetDelay(delay);
+        }
+        else
+        {
+            option.Circle.localScale = scale;
+            option.CircleGroup.alpha = 1f;
+        }
+    }
+
+    void HideCircle(OptionItem option, bool animate)
+    {
+        if (option.Circle == null)
+            return;
+
+        option.Circle.DOKill();
+        option.CircleGroup.DOKill();
+
+        if (animate)
+        {
+            option.Circle.DOScale(0f, optionsHideDuration).SetEase(Ease.InBack);
+            option.CircleGroup.DOFade(0f, optionsHideDuration);
+        }
+        else
+        {
+            option.Circle.localScale = Vector3.zero;
+            option.CircleGroup.alpha = 0f;
         }
     }
 
@@ -815,25 +918,6 @@ public class TagCarouselDisplay : MonoBehaviour
         }
     }
 
-    void ShowMultipleInCenter(IReadOnlyList<TagData> validatedTags, bool tint, Color color)
-    {
-        if (validatedTags != null && validatedTags.Count > 0)
-        {
-            centerDisplay.SetMultipleData(validatedTags);
-        }
-
-        centerDisplay.ShowResult(tint ? color : (Color?)null);
-        centerInstance.SetActive(true);
-
-        centerRect.DOKill();
-        centerRect.localScale = centerBaseScale;
-
-        if (feedbackPunchDuration > 0f)
-        {
-            centerRect.DOPunchScale(centerBaseScale * (feedbackPunchScale - 1f), feedbackPunchDuration, 1, 0.5f);
-        }
-    }
-
     void EnterResult(State newState, int index, bool tint, Color color)
     {
         KillIncorrectTimer();
@@ -847,7 +931,8 @@ public class TagCarouselDisplay : MonoBehaviour
         HideOptions();
     }
 
-    void EnterMultipleResult(State newState, IReadOnlyList<TagData> validatedTags, bool tint, Color color)
+    // Every validated tag gets its own green circle, lined up in the middle. The center and the other options disappear.
+    void EnterMultipleResult(State newState, IReadOnlyList<TagData> validatedTags)
     {
         KillIncorrectTimer();
 
@@ -856,8 +941,65 @@ public class TagCarouselDisplay : MonoBehaviour
         SetHoldProgress(0f);
         StopHoldFeedback();
 
-        if (centerInstance != null) ShowMultipleInCenter(validatedTags, tint, color);
-        HideOptions();
+        // Indices of the validated options, in pie order
+        List<int> found = new List<int>();
+        if (validatedTags != null && tags != null)
+        {
+            foreach (TagData tag in validatedTags)
+            {
+                int index = Array.IndexOf(tags, tag);
+                if (index >= 0 && !found.Contains(index)) found.Add(index);
+            }
+        }
+
+        found.Sort();
+
+        // "Live" answers were found just now in the pie: their circle is already on screen (or about to be)
+        // and slides to the middle after a short pause. Any other answer appears straight in the middle.
+        bool anyLive = false;
+        foreach (int index in found)
+        {
+            if (lockedOptionIndices.Contains(index) || index == lastConfirmedIndex) anyLive = true;
+        }
+
+        float delay = anyLive ? Mathf.Max(completedLayoutDelay, optionsShowDuration) : 0f;
+        float spacing = (centerRect != null ? centerRect.rect.size.x * centerBaseScale.x : 100f) + completedCircleGap;
+
+        for (int k = 0; k < found.Count; k++)
+        {
+            int index = found[k];
+            OptionItem option = options[index];
+            Vector2 target = new Vector2((k - (found.Count - 1) * 0.5f) * spacing, 0f);
+
+            bool live = lockedOptionIndices.Contains(index) || index == lastConfirmedIndex;
+
+            if (live)
+            {
+                if (!lockedOptionIndices.Contains(index)) ConvertToCircle(index);
+
+                option.Circle.DOAnchorPos(target, optionsShowDuration).SetEase(Ease.InOutCubic).SetDelay(delay);
+                option.Circle.DOScale(option.CircleBaseScale, optionsShowDuration).SetEase(Ease.OutBack).SetDelay(delay);
+            }
+            else
+            {
+                lockedOptionIndices.Add(index);
+                SetHitActive(option, false);
+                option.Rect.DOKill();
+                option.Group.DOKill();
+                option.Rect.localScale = Vector3.zero;
+                option.Group.alpha = 0f;
+
+                ShowFoundCircle(index, true, target, 1f);
+            }
+        }
+
+        HideOptions(delay, true);
+
+        if (centerRect != null)
+        {
+            centerRect.DOKill();
+            centerRect.DOScale(0f, optionsHideDuration).SetEase(Ease.InBack).SetDelay(delay);
+        }
     }
 
     void OnIncorrectFinished()
@@ -877,6 +1019,7 @@ public class TagCarouselDisplay : MonoBehaviour
 
         state = State.Idle;
         holdingIndex = hoveredIndex = -1;
+        lastConfirmedIndex = -1;
         SetHoldProgress(0f);
         StopHoldFeedback();
 
