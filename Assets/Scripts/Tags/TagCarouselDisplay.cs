@@ -321,11 +321,10 @@ public class TagCarouselDisplay : MonoBehaviour
         if (availableIndex >= 0 && availableIndex < options.Count)
         {
             OptionItem option = options[availableIndex];
-            option.Rect.DOKill();
-            option.Group.DOKill();
             SetHitActive(option, false);
-            option.Rect.DOScale(0f, optionsHideDuration).SetEase(Ease.InBack);
-            option.Group.DOFade(0f, optionsHideDuration);
+            option.Rect.DOScale(option.BaseScale, hoverDuration);
+            option.Group.DOFade(1f, hoverDuration);
+            option.Colors.Apply(correctFeedbackColor, false, true, 1f, 0.25f);
         }
 
         ApplyHoverStyles(true);
@@ -666,8 +665,9 @@ public class TagCarouselDisplay : MonoBehaviour
             if (lockedOptionIndices.Contains(i))
             {
                 SetHitActive(option, false);
-                option.Rect.localScale = Vector3.zero;
-                option.Group.alpha = 0f;
+                option.Colors.Apply(correctFeedbackColor, false, true, 1f, 0f);
+                option.Rect.localScale = option.BaseScale;
+                option.Group.alpha = 1f;
                 continue;
             }
 

@@ -23,9 +23,7 @@ public class TagDisplay : MonoBehaviour
     Color backgroundBase = Color.white;
     Color gradient2Base = Color.white;
     bool cached;
-
-    /// <summary>Fill image driven by the pie menu when this display is used as the center element.</summary>
-    // public Image HoldFill => holdFill;
+    
 
     private void Awake()
     {
