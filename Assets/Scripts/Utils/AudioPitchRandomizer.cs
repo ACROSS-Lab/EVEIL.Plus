@@ -11,7 +11,6 @@ public class AudioPitchRandomizer : MonoBehaviour
     [SerializeField][Range(0.8f, 1.2f)] float pitch = 0.8f;
     [SerializeField][Range(0f, 0.2f)] float pitchVariance = 0.2f;
     [SerializeField] bool fadeOutOnStop = true;
-    [SerializeField] float fadeOutTime = 0.25f;
 
     AudioSource audioSource;
 

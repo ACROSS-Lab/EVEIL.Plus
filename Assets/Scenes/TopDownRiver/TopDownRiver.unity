@@ -20352,7 +20352,7 @@ MonoBehaviour:
   lockedLocalizationKey: Key.UI.Area.Locked
   unlockedLocalizationKey: Key.UI.Area.City
   infoAnchor: {fileID: 419960510}
-  infoHeightOffset: 1
+  infoHeightOffset: 2
   playerCamera: {fileID: 0}
   faceCamera: 1
   lockYAxis: 1
@@ -67186,6 +67186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SequenceDirector
   currentPlayMode: 1
   togglePlayModeAction: {fileID: 0}
+  duoModeLanguage: French
   sequenceSteps: []
   jumpToStepIndex: 0
   jumpToProgressCount: 2

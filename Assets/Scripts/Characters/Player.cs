@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     [Header("Fading Setup")]
     [SerializeField] CanvasGroup fadeCanvasGroup;
     [SerializeField] float fadeDuration = 0.5f;
-    [SerializeField] bool hasFadeOnStart = true;
 
     [Header("Raycast Line Setup")]
     [SerializeField] Transform raycastLine;

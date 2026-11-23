@@ -214,7 +214,6 @@ public class TagCarouselDisplay : MonoBehaviour
     GameObject centerInstance;
     RectTransform centerRect;
     TagDisplay centerDisplay;
-    Image holdFill;
     Vector3 centerBaseScale = Vector3.one;
 
     State state = State.Idle;
@@ -428,7 +427,6 @@ public class TagCarouselDisplay : MonoBehaviour
         centerInstance = null;
         centerRect = null;
         centerDisplay = null;
-        holdFill = null;
         heldVisualIndex = -1;
         fillIndex = -1;
     }
