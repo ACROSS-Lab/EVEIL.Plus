@@ -130,7 +130,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Highlight: 0
-    - _Inverse_Flow: 1
+    - _Inverse_Flow: 0
     - _Metallic: 0
     - _NoiseTiling: 15
     - _OcclusionStrength: 1
