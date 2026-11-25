@@ -21,9 +21,9 @@ MonoBehaviour:
   targetNarratorScale: 0
   flyDuration: 0
   hasPlayerMovement: 1
-  playerTargetPosition: {x: 0.321, y: 2, z: -14.51}
+  playerTargetPosition: {x: -5.294031, y: 2, z: -10.322152}
   hasPlayerRotation: 1
-  playerTargetRotation: {x: 0, y: 348.53394, z: 0}
+  playerTargetRotation: {x: 0, y: 15.000021, z: 0}
   hasDialogue: 1
   characterStates: {fileID: 11400000, guid: 1fa3470f8cdcfd44592bb98dd66da925, type: 2}
   timeWaitBeforeTalking: 2.5
@@ -42,5 +42,6 @@ MonoBehaviour:
   waitTimeout: 0
   isSceneTransition: 0
   sceneToLoad: 
+  advanceProgress: 0
   hasSubStep: 0
   subStepEntries: []
