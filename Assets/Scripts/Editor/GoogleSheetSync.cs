@@ -1,4 +1,6 @@
+using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEditor;
@@ -55,6 +57,35 @@ public class GoogleSheetSyncWindow : EditorWindow
         }
     }
 
+    /// <summary>
+    /// Converts a standard Google Sheets /edit URL into a direct CSV export URL if needed.
+    /// </summary>
+    private static string NormalizeCsvUrl(string url)
+    {
+        if (string.IsNullOrWhiteSpace(url))
+            return url;
+
+        string trimmed = url.Trim();
+
+        // Match standard Google Sheets URLs: https://docs.google.com/spreadsheets/d/{id}/edit...
+        Match sheetMatch = Regex.Match(trimmed, @"^(https://docs\.google\.com/spreadsheets/d/[^/]+)/(?:edit|view)(.*)$", RegexOptions.IgnoreCase);
+        if (sheetMatch.Success)
+        {
+            string baseUrl = sheetMatch.Groups[1].Value;
+            string tail = sheetMatch.Groups[2].Value;
+
+            Match gidMatch = Regex.Match(tail, @"[?&#]gid=([0-9]+)", RegexOptions.IgnoreCase);
+            if (gidMatch.Success)
+            {
+                return $"{baseUrl}/export?format=csv&gid={gidMatch.Groups[1].Value}";
+            }
+
+            return $"{baseUrl}/export?format=csv";
+        }
+
+        return trimmed;
+    }
+
     private void StartDownload()
     {
         if (string.IsNullOrEmpty(sheetUrl))
@@ -63,7 +94,13 @@ public class GoogleSheetSyncWindow : EditorWindow
             return;
         }
 
-        www = UnityWebRequest.Get(sheetUrl);
+        string downloadUrl = NormalizeCsvUrl(sheetUrl);
+        if (downloadUrl != sheetUrl)
+        {
+            Debug.Log($"Converted Google Sheet edit URL to CSV export URL: {downloadUrl}");
+        }
+
+        www = UnityWebRequest.Get(downloadUrl);
         www.SendWebRequest();
 
         // Register to the editor update loop to wait for completion
@@ -84,17 +121,29 @@ public class GoogleSheetSyncWindow : EditorWindow
         }
         else
         {
-            // Ensure the target directory exists
-            string directory = Path.GetDirectoryName(savePath);
-            if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory);
-            }
+            string downloadedText = www.downloadHandler.text;
 
-            // Save the CSV file
-            File.WriteAllText(savePath, www.downloadHandler.text);
-            AssetDatabase.Refresh();
-            Debug.Log("Sync successful! File saved to: " + savePath);
+            // Guard against overwriting the CSV with an HTML page (e.g. login page or non-export URL)
+            if (!string.IsNullOrEmpty(downloadedText) &&
+                (downloadedText.TrimStart().StartsWith("<!DOCTYPE html", StringComparison.OrdinalIgnoreCase) ||
+                 downloadedText.TrimStart().StartsWith("<html", StringComparison.OrdinalIgnoreCase)))
+            {
+                Debug.LogError("Sync aborted: The downloaded content is an HTML webpage instead of a CSV file. Make sure the Google Sheet is shared ('Anyone with the link') or published as CSV.");
+            }
+            else
+            {
+                // Ensure the target directory exists
+                string directory = Path.GetDirectoryName(savePath);
+                if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+
+                // Save the CSV file
+                File.WriteAllText(savePath, downloadedText);
+                AssetDatabase.Refresh();
+                Debug.Log("Sync successful! File saved to: " + savePath);
+            }
         }
 
         www.Dispose();
