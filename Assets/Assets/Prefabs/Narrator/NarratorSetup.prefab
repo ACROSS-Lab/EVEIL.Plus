@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 416961524793283465}
   - component: {fileID: 8673283306202786414}
   - component: {fileID: 706715272443549728}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 3300597924037533298}
   - component: {fileID: 6474612084825026323}
   - component: {fileID: 4882900365172690822}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: NestedDialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 6296128860454002483}
   - component: {fileID: 3104334950902662710}
   - component: {fileID: 7631666787933303051}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   - component: {fileID: 4062702002672391302}
   - component: {fileID: 2581016373708500994}
   - component: {fileID: 2802964886169025416}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (Overlay)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +506,7 @@ GameObject:
   - component: {fileID: 3683585168205222571}
   - component: {fileID: 6970736294104048413}
   - component: {fileID: 6804734540087383854}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 1627648895829543226}
   - component: {fileID: 245428208644338467}
   - component: {fileID: 7547996273749703018}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -664,7 +664,7 @@ GameObject:
   - component: {fileID: 7188824293127082369}
   - component: {fileID: 2943420038497364349}
   - component: {fileID: 7382675804187482129}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (Nested)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -802,7 +802,7 @@ GameObject:
   - component: {fileID: 1507594286405060013}
   - component: {fileID: 6240166476375840638}
   - component: {fileID: 5142679916178613513}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: OverlayDialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
