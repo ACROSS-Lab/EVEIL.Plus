@@ -61248,14 +61248,21 @@ MonoBehaviour:
   - {fileID: 8274348883902111632}
   - {fileID: 7659937966997833233}
   - {fileID: 1235566052963140521}
-  vehiclePrefabs:
-  - {fileID: 1507399766048556871, guid: 871457be5309d684d80521442ad1036e, type: 3}
-  - {fileID: 1507399766048556871, guid: 9384e1846ac8c944ea00189d22943dab, type: 3}
-  - {fileID: 1507399766048556871, guid: 2b9e7bc2a235c294db5b2f36dd919f72, type: 3}
-  - {fileID: 1507399766048556871, guid: 0dbb72a4ff917eb4fb1c41f0b509cc8e, type: 3}
-  - {fileID: 1507399766048556871, guid: 58e66065ceb661a45a9eddbd57a26b99, type: 3}
-  - {fileID: 1507399766048556871, guid: 5753132e4de4fa0489b5f3dd21705546, type: 3}
+  vehicles:
+  - prefab: {fileID: 1507399766048556871, guid: 871457be5309d684d80521442ad1036e, type: 3}
+    weight: 20
+  - prefab: {fileID: 1507399766048556871, guid: 9384e1846ac8c944ea00189d22943dab, type: 3}
+    weight: 20
+  - prefab: {fileID: 1507399766048556871, guid: 2b9e7bc2a235c294db5b2f36dd919f72, type: 3}
+    weight: 20
+  - prefab: {fileID: 1507399766048556871, guid: 0dbb72a4ff917eb4fb1c41f0b509cc8e, type: 3}
+    weight: 20
+  - prefab: {fileID: 1507399766048556871, guid: 58e66065ceb661a45a9eddbd57a26b99, type: 3}
+    weight: 10
+  - prefab: {fileID: 1507399766048556871, guid: 5753132e4de4fa0489b5f3dd21705546, type: 3}
+    weight: 10
   maxTotalVehicles: 45
+  exactProportions: 1
   avoidConsecutiveDuplicates: 1
   trafficLayerName: Traffic
   logSpawnSummary: 0
