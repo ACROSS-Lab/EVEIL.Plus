@@ -29917,7 +29917,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceDirector
   currentPlayMode: 1
-  togglePlayModeAction: {fileID: 0}
+  allowPlayModeToggle: 1
+  resetPlayModeAction: {fileID: 0}
   duoModeLanguage: French
   sequenceSteps: []
   jumpToStepIndex: 0
@@ -75042,6 +75043,10 @@ PrefabInstance:
     - target: {fileID: 4548936943277020436, guid: 0968678e19ecff54c89f7d644d0bd93e, type: 3}
       propertyPath: m_Name
       value: FX_SmokeStylized (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548936943277020436, guid: 0968678e19ecff54c89f7d644d0bd93e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4949871908027450097, guid: 0968678e19ecff54c89f7d644d0bd93e, type: 3}
       propertyPath: prewarm
