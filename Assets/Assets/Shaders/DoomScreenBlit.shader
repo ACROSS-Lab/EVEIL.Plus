@@ -31,8 +31,6 @@ Shader "Custom/DoomScreenBlit"
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            #pragma multi_compile_local _ROTATION_NONE _ROTATION_ROTATE90CW _ROTATION_ROTATE180 _ROTATION_ROTATE270CW
-            #pragma multi_compile_local _TRANSITIONTYPE_NONE _TRANSITIONTYPE_CRTPOWERON _TRANSITIONTYPE_DIGITALGLITCH _TRANSITIONTYPE_RETROSTATIC
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
@@ -51,6 +49,7 @@ Shader "Custom/DoomScreenBlit"
             TEXTURE2D(_MainTex);
             SAMPLER(sampler_MainTex);
 
+            float _Rotation;
             float _FlipX;
             float _FlipY;
             float _Zoom;
@@ -58,6 +57,7 @@ Shader "Custom/DoomScreenBlit"
             float _OffsetX;
             float _OffsetY;
             float _ScanlineIntensity;
+            float _TransitionType;
             float _TransitionProgress;
 
             Varyings vert(Attributes input)
@@ -84,14 +84,20 @@ Shader "Custom/DoomScreenBlit"
                 if (_FlipX > 0.5) c.x = -c.x;
                 if (_FlipY > 0.5) c.y = -c.y;
 
-                // Apply Rotation
-                #if defined(_ROTATION_ROTATE90CW)
+                // Apply Rotation (0 = None, 1 = Rotate90CW, 2 = Rotate180, 3 = Rotate270CW)
+                int rotMode = (int)round(_Rotation);
+                if (rotMode == 1)
+                {
                     c = float2(c.y, -c.x);
-                #elif defined(_ROTATION_ROTATE180)
+                }
+                else if (rotMode == 2)
+                {
                     c = float2(-c.x, -c.y);
-                #elif defined(_ROTATION_ROTATE270CW)
+                }
+                else if (rotMode == 3)
+                {
                     c = float2(-c.y, c.x);
-                #endif
+                }
 
                 // Apply Zoom & Aspect
                 float zoom = max(_Zoom, 0.001);
@@ -104,12 +110,12 @@ Shader "Custom/DoomScreenBlit"
                 c -= float2(_OffsetX, _OffsetY);
 
                 float2 finalUV = c + 0.5;
+                int transMode = (int)round(_TransitionType);
 
                 // -------------------------------------------------------------
-                // TRANSITION: CRT POWER-ON / OFF
+                // TRANSITION: CRT POWER-ON / OFF (1)
                 // -------------------------------------------------------------
-                #if defined(_TRANSITIONTYPE_CRTPOWERON)
-                if (_TransitionProgress < 0.999)
+                if (transMode == 1 && _TransitionProgress < 0.999)
                 {
                     // Phase 1: Horizontal slit expands (0.0 to 0.3)
                     float hProgress = saturate(_TransitionProgress / 0.3);
@@ -153,13 +159,11 @@ Shader "Custom/DoomScreenBlit"
 
                     return col;
                 }
-                #endif
 
                 // -------------------------------------------------------------
-                // TRANSITION: DIGITAL GLITCH / SIGNAL INTERRUPT
+                // TRANSITION: DIGITAL GLITCH / SIGNAL INTERRUPT (2)
                 // -------------------------------------------------------------
-                #if defined(_TRANSITIONTYPE_DIGITALGLITCH)
-                if (_TransitionProgress < 0.999)
+                if (transMode == 2 && _TransitionProgress < 0.999)
                 {
                     float glitch = (1.0 - _TransitionProgress);
                     float slice = floor(uv.y * 22.0);
@@ -188,13 +192,11 @@ Shader "Custom/DoomScreenBlit"
                     col.rgb *= smoothstep(0.0, 0.2, _TransitionProgress);
                     return col;
                 }
-                #endif
 
                 // -------------------------------------------------------------
-                // TRANSITION: RETRO STATIC SNOW
+                // TRANSITION: RETRO STATIC SNOW (3)
                 // -------------------------------------------------------------
-                #if defined(_TRANSITIONTYPE_RETROSTATIC)
-                if (_TransitionProgress < 0.999)
+                if (transMode == 3 && _TransitionProgress < 0.999)
                 {
                     float snow = rand(uv * 120.0 + _Time.yy * 50.0);
                     float staticAmount = (1.0 - _TransitionProgress);
@@ -209,7 +211,6 @@ Shader "Custom/DoomScreenBlit"
                     col.rgb *= smoothstep(0.0, 0.15, _TransitionProgress);
                     return col;
                 }
-                #endif
 
                 // -------------------------------------------------------------
                 // NORMAL GAMEPLAY RENDERING (Post-Transition)

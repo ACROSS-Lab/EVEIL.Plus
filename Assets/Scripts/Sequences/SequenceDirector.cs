@@ -16,8 +16,8 @@ public class SequenceDirector : MonoBehaviour
 {
     [Header("Play Mode")]
     [SerializeField] PlayMode currentPlayMode = PlayMode.Duo;
-    [Tooltip("Input Action to toggle between Single and Duo modes.")]
-    [SerializeField] InputActionReference togglePlayModeAction;
+    [SerializeField] bool allowPlayModeToggle = true;
+    [SerializeField] InputActionReference resetPlayModeAction;
     [ShowIf("isDuoMode")] [SerializeField] string duoModeLanguage = "French";
 
     [Header("List of steps")]
@@ -515,15 +515,24 @@ public class SequenceDirector : MonoBehaviour
 
     void CheckTogglePlayModeInput()
     {
-        if (togglePlayModeAction != null && togglePlayModeAction.action.WasPerformedThisFrame())
+        if (resetPlayModeAction != null && resetPlayModeAction.action.WasPerformedThisFrame())
         {
-            TogglePlayMode();
+            ResetPlayMode();
         }
     }
 
-    public void TogglePlayMode()
+    public void ResetPlayMode()
     {
-        PlayMode nextMode = currentPlayMode == PlayMode.Single ? PlayMode.Duo : PlayMode.Single;
+        PlayMode nextMode;
+        if (allowPlayModeToggle)
+        {
+            nextMode = currentPlayMode == PlayMode.Single ? PlayMode.Duo : PlayMode.Single;
+        }
+        else
+        {
+            nextMode = currentPlayMode;
+        }    
+    
         SetPlayMode(nextMode);
     }
 

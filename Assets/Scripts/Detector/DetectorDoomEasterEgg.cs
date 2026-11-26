@@ -38,6 +38,7 @@ public class DetectorDoomEasterEgg : MonoBehaviour
     [Tooltip("The RenderTexture bound to the detector's screen (e.g., RenderTexture_01)")]
     [SerializeField] private RenderTexture targetRenderTexture;
     [SerializeField] private Material customBlitMaterial; // Optional: custom shader material
+    [SerializeField, HideInInspector] private Shader doomBlitShader; // Direct reference so Unity never strips the shader in builds
 
     [Header("Screen Orientation (Fix 90-degree Rotation)")]
     [Tooltip("Rotates the Doom frame to match the detector's 3D mesh UVs without affecting normal rendering")]
@@ -137,6 +138,14 @@ public class DetectorDoomEasterEgg : MonoBehaviour
         InitializeBlitMaterial();
     }
 
+    private void OnValidate()
+    {
+        if (doomBlitShader == null)
+        {
+            doomBlitShader = Shader.Find("Custom/DoomScreenBlit");
+        }
+    }
+
     private void InitializeBlitMaterial()
     {
         if (customBlitMaterial != null)
@@ -145,7 +154,7 @@ public class DetectorDoomEasterEgg : MonoBehaviour
         }
         else
         {
-            Shader blitShader = Shader.Find("Custom/DoomScreenBlit");
+            Shader blitShader = doomBlitShader != null ? doomBlitShader : Shader.Find("Custom/DoomScreenBlit");
             if (blitShader != null)
             {
                 runtimeBlitMaterial = new Material(blitShader);
@@ -557,56 +566,14 @@ public class DetectorDoomEasterEgg : MonoBehaviour
 
         if (runtimeBlitMaterial != null)
         {
-            runtimeBlitMaterial.DisableKeyword("_ROTATION_NONE");
-            runtimeBlitMaterial.DisableKeyword("_ROTATION_ROTATE90CW");
-            runtimeBlitMaterial.DisableKeyword("_ROTATION_ROTATE180");
-            runtimeBlitMaterial.DisableKeyword("_ROTATION_ROTATE270CW");
-
-            switch (screenRotation)
-            {
-                case ScreenRotation.None:
-                    runtimeBlitMaterial.EnableKeyword("_ROTATION_NONE");
-                    break;
-                case ScreenRotation.Rotate90CW:
-                    runtimeBlitMaterial.EnableKeyword("_ROTATION_ROTATE90CW");
-                    break;
-                case ScreenRotation.Rotate180:
-                    runtimeBlitMaterial.EnableKeyword("_ROTATION_ROTATE180");
-                    break;
-                case ScreenRotation.Rotate270CW:
-                    runtimeBlitMaterial.EnableKeyword("_ROTATION_ROTATE270CW");
-                    break;
-            }
-
+            runtimeBlitMaterial.SetFloat("_Rotation", (float)screenRotation);
             runtimeBlitMaterial.SetFloat("_FlipX", flipHorizontal ? 1f : 0f);
             runtimeBlitMaterial.SetFloat("_FlipY", flipVertical ? 1f : 0f);
             runtimeBlitMaterial.SetFloat("_Zoom", screenZoom);
             runtimeBlitMaterial.SetFloat("_AspectCorrection", aspectCorrection);
             runtimeBlitMaterial.SetFloat("_OffsetX", screenOffset.x);
             runtimeBlitMaterial.SetFloat("_OffsetY", screenOffset.y);
-
-            // Transition effect keywords & progress
-            runtimeBlitMaterial.DisableKeyword("_TRANSITIONTYPE_NONE");
-            runtimeBlitMaterial.DisableKeyword("_TRANSITIONTYPE_CRTPOWERON");
-            runtimeBlitMaterial.DisableKeyword("_TRANSITIONTYPE_DIGITALGLITCH");
-            runtimeBlitMaterial.DisableKeyword("_TRANSITIONTYPE_RETROSTATIC");
-
-            switch (transitionEffect)
-            {
-                case TransitionEffect.None:
-                    runtimeBlitMaterial.EnableKeyword("_TRANSITIONTYPE_NONE");
-                    break;
-                case TransitionEffect.CrtPowerOn:
-                    runtimeBlitMaterial.EnableKeyword("_TRANSITIONTYPE_CRTPOWERON");
-                    break;
-                case TransitionEffect.DigitalGlitch:
-                    runtimeBlitMaterial.EnableKeyword("_TRANSITIONTYPE_DIGITALGLITCH");
-                    break;
-                case TransitionEffect.RetroStatic:
-                    runtimeBlitMaterial.EnableKeyword("_TRANSITIONTYPE_RETROSTATIC");
-                    break;
-            }
-
+            runtimeBlitMaterial.SetFloat("_TransitionType", (float)transitionEffect);
             runtimeBlitMaterial.SetFloat("_TransitionProgress", currentTransitionProgress);
 
             Graphics.Blit(source, destination, runtimeBlitMaterial);

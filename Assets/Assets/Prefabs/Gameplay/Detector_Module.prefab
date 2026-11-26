@@ -12989,6 +12989,7 @@ MonoBehaviour:
   flyHorizontally: {fileID: 0}
   targetRenderTexture: {fileID: 8400000, guid: 1b04a2ca5fc1d414bba63d5b3d6bbfe2, type: 2}
   customBlitMaterial: {fileID: 0}
+  doomBlitShader: {fileID: 4800000, guid: 22bc438f7e0b7af4e9678f0cd76a2391, type: 3}
   screenRotation: 3
   flipHorizontal: 0
   flipVertical: 0

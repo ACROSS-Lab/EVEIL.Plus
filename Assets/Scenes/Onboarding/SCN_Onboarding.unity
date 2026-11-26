@@ -1230,7 +1230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SequenceDirector
   currentPlayMode: 0
-  togglePlayModeAction: {fileID: -3446439100935378617, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  allowPlayModeToggle: 0
+  resetPlayModeAction: {fileID: -3446439100935378617, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   duoModeLanguage: English
   sequenceSteps: []
   jumpToStepIndex: 0

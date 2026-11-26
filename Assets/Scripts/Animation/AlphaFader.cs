@@ -36,6 +36,15 @@ public class AlphaFader : MonoBehaviour
         StartFade(1f, 0f, disableAfter: true);
     }
 
+    private void OnDisable()
+    {
+        if (_currentFade != null)
+        {
+            StopCoroutine(_currentFade);
+            _currentFade = null;
+        }
+    }
+
     private bool IsReady()
     {
         return _renderer != null && _renderer.sharedMaterial.HasProperty(alphaProperty);
