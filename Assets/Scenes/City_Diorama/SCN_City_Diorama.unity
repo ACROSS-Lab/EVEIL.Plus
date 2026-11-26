@@ -55606,6 +55606,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2802964886169025416, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 2802964886169025416, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 4062702002672391302, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -55706,6 +55714,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7382675804187482129, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 7382675804187482129, guid: 1f2ec2491857a1b41ada6c97f5999d86, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -58062,7 +58078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrafficPath
   splineContainer: {fileID: 2809914702832714981}
-  sampleCount: 35
+  sampleCount: 45
   vehicleCount: 10
   vehicleSpeed: 0.4
   laneOffset: 0.1
@@ -58078,6 +58094,12 @@ MonoBehaviour:
   redDurationRange: {x: 4, y: 10}
   greenDurationRange: {x: 8, y: 20}
   stopLineMargin: 1
+  enableCrossingAvoidance: 1
+  crossingLookAhead: 10
+  crossingMargin: 0.5
+  crossingHeightTolerance: 2
+  crossingDeadlockTimeout: 5
+  crossingDeadlockIgnoreDuration: 3
 --- !u!1001 &1288436541922233009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61235,6 +61257,7 @@ MonoBehaviour:
   - {fileID: 1507399766048556871, guid: 5753132e4de4fa0489b5f3dd21705546, type: 3}
   maxTotalVehicles: 45
   avoidConsecutiveDuplicates: 1
+  trafficLayerName: Traffic
   logSpawnSummary: 0
 --- !u!1001 &2713735144868207108
 PrefabInstance:
@@ -68365,7 +68388,7 @@ GameObject:
   - component: {fileID: 6714889411660089923}
   - component: {fileID: 7659937966997833233}
   m_Layer: 0
-  m_Name: Spline
+  m_Name: Traffic_Spline_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69518,7 +69541,7 @@ GameObject:
   - component: {fileID: 2809914702832714981}
   - component: {fileID: 1235566052963140521}
   m_Layer: 0
-  m_Name: Spline
+  m_Name: Traffic_Spline_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72622,7 +72645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrafficPath
   splineContainer: {fileID: 6714889411660089923}
-  sampleCount: 35
+  sampleCount: 45
   vehicleCount: 10
   vehicleSpeed: 0.4
   laneOffset: 0.1
@@ -72638,6 +72661,12 @@ MonoBehaviour:
   redDurationRange: {x: 4, y: 10}
   greenDurationRange: {x: 8, y: 20}
   stopLineMargin: 1
+  enableCrossingAvoidance: 1
+  crossingLookAhead: 10
+  crossingMargin: 0.5
+  crossingHeightTolerance: 2
+  crossingDeadlockTimeout: 5
+  crossingDeadlockIgnoreDuration: 3
 --- !u!1001 &7702861725956244300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74572,7 +74601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrafficPath
   splineContainer: {fileID: 5565321410792838703}
-  sampleCount: 35
+  sampleCount: 45
   vehicleCount: 20
   vehicleSpeed: 0.4
   laneOffset: 0.1
@@ -74588,6 +74617,12 @@ MonoBehaviour:
   redDurationRange: {x: 4, y: 10}
   greenDurationRange: {x: 8, y: 20}
   stopLineMargin: 1
+  enableCrossingAvoidance: 1
+  crossingLookAhead: 10
+  crossingMargin: 0.5
+  crossingHeightTolerance: 2
+  crossingDeadlockTimeout: 5
+  crossingDeadlockIgnoreDuration: 3
 --- !u!1001 &8289841852947659185
 PrefabInstance:
   m_ObjectHideFlags: 0

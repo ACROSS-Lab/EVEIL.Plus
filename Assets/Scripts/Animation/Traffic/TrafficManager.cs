@@ -14,22 +14,60 @@ public class TrafficManager : MonoBehaviour
     [SerializeField] private int maxTotalVehicles = 30;
     [SerializeField] private bool avoidConsecutiveDuplicates = true;
 
+    [Header("Physics")]
+    [Tooltip("Layer given to every traffic vehicle. Collisions between vehicles of this layer are disabled. " +
+             "Create it in Project Settings > Tags and Layers. Leave empty to skip.")]
+    [SerializeField] private string trafficLayerName = "Traffic";
+
     [Header("Debug")]
     [SerializeField] private bool logSpawnSummary = true;
 
     private readonly List<TrafficVehicle> spawnedVehicles = new List<TrafficVehicle>();
     private readonly List<int> validIndices = new List<int>();
     private int previousPrefabIndex = -1;
+    private int trafficLayer = -1;
 
     private void Start()
     {
         SpawnTraffic();
     }
 
+    private void SetupTrafficLayer()
+    {
+        trafficLayer = -1;
+
+        if (string.IsNullOrEmpty(trafficLayerName))
+            return;
+
+        trafficLayer = LayerMask.NameToLayer(trafficLayerName);
+
+        if (trafficLayer < 0)
+        {
+            Debug.LogWarning(
+                $"TrafficManager: Layer '{trafficLayerName}' does not exist. " +
+                "Create it in Project Settings > Tags and Layers to disable collisions between vehicles.",
+                this
+            );
+            return;
+        }
+
+        // One call, no per vehicle cost: vehicles of this layer never collide together.
+        Physics.IgnoreLayerCollision(trafficLayer, trafficLayer, true);
+    }
+
+    private static void SetLayerRecursively(GameObject target, int layer)
+    {
+        Transform[] children = target.GetComponentsInChildren<Transform>(true);
+
+        for (int i = 0; i < children.Length; i++)
+            children[i].gameObject.layer = layer;
+    }
+
     public void SpawnTraffic()
     {
         ClearTraffic();
         previousPrefabIndex = -1;
+        SetupTrafficLayer();
 
         if (trafficPaths == null || trafficPaths.Length == 0)
         {
@@ -63,6 +101,7 @@ public class TrafficManager : MonoBehaviour
         }
 
         int spawnedCount = 0;
+        int skippedCount = 0;
 
         // Round robin: each round spawns one vehicle on every spline,
         // so the global cap can never starve the last splines.
@@ -79,7 +118,7 @@ public class TrafficManager : MonoBehaviour
                 {
                     if (spawnedCount >= maxTotalVehicles)
                     {
-                        LogSummary(spawnedCount);
+                        LogSummary(spawnedCount, skippedCount);
                         return;
                     }
 
@@ -110,7 +149,21 @@ public class TrafficManager : MonoBehaviour
 
                     TrafficVehicle vehicle = Instantiate(prefab, transform);
                     vehicle.name = $"{prefab.name}_Traffic_{spawnedCount:00}";
+
+                    if (trafficLayer >= 0)
+                        SetLayerRecursively(vehicle.gameObject, trafficLayer);
+
                     vehicle.Initialize(path, splineIndex, startDistance, direction);
+
+                    // Never spawn a vehicle on top of another one.
+                    if (!path.IsSpaceFree(vehicle))
+                    {
+                        // Deactivating unregisters it immediately, Destroy is only applied at the end of the frame.
+                        vehicle.gameObject.SetActive(false);
+                        Destroy(vehicle.gameObject);
+                        skippedCount++;
+                        continue;
+                    }
 
                     spawnedVehicles.Add(vehicle);
                     spawnedCount++;
@@ -118,13 +171,19 @@ public class TrafficManager : MonoBehaviour
             }
         }
 
-        LogSummary(spawnedCount);
+        LogSummary(spawnedCount, skippedCount);
     }
 
-    private void LogSummary(int spawnedCount)
+    private void LogSummary(int spawnedCount, int skippedCount)
     {
-        if (logSpawnSummary)
-            Debug.Log($"TrafficManager: {spawnedCount} vehicle(s) spawned.", this);
+        if (!logSpawnSummary)
+            return;
+
+        Debug.Log(
+            $"TrafficManager: {spawnedCount} vehicle(s) spawned, " +
+            $"{skippedCount} skipped because there was no free space.",
+            this
+        );
     }
 
     private void ClearTraffic()
