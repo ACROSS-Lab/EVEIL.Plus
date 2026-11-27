@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272b3340dec6323418bfbb3b98283410, type: 3}
   m_Name: Narrator_Conclusion_Factories_01
   m_EditorClassIdentifier: Assembly-CSharp::SequenceStep
-  hasSequenceEvents: 0
-  hasNarratorMovement: 0
-  targetNarratorPosition: {x: 0, y: 0, z: 0}
+  hasSequenceEvents: 1
+  hasNarratorMovement: 1
+  targetNarratorPosition: {x: 4.7, y: 0.62999994, z: 0.87}
   offsetAtCenter: {x: 0, y: 0, z: 0}
-  hasNarratorRotation: 0
-  targetNarratorRotation: {x: 0, y: 0, z: 0}
-  targetNarratorScale: 0
-  flyDuration: 0
-  hasPlayerMovement: 0
-  playerTargetPosition: {x: 0, y: 0, z: 0}
-  hasPlayerRotation: 0
-  playerTargetRotation: {x: 0, y: 0, z: 0}
+  hasNarratorRotation: 1
+  targetNarratorRotation: {x: 0, y: 249.25851, z: 0}
+  targetNarratorScale: 2
+  flyDuration: 2
+  hasPlayerMovement: 1
+  playerTargetPosition: {x: -10.375805, y: 2, z: -5.545053}
+  hasPlayerRotation: 1
+  playerTargetRotation: {x: 0, y: 74.76535, z: 0}
   hasDialogue: 1
   characterStates: {fileID: 11400000, guid: 1fa3470f8cdcfd44592bb98dd66da925, type: 2}
   timeWaitBeforeTalking: 0
@@ -42,5 +42,6 @@ MonoBehaviour:
   waitTimeout: 0
   isSceneTransition: 0
   sceneToLoad: 
+  advanceProgress: 0
   hasSubStep: 0
   subStepEntries: []
